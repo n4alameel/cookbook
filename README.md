@@ -1,23 +1,44 @@
 # 1DV508 Project Course in Computer Science - Cookbook by group COBOL
 
 ## Group members
-Vanessa Jäger
+* Iryna Koval
+    * Scrum Master
+* Maxime Audrain 
+* Vanessa Jäger
+* Andreas Kovacs
+* Renaud Machecourt-Bourgeois
+* Mariia Petrova
+* Manon Ykema
 
-Andreas Kovacs
-
-Iryna Koval
-
-Maxime Audrain
-
-Renaud Machecourt-Bourgeois
-
-Mariia Petrova
-
-Manon Ykema
+Roles to be given: Note Taker (in meetings), and Program Owner (P.O.).
 
 ## About the project
 
 This project is about creating a cookbook as a computer application. This application would, mostly but not only allow a user to log in, browse all existing recipes and view details on them, as well as manage different lists of recipes unique to that user. A graphical interface will be implemented to make the user experience more comfortable, and a database containing all the data concerning reciped and users will be linked to the application. For all of that, JavaFX and MySQL will be used as programming languages.
+
+## Clone git 
+Set authentication right for Git. 
+```
+git config --global user.name "Firstname Lastname"
+```
+```
+git config --global user.email "youremail@student.lnu.se"
+```
+
+Clone project. 
+```
+git clone git@gitlab.lnu.se:1dv508/student/cobol/cookbook.git
+```
+
+Git clone creates new folder with repo as contents. Navigate to folder. 
+```
+cd cookbook
+```
+
+Git switch and (if doesn't exist) create branch with the "-c". If it already exists, remove `-c`. 
+```
+git switch -c dev
+```
 
 ## Usage
 **Build :**
@@ -48,9 +69,7 @@ see it
 to see
 - [ ] 10. As a user I want see more the short description of a dish from a search
 by hovering or clicking on it to know if I want to see the whole recipe
-- [ ] 11. As a user I want to create a new recipe so that I can see it later
-Linnæus University – Faculty of Technology
-Department of Computer Science
+- [ ] 11. As a user I want to create a new recipe so that I can see it later.
 - [ ] 12. As a user I want to be able to add a name, short description, ingredients
 and detailed description to a recipe
 - [ ] 13. As a user I want to see the selected recipe with formatting (bold and
