@@ -6,8 +6,10 @@
 * Maxime Audrain 
 * Vanessa Jäger
 * Andreas Kovacs
+    * Program Owner
 * Renaud Machecourt-Bourgeois
 * Mariia Petrova
+    * Note Taker
 * Manon Ykema
 
 Roles to be given: Note Taker (in meetings), and Program Owner (P.O.).
