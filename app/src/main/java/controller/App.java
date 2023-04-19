@@ -3,14 +3,10 @@ package controller;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 import javafx.application.Application;
-import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -18,28 +14,14 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    VBox root = new VBox();
-    root.setPadding(new Insets(5));
-    Label title = new Label("JavaFX");
-    /*Label mysql;
+    //Group -> Scene -> Stage
+    //Stage stage = new Stage();
+    Group root = new Group();
+    Scene scene = new Scene(root, Color.BLACK);
 
-    try {
-      Connection conn = DriverManager
-        .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=ABC&useSSL=false");
-      mysql = new Label("Driver found and connected");
-      Statement stmt = conn.createStatement();
-      ResultSet rs = stmt.executeQuery("SELECT * FROM user WHERE id = 1");
-      rs.next();
-      System.out.println(rs.getString("username")); //Exemple of a select from the database.
-    } catch (SQLException e) {
-      mysql = new Label("An error has occurred: " + e.getMessage());
-    }*/
-    
-    
-    root.getChildren().addAll(title/*, mysql*/);
+    primaryStage.setTitle("Login Page");
 
-    primaryStage.setScene(new Scene(root, 400, 200));
-    primaryStage.setTitle("JavaFX");
+    primaryStage.setScene(scene);
     primaryStage.show();
   }
 
