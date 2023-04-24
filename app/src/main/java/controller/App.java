@@ -7,22 +7,29 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javafx.application.Application;
+import javafx.application.Preloader;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 public class App extends Application {
 
+  private Loader loader = new Loader();
 
   @Override
   public void start(Stage primaryStage) throws Exception {
+    Loader preloader = new Loader();
+    preloader.start(new Stage());
+
     VBox root = new VBox();
     root.setPadding(new Insets(5));
-    Label title = new Label("JavaFX");
-    /*Label mysql;
+    Label title = new Label("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 
+    /*Label mysql;
     try {
       Connection conn = DriverManager
         .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=ABC&useSSL=false");
@@ -34,13 +41,15 @@ public class App extends Application {
     } catch (SQLException e) {
       mysql = new Label("An error has occurred: " + e.getMessage());
     }*/
-    
-    
-    root.getChildren().addAll(title/*, mysql*/);
+
+    root.getChildren().addAll(title);
 
     primaryStage.setScene(new Scene(root, 400, 200));
     primaryStage.setTitle("JavaFX");
     primaryStage.show();
+
+    preloader.stage.hide();
+    preloader.notifyPreloader(new Preloader.ProgressNotification(1));
   }
 
   public Connection dbconnect(){
