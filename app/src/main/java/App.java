@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import view.CookbookView;
+import view.LoginView;
 
 public class App extends Application {
 
@@ -13,7 +13,7 @@ public class App extends Application {
   public void start(Stage primaryStage) throws Exception {
 
     Controller controller = new Controller();
-    CookbookView loginView = new CookbookView(controller);
+    LoginView loginView = new LoginView(controller);
 
     Scene loginScene = new Scene(loginView.getRoot());
 

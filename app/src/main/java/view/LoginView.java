@@ -13,12 +13,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.*;
 
-public class CookbookView {
+public class LoginView {
 
   private Controller controller;
   private GridPane root;
 
-  public CookbookView(Controller controller) {
+  public LoginView(Controller controller) {
     this.controller = controller;
     this.root = new GridPane();
 
@@ -43,7 +43,7 @@ public class CookbookView {
     GridPane.setHalignment(testLogin, HPos.RIGHT);
     testLogin.setOnAction(e -> {
       if (controller.login(username.getText(), password.getText()))
-        result.setText(controller.getActiveUser().getUsername());
+        result.setText(controller.getActiveUser().getUsername() + " is logged in !");
       else
         result.setText("Error");
     });

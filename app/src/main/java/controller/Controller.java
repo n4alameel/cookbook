@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import com.mysql.cj.xdevapi.PreparableStatement;
-
 import model.User;
 
 public class Controller {
@@ -33,16 +31,17 @@ public class Controller {
     Connection conn = null;
     try {
       conn = DriverManager
-          .getConnection("jdbc:mysql://localhost/cookbook?user=root&password=ABC&useSSL=false");
+          .getConnection(
+              "jdbc:mysql://127.0.0.1:3306/cookbook?user=root&password=Grogu&useSSL=false");
     } catch (SQLException e) {
-      System.out.println(e.getMessage());
+      e.printStackTrace(System.err);
     }
     return conn;
   }
 
   public boolean login(String username, String password) {
     try {
-      String query = "select id from cookbook.user where username=? and password=?";
+      String query = "select * from user where username=? and password=?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, username);
       stmt.setString(2, password);
@@ -62,7 +61,6 @@ public class Controller {
     } catch (SQLException e) {
       return false;
     }
-
   }
 
   private User createUser(ResultSet rs, int id) {
