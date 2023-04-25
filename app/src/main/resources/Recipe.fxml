@@ -4,74 +4,61 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recipe">
-   <children>
-      <ScrollPane centerShape="false" hbarPolicy="ALWAYS" prefHeight="787.0" prefWidth="578.0" vvalue="0.89" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <content>
-          <AnchorPane focusTraversable="true" minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="566.0">
-               <children>
-                  <TextField layoutX="37.0" layoutY="56.0" prefHeight="26.0" prefWidth="496.0" />
-                  <TextArea layoutX="37.0" layoutY="235.0" prefHeight="200.0" prefWidth="496.0" />
-                  <Label layoutX="253.0" layoutY="21.0" text="Name">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="37.0" layoutY="135.0" prefHeight="26.0" prefWidth="496.0" />
-                  <Label layoutX="194.0" layoutY="100.0" text="Short description">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="196.0" layoutY="183.0" text="Long description">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="378.0" layoutY="893.0" />
-                  <Label layoutX="60.0" layoutY="857.0" text="Ammount">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="263.0" layoutY="857.0" text="Unit">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="399.0" layoutY="857.0" text="Ingredient">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <TextArea editable="false" layoutX="37.0" layoutY="510.0" prefHeight="200.0" prefWidth="496.0" />
-                  <Label layoutX="257.0" layoutY="475.0" prefHeight="35.0" prefWidth="56.0" text="Tags">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="217.0" layoutY="733.0" text="Tag selection">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Spinner editable="true" layoutX="38.0" layoutY="893.0" />
-                  <ChoiceBox layoutX="208.0" layoutY="768.0" prefWidth="150.0" />
-                  <ChoiceBox layoutX="212.0" layoutY="894.0" prefWidth="150.0" />
-                  <Button layoutX="187.0" layoutY="1288.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="197.0" text="Save recipe">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
-   </children>
-</AnchorPane>
+
+<ScrollPane centerShape="false" fitToWidth="true" hbarPolicy="ALWAYS" prefHeight="900.0" prefWidth="563.0" snapToPixel="false" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <AnchorPane focusTraversable="true" prefHeight="1318.0" prefWidth="0.0">
+         <children>
+            <TextField layoutX="37.0" layoutY="56.0" prefHeight="26.0" prefWidth="496.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="29.0" />
+            <TextArea layoutX="37.0" layoutY="235.0" prefHeight="200.0" prefWidth="496.0" AnchorPane.bottomAnchor="884.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="235.0" />
+            <Label layoutX="253.0" layoutY="21.0" prefHeight="35.0" prefWidth="75.0" text="Name">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField layoutX="37.0" layoutY="135.0" prefHeight="26.0" prefWidth="496.0" AnchorPane.bottomAnchor="1157.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="135.0" />
+            <Label layoutX="194.0" layoutY="100.0" prefHeight="35.0" prefWidth="206.0" text="Short description" AnchorPane.bottomAnchor="1183.0" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="100.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="196.0" layoutY="183.0" prefHeight="35.0" prefWidth="227.0" text="Long description" AnchorPane.bottomAnchor="1100.0" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="138.0" AnchorPane.topAnchor="183.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextArea editable="false" layoutX="37.0" layoutY="510.0" prefHeight="200.0" prefWidth="496.0" AnchorPane.bottomAnchor="608.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="510.0" />
+            <Label layoutX="257.0" layoutY="475.0" prefHeight="35.0" prefWidth="82.0" text="Tags" AnchorPane.bottomAnchor="808.0" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="475.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="202.0" layoutY="733.0" prefHeight="35.0" prefWidth="177.0" text="Tag selection" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="733.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="208.0" layoutY="768.0" prefWidth="150.0" AnchorPane.bottomAnchor="524.0" AnchorPane.leftAnchor="208.0" AnchorPane.rightAnchor="203.0" AnchorPane.topAnchor="768.0" />
+            <Button layoutX="187.0" layoutY="1288.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="197.0" text="Save recipe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="177.0" AnchorPane.topAnchor="1288.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <TableView layoutX="39.0" layoutY="825.0" prefHeight="365.0" prefWidth="496.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="825.0">
+               <columns>
+                  <TableColumn prefWidth="150.0" text="Ammount" />
+                  <TableColumn minWidth="0.0" prefWidth="171.0" text="Unit" />
+                  <TableColumn prefWidth="174.0" text="Ingredient" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

@@ -11,7 +11,7 @@ public class LoginWindow extends Stage {
         //Group -> Scene -> Stage
         //Stage stage = new Stage();
         try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("LoginWindow.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Recipe.fxml"));
             //Group root = new Group();
             Scene scene = new Scene(root);
             setTitle("Login Page");
