@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.sql.ResultSet;
 
+import model.Ingredient;
+import model.Recipe;
 import model.User;
 
 public class Controller {
@@ -18,10 +22,12 @@ public class Controller {
 
   private Connection db;
   private model.User activeUser;
+  private ArrayList<Recipe> recipeList;
 
   public Controller() {
     this.db = dbconnect();
     this.activeUser = null;
+    this.recipeList = generateRecipeListFromDb();
   }
 
   public model.User getActiveUser() {
@@ -101,4 +107,58 @@ public class Controller {
       return null;
     }
   }
+
+  private ArrayList<Recipe> generateRecipeListFromDb() {
+    try {
+      String query = "select * from recipe";
+      Statement stmt = this.db.createStatement();
+
+      ResultSet rs = stmt.executeQuery(query);
+
+      ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
+
+      while (rs.next()) {
+        int recipeId = Integer.parseInt(rs.getString(1));
+        String ingQuery = "select * from ingredient I join recipe_has_ingredient R on I.id = R.ingredient_id where R.recipe_id = ?";
+        PreparedStatement ingStmt = this.db.prepareStatement(ingQuery);
+        ingStmt.setInt(1, recipeId);
+        ResultSet ingRs = ingStmt.executeQuery();
+
+        ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+
+        while (ingRs.next()) {
+          Ingredient i = createIngredient(ingRs);
+          ingredientList.add(i);
+        }
+
+        Recipe r = createRecipe(recipeId, ingRs, ingredientList);
+        recipeList.add(r);
+      }
+
+      return recipeList;
+
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+
+  private Ingredient createIngredient(ResultSet ingRs) {
+    try {
+      Ingredient i = new Ingredient(Integer.parseInt(ingRs.getString(1)), ingRs.getString(2),
+          Integer.parseInt(ingRs.getString(3)), Integer.parseInt(ingRs.getString(4)));
+      return i;
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+
+  private Recipe createRecipe(int recipeId, ResultSet rs, ArrayList<Ingredient> ingredientList) {
+    try {
+      Recipe r = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList);
+      return r;
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+
 }

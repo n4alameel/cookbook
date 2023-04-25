@@ -22,7 +22,7 @@ public class ActiveView {
    */
   public void displayLoginScene() {
     LoginView loginView = new LoginView(this.controller, this);
-    Scene loginScene = new Scene(loginView.getRoot(), 300, 300);
+    Scene loginScene = new Scene(loginView.getRoot(), 200, 200);
     stage.setScene(loginScene);
     stage.show();
   }
@@ -34,6 +34,16 @@ public class ActiveView {
     MainView mainView = new MainView(this.controller, this);
     Scene mainScene = new Scene(mainView.getRoot(), 500, 500);
     stage.setScene(mainScene);
+    stage.show();
+  }
+
+  /**
+   * Creates and display the main menu scene.
+   */
+  public void displayBrowserView() {
+    BrowserView browserView = new BrowserView(this.controller, this);
+    Scene browserScene = new Scene(browserView.getRoot(), 500, 500);
+    stage.setScene(browserScene);
     stage.show();
   }
 
