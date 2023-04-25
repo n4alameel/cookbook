@@ -1,11 +1,7 @@
 import controller.Controller;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import view.LoginView;
+import view.ActiveView;
 
 public class App extends Application {
 
@@ -13,16 +9,13 @@ public class App extends Application {
   public void start(Stage primaryStage) throws Exception {
 
     Controller controller = new Controller();
-    LoginView loginView = new LoginView(controller);
-
-    Scene loginScene = new Scene(loginView.getRoot());
+    ActiveView activeView = new ActiveView(controller, primaryStage);
 
     primaryStage.setTitle("Galactic Goodness");
-    primaryStage.setScene(loginScene);
-    primaryStage.show();
+    activeView.displayLoginScene();
   }
 
   public static void main(String[] args) {
-    launch();
+    launch(args);
   }
 }

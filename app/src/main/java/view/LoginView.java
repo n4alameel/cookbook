@@ -10,16 +10,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import model.*;
 
 public class LoginView {
 
-  private Controller controller;
   private GridPane root;
 
-  public LoginView(Controller controller) {
-    this.controller = controller;
+  public LoginView(Controller controller, ActiveView activeView) {
     this.root = new GridPane();
 
     root.setAlignment(Pos.CENTER);
@@ -42,11 +38,13 @@ public class LoginView {
     root.add(testLogin, 1, 2);
     GridPane.setHalignment(testLogin, HPos.RIGHT);
     testLogin.setOnAction(e -> {
-      if (controller.login(username.getText(), password.getText()))
-        result.setText(controller.getActiveUser().getUsername() + " is logged in !");
-      else
+      if (controller.login(username.getText(), password.getText())) {
+        activeView.displayMainView();
+      } else {
         result.setText("Error");
+      }
     });
+
   }
 
   public Parent getRoot() {

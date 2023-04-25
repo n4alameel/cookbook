@@ -5,11 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 import model.User;
 
 public class Controller {
+
+  private final String dbUrl = "jdbc:mysql://127.0.0.1:3306/cookbook?user=root&password=Grogu&useSSL=false";
 
   private Connection db;
   private model.User activeUser;
@@ -30,9 +31,7 @@ public class Controller {
   public Connection dbconnect() {
     Connection conn = null;
     try {
-      conn = DriverManager
-          .getConnection(
-              "jdbc:mysql://127.0.0.1:3306/cookbook?user=root&password=Grogu&useSSL=false");
+      conn = DriverManager.getConnection(dbUrl);
     } catch (SQLException e) {
       e.printStackTrace(System.err);
     }
@@ -70,5 +69,4 @@ public class Controller {
       return null;
     }
   }
-
 }
