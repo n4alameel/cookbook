@@ -22,7 +22,7 @@ public class ActiveView {
    */
   public void displayLoginScene() {
     LoginView loginView = new LoginView(this.controller, this);
-    Scene loginScene = new Scene(loginView.getRoot(), 200, 200);
+    Scene loginScene = new Scene(loginView.getRoot(), 300, 150);
     stage.setScene(loginScene);
     stage.show();
   }

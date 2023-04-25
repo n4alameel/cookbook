@@ -24,6 +24,10 @@ public class Controller {
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
 
+  public ArrayList<Recipe> getRecipeList() {
+    return recipeList;
+  }
+
   public Controller() {
     this.db = dbconnect();
     this.activeUser = null;
@@ -131,7 +135,7 @@ public class Controller {
           ingredientList.add(i);
         }
 
-        Recipe r = createRecipe(recipeId, ingRs, ingredientList);
+        Recipe r = createRecipe(recipeId, rs, ingredientList);
         recipeList.add(r);
       }
 
@@ -157,6 +161,7 @@ public class Controller {
       Recipe r = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList);
       return r;
     } catch (SQLException e) {
+      System.out.println("nope");
       return null;
     }
   }

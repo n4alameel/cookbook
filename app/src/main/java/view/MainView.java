@@ -21,8 +21,12 @@ public class MainView {
     quit.setOnAction(e -> {
       activeView.closeApp();
     });
+    Button browse = new Button("Browse Recipes");
+    browse.setOnAction(e -> {
+      activeView.displayBrowserView();
+    });
 
-    this.root.getChildren().addAll(hello, quit);
+    this.root.getChildren().addAll(hello, quit, browse);
   }
 
   public Parent getRoot() {
