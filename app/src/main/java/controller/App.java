@@ -23,37 +23,10 @@ public class App extends Application {
 
     private Loader loader = new Loader();
 
-
-//  @Override
-//  public void start(Stage primaryStage) throws Exception {
-//    Loader preloader = new Loader();
-//    preloader.start(new Stage());
-//    preloader.stage.toFront();
-//
-//    VBox root = new VBox();
-//    root.setPadding(new Insets(5));
-//
-//    Label title = new Label("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-//
-
-    //
-//    primaryStage.setScene(new Scene(root, 400, 200));
-//    primaryStage.setTitle("JavaFX");
-//    primaryStage.show();
-//    primaryStage.toBack();
-//
-//
-//    PauseTransition delay = new PauseTransition(Duration.seconds(1));
-//    delay.setOnFinished(event -> {
-//      primaryStage.show(); // Show the primary stage after the delay
-//      loader.stage.hide(); // Hide the loader
-//    });
-//  }
     @Override
     public void start(Stage primaryStage) throws Exception {
         loader.start(new Stage());
 
-        // Scene for Window that needs to open after Loader.
         VBox root = new VBox();
         root.setPadding(new Insets(5));
         Label title = new Label("Lorem ipsum id est laborum.");
@@ -83,6 +56,7 @@ public class App extends Application {
             loader.stage.hide();
             primaryStage.toFront();
         });
+
         delay.play();
     }
 
