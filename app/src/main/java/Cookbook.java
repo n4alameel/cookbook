@@ -35,7 +35,10 @@ public class Cookbook extends Application {
 //    root.getChildren().addAll(title, mysql);
 
     Parent root = FXMLLoader.load(getClass().getResource("Recipe.fxml"));
-    primaryStage.setScene(new Scene(root));
+    Scene scene = new Scene(root);
+    String css = this.getClass().getResource("Style.css").toExternalForm();
+    scene.getStylesheets().add(css);
+    primaryStage.setScene(scene);
     primaryStage.setTitle("JavaFX");
     primaryStage.show();
   }
