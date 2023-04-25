@@ -4,6 +4,9 @@ import controller.Controller;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * This class creates new scenes and display them.
+ */
 public class ActiveView {
 
   private Controller controller;
@@ -14,6 +17,9 @@ public class ActiveView {
     this.stage = primaryStage;
   }
 
+  /**
+   * Creates and display the login scene.
+   */
   public void displayLoginScene() {
     LoginView loginView = new LoginView(this.controller, this);
     Scene loginScene = new Scene(loginView.getRoot(), 300, 300);
@@ -21,6 +27,9 @@ public class ActiveView {
     stage.show();
   }
 
+  /**
+   * Creates and display the main menu scene.
+   */
   public void displayMainView() {
     MainView mainView = new MainView(this.controller, this);
     Scene mainScene = new Scene(mainView.getRoot(), 500, 500);
@@ -28,8 +37,12 @@ public class ActiveView {
     stage.show();
   }
 
+  /**
+   * Closes the app.
+   */
   public void closeApp() {
     this.stage.close();
+    this.controller.dbClose();
   }
 
 }

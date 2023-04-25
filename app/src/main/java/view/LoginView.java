@@ -11,6 +11,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
+/**
+ * Defines the login scene
+ */
 public class LoginView {
 
   private GridPane root;
@@ -39,7 +42,7 @@ public class LoginView {
     GridPane.setHalignment(testLogin, HPos.RIGHT);
     testLogin.setOnAction(e -> {
       if (controller.login(username.getText(), password.getText())) {
-        activeView.displayMainView();
+        activeView.displayMainView(); // If credentials are ok, then we display the main menu
       } else {
         result.setText("Error");
       }

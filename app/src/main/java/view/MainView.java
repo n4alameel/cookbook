@@ -17,7 +17,6 @@ public class MainView {
     this.root.setSpacing(5);
 
     Label hello = new Label("Hello " + controller.getActiveUser().getUsername() + " !");
-    // Label hello = new Label("Hello !");
     Button quit = new Button("Quit");
     quit.setOnAction(e -> {
       activeView.closeApp();

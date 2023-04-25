@@ -10,6 +10,10 @@ import model.User;
 
 public class Controller {
 
+  /**
+   * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
+   * The URL used to connect to the database with JDBC.
+   */
   private final String dbUrl = "jdbc:mysql://127.0.0.1:3306/cookbook?user=root&password=Grogu&useSSL=false";
 
   private Connection db;
@@ -28,6 +32,11 @@ public class Controller {
     this.activeUser = activeUser;
   }
 
+  /**
+   * Try to connect to the database.
+   * 
+   * @return The connection
+   */
   public Connection dbconnect() {
     Connection conn = null;
     try {
@@ -38,6 +47,22 @@ public class Controller {
     return conn;
   }
 
+  public void dbClose() {
+    try {
+      this.db.close();
+    } catch (SQLException e) {
+      e.printStackTrace(System.err);
+    }
+  }
+
+  /**
+   * Try to log in a user depending of given credentials.
+   * 
+   * @param username The user's username
+   * @param password The user's password
+   * @return true if the connection is done, false if the user doesn't exist in
+   *         the database or if any problem occurs.
+   */
   public boolean login(String username, String password) {
     try {
       String query = "select * from user where username=? and password=?";
@@ -62,6 +87,13 @@ public class Controller {
     }
   }
 
+  /**
+   * Create a new User object from an existing user in the database.
+   * 
+   * @param rs The user as a MySQL query result
+   * @param id The user's ID
+   * @return An object User
+   */
   private User createUser(ResultSet rs, int id) {
     try {
       return new User(id, rs.getString(2), rs.getString(3), Boolean.parseBoolean(rs.getString(4)));
