@@ -7,7 +7,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -16,23 +18,27 @@ import javafx.stage.Stage;
 public class Cookbook extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
-    VBox root = new VBox();
-    root.setPadding(new Insets(5));
-    Label title = new Label("JavaFX");
-    Label mysql;
+//    VBox root = new VBox();
+//    root.setPadding(new Insets(5));
+//    Label title = new Label("JavaFX");
+//    Label mysql;
+//
+//    try {
+//      Connection conn = DriverManager
+//          .getConnection("jdbc:mysql://localhost/StarWars?user=tobias&password=abcd1234&useSSL=false");
+//      mysql = new Label("Driver found and connected");
+//
+//    } catch (SQLException e) {
+//      mysql = new Label("An error has occurred: " + e.getMessage());
+//    }
+//
+//    root.getChildren().addAll(title, mysql);
 
-    try {
-      Connection conn = DriverManager
-          .getConnection("jdbc:mysql://localhost/StarWars?user=tobias&password=abcd1234&useSSL=false");
-      mysql = new Label("Driver found and connected");
-
-    } catch (SQLException e) {
-      mysql = new Label("An error has occurred: " + e.getMessage());
-    }
-
-    root.getChildren().addAll(title, mysql);
-
-    primaryStage.setScene(new Scene(root, 400, 200));
+    Parent root = FXMLLoader.load(getClass().getResource("Recipe.fxml"));
+    Scene scene = new Scene(root);
+    String css = this.getClass().getResource("Style.css").toExternalForm();
+    scene.getStylesheets().add(css);
+    primaryStage.setScene(scene);
     primaryStage.setTitle("JavaFX");
     primaryStage.show();
   }
