@@ -1,15 +1,21 @@
 .menu {
 -fx-background-color:"invisible";
--fx-text-fill:white;
+-fx-text-fill:"white";
 -fx-text-alignment:center
+
 }
 
+#viewRecipes{
+-fx-border-radius: 0 20 20 0;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color:"green";
+-fx-text-fill:"white";
+}
 
 #search_button{
- -fx-border-radius: 0 0 0 0;
-  -fx-background-radius: 0 20 20 0;
-
- -fx-background-color:"orange";
+-fx-border-radius: 0 20 20 0;
+-fx-background-radius: 0 20 20 0;
+-fx-background-color:"orange";
 }
 
 #search {
@@ -18,5 +24,26 @@
 -fx-border-style: solid inside;
  -fx-border-width: 2;
  -fx-border-insets: 5;
+}
+
+#send_recipe {
+-fx-font-size:1,
+-fx-font-weight: 100;
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color:#e8dada;
+-fx-text-fill: "black";
+}
+
+#pane {
+ -fx-border-width: 2;
+ -fx-border-color: #e8dada;
+ -fx-border-radius: 20 20 20 20;
+ -fx-background-radius: 20 20 20 20;
+}
+
+#seeRecipe {
+-fx-background-color:"green";
+-fx-text-fill:white;
 
 }

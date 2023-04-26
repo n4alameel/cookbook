@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Setup HomeWindow">
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="fxml and css">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/HomeWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/HomeWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +81,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.JavaFX"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -217,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682345173483</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fxml and css">
+      <created>1682508373831</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682508373831</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -233,7 +242,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Setup HomeWindow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Setup HomeWindow" />
+    <MESSAGE value="fxml and css" />
+    <option name="LAST_COMMIT_MESSAGE" value="fxml and css" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
