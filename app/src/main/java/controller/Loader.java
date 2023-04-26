@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class Loader extends Preloader {
     private ProgressBar bar;
-    protected Stage stage;
+    public Stage stage;
     private long startTime;
 
     private Scene createPreloaderScene() {

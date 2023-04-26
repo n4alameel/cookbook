@@ -14,7 +14,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://127.0.0.1:3306/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://127.0.0.1:3306/cookbook?user=root&password=root&useSSL=false";
 
   private Connection db;
   private model.User activeUser;
