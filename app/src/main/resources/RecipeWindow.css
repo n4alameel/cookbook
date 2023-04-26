@@ -14,7 +14,7 @@
 }
 
 #add-more{
-    -fx-background-color: lightgray;
+    -fx-background-color: #f6e599;
 }
 
 #make-favourite{
@@ -93,3 +93,4 @@
     -fx-font-size: 12;
     -fx-text-fill: white;
 }
+
