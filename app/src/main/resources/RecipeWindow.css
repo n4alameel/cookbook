@@ -50,16 +50,11 @@
     -fx-border-color: transparent;
 }
 
-.avatar{
-    -fx-background-radius: 20;
-
-}
-
 .footer, .header{
     -fx-pref-height: 30;
 }
 
-.ava{
+#ava{
     -fx-background-image: url("ava.jpg");
     -fx-background-color: transparent;
 }

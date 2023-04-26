@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox alignment="CENTER" prefWidth="1200.0" styleClass="window" stylesheets="@RecipeWindow.css">
          <children>
@@ -72,22 +72,43 @@
                   </FlowPane>
                   <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" hgap="50.0" prefWidth="333.0" stylesheets="@RecipeWindow.css" HBox.hgrow="SOMETIMES">
                      <children>
-                        <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="top-link" text="Recipes" textAlignment="CENTER">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Hyperlink>
-                        <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="top-link" text="Favourite Recipes" textAlignment="CENTER">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Hyperlink>
-                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" hgap="10.0" prefHeight="70.0" prefWidth="150.0">
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
                            <children>
-                              <ImageView fitHeight="43.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true" styleClass="ava">
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@whisk.png" />
+                                 </image>
+                              </ImageView>
+                              <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="top-link" text="Recipes" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
+                           <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Heart.png" />
+                                 </image>
+                              </ImageView>
+                              <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="top-link" text="Favourite Recipes" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="70.0" prefWidth="150.0">
+                           <children>
+                              <ImageView id="ava" fitHeight="43.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@ava.jpg" />
                                  </image>
+                                 <FlowPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </FlowPane.margin>
                               </ImageView>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="top-link" text="Charlotte Oliver">
                                  <font>
@@ -120,9 +141,36 @@
                   </Text>
                   <HBox alignment="CENTER" spacing="50.0">
                      <children>
-                      <Button id="make-favourite" mnemonicParsing="false" styleClass="action-btn" stylesheets="@RecipeWindow.css" text="Favourite" />
-                        <Button id="make-favourite" mnemonicParsing="false" styleClass="action-btn" stylesheets="@RecipeWindow.css" text="Select Recipe" />
-                        <Button id="make-favourite" mnemonicParsing="false" styleClass="action-btn" stylesheets="@RecipeWindow.css" text="Send Recipe" />
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
+                           <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Heart.png" />
+                                 </image>
+                              </ImageView>
+                            <Button id="make-favourite" mnemonicParsing="false" styleClass="action-btn" stylesheets="@RecipeWindow.css" text="Favourite" />
+                           </children>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
+                           <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@send.png" />
+                                 </image>
+                              </ImageView>
+                              <Button id="make-favourite" mnemonicParsing="false" styleClass="action-btn" stylesheets="@RecipeWindow.css" text="Send Recipe" />
+                           </children>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
+                           <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@whisk.png" />
+                                 </image>
+                              </ImageView>
+                              <Button id="make-favourite" mnemonicParsing="false" styleClass="action-btn" stylesheets="@RecipeWindow.css" text="Select Recipe" />
+                           </children>
+                        </FlowPane>
                      </children>
                   </HBox>
                </children>
@@ -140,7 +188,8 @@
                         <Text lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="short-desc" text="Cook the linguine according to the package instructions until al dente. Drain and set aside.In a large skillet, melt the butter over medium heat. Add the minced garlic and red pepper flakes and cook for 1-2 minutes until fragrant." wrappingWidth="700.0">
                            <font>
                               <Font name="System Italic" size="12.0" />
-                           </font></Text>
+                           </font>
+                        </Text>
                         <Text lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cook the linguine according to the package instructions until al dente. Drain and set aside.In a large skillet, melt the butter over medium heat. Add the minced garlic and red pepper flakes and cook for 1-2 minutes until fragrant.Add the shrimp to the skillet and cook for 2-3 minutes on each side until pink and cooked through.Add the cooked linguine to the skillet with the shrimp and toss until well coated with the garlic butter sauce.Add the chopped parsley and grated Parmesan cheese and toss again.Season with salt and freshly ground black pepper to taste.Serve hot with additional Parmesan cheese on top, if desired.Enjoy your Spicy Garlic Shrimp Linguine!" wrappingWidth="700.0" />
                      </children>
                      <padding>
@@ -257,7 +306,7 @@
                   <Line endX="1120.0" startX="60.0" stroke="#bababa" />
                   <VBox spacing="20.0">
                      <children>
-                        <FlowPane alignment="CENTER_LEFT" columnHalignment="RIGHT" hgap="10.0" prefHeight="39.0" prefWidth="522.0">
+                        <FlowPane alignment="CENTER_LEFT" columnHalignment="RIGHT" hgap="5.0" prefHeight="39.0" prefWidth="522.0">
                            <children>
                               <ImageView fitHeight="43.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
