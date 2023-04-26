@@ -16,12 +16,14 @@ public class App extends Application {
     Controller controller = new Controller();
 
     PauseTransition delay = new PauseTransition(Duration.seconds(2));
+
     delay.setOnFinished(event -> {
       loader.stage.hide();
       ActiveView activeView = new ActiveView(controller, primaryStage);
       primaryStage.setTitle("Galactic Goodness");
       activeView.displayLoginScene();
     });
+
     delay.play();
   }
 
