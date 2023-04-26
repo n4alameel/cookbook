@@ -1,6 +1,8 @@
 package view;
 
 import controller.Controller;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,48 +12,46 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import org.w3c.dom.Text;
+
+import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 /**
  * Defines the login scene
  */
 public class LoginView {
 
-  private GridPane root;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private TextField passwordField;
+    @FXML
+    private Button loginButton;
 
-  public LoginView(Controller controller, ActiveView activeView) {
-    this.root = new GridPane();
+    private Parent root;
 
-    root.setAlignment(Pos.CENTER);
-    root.setPadding(new Insets(11.5, 12.5, 13.5, 14.4));
-    root.setHgap(5.5);
-    root.setVgap(5.5);
+    public void submit(ActionEvent event) {
 
-    root.add(new Label("User name:"), 0, 0);
-    final TextField username = new TextField();
-    root.add(username, 1, 0);
+    }
 
-    root.add(new Label("Password:"), 0, 1);
-    final PasswordField password = new PasswordField();
-    root.add(password, 1, 1);
-
-    final Label result = new Label();
-    root.add(result, 0, 2);
-
-    Button testLogin = new Button("Login");
-    root.add(testLogin, 1, 2);
-    GridPane.setHalignment(testLogin, HPos.RIGHT);
-    testLogin.setOnAction(e -> {
-      if (controller.login(username.getText(), password.getText())) {
-        activeView.displayMainView(); // If credentials are ok, then we display the main menu
-      } else {
-        result.setText("Error");
+    public LoginView(Controller controller, ActiveView activeView){
+      //setting the scene
+      try {
+        this.root = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
+      } catch (IOException e) {
+        throw new RuntimeException(e);
       }
-    });
+      //controller checks whether username and password match
+      if (controller.login(usernameField.getText(), passwordField.getText())) {
+            activeView.displayMainView(); // If credentials are ok, then we display the main menu
+        } else {
 
-  }
+        }
+    }
 
-  public Parent getRoot() {
-    return this.root;
-  }
-
+    public Parent getRoot() {
+        return this.root;
+    }
 }
+
