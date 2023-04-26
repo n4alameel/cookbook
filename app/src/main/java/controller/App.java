@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -18,7 +20,7 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    VBox root = new VBox();
+  /*  VBox root = new VBox();
     root.setPadding(new Insets(5));
     Label title = new Label("JavaFX");
     /*Label mysql;
@@ -34,15 +36,16 @@ public class App extends Application {
     } catch (SQLException e) {
       mysql = new Label("An error has occurred: " + e.getMessage());
     }*/
-    
-    
-    root.getChildren().addAll(title/*, mysql*/);
 
-    primaryStage.setScene(new Scene(root, 400, 200));
-    primaryStage.setTitle("JavaFX");
-    primaryStage.show();
+      //   root.getChildren().addAll(title/*, mysql*/);
+      Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HomeWindow.fxml"));
+      Scene scene = new Scene(root);
+       primaryStage.setScene(scene);
+      //scene.getStylesheets().add(css);
+
+      primaryStage.setTitle("JavaFX");
+      primaryStage.show();
   }
-
   public Connection dbconnect(){
     Connection conn = null;
     try {

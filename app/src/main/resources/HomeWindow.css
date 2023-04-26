@@ -1,0 +1,22 @@
+.menu {
+-fx-background-color:"invisible";
+-fx-text-fill:white;
+-fx-text-alignment:center
+}
+
+
+#search_button{
+ -fx-border-radius: 0 0 0 0;
+  -fx-background-radius: 0 20 20 0;
+
+ -fx-background-color:"orange";
+}
+
+#search {
+-fx-border-color: "grey";
+-fx-border-radius: 20;
+-fx-border-style: solid inside;
+ -fx-border-width: 2;
+ -fx-border-insets: 5;
+
+}
