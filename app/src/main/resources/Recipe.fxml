@@ -45,7 +45,7 @@
                </font>
             </Label>
             <ChoiceBox layoutX="214.0" layoutY="749.0" prefWidth="553.0" AnchorPane.leftAnchor="214.0" AnchorPane.rightAnchor="198.0" />
-            <Button layoutX="187.0" layoutY="1288.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="197.0" text="Save recipe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="177.0" AnchorPane.topAnchor="1288.0">
+            <Button layoutX="190.0" layoutY="1267.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="198.0" text="Save recipe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="1267.0">
                <font>
                   <Font size="24.0" />
                </font>
