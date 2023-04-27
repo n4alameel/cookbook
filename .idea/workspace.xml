@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="deleted old login method">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="login home and add recipe(wrong button tho)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/ActiveView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/ActiveView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/HomeWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/HomeWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -286,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682604721437</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="login home and add recipe(wrong button tho)">
+      <created>1682605643912</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682605643912</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -309,7 +315,8 @@
     <MESSAGE value="running window." />
     <MESSAGE value="working login Page with FXML" />
     <MESSAGE value="deleted old login method" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted old login method" />
+    <MESSAGE value="login home and add recipe(wrong button tho)" />
+    <option name="LAST_COMMIT_MESSAGE" value="login home and add recipe(wrong button tho)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

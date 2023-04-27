@@ -1,4 +1,3 @@
-
 #help{
 -fx-border-radius: 0 20 20 0;
 -fx-background-radius: 20 20 20 20;
@@ -11,7 +10,7 @@
 }
 
 .menu{
--fx-background-color: invisible;
+-fx-background-color: transparent;
 -fx-color: black;
 }
 
@@ -39,7 +38,7 @@
 -fx-border-style: solid inside;
  -fx-border-width: 2;
  -fx-border-insets: 5;
- -fx-background-color: invisible;
+ -fx-background-color: transparent;
 }
 
 #sendRecipeBtn {
