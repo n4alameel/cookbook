@@ -24,7 +24,10 @@ public class BrowserView {
     int x = 0;
 
     for (Recipe r : controller.getRecipeList()) {
-      Label recipLabel = new Label(r.getName());
+      Button recipLabel = new Button(r.getName());
+      recipLabel.setOnAction(e -> {
+        activeView.displayRecipeView(r);
+      });
       root.add(recipLabel, (x % 3), y);
       x++;
       if (x % 3 == 0) {

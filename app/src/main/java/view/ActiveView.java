@@ -3,6 +3,7 @@ package view;
 import controller.Controller;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Recipe;
 
 /**
  * This class creates new scenes and display them.
@@ -44,6 +45,13 @@ public class ActiveView {
     BrowserView browserView = new BrowserView(this.controller, this);
     Scene browserScene = new Scene(browserView.getRoot(), 500, 500);
     stage.setScene(browserScene);
+    stage.show();
+  }
+
+  public void displayRecipeView(Recipe r) {
+    RecipeView recipeView = new RecipeView(controller, this);
+    Scene recipeScene = new Scene(recipeView.getRoot(), 500, 500);
+    stage.setScene(recipeScene);
     stage.show();
   }
 

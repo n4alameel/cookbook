@@ -112,6 +112,12 @@ public class Controller {
     }
   }
 
+  /**
+   * Takes all the recipes from the database and store them as Recipe objects in a
+   * list.
+   * 
+   * @return A list of all existing recipes
+   */
   private ArrayList<Recipe> generateRecipeListFromDb() {
     try {
       String query = "select * from recipe";
@@ -146,6 +152,12 @@ public class Controller {
     }
   }
 
+  /**
+   * Create an Ingredient object from a MySQL query result.
+   * 
+   * @param ingRs a query result
+   * @return An Ingredient object
+   */
   private Ingredient createIngredient(ResultSet ingRs) {
     try {
       Ingredient i = new Ingredient(Integer.parseInt(ingRs.getString(1)), ingRs.getString(2),
@@ -156,6 +168,14 @@ public class Controller {
     }
   }
 
+  /**
+   * Create a Recipe object from a MySQL query result.
+   * 
+   * @param recipeId       The recipe ID
+   * @param rs             The query result
+   * @param ingredientList The list of all ingredients used in the recipe
+   * @return A Recipe object
+   */
   private Recipe createRecipe(int recipeId, ResultSet rs, ArrayList<Ingredient> ingredientList) {
     try {
       Recipe r = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList);
@@ -165,5 +185,4 @@ public class Controller {
       return null;
     }
   }
-
 }
