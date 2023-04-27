@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +9,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
 import model.User;
@@ -18,7 +25,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://127.0.0.1:3306/cookbook?user=root&password=root&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
 
   private Connection db;
   private model.User activeUser;
@@ -184,5 +191,10 @@ public class Controller {
       System.out.println("nope");
       return null;
     }
+  }
+
+  public void LoginView(ActionEvent event) throws IOException {
+    Parent root = FXMLLoader.load(getClass().getResource("/Recipe.fxml"));
+    Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
   }
 }

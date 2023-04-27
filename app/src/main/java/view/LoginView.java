@@ -22,19 +22,17 @@ public class LoginView {
     private TextField passwordField;
     @FXML
     private Button loginButton;
-    private String username;
-    private String password;
+    private String username ="jar_jar_binks";
+    private String password = "1234";
     private Parent root;
     private Stage stage;
-
 
     public LoginView(Controller controller, ActiveView activeView) {
         //setting the scene
         try {
             root = FXMLLoader.load(getClass().getResource("/LoginWindow.fxml"));
-            username = usernameField.getText();
-            password = passwordField.getText();
-            if(controller.login(username, password)){
+
+             if(controller.login(username, password)){
                 activeView.displayMainView();
             }
             else {
@@ -47,12 +45,6 @@ public class LoginView {
     public Parent getRoot() {
         return this.root;
     }
-
     //need this for the button
-    public void LoginView(ActionEvent event) throws IOException {
-        //this is needed to for the new fxml scene.
-        root = FXMLLoader.load(getClass().getResource("/Recipe.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    }
 }
 

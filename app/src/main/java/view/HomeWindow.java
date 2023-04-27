@@ -1,4 +1,4 @@
-package view;
+/**package view;
 
 import controller.App;
 import javafx.event.ActionEvent;
@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 
 import java.io.IOException;
+
 
 public class HomeWindow {
 
@@ -29,3 +30,4 @@ public class HomeWindow {
 
 
 }
+*/
