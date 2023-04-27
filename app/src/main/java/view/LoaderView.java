@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import javafx.application.Preloader;
 import javafx.scene.Scene;
@@ -6,10 +6,9 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class Loader extends Preloader {
+public class LoaderView extends Preloader {
     private ProgressBar bar;
     public Stage stage;
-    private long startTime;
 
     private Scene createPreloaderScene() {
         bar = new ProgressBar();
@@ -23,8 +22,6 @@ public class Loader extends Preloader {
         stage.setTitle("Loader");
         stage.setScene(createPreloaderScene());
         stage.show();
-        stage.toFront();
-        startTime = System.currentTimeMillis();
     }
 
     @Override
