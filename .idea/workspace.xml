@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/HomeWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/HomeWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/AllRecipesWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/AllRecipesWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +95,9 @@
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\resources\view" />
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\java" />
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\java\view" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="controller" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.cookbook:app [buildDependents]">
@@ -299,7 +305,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682631387016</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="controller">
+      <created>1682631554292</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682631554292</updated>
+    </task>
+    <task id="LOCAL-00015" summary="controller">
+      <created>1682631566709</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1682631566709</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

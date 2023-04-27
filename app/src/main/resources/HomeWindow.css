@@ -73,4 +73,7 @@
 -fx-background-color:#618C03;
 }
 
-
+#addRecipe {
+    -fx-translate-y: 0;
+    -fx-translate-y: -110
+}
