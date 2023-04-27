@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="switch to another scene and design fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Cookbook.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Cookbook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/HomeWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/HomeWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/Whisk.PNG" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -238,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682528091876</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="switch to another scene and design fixes">
+      <created>1682593661097</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682593661098</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -256,7 +260,8 @@
     <MESSAGE value="Setup HomeWindow" />
     <MESSAGE value="fxml and css" />
     <MESSAGE value="finished home windows design" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished home windows design" />
+    <MESSAGE value="switch to another scene and design fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="switch to another scene and design fixes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
