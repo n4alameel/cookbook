@@ -32,14 +32,14 @@ public class LoginView {
         try {
             root = FXMLLoader.load(getClass().getResource("/LoginWindow.fxml"));
 
-             if(controller.login(username, password)){
-                activeView.displayMainView();
-            }
-            else {
-                usernameField.setText("wrong credentials");
-            }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+        if(controller.login(username, password)){
+            activeView.displayMainView();
+        }
+        else {
+            usernameField.setText("wrong credentials");
         }
     }
     public Parent getRoot() {

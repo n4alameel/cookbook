@@ -20,7 +20,7 @@
               <Label layoutX="20.0" layoutY="105.0" text="Password:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="244.0" />
               <TextField fx:id="usernameField" layoutX="100.0" layoutY="64.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="20.0" />
               <PasswordField fx:id="passwordField" layoutX="100.0" layoutY="101.0" prefHeight="25.0" prefWidth="200.0" />
-              <Button fx:id="loginButton" layoutX="104.0" layoutY="145.0" mnemonicParsing="false" onAction="#LoginView" prefHeight="25.0" prefWidth="112.0" text="Login" />
+              <Button fx:id="loginButton" layoutX="104.0" layoutY="145.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="112.0" text="Login" />
               <Label layoutX="20.0" layoutY="68.0" prefHeight="17.0" prefWidth="56.0" text="Username:" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="244.0" AnchorPane.topAnchor="68.0" />
           </children>
       </AnchorPane>

@@ -193,7 +193,7 @@ public class Controller {
     }
   }
 
-  public void LoginView(ActionEvent event) throws IOException {
+  public void login(ActionEvent event) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource("/Recipe.fxml"));
     Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
   }
