@@ -3,6 +3,7 @@ package view;
 import controller.Controller;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Recipe;
 
 /**
  * This class creates new scenes and display them.
@@ -22,7 +23,7 @@ public class ActiveView {
    */
   public void displayLoginScene() {
     LoginView loginView = new LoginView(this.controller, this);
-    Scene loginScene = new Scene(loginView.getRoot(), 300, 300);
+    Scene loginScene = new Scene(loginView.getRoot(), 300, 150);
     stage.setScene(loginScene);
     stage.show();
   }
@@ -34,6 +35,23 @@ public class ActiveView {
     MainView mainView = new MainView(this.controller, this);
     Scene mainScene = new Scene(mainView.getRoot(), 500, 500);
     stage.setScene(mainScene);
+    stage.show();
+  }
+
+  /**
+   * Creates and display the main menu scene.
+   */
+  public void displayBrowserView() {
+    BrowserView browserView = new BrowserView(this.controller, this);
+    Scene browserScene = new Scene(browserView.getRoot(), 500, 500);
+    stage.setScene(browserScene);
+    stage.show();
+  }
+
+  public void displayRecipeView(Recipe r) {
+    RecipeView recipeView = new RecipeView(controller, this);
+    Scene recipeScene = new Scene(recipeView.getRoot(), 500, 500);
+    stage.setScene(recipeScene);
     stage.show();
   }
 

@@ -16,34 +16,63 @@ public class Recipe {
   private String detail;
   private int portions = 2;
   private ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+  private ArrayList<Tag> tagList = new ArrayList<Tag>();
 
-  /*
-   * public Recipe(int id){
-   * this.id = id;
-   * Connection conn = new App().dbconnect();
-   * try {
-   * Statement stmt = conn.createStatement();
-   * ResultSet rs = stmt.executeQuery("SELECT * FROM recipe WHERE id = "+id);
-   * rs.next();
-   * this.name = rs.getString("name");
-   * this.description = rs.getString("description");
-   * this.detail = rs.getString("shortDescription");
-   * rs =
-   * stmt.executeQuery("SELECT * FROM recipe_has_ingredient WHERE recipe_id = "+id
-   * );
-   * while (rs.next()) {
-   * Ingredient ingredient = new Ingredient(rs.getInt("ingredient_id"));
-   * this.ingredientList.add(ingredient);
-   * System.out.println(ingredient.name);
-   * }
-   * conn.close();
-   * } catch (SQLException e) {
-   * System.out.println(e.getMessage());
-   * }
-   * }
-   */
+  public Recipe(int id, String name, String description, String detail, ArrayList<Ingredient> ingredientList) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.detail = detail;
+    this.ingredientList = ingredientList;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public String getDetail() {
+    return detail;
+  }
+
+  public void setDetail(String detail) {
+    this.detail = detail;
+  }
+
+  public ArrayList<Ingredient> getIngredientList() {
+    return ingredientList;
+  }
+
+  public ArrayList<Tag> getTagList() {
+    return tagList;
+  }
 
   public boolean addTag(Tag tag) {
     return true;
   }
+
+  @Override
+  public String toString() {
+    return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", detail=" + detail + "]";
+  }
+
 }
