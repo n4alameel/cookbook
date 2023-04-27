@@ -1,57 +1,58 @@
 package view;
 
 import controller.Controller;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 /**
  * Defines the login scene
  */
 public class LoginView {
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private TextField passwordField;
+    @FXML
+    private Button loginButton;
+    private String username;
+    private String password;
+    private Parent root;
+    private Stage stage;
 
-  private GridPane root;
 
-  public LoginView(Controller controller, ActiveView activeView) {
-    this.root = new GridPane();
+    public LoginView(Controller controller, ActiveView activeView) {
+        //setting the scene
+        try {
+            root = FXMLLoader.load(getClass().getResource("/LoginWindow.fxml"));
+            username = usernameField.getText();
+            password = passwordField.getText();
+            if(controller.login(username, password)){
+                activeView.displayMainView();
+            }
+            else {
+                usernameField.setText("wrong credentials");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public Parent getRoot() {
+        return this.root;
+    }
 
-    root.setAlignment(Pos.CENTER);
-    root.setPadding(new Insets(11.5, 12.5, 13.5, 14.4));
-    root.setHgap(5.5);
-    root.setVgap(5.5);
-
-    root.add(new Label("User name:"), 0, 0);
-    final TextField username = new TextField();
-    root.add(username, 1, 0);
-
-    root.add(new Label("Password:"), 0, 1);
-    final PasswordField password = new PasswordField();
-    root.add(password, 1, 1);
-
-    final Label result = new Label();
-    root.add(result, 0, 2);
-
-    Button testLogin = new Button("Login");
-    root.add(testLogin, 1, 2);
-    GridPane.setHalignment(testLogin, HPos.RIGHT);
-    testLogin.setOnAction(e -> {
-      if (controller.login(username.getText(), password.getText())) {
-        activeView.displayMainView(); // If credentials are ok, then we display the main menu
-      } else {
-        result.setText("Error");
-      }
-    });
-
-  }
-
-  public Parent getRoot() {
-    return this.root;
-  }
-
+    //need this for the button
+    public void LoginView(ActionEvent event) throws IOException {
+        //this is needed to for the new fxml scene.
+        root = FXMLLoader.load(getClass().getResource("/Recipe.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    }
 }
+
