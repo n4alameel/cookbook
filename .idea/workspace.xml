@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="running window.">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="deleted old login method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/view/ActiveView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/ActiveView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/LoginWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/LoginWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/HomeWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/HomeWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,7 +272,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682598151955</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="working login Page with FXML">
+      <created>1682604665527</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682604665527</updated>
+    </task>
+    <task id="LOCAL-00011" summary="deleted old login method">
+      <created>1682604721436</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682604721437</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -294,7 +307,9 @@
     <MESSAGE value="switch to another scene and design fixes" />
     <MESSAGE value="fixes" />
     <MESSAGE value="running window." />
-    <option name="LAST_COMMIT_MESSAGE" value="running window." />
+    <MESSAGE value="working login Page with FXML" />
+    <MESSAGE value="deleted old login method" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted old login method" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

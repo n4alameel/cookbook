@@ -29,7 +29,7 @@ public class ActiveView {
    */
   public void displayLoginScene() {
     LoginView loginView = new LoginView(this.controller, this);
-    Scene loginScene = new Scene(loginView.getRoot(), 300, 150);
+    Scene loginScene = new Scene(loginView.getRoot());
     stage.setScene(loginScene);
     stage.show();
   }
@@ -58,6 +58,13 @@ public class ActiveView {
     RecipeView recipeView = new RecipeView(this.controller, this);
     Scene recipeScene = new Scene(recipeView.getRoot(), 500, 500);
     stage.setScene(recipeScene);
+    stage.show();
+  }
+
+  public void displayHomeView() {
+    HomeWindow homeWindow = new HomeWindow(this.controller, this);
+    Scene mainScene = new Scene(homeWindow.getRoot());
+    stage.setScene(mainScene);
     stage.show();
   }
 

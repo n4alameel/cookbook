@@ -1,6 +1,6 @@
-/**package view;
+package view;
 
-import controller.App;
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,19 +15,18 @@ import java.io.IOException;
 
 
 public class HomeWindow {
-
-
-    Stage stage;
-    public void openAllRecipes(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("AllRecipesWindow.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-
-        stage.show();
-
+    private Parent root;
+    public HomeWindow(Controller controller, ActiveView activeView) {
+        //setting the scene
+        try {
+            root = FXMLLoader.load(getClass().getResource("/HomeWindow.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public Parent getRoot() {
+        return this.root;
     }
 
 
 }
-*/
