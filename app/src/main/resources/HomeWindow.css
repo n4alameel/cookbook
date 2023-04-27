@@ -1,18 +1,33 @@
-.menu {
--fx-background-color:"invisible";
--fx-text-fill:"white";
--fx-text-alignment:center
 
-}
-
-#viewRecipes{
+#help{
 -fx-border-radius: 0 20 20 0;
 -fx-background-radius: 20 20 20 20;
--fx-background-color:"green";
+-fx-background-color:#618C03;
 -fx-text-fill:"white";
 }
 
-#search_button{
+#menuBar{
+-fx-background-color: #618C03;
+}
+
+.menu{
+-fx-background-color: invisible;
+-fx-color: black;
+}
+
+
+#allRecipesBtn{
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color:#618C03;
+-fx-text-fill:"white";
+}
+
+.hyperlink{
+-fx-text-fill: black;
+}
+
+#searchBtn{
 -fx-border-radius: 0 20 20 0;
 -fx-background-radius: 0 20 20 0;
 -fx-background-color:"orange";
@@ -24,10 +39,11 @@
 -fx-border-style: solid inside;
  -fx-border-width: 2;
  -fx-border-insets: 5;
+ -fx-background-color: invisible;
 }
 
-#send_recipe {
--fx-font-size:1,
+#sendRecipeBtn {
+-fx-font-size:11;
 -fx-font-weight: 100;
 -fx-border-radius: 20 20 20 20;
 -fx-background-radius: 20 20 20 20;
@@ -43,7 +59,19 @@
 }
 
 #seeRecipe {
--fx-background-color:"green";
+-fx-background-color:#618C03;
 -fx-text-fill:white;
 
 }
+
+#footer {
+-fx-background-color:"#FFFFFF";
+-fx-border-style: solid none none none;
+-fx-border-color: grey;
+}
+
+#copyright {
+-fx-background-color:#618C03;
+}
+
+
