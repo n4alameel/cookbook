@@ -1,9 +1,15 @@
 package view;
 
 import controller.Controller;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Recipe;
+
+import java.io.IOException;
 
 /**
  * This class creates new scenes and display them.
@@ -49,7 +55,7 @@ public class ActiveView {
   }
 
   public void displayRecipeView(Recipe r) {
-    RecipeView recipeView = new RecipeView(controller, this);
+    RecipeView recipeView = new RecipeView(this.controller, this);
     Scene recipeScene = new Scene(recipeView.getRoot(), 500, 500);
     stage.setScene(recipeScene);
     stage.show();
@@ -62,5 +68,4 @@ public class ActiveView {
     this.stage.close();
     this.controller.dbClose();
   }
-
 }
