@@ -18,11 +18,17 @@ public class MainView {
 
     Label hello = new Label("Hello " + controller.getActiveUser().getUsername() + " !");
     Button quit = new Button("Quit");
+    Button search = new Button("Search");
+
     quit.setOnAction(e -> {
       activeView.closeApp();
     });
 
-    this.root.getChildren().addAll(hello, quit);
+    search.setOnAction(e -> {
+      activeView.displaySearchView();
+    });
+
+    this.root.getChildren().addAll(hello, search, quit);
   }
 
   public Parent getRoot() {

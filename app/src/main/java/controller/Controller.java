@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.User;
 
@@ -20,7 +22,7 @@ public class Controller {
   private model.User activeUser;
 
   public Controller() {
-    this.db = dbconnect();
+    this.db = dbConnect();
     this.activeUser = null;
   }
 
@@ -37,7 +39,7 @@ public class Controller {
    * 
    * @return The connection
    */
-  public Connection dbconnect() {
+  public Connection dbConnect() {
     Connection conn = null;
     try {
       conn = DriverManager.getConnection(dbUrl);
@@ -100,5 +102,33 @@ public class Controller {
     } catch (SQLException e) {
       return null;
     }
+  }
+
+  //  public void loadDBContent() throws SQLException {
+//    String query = "SELECT * FROM cookbook.recipe";
+//  }
+
+  public List<String> selectDataFromDatabase() {
+    List<String> data = new ArrayList<>();
+
+    try {
+      String query = "SELECT * FROM cookbook.recipe";
+      PreparedStatement statement = dbConnect().prepareStatement(query);
+      ResultSet resultSet = statement.executeQuery();
+
+      while (resultSet.next()) {
+        String value = resultSet.getString("name");
+        data.add(value);
+      }
+
+      resultSet.close();
+      statement.close();
+      dbClose();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return data;
   }
 }

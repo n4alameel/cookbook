@@ -37,6 +37,13 @@ public class ActiveView {
     stage.show();
   }
 
+  public void displaySearchView() {
+    SearchView searchView = new SearchView(this.controller, this);
+    Scene mainScene = new Scene(searchView.getRoot(), 500, 500);
+    stage.setScene(mainScene);
+    stage.show();
+  }
+
   /**
    * Closes the app.
    */
