@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,15 +10,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
+import com.sun.javafx.binding.StringFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
 import model.User;
+import org.w3c.dom.Text;
 
 public class Controller {
 
@@ -191,10 +196,5 @@ public class Controller {
       System.out.println("nope");
       return null;
     }
-  }
-
-  public void login(ActionEvent event) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("/Recipe.fxml"));
-    Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
   }
 }
