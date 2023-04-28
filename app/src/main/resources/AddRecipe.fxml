@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane centerShape="false" fitToWidth="true" prefHeight="900.0" prefWidth="574.0" snapToPixel="false" vvalue="1.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane centerShape="false" fitToWidth="true" prefHeight="900.0" prefWidth="574.0" snapToPixel="false" vvalue="1.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddRecipeController">
    <content>
       <AnchorPane focusTraversable="true" stylesheets="@Style.css">
          <children>
