@@ -4,17 +4,19 @@
 * Iryna Koval
     * Scrum Master
 * Maxime Audrain 
+    * Git Master
 * Vanessa Jäger
 * Andreas Kovacs
+    * Program Owner
 * Renaud Machecourt-Bourgeois
 * Mariia Petrova
+    * Note Taker
 * Manon Ykema
 
-Roles to be given: Note Taker (in meetings), and Program Owner (P.O.).
 
 ## About the project
 
-This project is about creating a cookbook as a computer application. This application would, mostly but not only allow a user to log in, browse all existing recipes and view details on them, as well as manage different lists of recipes unique to that user. A graphical interface will be implemented to make the user experience more comfortable, and a database containing all the data concerning reciped and users will be linked to the application. For all of that, JavaFX and MySQL will be used as programming languages.
+This project is about creating a cookbook as a computer application. This application would, mostly but not only allow a user to log in, browse all existing recipes and view details on them, as well as manage different lists of recipes unique to that user. A graphical interface will be implemented to make the user experience more comfortable, and a database containing all the data concerning reciped and users will be linked to the application. For all of that, Java, JavaFX and MySQL will be used as programming languages.
 
 ## Clone git 
 Set authentication right for Git. 
@@ -99,8 +101,6 @@ or more dishes per day)
 to by for a week
 - [ ] 25. As a user I want to be able to modify the shopping list so that it does
 not contain things I already have at home
-Linnæus University – Faculty of Technology
-Department of Computer Science
 - [ ] 26. As a user I want to be able to send a recipe to another user so that he/she
 can cook it
 - [ ] 27. As a user I want to add a message to a recipe that I send to another user
@@ -115,6 +115,3 @@ name and a password
 is wrong
 - [ ] 32. As an admin I want to be able to delete an existing user it the user no
 longer should be able to use the system
-
-
-
