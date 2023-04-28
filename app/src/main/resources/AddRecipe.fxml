@@ -15,8 +15,7 @@
    <content>
       <AnchorPane focusTraversable="true" stylesheets="@Style.css">
          <children>
-            <TextField layoutX="37.0" layoutY="56.0" prefHeight="26.0" prefWidth="496.0" AnchorPane.bottomAnchor="1236.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="56.0" />
-            <TextArea fx:id="longDescription" layoutX="37.0" layoutY="235.0" prefHeight="200.0" prefWidth="496.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="27.0" />
+            <TextArea fx:id="longDescriptionArea" layoutX="37.0" layoutY="235.0" prefHeight="200.0" prefWidth="496.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="27.0" />
             <Label layoutX="11.0" layoutY="21.0" prefHeight="35.0" prefWidth="553.0" text="Name" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="-2.0">
                <font>
                   <Font size="24.0" />

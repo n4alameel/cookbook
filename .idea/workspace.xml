@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="added Enter to login in LoginWindowController">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="added AddRecipe controller">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/Recipe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/LoginWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/LoginWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -331,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682682459077</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="added AddRecipe controller">
+      <created>1682682638263</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1682682638263</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -358,7 +367,8 @@
     <MESSAGE value="controller" />
     <MESSAGE value="small tweaks" />
     <MESSAGE value="added Enter to login in LoginWindowController" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Enter to login in LoginWindowController" />
+    <MESSAGE value="added AddRecipe controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="added AddRecipe controller" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

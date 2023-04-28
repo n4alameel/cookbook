@@ -52,7 +52,7 @@ public class LoginWindowController {
                 usernameField.setText("error");
             }
             if (controller.login(username, password)) {
-                Parent root = FXMLLoader.load(getClass().getResource("/HomeWindow.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/AddRecipe.fxml"));
                 Stage stage = (Stage) ((Node) keyEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
