@@ -1,12 +1,15 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.Ingredient;
 
 import java.awt.*;
 import java.net.URL;
@@ -24,11 +27,13 @@ public class AddRecipeController implements Initializable {
     @FXML
     private ChoiceBox<String> tagSelection;
     @FXML
-    private TableColumn ammountColumn;
+    private TableView<Ingredient> ingredientTable;
     @FXML
-    private TableColumn unitColumn;
+    private TableColumn<Ingredient, Integer> ammountColumn;
     @FXML
-    private TableColumn ingredientColumn;
+    private TableColumn<Ingredient, Integer> unitColumn;
+    @FXML
+    private TableColumn<Ingredient, String> ingredientColumn;
     @FXML
     private TextField addAmmount;
     @FXML
@@ -43,8 +48,9 @@ public class AddRecipeController implements Initializable {
     private String[] tagsArray = {"one", "two", "three"};
     private String getAddedtags;
     private String ammount;
+    //should be int
     private String unit;
-    private String ingredient;
+    private String ingredientItem;
     //impoer from database
     private String[] unitArray = {"drop", "gramm", "milliliter"};
     private String addUnit;
@@ -73,16 +79,35 @@ public class AddRecipeController implements Initializable {
         //Unitselection
         unitSelection.getItems().addAll(unitArray);
         unitSelection.setOnAction(this::setUnit);
+        //TableView
+        ammountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        unitColumn.setCellValueFactory(new PropertyValueFactory<>("unit_id"));
+        ingredientColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        //ingredientTable.setItems(observableList);
 
     }
+    /**
+    ObservableList<Ingredient> observableList = FXCollections.observableArrayList(
+            new Ingredient(1, "potato", 2, 3)
+    );
+     */
     //adds text to the textArea with tags
     public void setTags(ActionEvent event){
         addedtags = tagSelection.getValue();
         tags.setText(tags.getText() + " " + addedtags);
     }
-    public void setUnit(ActionEvent event){
+    public String setUnit(ActionEvent event){
         addUnit = unitSelection.getValue();
         //need to implement the set and get for the tableView
         System.out.println(addUnit);
+        return addUnit;
+    }
+
+    public void addIngredientButton(ActionEvent event) {
+        ammount = addAmmount.getText();
+        unit = addUnit;
+        ingredientItem = addIngredient.getText();
+        Ingredient ingredient = new Ingredient(1, ingredientItem, ammount, unit);
+        ingredientTable.getItems().add(ingredient);
     }
 }
