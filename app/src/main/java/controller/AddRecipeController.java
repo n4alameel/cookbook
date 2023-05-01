@@ -13,6 +13,8 @@ import model.Ingredient;
 
 import java.awt.*;
 import java.net.URL;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddRecipeController implements Initializable {
@@ -65,10 +67,13 @@ public class AddRecipeController implements Initializable {
             longDescription = longDescriptionArea.getText();
             getAddedtags = tags.getText();
             System.out.println(name + shortDiscription + longDescription + getAddedtags);
+
         }
         catch (Exception e){
             System.out.println("mehr eingeben");
         }
+        //mocking for printing the ingredients to read them
+        Ingredient ingredient = new Ingredient();
     }
     //overriding the selectbox for tags
     @Override
@@ -83,14 +88,8 @@ public class AddRecipeController implements Initializable {
         ammountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         unitColumn.setCellValueFactory(new PropertyValueFactory<>("unit_id"));
         ingredientColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        //ingredientTable.setItems(observableList);
 
     }
-    /**
-    ObservableList<Ingredient> observableList = FXCollections.observableArrayList(
-            new Ingredient(1, "potato", 2, 3)
-    );
-     */
     //adds text to the textArea with tags
     public void setTags(ActionEvent event){
         addedtags = tagSelection.getValue();

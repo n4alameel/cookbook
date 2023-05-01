@@ -122,7 +122,6 @@ public class Controller {
    * 
    * @return A list of all existing recipes
    */
-  /**
   private ArrayList<Recipe> generateRecipeListFromDb() {
     try {
       String query = "select * from recipe";
@@ -156,14 +155,12 @@ public class Controller {
       return null;
     }
   }
-*/
   /**
    * Create an Ingredient object from a MySQL query result.
    * 
    * @param ingRs a query result
    * @return An Ingredient object
    */
-  /**
   private Ingredient createIngredient(ResultSet ingRs) {
     try {
       Ingredient i = new Ingredient(Integer.parseInt(ingRs.getString(1)), ingRs.getString(2),
@@ -173,7 +170,6 @@ public class Controller {
       return null;
     }
   }
-   */
 
   /**
    * Create a Recipe object from a MySQL query result.
