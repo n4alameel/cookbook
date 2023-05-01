@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="added AddRecipe controller">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="login home and add recipe(wrong button tho)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/LoginWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/LoginWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +29,12 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="cookbook" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -70,24 +73,18 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/zen/cookbook/app/src/main/java/controller&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vanes/IdeaProjects/cookbook/app/src/main/resources&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
-  <component name="Push.Settings">
-    <force-push-targets>
-      <force-push-target remote-path="origin" branch="dev" />
-    </force-push-targets>
-  </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="view" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\zen\cookbook\app\src\main\java\controller" />
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -95,9 +92,6 @@
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\resources\view" />
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\java" />
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\java\view" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="controller" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.cookbook:app [buildDependents]">
@@ -298,49 +292,7 @@
       <option name="project" value="LOCAL" />
       <updated>1682605643912</updated>
     </task>
-    <task id="LOCAL-00013" summary="controller">
-      <created>1682631387016</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1682631387016</updated>
-    </task>
-    <task id="LOCAL-00014" summary="controller">
-      <created>1682631554292</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1682631554292</updated>
-    </task>
-    <task id="LOCAL-00015" summary="controller">
-      <created>1682631566709</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1682631566709</updated>
-    </task>
-    <task id="LOCAL-00016" summary="small tweaks">
-      <created>1682634827375</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1682634827375</updated>
-    </task>
-    <task id="LOCAL-00017" summary="added Enter to login in LoginWindowController">
-      <created>1682682459077</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1682682459077</updated>
-    </task>
-    <task id="LOCAL-00018" summary="added AddRecipe controller">
-      <created>1682682638263</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1682682638263</updated>
-    </task>
-    <option name="localTasksCounter" value="19" />
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -364,11 +316,7 @@
     <MESSAGE value="working login Page with FXML" />
     <MESSAGE value="deleted old login method" />
     <MESSAGE value="login home and add recipe(wrong button tho)" />
-    <MESSAGE value="controller" />
-    <MESSAGE value="small tweaks" />
-    <MESSAGE value="added Enter to login in LoginWindowController" />
-    <MESSAGE value="added AddRecipe controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="added AddRecipe controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="login home and add recipe(wrong button tho)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

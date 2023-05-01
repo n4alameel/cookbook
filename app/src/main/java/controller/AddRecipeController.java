@@ -20,7 +20,7 @@ public class AddRecipeController implements Initializable {
     @FXML
     private TextArea longDescriptionArea;
     @FXML
-    private TextArea tagsArea;
+    private TextArea tags;
     @FXML
     private ChoiceBox<String> tagSelection;
     @FXML
@@ -33,19 +33,24 @@ public class AddRecipeController implements Initializable {
     private String name;
     private String shortDiscription;
     private String longDescription;
-    private String tags;
+    private String addedtags;
     private String[] tagsArray = {"one", "two", "three"};
 
+    //saveRecipe button
     public void saveRecipe(ActionEvent event) {
-
+        name = nameField.getText();
+        shortDiscription = shortDiscriptionField.getText();
+        longDescription = longDescriptionArea.getText();
     }
+    //overriding the selectbox
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
         tagSelection.getItems().addAll(tagsArray);
         tagSelection.setOnAction(this::setTags);
     }
+    //adds text to the textArea with tags
     public void setTags(ActionEvent event){
-        tags = tagSelection.getValue();
-        tagsArea.setText(tagsArea+";"+"tags");
+        addedtags = tagSelection.getValue();
+        tags.setText(tags.getText() + ";" + addedtags);
     }
 }
