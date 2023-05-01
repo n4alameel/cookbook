@@ -39,11 +39,13 @@ public class AddRecipeController implements Initializable {
     private String shortDiscription;
     private String longDescription;
     private String addedtags;
+    //import from Database
     private String[] tagsArray = {"one", "two", "three"};
     private String getAddedtags;
     private String ammount;
     private String unit;
     private String ingredient;
+    //impoer from database
     private String[] unitArray = {"drop", "gramm", "milliliter"};
     private String addUnit;
 
