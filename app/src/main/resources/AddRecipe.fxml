@@ -13,7 +13,7 @@
 
 <ScrollPane centerShape="false" fitToWidth="true" prefHeight="900.0" prefWidth="574.0" snapToPixel="false" vvalue="1.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddRecipeController">
    <content>
-      <AnchorPane focusTraversable="true" stylesheets="@Style.css">
+      <AnchorPane focusTraversable="true" prefHeight="1500.0" stylesheets="@Style.css">
          <children>
             <TextArea fx:id="longDescriptionArea" layoutX="37.0" layoutY="235.0" prefHeight="200.0" prefWidth="496.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="27.0" />
             <Label layoutX="11.0" layoutY="21.0" prefHeight="35.0" prefWidth="553.0" text="Name" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="-2.0">
@@ -38,13 +38,13 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="11.0" layoutY="714.0" prefHeight="35.0" prefWidth="553.0" styleClass="Style.css" text="Tag selection" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="-2.0">
+            <Label layoutX="11.0" layoutY="715.0" prefHeight="35.0" prefWidth="553.0" styleClass="Style.css" text="Tag selection" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="-2.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <ChoiceBox fx:id="tagSelection" layoutX="214.0" layoutY="749.0" prefWidth="553.0" AnchorPane.leftAnchor="214.0" AnchorPane.rightAnchor="198.0" />
-            <Button fx:id="saveRecipe" layoutX="190.0" layoutY="1267.0" mnemonicParsing="false" onAction="#saveRecipe" prefHeight="51.0" prefWidth="198.0" text="Save recipe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="1267.0">
+            <Button fx:id="saveRecipe" layoutX="190.0" layoutY="1426.0" mnemonicParsing="false" onAction="#saveRecipe" prefHeight="74.0" prefWidth="195.0" text="Save recipe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="1426.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -59,12 +59,31 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TextField fx:id="shortDiscriptionField" layoutX="37.0" layoutY="145.0" prefHeight="26.0" prefWidth="496.0" AnchorPane.bottomAnchor="1147.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="145.0" />
+            <TextField fx:id="shortDiscription" layoutX="37.0" layoutY="145.0" prefHeight="26.0" prefWidth="496.0" AnchorPane.bottomAnchor="1147.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="145.0" />
             <Label layoutX="11.0" layoutY="810.0" prefHeight="35.0" prefWidth="553.0" text="Ingredients" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="-2.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
+            <Label layoutX="69.0" layoutY="1248.0" text="Ammount">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="264.0" layoutY="1248.0" text="Unit">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="389.0" layoutY="1248.0" text="Ingredient">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addAmmount" layoutX="48.0" layoutY="1296.0" />
+            <ChoiceBox fx:id="addUnit" layoutX="210.0" layoutY="1296.0" prefWidth="150.0" />
+            <TextField fx:id="addIngredient" layoutX="370.0" layoutY="1296.0" />
+            <Button fx:id="addIngredient" layoutX="379.0" layoutY="1329.0" mnemonicParsing="false" text="Button" />
          </children>
       </AnchorPane>
    </content>
