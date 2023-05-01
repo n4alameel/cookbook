@@ -35,12 +35,21 @@ public class AddRecipeController implements Initializable {
     private String longDescription;
     private String addedtags;
     private String[] tagsArray = {"one", "two", "three"};
+    private String getAddedtags;
+
 
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
-        name = nameField.getText();
-        shortDiscription = shortDiscriptionField.getText();
-        longDescription = longDescriptionArea.getText();
+        try{
+            name = nameField.getText();
+            shortDiscription = shortDiscriptionField.getText();
+            longDescription = longDescriptionArea.getText();
+            getAddedtags = tags.getText();
+            System.out.println(name + shortDiscription + longDescription + getAddedtags);
+        }
+        catch (Exception e){
+            System.out.println("mehr eingeben");
+        }
     }
     //overriding the selectbox
     @Override
@@ -51,6 +60,6 @@ public class AddRecipeController implements Initializable {
     //adds text to the textArea with tags
     public void setTags(ActionEvent event){
         addedtags = tagSelection.getValue();
-        tags.setText(tags.getText() + ";" + addedtags);
+        tags.setText(tags.getText() + " " + addedtags);
     }
 }
