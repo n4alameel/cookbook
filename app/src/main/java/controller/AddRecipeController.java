@@ -29,13 +29,24 @@ public class AddRecipeController implements Initializable {
     private TableColumn unitColumn;
     @FXML
     private TableColumn ingredientColumn;
-
+    @FXML
+    private TextField addAmmount;
+    @FXML
+    private ChoiceBox<String> unitSelection;
+    @FXML
+    private TextField addIngredient;
     private String name;
     private String shortDiscription;
     private String longDescription;
     private String addedtags;
     private String[] tagsArray = {"one", "two", "three"};
     private String getAddedtags;
+    private String ammount;
+    private String unit;
+    private String ingredient;
+    private String[] unitArray = {"drop", "gramm", "milliliter"};
+    private String addUnit;
+
 
 
     //saveRecipe button
@@ -51,15 +62,25 @@ public class AddRecipeController implements Initializable {
             System.out.println("mehr eingeben");
         }
     }
-    //overriding the selectbox
+    //overriding the selectbox for tags
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
+        //tagselection
         tagSelection.getItems().addAll(tagsArray);
         tagSelection.setOnAction(this::setTags);
+        //Unitselection
+        unitSelection.getItems().addAll(unitArray);
+        unitSelection.setOnAction(this::setUnit);
+
     }
     //adds text to the textArea with tags
     public void setTags(ActionEvent event){
         addedtags = tagSelection.getValue();
         tags.setText(tags.getText() + " " + addedtags);
+    }
+    public void setUnit(ActionEvent event){
+        addUnit = unitSelection.getValue();
+        //need to implement the set and get for the tableView
+        System.out.println(addUnit);
     }
 }
