@@ -1,20 +1,17 @@
 package view;
 
+import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
-import java.io.IOException;
-
-/**
- * Defines the login scene
- */
-public class LoginView {
+public class BrowserView {
   private Parent root;
 
-  public LoginView() {
+  public BrowserView() {
     // setting the scene
     try {
-      root = FXMLLoader.load(getClass().getResource("/LoginWindow.fxml"));
+      root = FXMLLoader.load(getClass().getResource("/AllRecipesWindow.fxml"));
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
