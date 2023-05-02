@@ -2,9 +2,8 @@
 
 ## Group members
 * Iryna Koval
-    * Scrum Master
 * Maxime Audrain 
-    * Git Master
+    * Scrum Master
 * Vanessa Jäger
 * Andreas Kovacs
     * Program Owner
@@ -54,10 +53,9 @@ git switch -c dev
 ```
 
 ## User stories check list
-- [ ] 1. As a user I want to be able to start the application and get an animation
+- [X] 1. As a user I want to be able to start the application and get an animation
 to welcome me
-
-- [ ] 2. As a user I want to be able to log in to the application so that it is personalised
+- [X] 2. As a user I want to be able to log in to the application so that it is personalised
 for me
 - [ ] 3. As a user I want to see my favourite recipes for quick access
 - [ ] 4. As a user I want to be able to see the list of weekly dinner lists
