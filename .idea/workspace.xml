@@ -5,63 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_failureaccess_1_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_30_1_1_jre.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_protobuf_protobuf_java_3_11_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__mysql_mysql_connector_java_8_0_28.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_qual_3_8_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_5_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_api_5_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_params_5_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_commons_1_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_17_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_win_17_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_17_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_win_17_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_fxml_win_17_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_17_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_win_17_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/CookBook.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/app/cookbook.app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/app/cookbook.app.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Cookbook.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/controller/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/view/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/view/ActiveView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/view/HomeWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/view/test.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/RecipeWindow.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/RecipeWindow.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/Whisk-removebg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/Whisk.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/Whisk2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/ava.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/background.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/background1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/background2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/logo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/logo-removebg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/rec.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/send.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/cookbook.app.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/cookbook.app.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/Heart.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/Heart.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/whisk.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/whisk.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Ingredient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/RecipeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/RecipeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/RecipeWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/RecipeWindow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +127,7 @@
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\java\view" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.cookbook:app [run]">
+  <component name="RunManager" selected="Gradle.cookbook:app [build]">
     <configuration name="CookBook:app [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -300,9 +249,9 @@
       <list>
         <item itemvalue="Gradle.cookbook:app [run]" />
         <item itemvalue="Gradle.cookbook:app [build]" />
-        <item itemvalue="Gradle.CookBook:app [clean]" />
-        <item itemvalue="Gradle.cookbook:app [buildDependents]" />
         <item itemvalue="Gradle.cookbook [build]" />
+        <item itemvalue="Gradle.cookbook:app [buildDependents]" />
+        <item itemvalue="Gradle.CookBook:app [clean]" />
       </list>
     </recent_temporary>
   </component>

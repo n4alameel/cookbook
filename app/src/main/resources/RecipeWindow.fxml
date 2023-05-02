@@ -208,7 +208,7 @@
                                     <Font name="Ebrima Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <VBox prefWidth="100.0" spacing="5.0">
+                              <VBox fx:id="ingredientBox" prefWidth="100.0" spacing="5.0">
                                  <children>
                                     <Text accessibleRole="LIST_ITEM" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="list-item" text="1 lb linguine" />
                                     <Text accessibleRole="LIST_ITEM" strokeType="OUTSIDE" strokeWidth="0.0" text="1 ml olive oil" wrappingWidth="84.42321395874023" />
@@ -219,7 +219,7 @@
                               <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="5.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Make for" />
-                                    <Spinner editable="true" prefHeight="25.0" prefWidth="58.0" />
+                                    <Spinner fx:id="portions" editable="true" prefHeight="25.0" prefWidth="58.0" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="people" />
                                  </children>
                               </HBox>
@@ -245,7 +245,7 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Text>
-                  <HBox spacing="20.0">
+                  <HBox fx:id="tagBox" spacing="20.0">
                      <children>
                         <Label id="vegeterian" alignment="CENTER" styleClass="tag" text="Vegeterian">
                            <opaqueInsets>
