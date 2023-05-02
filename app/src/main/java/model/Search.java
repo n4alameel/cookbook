@@ -1,4 +1,4 @@
-package view;
+package model;
 
 import controller.Controller;
 import javafx.geometry.Insets;
@@ -8,19 +8,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class SearchView {
+public class Search {
 
     private GridPane root;
     private Controller controller;
 
-    public SearchView(Controller controller, ActiveView searchView) {
+    public Search(Controller controller) {
         this.root = new GridPane();
         this.controller = controller;
 
@@ -68,8 +66,6 @@ public class SearchView {
         });
 
     }
-
-
     public Parent getRoot() {
         return this.root;
     }

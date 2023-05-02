@@ -17,4 +17,8 @@ public class HomeViewController {
     controller.displayNewRecipeView();
   }
 
+  public void displaySearch() throws IOException {
+
+  }
+
 }
