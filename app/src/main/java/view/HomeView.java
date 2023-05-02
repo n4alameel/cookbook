@@ -6,16 +6,13 @@ import javafx.scene.Parent;
 
 import java.io.IOException;
 
-/**
- * Defines the login scene
- */
-public class LoginView {
+public class HomeView {
   private Parent root;
 
-  public LoginView(Controller controller) {
+  public HomeView(Controller controller) {
     // setting the scene
     try {
-      root = FXMLLoader.load(getClass().getResource("/LoginWindow.fxml"));
+      root = FXMLLoader.load(getClass().getResource("/HomeWindow.fxml"));
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -24,4 +21,5 @@ public class LoginView {
   public Parent getRoot() {
     return this.root;
   }
+
 }

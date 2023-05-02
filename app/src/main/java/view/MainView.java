@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 public class MainView {
   private VBox root;
 
-  public MainView(Controller controller, ActiveView activeView) {
+  public MainView(Controller controller) {
     this.root = new VBox();
 
     this.root.setPadding(new Insets(5));
@@ -19,11 +19,11 @@ public class MainView {
     Label hello = new Label("Hello " + controller.getActiveUser().getUsername() + " !");
     Button quit = new Button("Quit");
     quit.setOnAction(e -> {
-      activeView.closeApp();
+      controller.closeApp();
     });
     Button browse = new Button("Browse Recipes");
     browse.setOnAction(e -> {
-      activeView.displayBrowserView();
+      controller.displayBrowserView();
     });
 
     this.root.getChildren().addAll(hello, quit, browse);

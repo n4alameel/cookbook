@@ -12,7 +12,7 @@ import model.Recipe;
 public class BrowserView {
   private GridPane root;
 
-  public BrowserView(Controller controller, ActiveView activeView) {
+  public BrowserView(Controller controller) {
     this.root = new GridPane();
 
     root.setAlignment(Pos.CENTER);
@@ -26,7 +26,7 @@ public class BrowserView {
     for (Recipe r : controller.getRecipeList()) {
       Button recipLabel = new Button(r.getName());
       recipLabel.setOnAction(e -> {
-        activeView.displayRecipeView(r);
+        controller.displayRecipeView(r);
       });
       root.add(recipLabel, (x % 3), y);
       x++;
@@ -37,7 +37,7 @@ public class BrowserView {
 
     Button quit = new Button("Quit");
     quit.setOnAction(e -> {
-      activeView.closeApp();
+      controller.closeApp();
     });
     root.add(quit, 3, y + 1);
   }

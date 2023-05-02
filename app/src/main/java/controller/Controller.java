@@ -11,9 +11,14 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 
 import com.sun.javafx.binding.StringFormatter;
+
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
 import model.User;
+import view.*;
+
 import org.w3c.dom.Text;
 
 public class Controller {
@@ -22,20 +27,39 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+
+  private static volatile Controller instance;
 
   private Connection db;
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
+  private Stage stage;
 
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
   }
 
-  public Controller() {
+  private Controller() {
     this.db = dbconnect();
     this.activeUser = null;
     this.recipeList = generateRecipeListFromDb();
+    this.stage = null;
+  }
+
+  public static Controller getInstance() {
+    if (instance == null) {
+      instance = new Controller();
+    }
+    return instance;
+  }
+
+  public Stage getStage() {
+    return stage;
+  }
+
+  public void setStage(Stage stage) {
+    this.stage = stage;
   }
 
   public model.User getActiveUser() {
@@ -57,6 +81,7 @@ public class Controller {
       conn = DriverManager.getConnection(dbUrl);
     } catch (SQLException e) {
       e.printStackTrace(System.err);
+      System.out.println("You probably forgot to change the password.");
     }
     return conn;
   }
@@ -188,5 +213,57 @@ public class Controller {
       System.out.println("nope");
       return null;
     }
+  }
+
+  /**
+   * Creates and display the login scene.
+   */
+  public void displayLoginScene() {
+    LoginView loginView = new LoginView(this);
+    Scene loginScene = new Scene(loginView.getRoot());
+    stage.setScene(loginScene);
+    stage.show();
+  }
+
+  /**
+   * Creates and display the main menu scene.
+   */
+  public void displayMainView() {
+    MainView mainView = new MainView(this);
+    Scene mainScene = new Scene(mainView.getRoot(), 500, 500);
+    stage.setScene(mainScene);
+    stage.show();
+  }
+
+  /**
+   * Creates and display the main menu scene.
+   */
+  public void displayBrowserView() {
+    BrowserView browserView = new BrowserView(this);
+    Scene browserScene = new Scene(browserView.getRoot(), 500, 500);
+    stage.setScene(browserScene);
+    stage.show();
+  }
+
+  public void displayRecipeView(Recipe r) {
+    RecipeView recipeView = new RecipeView(this);
+    Scene recipeScene = new Scene(recipeView.getRoot(), 500, 500);
+    stage.setScene(recipeScene);
+    stage.show();
+  }
+
+  public void displayHomeView() {
+    HomeView homeView = new HomeView(this);
+    Scene mainScene = new Scene(homeView.getRoot());
+    stage.setScene(mainScene);
+    stage.show();
+  }
+
+  /**
+   * Closes the app.
+   */
+  public void closeApp() {
+    this.stage.close();
+    this.dbClose();
   }
 }
