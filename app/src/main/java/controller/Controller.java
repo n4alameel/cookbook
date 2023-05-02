@@ -1,7 +1,5 @@
 package controller;
 
-import java.awt.*;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,16 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
-import com.sun.javafx.binding.StringFormatter;
-
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
 import model.User;
 import view.*;
-
-import org.w3c.dom.Text;
 
 public class Controller {
 
@@ -29,6 +23,9 @@ public class Controller {
    */
   private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
 
+  /**
+   * Used to make this class a singleton
+   */
   private static volatile Controller instance;
 
   private Connection db;
@@ -47,6 +44,11 @@ public class Controller {
     this.stage = null;
   }
 
+  /**
+   * Get the instance of this class, or create it if it does not exist.
+   * 
+   * @return The Controller singleton
+   */
   public static Controller getInstance() {
     if (instance == null) {
       instance = new Controller();
@@ -216,32 +218,38 @@ public class Controller {
   }
 
   /**
-   * Creates and display the login scene.
+   * Creates and displays the login scene.
    */
   public void displayLoginScene() {
-    LoginView loginView = new LoginView(this);
+    LoginView loginView = new LoginView();
     Scene loginScene = new Scene(loginView.getRoot());
     stage.setScene(loginScene);
     stage.show();
   }
 
   /**
-   * Creates and display the main menu scene.
+   * Creates and displays the recipe browser scene.
    */
   public void displayBrowserView() {
-    BrowserView browserView = new BrowserView(this);
+    BrowserView browserView = new BrowserView();
     Scene browserScene = new Scene(browserView.getRoot());
     stage.setScene(browserScene);
     stage.show();
   }
 
+  /**
+   * Creates and display the recipe details scene.
+   */
   public void displayRecipeView(Recipe r) {
-    RecipeView recipeView = new RecipeView(this);
+    RecipeView recipeView = new RecipeView();
     Scene recipeScene = new Scene(recipeView.getRoot());
     stage.setScene(recipeScene);
     stage.show();
   }
 
+  /**
+   * Creates and displays the home scene.
+   */
   public void displayHomeView() {
     HomeView homeView = new HomeView();
     Scene mainScene = new Scene(homeView.getRoot());
@@ -249,6 +257,9 @@ public class Controller {
     stage.show();
   }
 
+  /**
+   * Creates and displays the new recipe prompt scene.
+   */
   public void displayNewRecipeView() {
     NewRecipeView newRecipeView = new NewRecipeView();
     Scene newRecipeScene = new Scene(newRecipeView.getRoot());
