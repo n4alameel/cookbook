@@ -44,24 +44,29 @@ public class SearchView {
 
             List<Label> printLabels = new ArrayList<>();
 
+            // Add the new print labels
             for (String value : data) {
-                Label label = new Label(value);
-                labelBox.getChildren().add(label);
-
                 if (value.contentEquals(search) || value.equalsIgnoreCase(search)){
                     Label printLabel = new Label(value);
-                    i.getAndIncrement();
                     printLabels.add(printLabel);
                 }
             }
 
-            root.getChildren().removeIf(node -> node instanceof Label);
+            // Remove the previous search results from labelBox
+            labelBox.getChildren().removeIf(node -> node instanceof Label);
 
-            // Add the new print labels
-            for (Label label : printLabels) {
-                root.add(label, 0, 1, 2, 3);
+
+            // Add the new print labels to labelBox
+            labelBox.getChildren().addAll(printLabels);
+
+            // Add the new print labels to root
+            if (root.getChildren().contains(labelBox)) {
+                root.getChildren().remove(labelBox);
             }
+
+            root.add(labelBox, 0, 1, 2, 3);
         });
+
     }
 
 
