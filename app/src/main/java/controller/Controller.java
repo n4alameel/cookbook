@@ -228,35 +228,33 @@ public class Controller {
   /**
    * Creates and display the main menu scene.
    */
-  public void displayMainView() {
-    MainView mainView = new MainView(this);
-    Scene mainScene = new Scene(mainView.getRoot(), 500, 500);
-    stage.setScene(mainScene);
-    stage.show();
-  }
-
-  /**
-   * Creates and display the main menu scene.
-   */
   public void displayBrowserView() {
     BrowserView browserView = new BrowserView(this);
-    Scene browserScene = new Scene(browserView.getRoot(), 500, 500);
+    Scene browserScene = new Scene(browserView.getRoot());
     stage.setScene(browserScene);
     stage.show();
   }
 
   public void displayRecipeView(Recipe r) {
     RecipeView recipeView = new RecipeView(this);
-    Scene recipeScene = new Scene(recipeView.getRoot(), 500, 500);
+    Scene recipeScene = new Scene(recipeView.getRoot());
     stage.setScene(recipeScene);
     stage.show();
   }
 
   public void displayHomeView() {
-    HomeView homeView = new HomeView(this);
+    HomeView homeView = new HomeView();
     Scene mainScene = new Scene(homeView.getRoot());
     stage.setScene(mainScene);
     stage.show();
+  }
+
+  public void displayNewRecipeView() {
+    NewRecipeView newRecipeView = new NewRecipeView();
+    Scene newRecipeScene = new Scene(newRecipeView.getRoot());
+    Stage secondaryStage = new Stage();
+    secondaryStage.setScene(newRecipeScene);
+    secondaryStage.show();
   }
 
   /**
@@ -266,4 +264,5 @@ public class Controller {
     this.stage.close();
     this.dbClose();
   }
+
 }

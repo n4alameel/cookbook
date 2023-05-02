@@ -80,7 +80,7 @@
                 </HBox>
                 <Pane fx:id="footer" layoutX="1.0" layoutY="968.0" prefHeight="225.0" prefWidth="1219.0">
                     <children>
-                        <ImageView fitHeight="72.0" fitWidth="252.0" layoutX="66.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="72.0" fitWidth="252.0" layoutX="66.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#goToHomePage">
                             <image>
                                 <Image url="@logo.png" />
                             </image>

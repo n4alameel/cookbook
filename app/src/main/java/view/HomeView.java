@@ -9,7 +9,7 @@ import java.io.IOException;
 public class HomeView {
   private Parent root;
 
-  public HomeView(Controller controller) {
+  public HomeView() {
     // setting the scene
     try {
       root = FXMLLoader.load(getClass().getResource("/HomeWindow.fxml"));
