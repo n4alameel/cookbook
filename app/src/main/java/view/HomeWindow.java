@@ -18,7 +18,7 @@ public class HomeWindow {
 
     Stage stage;
     public void openAllRecipes(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("AllRecipesWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AllRecipesWindow.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

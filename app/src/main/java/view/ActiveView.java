@@ -49,7 +49,7 @@ public class ActiveView {
   }
 
   public void displayRecipeView(Recipe r) {
-    RecipeView recipeView = new RecipeView(controller, this);
+    RecipeView recipeView = new RecipeView(this.controller, this, r);
     Scene recipeScene = new Scene(recipeView.getRoot(), 500, 500);
     stage.setScene(recipeScene);
     stage.show();
