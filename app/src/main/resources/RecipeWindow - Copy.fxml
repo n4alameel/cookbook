@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<?import com.gluonhq.charm.glisten.control.BottomNavigation?>-->
+<!--<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>-->
+<!--<?import com.gluonhq.charm.glisten.control.Icon?>-->
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane centerShape="true" hbarPolicy="ALWAYS" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RecipeWindow">
+    <content>
+        <AnchorPane focusTraversable="true" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #FFFF;">
+            <children>
+            <VBox alignment="TOP_CENTER" layoutX="-23.0" prefHeight="800.0" prefWidth="1200.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                      <HBox alignment="CENTER_RIGHT" prefWidth="1200.0" style="-fx-background-color: #618C03;">
+                          <Hyperlink alignment="CENTER" contentDisplay="CENTER" opacity="0.87" style="-fx-border-color: 0 0 0 white;" text="Meal Plans" textAlignment="CENTER" textFill="WHITE">
+                        <font>
+                           <Font name="Ebrima" size="12.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets left="50.0" />
+                        </HBox.margin>
+                     </Hyperlink>
+                          <Hyperlink contentDisplay="CENTER" opacity="0.87" text="Shopping List" textAlignment="CENTER" textFill="WHITE">
+                        <font>
+                           <Font name="Ebrima" size="12.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets left="50.0" />
+                        </HBox.margin>
+                     </Hyperlink>
+                          <Hyperlink contentDisplay="CENTER" opacity="0.87" text="Chat Room" textAlignment="CENTER" textFill="WHITE">
+                        <font>
+                           <Font name="Ebrima" size="12.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets left="50.0" />
+                        </HBox.margin>
+                     </Hyperlink>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" right="60.0" top="5.0" />
+                     </padding>
+                      </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefWidth="1200.0">
+                     <children>
+<!--                        <ImageView fitHeight="50.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets right="500.0" />-->
+<!--                           </HBox.margin>-->
+<!--                        </ImageView>-->
+                        <Icon content="HELP_OUTLINE" />
+                        <Hyperlink alignment="CENTER" contentDisplay="CENTER" opacity="0.87" style="-fx-text-fill: #000000;" text="Meal Plans" textAlignment="CENTER">
+                           <font>
+                              <Font name="Ebrima" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </Hyperlink>
+                        <Icon content="HELP_OUTLINE" />
+                        <Hyperlink contentDisplay="CENTER" opacity="0.87" style="-fx-text-fill: #000000;" text="Shopping List" textAlignment="CENTER">
+                           <font>
+                              <Font name="Ebrima" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </Hyperlink>
+<!--                        <Image url="@./logo.png" />-->
+                        <Hyperlink contentDisplay="CENTER" opacity="0.87" style="-fx-text-fill: #000000;" text="Charlotte Oliver" textAlignment="CENTER">
+                           <font>
+                              <Font name="Ebrima" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Hyperlink>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="15.0" left="60.0" right="60.0" top="15.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <VBox alignment="CENTER" prefWidth="1200.0">
+                     <children>
+                        <Label text="Civoche With Avocado and Grilled Corn">
+                           <font>
+                              <Font name="Ebrima Bold" size="24.0" />
+                           </font></Label>
+<!--                        <BottomNavigation fx:id="btns">-->
+<!--                            <actionItems>-->
+<!--                                <BottomNavigationButton selected="true" style="-fx-background-color: #FFFF;" text="Favourite">-->
+<!--                                    <graphic>-->
+<!--                                        <Icon content="RECENT_ACTORS" />-->
+<!--                                    </graphic>-->
+<!--                                 <font>-->
+<!--                                    <Font name="Ebrima" size="14.0" />-->
+<!--                                 </font>-->
+<!--                                </BottomNavigationButton>-->
+<!--                                <BottomNavigationButton style="-fx-background-color: #FFFF;" text="Send Recipe">-->
+<!--                                    <graphic>-->
+<!--                                        <Icon content="FAVORITE" />-->
+<!--                                    </graphic>-->
+<!--                                 <opaqueInsets>-->
+<!--                                    <Insets />-->
+<!--                                 </opaqueInsets>-->
+<!--                                 <font>-->
+<!--                                    <Font name="Ebrima" size="14.0" />-->
+<!--                                 </font>-->
+<!--                                </BottomNavigationButton>-->
+<!--                                <BottomNavigationButton style="-fx-background-color: #FFFF;" text="Select Recipe">-->
+<!--                                    <graphic>-->
+<!--                                        <Icon content="NEAR_ME" />-->
+<!--                                    </graphic>-->
+<!--                                 <font>-->
+<!--                                    <Font name="Ebrima" size="14.0" />-->
+<!--                                 </font>-->
+<!--                                </BottomNavigationButton>-->
+<!--                            </actionItems>-->
+<!--                           <VBox.margin>-->
+<!--                              <Insets top="10.0" />-->
+<!--                           </VBox.margin>-->
+<!--                        </BottomNavigation>-->
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="60.0" top="60.0" />
+                     </padding>
+                  </VBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="369.0" prefWidth="1200.0" spacing="30.0">
+                     <padding>
+                        <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />
+                     </padding>
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+                           <children>
+                              <Text lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cook the linguine according to the package instructions until al dente. Drain and set aside.In a large skillet, melt the butter over medium heat. Add the minced garlic and red pepper flakes and cook for 1-2 minutes until fragrant.Add the shrimp to the skillet and cook for 2-3 minutes on each side until pink and cooked through.Add the cooked linguine to the skillet with the shrimp and toss until well coated with the garlic butter sauce.Add the chopped parsley and grated Parmesan cheese and toss again" wrappingWidth="700.0">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cook the linguine according to the package instructions until al dente. Drain and set aside.In a large skillet, melt the butter over medium heat. Add the minced garlic and red pepper flakes and cook for 1-2 minutes until fragrant.Add the shrimp to the skillet and cook for 2-3 minutes on each side until pink and cooked through.Add the cooked linguine to the skillet with the shrimp and toss until well coated with the garlic butter sauce.Add the chopped parsley and grated Parmesan cheese and toss again.Season with salt and freshly ground black pepper to taste.Serve hot with additional Parmesan cheese on top, if desired.Enjoy your Spicy Garlic Shrimp Linguine!" wrappingWidth="700.0">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium" size="12.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #06060; -fx-border-color: #06060;">
+                           <children>
+                              <Label text="Ingrediends">
+                                 <font>
+                                    <Font name="Ebrima Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Text accessibleRole="LIST_ITEM" strokeType="OUTSIDE" strokeWidth="0.0" text="1 lb linguine" />
+                              <ListView style="-fx-border-color: transperent;">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ListView>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            </children>
+        </AnchorPane>
+    </content>
+</AnchorPane>

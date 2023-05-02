@@ -13,8 +13,6 @@ public class App  extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-
-
     RecipeWindow recipeWindow = new RecipeWindow();
     recipeWindow.show();
   }
