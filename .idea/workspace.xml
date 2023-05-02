@@ -4,10 +4,64 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="static dropox for tags">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_failureaccess_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_30_1_1_jre.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_protobuf_protobuf_java_3_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__mysql_mysql_connector_java_8_0_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_qual_3_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_api_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_params_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_commons_1_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_17_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_win_17_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_17_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_win_17_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_fxml_win_17_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_17_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_win_17_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/CookBook.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/app/cookbook.app.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/app/cookbook.app.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Cookbook.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/controller/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/view/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/view/ActiveView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/view/HomeWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/view/test.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/RecipeWindow.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/RecipeWindow.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/Whisk-removebg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/Whisk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/Whisk2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/ava.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/background1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/background2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/logo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/logo-removebg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/rec.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/send.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/cookbook.app.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/cookbook.app.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/Heart.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/Heart.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/whisk.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/whisk.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +89,31 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="cookbook" type="f1a62948:ProjectNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="cookbook" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="cookbook" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="cookbook" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="cookbook" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -45,15 +124,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="testDev" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -73,18 +152,22 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/vanes/IdeaProjects/cookbook/app/src/main/resources&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="view" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\resources" />
     </key>
@@ -95,7 +178,29 @@
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\java\view" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.cookbook:app [buildDependents]">
+  <component name="RunManager" selected="Gradle.cookbook:app [run]">
+    <configuration name="CookBook:app [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/app" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <configuration name="cookbook [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -185,6 +290,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Gradle.CookBook:app [clean]" />
       <item itemvalue="Gradle.cookbook:app [buildDependents]" />
       <item itemvalue="Gradle.cookbook [build]" />
       <item itemvalue="Gradle.cookbook:app [build]" />
@@ -194,9 +300,9 @@
       <list>
         <item itemvalue="Gradle.cookbook:app [run]" />
         <item itemvalue="Gradle.cookbook:app [build]" />
+        <item itemvalue="Gradle.CookBook:app [clean]" />
+        <item itemvalue="Gradle.cookbook:app [buildDependents]" />
         <item itemvalue="Gradle.cookbook [build]" />
-        <item itemvalue="Gradle.cookbook:app [buildDependents]" />
-        <item itemvalue="Gradle.cookbook:app [buildDependents]" />
       </list>
     </recent_temporary>
   </component>
@@ -208,6 +314,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682005190442</updated>
+      <workItem from="1683010426577" duration="8809000" />
     </task>
     <task id="LOCAL-00001" summary="Setup HomeWindow">
       <created>1682345135867</created>
@@ -251,64 +358,44 @@
       <option name="project" value="LOCAL" />
       <updated>1682594415090</updated>
     </task>
-    <task id="LOCAL-00007" summary="running window.">
-      <created>1682597803297</created>
+    <task id="LOCAL-00007" summary="merging dev branch">
+      <created>1683011210137</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1682597803297</updated>
+      <updated>1683011210137</updated>
     </task>
-    <task id="LOCAL-00008" summary="running window.">
-      <created>1682597906101</created>
+    <task id="LOCAL-00008" summary="fixes">
+      <created>1683011265537</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1682597906101</updated>
+      <updated>1683011265537</updated>
     </task>
-    <task id="LOCAL-00009" summary="running window.">
-      <created>1682598151955</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1682598151955</updated>
-    </task>
-    <task id="LOCAL-00010" summary="working login Page with FXML">
-      <created>1682604665527</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1682604665527</updated>
-    </task>
-    <task id="LOCAL-00011" summary="deleted old login method">
-      <created>1682604721436</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1682604721437</updated>
-    </task>
-    <task id="LOCAL-00012" summary="login home and add recipe(wrong button tho)">
-      <created>1682605643912</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1682605643912</updated>
-    </task>
-    <task id="LOCAL-00013" summary="static dropox for tags">
-      <created>1682932130420</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1682932130420</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
+    <option name="localTasksCounter" value="9" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/RecipeWindow" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -319,13 +406,9 @@
     <MESSAGE value="fxml and css" />
     <MESSAGE value="finished home windows design" />
     <MESSAGE value="switch to another scene and design fixes" />
+    <MESSAGE value="merging dev branch" />
     <MESSAGE value="fixes" />
-    <MESSAGE value="running window." />
-    <MESSAGE value="working login Page with FXML" />
-    <MESSAGE value="deleted old login method" />
-    <MESSAGE value="login home and add recipe(wrong button tho)" />
-    <MESSAGE value="static dropox for tags" />
-    <option name="LAST_COMMIT_MESSAGE" value="static dropox for tags" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

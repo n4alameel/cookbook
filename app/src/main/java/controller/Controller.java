@@ -1,7 +1,5 @@
 package controller;
 
-import java.awt.*;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,16 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
-import com.sun.javafx.binding.StringFormatter;
-
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
 import model.User;
-import view.*;
-
-import org.w3c.dom.Text;
 
 public class Controller {
 
@@ -27,39 +18,20 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
-
-  private static volatile Controller instance;
+  private final String dbUrl = "jdbc:mysql://127.0.0.1:3306/cookbook?user=root&password=Ira.ko03&useSSL=false";
 
   private Connection db;
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
-  private Stage stage;
 
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
   }
 
-  private Controller() {
+  public Controller() {
     this.db = dbconnect();
     this.activeUser = null;
     this.recipeList = generateRecipeListFromDb();
-    this.stage = null;
-  }
-
-  public static Controller getInstance() {
-    if (instance == null) {
-      instance = new Controller();
-    }
-    return instance;
-  }
-
-  public Stage getStage() {
-    return stage;
-  }
-
-  public void setStage(Stage stage) {
-    this.stage = stage;
   }
 
   public model.User getActiveUser() {
@@ -81,7 +53,6 @@ public class Controller {
       conn = DriverManager.getConnection(dbUrl);
     } catch (SQLException e) {
       e.printStackTrace(System.err);
-      System.out.println("You probably forgot to change the password.");
     }
     return conn;
   }
@@ -214,55 +185,4 @@ public class Controller {
       return null;
     }
   }
-
-  /**
-   * Creates and display the login scene.
-   */
-  public void displayLoginScene() {
-    LoginView loginView = new LoginView(this);
-    Scene loginScene = new Scene(loginView.getRoot());
-    stage.setScene(loginScene);
-    stage.show();
-  }
-
-  /**
-   * Creates and display the main menu scene.
-   */
-  public void displayBrowserView() {
-    BrowserView browserView = new BrowserView(this);
-    Scene browserScene = new Scene(browserView.getRoot());
-    stage.setScene(browserScene);
-    stage.show();
-  }
-
-  public void displayRecipeView(Recipe r) {
-    RecipeView recipeView = new RecipeView(this);
-    Scene recipeScene = new Scene(recipeView.getRoot());
-    stage.setScene(recipeScene);
-    stage.show();
-  }
-
-  public void displayHomeView() {
-    HomeView homeView = new HomeView();
-    Scene mainScene = new Scene(homeView.getRoot());
-    stage.setScene(mainScene);
-    stage.show();
-  }
-
-  public void displayNewRecipeView() {
-    NewRecipeView newRecipeView = new NewRecipeView();
-    Scene newRecipeScene = new Scene(newRecipeView.getRoot());
-    Stage secondaryStage = new Stage();
-    secondaryStage.setScene(newRecipeScene);
-    secondaryStage.show();
-  }
-
-  /**
-   * Closes the app.
-   */
-  public void closeApp() {
-    this.stage.close();
-    this.dbClose();
-  }
-
 }

@@ -1,0 +1,96 @@
+#ingr-list{
+    -fx-background-color: rgba(229, 226, 226, 0.7);
+    -fx-background-radius: 20;
+}
+.tag{
+    -fx-background-radius: 20;
+}
+#vegeterian{
+    -fx-background-color: #72c76b;
+}
+
+#main-course{
+    -fx-background-color: #d59aa4;
+}
+
+#add-more{
+    -fx-background-color: #f6e599;
+}
+
+#make-favourite{
+
+}
+
+.green-fill{
+    -fx-background-color: #618C03;
+}
+
+.header-link, .footer-text{
+    -fx-text-fill: white;
+    -fx-font-size: 12;
+}
+
+.window{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-size: 12;
+    -fx-pref-width: 1200;
+}
+
+.top-link{
+    -fx-font-size: 14;
+    -fx-text-fill: black;
+}
+.bottom{
+    -fx-background-color: rgba(186, 186, 186, 0.19);
+}
+.action-btn{
+    -fx-font-size: 14;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.footer, .header{
+    -fx-pref-height: 30;
+}
+
+#ava{
+    -fx-background-image: url("ava.jpg");
+    -fx-background-color: transparent;
+}
+
+.com-btn{
+    -fx-text-fill: rgba(187, 187, 187, 0.93);
+    -fx-font-size: 10;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.auth-com{
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+}
+.small{
+    -fx-font-size: 10;
+    -fx-text-fill: black;
+}
+
+.search-zone{
+    -fx-background-image: url("background.jpg");
+    -fx-background-position: center;
+    -fx-opacity: 0.55;
+
+}
+
+.search{
+    -fx-pref-width: 500;
+    -fx-pref-height: 30;
+    -fx-background-radius: 20;
+}
+
+#help-btn{
+    -fx-background-radius: 20;
+    -fx-font-size: 12;
+    -fx-text-fill: white;
+}
+
