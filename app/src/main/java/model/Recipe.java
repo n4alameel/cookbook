@@ -13,9 +13,25 @@ public class Recipe {
   private int id;
   private String name;
   private String description;
-  private String detail;
+  private String shortDescription;
   private int portions = 2;
   private ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public Recipe(int id, String name, String description, String shortDescription, ArrayList<Ingredient> ingredientList){
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.shortDescription = shortDescription;
+    this.ingredientList = ingredientList;
+  }
 
   /*
    * public Recipe(int id){
