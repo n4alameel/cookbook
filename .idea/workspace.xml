@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="mocking for adding ingredients to the viewtable">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="changed property in the Ingredient.java to match tableViews.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Ingredient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/HomeWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/HomeWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +86,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="model" />
       <recent name="view" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -94,6 +97,9 @@
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\resources\view" />
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\java" />
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\java\view" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="model" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.cookbook:app [buildDependents]">
@@ -336,7 +342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682963482647</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="changed property in the Ingredient.java to match tableViews.">
+      <created>1682966363709</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1682966363709</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -366,7 +379,8 @@
     <MESSAGE value="added mocking for unit" />
     <MESSAGE value="github check" />
     <MESSAGE value="mocking for adding ingredients to the viewtable" />
-    <option name="LAST_COMMIT_MESSAGE" value="mocking for adding ingredients to the viewtable" />
+    <MESSAGE value="changed property in the Ingredient.java to match tableViews." />
+    <option name="LAST_COMMIT_MESSAGE" value="changed property in the Ingredient.java to match tableViews." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

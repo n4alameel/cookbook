@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 
 import com.sun.javafx.binding.StringFormatter;
-import model.Ingredient;
-import model.Recipe;
-import model.User;
+import com.sun.javafx.print.Units;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.*;
 import org.w3c.dom.Text;
 
 public class Controller {
@@ -173,7 +174,7 @@ public class Controller {
 
   /**
    * Create a Recipe object from a MySQL query result.
-   * 
+   *
    * @param recipeId       The recipe ID
    * @param rs             The query result
    * @param ingredientList The list of all ingredients used in the recipe
@@ -185,6 +186,72 @@ public class Controller {
       return r;
     } catch (SQLException e) {
       System.out.println("nope");
+      return null;
+    }
+  }
+  //TODO: need to add an Tag as well
+  public boolean newRecipe(String name, String description, String shortDescription, ArrayList<Integer> ingredientList) {
+    try {
+      int recipe_id;
+      String query = "INSERT INTO recipe (name, shortDescription, description) VALUES (?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, name);
+      stmt.setString(2, shortDescription);
+      stmt.setString(3, description);
+      stmt.executeUpdate();
+      query = "SELECT id FROM recipe WHERE name = ?";
+      stmt = this.db.prepareStatement(query);
+      stmt.setString(1, name);
+      ResultSet rs = stmt.executeQuery();
+      rs.next();
+      recipe_id = rs.getInt(1);
+      for (int i : ingredientList) {
+        query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
+        stmt = this.db.prepareStatement(query);
+        stmt.setInt(1, recipe_id);
+        stmt.setInt(2, i);
+        stmt.executeUpdate();
+      }
+      return true;
+    } catch (SQLException e) {
+      return false;
+    }
+  }
+  public ObservableList<Tag> generateTag() {
+    try {
+      String query = "SELECT id, name FROM tag";
+      Statement stmt = this.db.createStatement();
+
+      ResultSet rs = stmt.executeQuery(query);
+      ObservableList<Tag> tags = FXCollections.observableArrayList();
+
+      while (rs.next()) {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        tags.add(new Tag(id, name));
+      }
+
+      return tags;
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+  public ObservableList<Unit> generateUnit() {
+    try {
+      String query = "SELECT id, name FROM unit";
+      Statement stmt = this.db.createStatement();
+
+      ResultSet rs = stmt.executeQuery(query);
+      ObservableList<Unit> units = FXCollections.observableArrayList();
+
+      while (rs.next()) {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        units.add(new Unit(id, name));
+      }
+
+      return units;
+    } catch (SQLException e) {
       return null;
     }
   }

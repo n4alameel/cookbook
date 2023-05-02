@@ -18,6 +18,4 @@ public class HomeWindowController {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }
