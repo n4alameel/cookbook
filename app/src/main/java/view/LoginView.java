@@ -1,6 +1,5 @@
 package view;
 
-import controller.Controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -12,7 +11,7 @@ import java.io.IOException;
 public class LoginView {
   private Parent root;
 
-  public LoginView(Controller controller) {
+  public LoginView() {
     // setting the scene
     try {
       root = FXMLLoader.load(getClass().getResource("/LoginWindow.fxml"));
