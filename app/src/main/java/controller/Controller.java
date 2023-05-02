@@ -266,4 +266,32 @@ public class Controller {
     return false;
   }
 
+  public boolean newRecipe(String name, String description, String shortDescription, ArrayList<Integer> ingredientList) {
+    try {
+      int recipe_id;
+      String query = "INSERT INTO recipe (name, shortDescription, description) VALUES (?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, name);
+      stmt.setString(2, shortDescription);
+      stmt.setString(3, description);
+      stmt.executeUpdate();
+      query = "SELECT id FROM recipe WHERE name = ?";
+      stmt = this.db.prepareStatement(query);
+      stmt.setString(1, name);
+      ResultSet rs = stmt.executeQuery();
+      rs.next();
+      recipe_id = rs.getInt(1);
+      for (int i : ingredientList) {
+        query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
+        stmt = this.db.prepareStatement(query);
+        stmt.setInt(1, recipe_id);
+        stmt.setInt(2, i);
+        stmt.executeUpdate();
+      }
+      return true;
+    } catch (SQLException e) {
+      return false;
+    }
+  }
+
 }
