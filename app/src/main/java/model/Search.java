@@ -1,6 +1,7 @@
 package model;
 
 import controller.Controller;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -66,6 +67,8 @@ public class Search {
         });
 
     }
+
+
     public Parent getRoot() {
         return this.root;
     }

@@ -12,6 +12,7 @@ import java.util.List;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Ingredient;
+import model.NewSearch;
 import model.Recipe;
 import model.User;
 import view.*;
