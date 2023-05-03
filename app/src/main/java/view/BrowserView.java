@@ -1,9 +1,13 @@
 package view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import controller.AllRecipeWindowController;
+import controller.Controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import model.Recipe;
 
 public class BrowserView {
   private Parent root;
@@ -11,7 +15,13 @@ public class BrowserView {
   public BrowserView() {
     // setting the scene
     try {
-      root = FXMLLoader.load(getClass().getResource("/AllRecipesWindow.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/AllRecipesWindow.fxml"));
+      root = (Parent) loader.load();
+      System.out.println("a");
+      AllRecipeWindowController browserController = (AllRecipeWindowController) loader.getController();
+      browserController.updatePage();
+      System.out.println("cc");
+
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

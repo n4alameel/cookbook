@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="recipeCard" onMouseEntered="#showDescription" onMouseExited="#hideDescription" prefHeight="380.0" prefWidth="300.0" style="-fx-border-image-width: 2; -fx-border-color: #e8dada; -fx-border-width: 2; -fx-background-radius: 20 20 20 20; -fx-border-radius: 20 20 20 20;" stylesheets="@HomeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="recipeCard" onMouseEntered="#showDescription" onMouseExited="#hideDescription" prefHeight="380.0" prefWidth="300.0" fx:controller="controller.RecipeCardController" style="-fx-border-image-width: 2; -fx-border-color: #e8dada; -fx-border-width: 2; -fx-background-radius: 20 20 20 20; -fx-border-radius: 20 20 20 20;" stylesheets="@HomeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="sendRecipeBtn" layoutX="179.0" layoutY="14.0" minHeight="18.0" mnemonicParsing="false" onMouseClicked="#sendRecipeEvent" prefHeight="30.0" prefWidth="106.0" text="Send recipe" textAlignment="RIGHT">
          <font>
