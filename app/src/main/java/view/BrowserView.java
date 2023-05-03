@@ -17,6 +17,8 @@ public class BrowserView {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/AllRecipesWindow.fxml"));
       root = (Parent) loader.load();
+      // Get the controller as an object to be able to call the method
+      // initPagination()
       AllRecipeWindowController browserController = (AllRecipeWindowController) loader.getController();
       browserController.initPagination();
 
