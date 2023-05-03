@@ -17,7 +17,8 @@ public class BrowserView {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/AllRecipesWindow.fxml"));
       root = (Parent) loader.load();
-      System.out.println("a");
+      // root = FXMLLoader.load(getClass().getResource("/AllRecipesWindow.fxml"));
+      System.out.println("va");
       AllRecipeWindowController browserController = (AllRecipeWindowController) loader.getController();
       browserController.updatePage();
       System.out.println("cc");
