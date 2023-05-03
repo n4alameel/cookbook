@@ -14,7 +14,9 @@ import model.IngredientMock;
 import model.Tag;
 import model.Unit;
 
+import java.net.IDN;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddRecipeController implements Initializable {
@@ -50,6 +52,8 @@ public class AddRecipeController implements Initializable {
     //import from Database
     private ObservableList<Tag> tagsArray = controller.generateTag();
     private ObservableList<String> selectBoxTags = FXCollections.observableArrayList();
+    private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
+
     private String getAddedtags;
     private String ammount;
     //should be int
@@ -59,7 +63,11 @@ public class AddRecipeController implements Initializable {
     //impoer from database
     private ObservableList<Unit> unitArray = controller.generateUnit();
     private ObservableList<String> selectBoxUnits = FXCollections.observableArrayList();
+    private ObservableList<Integer> selectBoxUnitInts = FXCollections.observableArrayList();
+    private ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
+
     private String addUnit;
+    private Integer i = 0;
 
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
@@ -67,13 +75,13 @@ public class AddRecipeController implements Initializable {
             name = nameField.getText();
             shortDiscription = shortDiscriptionField.getText();
             longDescription = longDescriptionArea.getText();
-            getAddedtags = tags.getText();
-            System.out.println(name + shortDiscription + longDescription + getAddedtags);
+            //getAddedtags = tags.getText();
+            //System.out.println(name + shortDiscription + longDescription + getAddedtags);
             //TODO: implement ingredientList
-            //controller.newRecipe(name, longDescription, shortDiscription, ingredientList);
+            controller.newRecipe(name, longDescription, shortDiscription, selectBoxUnitInts, selectBoxTagInts, ingredientList);
         }
         catch (Exception e){
-            System.out.println(tagsArray);
+            System.out.println(e);
         }
         //mocking for printing the ingredients to read them
     }
@@ -100,24 +108,30 @@ public class AddRecipeController implements Initializable {
         ammountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         unitColumn.setCellValueFactory(new PropertyValueFactory<>("unit_id"));
         ingredientColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-
     }
     //adds text to the textArea with tags
     public void setTags(ActionEvent event){
         addedtags = tagSelection.getValue();
         tags.setText(tags.getText() + " " + addedtags);
+        //increase the number by one because AutoIncrement in SQL starts at 1
+        selectBoxTagInts.add(tagSelection.getSelectionModel().getSelectedIndex() + 1);
+        System.out.println(selectBoxTagInts);
     }
     public void setUnit(ActionEvent event){
         addUnit = unitSelection.getValue();
-        //need to implement the set and get for the tableView
-        //
-        }
-
+        //increase the number by one because AutoIncrement in SQL starts at 1
+        selectBoxUnitInts.add(unitSelection.getSelectionModel().getSelectedIndex() + 1);
+        i = unitSelection.getSelectionModel().getSelectedIndex() + 1;
+        System.out.println(selectBoxUnitInts);
+    }
     public void addIngredientButton(ActionEvent event) {
         ammount = addAmmount.getText();
         unit = addUnit;
         ingredientItem = addIngredient.getText();
         IngredientMock ingredientMock = new IngredientMock(1, ingredientItem, ammount, unit);
+        Ingredient ingredient = new Ingredient(ingredientItem, Integer.parseInt(ammount), selectBoxUnitInts.get(i));
+        ingredientList.add(ingredient);
         ingredientTable.getItems().add(ingredientMock);
+
     }
 }

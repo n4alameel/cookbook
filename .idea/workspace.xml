@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="changed property in the Ingredient.java to match tableViews.">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="added Unit and tag extraction from Database and mocked addIngredient">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/HomeWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/HomeWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Tag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Ingredient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +201,7 @@
         <item itemvalue="Gradle.cookbook:app [build]" />
         <item itemvalue="Gradle.cookbook [build]" />
         <item itemvalue="Gradle.cookbook:app [buildDependents]" />
-        <item itemvalue="Gradle.cookbook:app [buildDependents]" />
+        <item itemvalue="Gradle.cookbook:app [run]" />
       </list>
     </recent_temporary>
   </component>
