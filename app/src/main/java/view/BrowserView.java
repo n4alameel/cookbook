@@ -17,13 +17,12 @@ public class BrowserView {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/AllRecipesWindow.fxml"));
       root = (Parent) loader.load();
-      // root = FXMLLoader.load(getClass().getResource("/AllRecipesWindow.fxml"));
-      System.out.println("va");
       AllRecipeWindowController browserController = (AllRecipeWindowController) loader.getController();
-      browserController.updatePage();
-      System.out.println("cc");
+      browserController.initPagination();
 
     } catch (IOException e) {
+      System.out.println("no");
+      e.printStackTrace(System.out);
       throw new RuntimeException(e);
     }
   }

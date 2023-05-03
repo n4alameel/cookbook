@@ -14,37 +14,53 @@ import model.Recipe;
 
 public class AllRecipeWindowController {
   private Controller controller = Controller.getInstance();
-  private int pageNumber = 0;
+  private int pageNumber = -1;
   @FXML
   private Pagination recipePages;
   @FXML
   private GridPane recipeGrid;
 
+  @FXML
   public void openHomepage() throws IOException {
     controller.displayHomeView();
   }
 
+  @FXML
   public void goToHomePage() throws IOException {
     controller.displayHomeView();
   }
 
-  public void updatePage() throws IOException {
-    int pageNum = recipePages.getCurrentPageIndex();
-    if (pageNum == this.pageNumber) {
+  @FXML
+  public void openNewRecipe() throws IOException {
+    controller.displayNewRecipeView();
+  }
+
+  public void initPagination() {
+    ArrayList<Recipe> recipeList = controller.getRecipeList();
+    int maxPageNum = (recipeList.size() / 9) + 1;
+    recipePages.setPageCount(maxPageNum);
+    recipePages.setPageFactory((pageIndex) -> {
+      updatePage(pageIndex);
+      return new Pane();
+    });
+    updatePage(0);
+  }
+
+  public void updatePage(int pageIndex) {
+    if (pageIndex == this.pageNumber) {
       return;
     }
+    this.pageNumber = pageIndex;
     ArrayList<Recipe> recipeList = controller.getRecipeList();
     int recipeNum = recipeList.size();
-    int maxPageNum = recipeNum / 9 + 1;
-    recipePages.setPageCount(maxPageNum);
 
     ObservableList<Node> children = recipeGrid.getChildren();
     for (Node card : children) {
       recipeGrid.getChildren().remove(card);
     }
 
-    int currentIndex = 9 * (pageNum - 1);
-    int lastRecipeIndex = (9 * pageNum) - 1;
+    int currentIndex = 9 * pageIndex;
+    int lastRecipeIndex = 9 * (pageIndex + 1) - 1;
     int col = 0;
     int row = 0;
     while (currentIndex < recipeNum && currentIndex < lastRecipeIndex) {
@@ -58,8 +74,9 @@ public class AllRecipeWindowController {
         if (col % 3 == 0) {
           row++;
         }
+        currentIndex++;
       } catch (IOException e) {
-        throw new RuntimeException(e);
+        e.printStackTrace(System.out);
       }
 
     }

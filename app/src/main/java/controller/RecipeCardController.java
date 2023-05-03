@@ -17,4 +17,25 @@ public class RecipeCardController {
   public void updateCard(Recipe r) {
     recipeName.setText(r.getName());
   }
+
+  @FXML
+  private void sendRecipeEvent() {
+
+  }
+
+  @FXML
+  private void toggleFavorite() {
+
+  }
+
+  @FXML
+  private void seeRecipe() {
+
+  }
+
+  @FXML
+  private void showDescription(){}
+
+  @FXML
+  private void hideDescription(){}
 }
