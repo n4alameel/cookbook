@@ -2,4 +2,11 @@
 build/*
 app/build/
 .vscode/
+.idea/*
 app/bin/
+.classpath
+.project
+.settings/
+app/.classpath
+app/.project
+app/.settings/

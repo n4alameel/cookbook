@@ -49,7 +49,7 @@ public class Controller {
 
   /**
    * Get the instance of this class, or create it if it does not exist.
-   *
+   * 
    * @return The Controller singleton
    */
   public static Controller getInstance() {
@@ -77,7 +77,7 @@ public class Controller {
 
   /**
    * Try to connect to the database.
-   *
+   * 
    * @return The connection
    */
   public Connection dbconnect() {
@@ -101,7 +101,7 @@ public class Controller {
 
   /**
    * Try to log in a user depending of given credentials.
-   *
+   * 
    * @param username The user's username
    * @param password The user's password
    * @return true if the connection is done, false if the user doesn't exist in
@@ -133,7 +133,7 @@ public class Controller {
 
   /**
    * Create a new User object from an existing user in the database.
-   *
+   * 
    * @param rs The user as a MySQL query result
    * @param id The user's ID
    * @return An object User
@@ -149,7 +149,7 @@ public class Controller {
   /**
    * Takes all the recipes from the database and store them as Recipe objects in a
    * list.
-   *
+   * 
    * @return A list of all existing recipes
    */
   private ArrayList<Recipe> generateRecipeListFromDb() {
