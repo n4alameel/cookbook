@@ -12,7 +12,6 @@ import java.util.List;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Ingredient;
-import model.NewSearch;
 import model.Recipe;
 import model.User;
 import view.*;
@@ -23,7 +22,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
 
   /**
    * Used to make this class a singleton
@@ -153,7 +152,7 @@ public class Controller {
     List<String> data = new ArrayList<>();
 
     try {
-      String query = "SELECT * FROM cookbook.recipe";
+      String query = "select * from cookbook.recipe";
       PreparedStatement statement = dbconnect().prepareStatement(query);
       ResultSet resultSet = statement.executeQuery();
 
