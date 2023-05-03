@@ -1,8 +1,24 @@
 package controller;
 
-import java.io.IOException;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import model.Recipe;
 
-public class HomeViewController {
+import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class HomeViewController implements Initializable {
+  @FXML
+   private Label title;
+
+
+
+
+
   Controller controller = Controller.getInstance();
 
   public void openAllRecipes() throws IOException {
@@ -17,4 +33,10 @@ public class HomeViewController {
     controller.displayNewRecipeView();
   }
 
+
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    title.setText(controller.getRecommendationsFromDb(1));
+  }
 }
