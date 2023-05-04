@@ -1,12 +1,7 @@
 package controller;
 
 import java.io.IOException;
-<<<<<<< HEAD
 
-public class AllRecipeWindowController {
-  private Controller controller = Controller.getInstance();
-
-=======
 import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
@@ -28,21 +23,15 @@ public class AllRecipeWindowController {
   private GridPane recipeGrid;
 
   @FXML
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
   public void openHomepage() throws IOException {
     controller.displayHomeView();
   }
 
-<<<<<<< HEAD
-=======
   @FXML
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
   public void goToHomePage() throws IOException {
     controller.displayHomeView();
   }
 
-<<<<<<< HEAD
-=======
   @FXML
   public void openNewRecipe() throws IOException {
     controller.displayNewRecipeView();
@@ -102,5 +91,4 @@ public class AllRecipeWindowController {
 
     }
   }
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
 }

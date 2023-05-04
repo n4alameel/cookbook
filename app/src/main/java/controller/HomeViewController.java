@@ -1,24 +1,28 @@
 package controller;
 
-<<<<<<< HEAD
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import model.Recipe;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-=======
 import java.io.IOException;
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
 
 public class HomeViewController {
   Controller controller = Controller.getInstance();
 
-<<<<<<< HEAD
   @FXML
   private TextField search;
+
+  @FXML
+  private GridPane searchGrid;
 
   public void searchEnter(KeyEvent keyEvent) throws IOException {
     if (keyEvent.getCode() == KeyCode.ENTER) {
@@ -31,19 +35,34 @@ public class HomeViewController {
     System.out.println("Search query: " + query);
 
     List<String> data = controller.selectDataFromDatabase();
+    ArrayList<Recipe> recipeList = controller.getRecipeList();
 
     int i = 0;
+    int col = 0;
+    int row = 0;
     for (String value : data) {
-      if (value.contentEquals(query) || value.equalsIgnoreCase(query)){
+      if (value.contentEquals(query) || value.equalsIgnoreCase(query)) {
         System.out.println(data.get(i));
-        // this is when recipe is found in database.
+        System.out.println(recipeList.get(i));
+
+        try {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
+          Pane root = loader.load();
+          RecipeCardController cardController = loader.getController();
+          cardController.updateCard(recipeList.get(i));
+          searchGrid.add(root, col % 3, row);
+          col++;
+          if (col % 3 == 0) {
+            row++;
+          }
+        } catch (IOException e) {
+          e.printStackTrace(System.out);
+        }
       }
       i++;
     }
   }
 
-=======
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
   public void openAllRecipes() throws IOException {
     controller.displayBrowserView();
   }

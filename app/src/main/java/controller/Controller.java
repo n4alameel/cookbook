@@ -7,10 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
-<<<<<<< HEAD
 import java.util.List;
-=======
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -25,11 +22,8 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-<<<<<<< HEAD
+
   private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
-=======
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
 
   /**
    * Used to make this class a singleton
@@ -54,11 +48,7 @@ public class Controller {
 
   /**
    * Get the instance of this class, or create it if it does not exist.
-<<<<<<< HEAD
-   *
-=======
    * 
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
    * @return The Controller singleton
    */
   public static Controller getInstance() {
@@ -86,11 +76,7 @@ public class Controller {
 
   /**
    * Try to connect to the database.
-<<<<<<< HEAD
    *
-=======
-   * 
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
    * @return The connection
    */
   public Connection dbconnect() {
@@ -114,11 +100,7 @@ public class Controller {
 
   /**
    * Try to log in a user depending of given credentials.
-<<<<<<< HEAD
    *
-=======
-   * 
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
    * @param username The user's username
    * @param password The user's password
    * @return true if the connection is done, false if the user doesn't exist in
@@ -150,11 +132,7 @@ public class Controller {
 
   /**
    * Create a new User object from an existing user in the database.
-<<<<<<< HEAD
    *
-=======
-   * 
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
    * @param rs The user as a MySQL query result
    * @param id The user's ID
    * @return An object User
@@ -167,10 +145,6 @@ public class Controller {
     }
   }
 
-<<<<<<< HEAD
-  // public void loadDBContent() throws SQLException {
-  // String query = "SELECT * FROM cookbook.recipe";
-  // }
 
   public List<String> selectDataFromDatabase() {
     List<String> data = new ArrayList<>();
@@ -196,16 +170,11 @@ public class Controller {
     return data;
   }
 
-  /**
-   * Takes all the recipes from the database and store them as Recipe objects in a
-   * list.
-   *
-=======
+
   /**
    * Takes all the recipes from the database and store them as Recipe objects in a
    * list.
    * 
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
    * @return A list of all existing recipes
    */
   private ArrayList<Recipe> generateRecipeListFromDb() {
@@ -244,11 +213,7 @@ public class Controller {
 
   /**
    * Create an Ingredient object from a MySQL query result.
-<<<<<<< HEAD
-   *
-=======
    * 
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
    * @param ingRs a query result
    * @return An Ingredient object
    */
@@ -264,11 +229,7 @@ public class Controller {
 
   /**
    * Create a Recipe object from a MySQL query result.
-<<<<<<< HEAD
-   *
-=======
    * 
->>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
    * @param recipeId       The recipe ID
    * @param rs             The query result
    * @param ingredientList The list of all ingredients used in the recipe
