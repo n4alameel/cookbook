@@ -109,12 +109,20 @@ public class AddRecipeController implements Initializable {
     }
     //adds text to the textArea with tags
     public void setTags(ActionEvent event){
+        String addedTag = tagSelection.getValue();
         addedtags = tagSelection.getValue();
         tags.setText(tags.getText() + " " + addedtags);
-        //increase the number by one because AutoIncrement in SQL starts at 1
-        selectBoxTagInts.add(tagSelection.get);
+        //increase the number by one because AutoIncrement in SQL starts at
+        for(Tag tag : tagsArray) {
+            if (tag.getName().equals(addedTag)) {
+                i = tag.getId();
+                System.out.println(i);
+            }
+        }
+        selectBoxTagInts.add(tagsArray.get(i).getId());
         System.out.println(selectBoxTagInts);
-    }
+        }
+
     public void setUnit(ActionEvent event){
         addUnit = unitSelection.getValue();
         //increase the number by one because AutoIncrement in SQL starts at 1
