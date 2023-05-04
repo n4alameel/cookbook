@@ -33,7 +33,7 @@ public class Recipe {
 
   private int portions = 2;
   private ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
-  private ArrayList<Tag> tagList = new ArrayList<>();
+  private ArrayList<Tag> tagList = new ArrayList<Tag>();
 
   public Recipe(int id, String name, String description, String detail, ArrayList<Ingredient> ingredientList) {
     this.id = id;
