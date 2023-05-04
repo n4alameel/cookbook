@@ -13,7 +13,7 @@ public class Recipe {
   private int id;
   private String name;
   private String description;
-  private String detail;
+  private String shortDescription;
   private int portions = 2;
   private ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
   private ArrayList<Tag> tagList = new ArrayList<Tag>();

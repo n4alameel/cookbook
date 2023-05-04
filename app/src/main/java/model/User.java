@@ -1,17 +1,13 @@
 package model;
 
 import java.util.ArrayList;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class User {
   private int id;
   private String username;
   private String password;
   private boolean isAdmin = false;
-  private ArrayList<Recipe> favouriteList;
+  private ArrayList<Recipe> favourite = new ArrayList<Recipe>();
 
   public User(int id, String username, String password, boolean isAdmin) {
     this.id = id;
@@ -83,7 +79,8 @@ public class User {
    * }
    */
 
-  public boolean createEmptyWeeklyList() {
+  public boolean createEmptyWeeklyList(int weeklyNumber, int isVisible) {
+    WeeklyList weekly = new WeeklyList(weeklyNumber, isVisible);
     return true;
   }
 
@@ -91,37 +88,17 @@ public class User {
     return true;
   }
 
-  /*
-   * public boolean addFavourite(int recipe) {
-   * Connection conn = new App().dbconnect();
-   * try {
-   * Statement stmt = conn.createStatement();
-   * stmt.executeUpdate("INSERT INTO favourite (user_id, recipe_id) VALUES ('" +
-   * this.id + "', '" + recipe + "')");
-   * conn.close();
-   * return true;
-   * } catch (SQLException e) {
-   * System.out.println(e.getMessage());
-   * }
-   * return false;
-   * }
-   */
+  public void addFavourite(Recipe recipe) {
+    favourite.add(recipe);
+  }
 
-  /*
-   * public boolean removeFavourite(int recipe) {
-   * Connection conn = new App().dbconnect();
-   * try {
-   * Statement stmt = conn.createStatement();
-   * stmt.executeUpdate("DELETE FROM favourite WHERE recipe_id = " + recipe +
-   * " AND user_id = " + this.id);
-   * conn.close();
-   * return true;
-   * } catch (SQLException e) {
-   * System.out.println(e.getMessage());
-   * }
-   * return false;
-   * }
-   */
+  public void removeFavourite(Recipe recipe) {
+    favourite.remove(recipe);
+  }
+
+  public boolean clearFavourite() {
+    return favourite.removeAll(favourite);
+  }
 
   public boolean generateShoppingList(int weekNumber) {
     return true;
