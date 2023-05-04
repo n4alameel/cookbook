@@ -54,7 +54,6 @@ public class AddRecipeController implements Initializable {
     private ObservableList<String> selectBoxTags = FXCollections.observableArrayList();
     private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
 
-    private String getAddedtags;
     private String ammount;
     //should be int
     private String unit;
@@ -65,79 +64,88 @@ public class AddRecipeController implements Initializable {
     private ObservableList<String> selectBoxUnits = FXCollections.observableArrayList();
     private ObservableList<Integer> selectBoxUnitInts = FXCollections.observableArrayList();
     private ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
-
     private String addUnit;
-    private Integer i = 0;
-
+    private Integer unitID;
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
         try{
             name = nameField.getText();
             shortDiscription = shortDiscriptionField.getText();
             longDescription = longDescriptionArea.getText();
-            //getAddedtags = tags.getText();
-            //System.out.println(name + shortDiscription + longDescription + getAddedtags);
-            //TODO: implement ingredientList
             controller.newIngredient(ingredientList);
             controller.newRecipe(name, longDescription, shortDiscription, selectBoxUnitInts, selectBoxTagInts);
         }
         catch (Exception e){
             System.out.println(e);
         }
-        //mocking for printing the ingredients to read them
     }
-    //overriding the selectbox for tags
+    //overriding the selectbox on class initialization
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
-        //tagselection
-        //tagSelection.getItems().addAll(tagsArray);
+        //tagselection get the tags out of the List and put them into the choicebox
         for (Tag tag : tagsArray) {
             tagSelection.getItems().addAll(tag.getName());
         }
         tagSelection.setOnAction(this::setTags);
-        //TODO: another list where the Integer for the combination of both units and tags is put in.
-        //Unitselection
+
+        //Unitselection, get the units out of the List and put them into the choicebox
         for (Unit unit : unitArray) {
             unitSelection.getItems().addAll(unit.getName());
-
         }
         unitSelection.setOnAction(this::setUnit);
-        //TableView
+
+        // TableView
         ammountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         unitColumn.setCellValueFactory(new PropertyValueFactory<>("unit_id"));
         ingredientColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     }
-    //adds text to the textArea with tags
+
+    /**
+     * is called when the dropbox for setting Tags is used
+     * @param
+     */
     public void setTags(ActionEvent event){
+        Integer i = 0;
         String addedTag = tagSelection.getValue();
         addedtags = tagSelection.getValue();
         tags.setText(tags.getText() + " " + addedtags);
-        //increase the number by one because AutoIncrement in SQL starts at
         for(Tag tag : tagsArray) {
             if (tag.getName().equals(addedTag)) {
-                i = tag.getId();
+               i = tag.getId();
                 System.out.println(i);
             }
         }
-        selectBoxTagInts.add(tagsArray.get(i).getId());
+        selectBoxTagInts.add(i);
         System.out.println(selectBoxTagInts);
         }
 
+    /**
+     * is called when the dropbox for setting the Unit is called
+     * @param event
+     */
     public void setUnit(ActionEvent event){
         addUnit = unitSelection.getValue();
-        //increase the number by one because AutoIncrement in SQL starts at 1
-        selectBoxUnitInts.add(unitSelection.getSelectionModel().getSelectedIndex() + 1);
-        i = unitSelection.getSelectionModel().getSelectedIndex() + 1;
+        for(Unit unit : unitArray) {
+            if (unit.getName().equals(addUnit)) {
+                unitID = unit.getId();
+                System.out.println(unitID);
+            }
+        }
+        selectBoxUnitInts.add(unitID);
         System.out.println(selectBoxUnitInts);
     }
+
+    /**
+     * is called when the AddIngredientsButton is used
+     * @param event
+     */
     public void addIngredientButton(ActionEvent event) {
         ammount = addAmmount.getText();
         unit = addUnit;
         ingredientItem = addIngredient.getText();
-        IngredientMock ingredientMock = new IngredientMock(1, ingredientItem, ammount, unit);
-        Ingredient ingredient = new Ingredient(ingredientItem, Integer.parseInt(ammount), selectBoxUnitInts.get(i));
+        IngredientMock ingredientMock = new IngredientMock(ingredientItem, ammount, unit);
+        Ingredient ingredient = new Ingredient(ingredientItem, Integer.parseInt(ammount), unitID);
         ingredientList.add(ingredient);
         ingredientTable.getItems().add(ingredientMock);
-
     }
 }
