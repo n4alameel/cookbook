@@ -14,7 +14,6 @@ public class User {
     this.username = username;
     this.password = password;
     this.isAdmin = isAdmin;
-    this.favouriteList = new ArrayList<Recipe>();
   }
 
   public int getId() {
@@ -47,6 +46,14 @@ public class User {
 
   public void setAdmin(boolean isAdmin) {
     this.isAdmin = isAdmin;
+  }
+
+  public ArrayList<Recipe> getFavouriteList() {
+    return favouriteList;
+  }
+
+  public void setFavouriteList(ArrayList<Recipe> favouriteList) {
+    this.favouriteList = favouriteList;
   }
 
   /*
@@ -93,7 +100,21 @@ public class User {
   }
 
   public void removeFavourite(Recipe recipe) {
-    favouriteList.remove(recipe);
+    for (Recipe r : this.favouriteList) {
+      if (r.getId() == recipe.getId()) {
+        this.favouriteList.remove(r);
+        return;
+      }
+    }
+  }
+
+  public boolean isFavourite(Recipe recipe) {
+    for (Recipe r : this.favouriteList) {
+      if (r.getId() == recipe.getId()) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public boolean clearFavourite() {
