@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="added Unit and tag extraction from Database and mocked addIngredient">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="added ingredients and mocking for the viewtable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Ingredient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,18 +69,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vanes/IdeaProjects/cookbook/app/src/main/resources&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "last_opened_file_path": "C:/Users/vanes/IdeaProjects/cookbook/app/src/main/resources",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="model" />
@@ -347,7 +346,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682966363709</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="added ingredients and mocking for the viewtable">
+      <created>1683131363343</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1683131363343</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -378,7 +384,8 @@
     <MESSAGE value="github check" />
     <MESSAGE value="mocking for adding ingredients to the viewtable" />
     <MESSAGE value="changed property in the Ingredient.java to match tableViews." />
-    <option name="LAST_COMMIT_MESSAGE" value="changed property in the Ingredient.java to match tableViews." />
+    <MESSAGE value="added ingredients and mocking for the viewtable" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ingredients and mocking for the viewtable" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

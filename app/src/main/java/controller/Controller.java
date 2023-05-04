@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
+import java.util.List;
 
 import com.sun.javafx.binding.StringFormatter;
 import com.sun.javafx.print.Units;
@@ -190,12 +191,9 @@ public class Controller {
     }
   }
   //TODO: need to add an Tag as well
-  public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> ingredientListInt, ObservableList<Integer> tagList, ObservableList<Ingredient> ingredientList) {
+  public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> ingredientListInt, ObservableList<Integer> tagList) {
     try {
       int recipe_id;
-      String ingredientName = "null";
-      int ingredientquantity;
-      int ingredient_unit_id;
       String query = "INSERT INTO recipe (name, shortDescription, description) VALUES (?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, name);
@@ -220,15 +218,6 @@ public class Controller {
         stmt = this.db.prepareStatement(query);
         stmt.setInt(1, recipe_id);
         stmt.setInt(2, i);
-        stmt.executeUpdate();
-      }
-      for (Ingredient ingredient : ingredientList) {
-        int i = 0;
-        query = "INSERT INTO ingredients (name, quantity, unit_id) VALUES (?, ?, ?)";
-        stmt = this.db.prepareStatement(query);
-        stmt.setString(1, ingredientList.get(0).getName());
-        stmt.setInt(2,ingredientList.get(0).getQuantity());
-        stmt.setInt(3, ingredientList.get(0).getUnit_id());
         stmt.executeUpdate();
       }
       return true;
@@ -272,6 +261,24 @@ public class Controller {
       return units;
     } catch (SQLException e) {
       return null;
+    }
+  }
+
+  public boolean newIngredient(ObservableList<Ingredient> ingredientList) throws SQLException {
+    try {
+      String query = "INSERT INTO ingredient (name, quantity, unit_id) VALUES (?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+
+      for (Ingredient ingredient : ingredientList) {
+        stmt.setString(1, ingredient.getName());
+        stmt.setInt(2, ingredient.getQuantity());
+        stmt.setInt(3, ingredient.getUnit_id());
+        stmt.executeUpdate();
+      }
+      return true;
+    }
+    catch (Exception e){
+      return false;
     }
   }
 }

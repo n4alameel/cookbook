@@ -78,7 +78,8 @@ public class AddRecipeController implements Initializable {
             //getAddedtags = tags.getText();
             //System.out.println(name + shortDiscription + longDescription + getAddedtags);
             //TODO: implement ingredientList
-            controller.newRecipe(name, longDescription, shortDiscription, selectBoxUnitInts, selectBoxTagInts, ingredientList);
+            controller.newIngredient(ingredientList);
+            controller.newRecipe(name, longDescription, shortDiscription, selectBoxUnitInts, selectBoxTagInts);
         }
         catch (Exception e){
             System.out.println(e);
@@ -91,18 +92,15 @@ public class AddRecipeController implements Initializable {
         //tagselection
         //tagSelection.getItems().addAll(tagsArray);
         for (Tag tag : tagsArray) {
-            String name = tag.getName();
-            selectBoxTags.add(name);
+            tagSelection.getItems().addAll(tag.getName());
         }
-        tagSelection.getItems().addAll(selectBoxTags);
         tagSelection.setOnAction(this::setTags);
         //TODO: another list where the Integer for the combination of both units and tags is put in.
         //Unitselection
         for (Unit unit : unitArray) {
-            String name = unit.getName();
-            selectBoxUnits.add(name);
+            unitSelection.getItems().addAll(unit.getName());
+
         }
-        unitSelection.getItems().addAll(selectBoxUnits);
         unitSelection.setOnAction(this::setUnit);
         //TableView
         ammountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
@@ -114,7 +112,7 @@ public class AddRecipeController implements Initializable {
         addedtags = tagSelection.getValue();
         tags.setText(tags.getText() + " " + addedtags);
         //increase the number by one because AutoIncrement in SQL starts at 1
-        selectBoxTagInts.add(tagSelection.getSelectionModel().getSelectedIndex() + 1);
+        selectBoxTagInts.add(tagSelection.get);
         System.out.println(selectBoxTagInts);
     }
     public void setUnit(ActionEvent event){
