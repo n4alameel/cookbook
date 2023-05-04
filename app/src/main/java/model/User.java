@@ -7,7 +7,7 @@ public class User {
   private String username;
   private String password;
   private boolean isAdmin = false;
-  private ArrayList<Recipe> favourite = new ArrayList<Recipe>();
+  private ArrayList<Recipe> favouriteList = new ArrayList<Recipe>();
 
   public User(int id, String username, String password, boolean isAdmin) {
     this.id = id;
@@ -89,15 +89,15 @@ public class User {
   }
 
   public void addFavourite(Recipe recipe) {
-    favourite.add(recipe);
+    favouriteList.add(recipe);
   }
 
   public void removeFavourite(Recipe recipe) {
-    favourite.remove(recipe);
+    favouriteList.remove(recipe);
   }
 
   public boolean clearFavourite() {
-    return favourite.removeAll(favourite);
+    return favouriteList.removeAll(favouriteList);
   }
 
   public boolean generateShoppingList(int weekNumber) {
