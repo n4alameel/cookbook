@@ -43,12 +43,12 @@
             <ImageView fitHeight="72.0" fitWidth="128.0" layoutX="1.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="recipe_image" fitHeight="37.0" fitWidth="34.0" layoutX="880.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@whisk.png" />
+                  <Image url="@img/whisk.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="995.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Heart.png" />
+                  <Image url="@img/HeartFull.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="1014.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
@@ -67,7 +67,7 @@
                         <Label layoutX="15.0" layoutY="119.0" prefHeight="176.0" prefWidth="255.0" text="Label" wrapText="true" />
                         <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="9.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Heart.png" />
+                              <Image url="@img/Heart.png" />
                            </image>
                         </ImageView>
                         <Button fx:id="seeRecipe" layoutX="199.0" layoutY="321.0" mnemonicParsing="false" text="See recipe" />
@@ -84,7 +84,7 @@
                <children>
                   <ImageView fitHeight="72.0" fitWidth="252.0" layoutX="66.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#goToHomePage">
                      <image>
-                        <Image url="@logo.png" />
+                        <Image url="@img/logo.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="74.0" layoutY="94.0" prefHeight="73.0" prefWidth="208.0" text="This Cookbook is made by&#10;the students of the Project Course in Computer  Science, &#10;Cobol group" wrapText="true" />

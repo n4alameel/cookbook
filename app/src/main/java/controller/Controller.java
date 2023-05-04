@@ -68,7 +68,7 @@ public class Controller {
   }
 
   public model.User getActiveUser() {
-    return activeUser;
+    return this.activeUser;
   }
 
   public void setActiveUser(model.User activeUser) {
@@ -122,6 +122,7 @@ public class Controller {
         if (this.activeUser == null) {
           return false;
         }
+        this.activeUser.setFavouriteList(this.generateFavouriteListFromDb());
         return true;
       } else {
         return false;
@@ -162,26 +163,41 @@ public class Controller {
       ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
 
       while (rs.next()) {
-        int recipeId = Integer.parseInt(rs.getString(1));
-        String ingQuery = "select * from ingredient I join recipe_has_ingredient R on I.id = R.ingredient_id where R.recipe_id = ?";
-        PreparedStatement ingStmt = this.db.prepareStatement(ingQuery);
-        ingStmt.setInt(1, recipeId);
-        ResultSet ingRs = ingStmt.executeQuery();
-
-        ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
-
-        while (ingRs.next()) {
-          Ingredient i = createIngredient(ingRs);
-          ingredientList.add(i);
-        }
-
-        Recipe r = createRecipe(recipeId, rs, ingredientList);
+        Recipe r = createRecipe(rs);
         recipeList.add(r);
       }
 
       return recipeList;
 
     } catch (SQLException e) {
+      return null;
+    }
+  }
+
+  /**
+   * Generates the list of all favourite recipes (as objects) of the active user
+   * that are stored in the database.
+   * 
+   * @return The ArrayList of favourite recipes of the active user
+   */
+  private ArrayList<Recipe> generateFavouriteListFromDb() {
+    try {
+      String query = "select * from recipe R join favourite F on R.id = F.recipe_id where F.user_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
+
+      ResultSet rs = stmt.executeQuery();
+
+      ArrayList<Recipe> favouriteList = new ArrayList<Recipe>();
+
+      while (rs.next()) {
+        Recipe r = createRecipe(rs);
+        favouriteList.add(r);
+      }
+      return favouriteList;
+
+    } catch (SQLException e) {
+      e.printStackTrace(System.out);
       return null;
     }
   }
@@ -205,17 +221,27 @@ public class Controller {
   /**
    * Create a Recipe object from a MySQL query result.
    * 
-   * @param recipeId       The recipe ID
-   * @param rs             The query result
-   * @param ingredientList The list of all ingredients used in the recipe
+   * @param rs The query result
    * @return A Recipe object
    */
-  private Recipe createRecipe(int recipeId, ResultSet rs, ArrayList<Ingredient> ingredientList) {
+  private Recipe createRecipe(ResultSet rs) {
     try {
+      int recipeId = Integer.parseInt(rs.getString(1));
+      String ingQuery = "select * from ingredient I join recipe_has_ingredient R on I.id = R.ingredient_id where R.recipe_id = ?";
+      PreparedStatement ingStmt = this.db.prepareStatement(ingQuery);
+      ingStmt.setInt(1, recipeId);
+      ResultSet ingRs = ingStmt.executeQuery();
+
+      ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+
+      while (ingRs.next()) {
+        Ingredient i = createIngredient(ingRs);
+        ingredientList.add(i);
+      }
       Recipe r = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList);
       return r;
     } catch (SQLException e) {
-      System.out.println("nope");
+      e.printStackTrace();
       return null;
     }
   }
@@ -279,40 +305,42 @@ public class Controller {
     this.dbClose();
   }
 
-  public boolean addFavourite(User user, Recipe recipe) {
+  public boolean addFavourite(Recipe recipe) {
     try {
-      user.addFavourite(recipe);
-      String query = "INSERT INTO favourite (user_id, recipe_id) VALUES ('?', '?')";
+      this.activeUser.addFavourite(recipe);
+      String query = "INSERT INTO favourite (user_id, recipe_id) VALUES (?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
-      stmt.setInt(1, user.getId());
+      stmt.setInt(1, this.activeUser.getId());
       stmt.setInt(2, recipe.getId());
       stmt.executeUpdate();
       return true;
     } catch (SQLException e) {
+      e.printStackTrace(System.out);
       return false;
     }
   }
 
-  public boolean removeFavourite(User user, Recipe recipe) {
+  public boolean removeFavourite(Recipe recipe) {
     try {
-      user.removeFavourite(recipe);
+      this.activeUser.removeFavourite(recipe);
       String query = "DELETE FROM favourite WHERE user_id = ? AND recipe_id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
-      stmt.setInt(1, user.getId());
+      stmt.setInt(1, this.activeUser.getId());
       stmt.setInt(2, recipe.getId());
       stmt.executeUpdate();
       return true;
     } catch (SQLException e) {
+      e.printStackTrace(System.out);
       return false;
     }
   }
 
-  public boolean clearFavourite(User user) {
+  public boolean clearFavourite() {
     try {
-      user.clearFavourite();
+      this.activeUser.clearFavourite();
       String query = "DELETE FROM favourite WHERE user_id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
-      stmt.setInt(1, user.getId());
+      stmt.setInt(1, this.activeUser.getId());
       stmt.executeUpdate();
       return true;
     } catch (SQLException e) {
@@ -320,13 +348,13 @@ public class Controller {
     }
   }
 
-  public boolean createEmptyWeeklyList(User user, int weeklyNumber, int isVisible) {
+  public boolean createEmptyWeeklyList(int weeklyNumber, int isVisible) {
     try {
-      String query = "INSERT INTO week_list (weekNumber, isVisible, user_id) VALUES ('?', '?', '?')";
+      String query = "INSERT INTO week_list (weekNumber, isVisible, user_id) VALUES (?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setInt(1, weeklyNumber);
       stmt.setInt(2, isVisible);
-      stmt.setInt(3, user.getId());
+      stmt.setInt(3, this.activeUser.getId());
       stmt.executeUpdate();
       return true;
     } catch (SQLException e) {
@@ -446,7 +474,8 @@ public class Controller {
     return false;
   }
 
-  public boolean newRecipe(String name, String description, String shortDescription, ArrayList<Integer> ingredientList) {
+  public boolean newRecipe(String name, String description, String shortDescription,
+      ArrayList<Integer> ingredientList) {
     try {
       int recipe_id;
       String query = "INSERT INTO recipe (name, shortDescription, description) VALUES (?, ?, ?)";
@@ -471,6 +500,38 @@ public class Controller {
       return true;
     } catch (SQLException e) {
       return false;
+    }
+  }
+
+  public Recipe getRecipeById(int id) {
+    try {
+      String query = "select * from recipe where id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, id);
+      ResultSet rs = stmt.executeQuery();
+      if (rs.next()) {
+        return this.createRecipe(rs);
+      } else {
+        return null;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  public boolean toggleFavourite(int recipeId) {
+    Recipe r = getRecipeById(recipeId);
+    if (r == null) {
+      System.out.println("Error when loading recipe");
+      return false;
+    }
+    if (this.activeUser.isFavourite(r)) {
+      this.removeFavourite(r);
+      return false;
+    } else {
+      this.addFavourite(r);
+      return true;
     }
   }
 }
