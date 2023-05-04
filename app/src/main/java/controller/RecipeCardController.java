@@ -17,11 +17,17 @@ public class RecipeCardController {
   @FXML
   private Label recipeId;
 
+  /**
+   * Updates the informations of the card.
+   * It will add the name, the tags and the picture of the given recipe.
+   * It also updates the state of the favourite button.
+   * 
+   * @param r The recipe to display on this card.
+   */
   public void updateCard(Recipe r) {
     recipeName.setText(r.getName());
     recipeId.setText(Integer.toString(r.getId()));
     if (controller.getActiveUser().isFavourite(r)) {
-      System.out.println(r.toString());
       favBtn.setImage(new Image("img/HeartFull.png"));
     }
   }

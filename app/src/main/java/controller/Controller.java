@@ -305,6 +305,13 @@ public class Controller {
     this.dbClose();
   }
 
+  /**
+   * Add a recipe to the favourite list of the active user, both in the database
+   * and in the ArrayList.
+   * 
+   * @param recipe The recipe to add to favourites
+   * @return {@code true} if successful
+   */
   public boolean addFavourite(Recipe recipe) {
     try {
       this.activeUser.addFavourite(recipe);
@@ -320,6 +327,13 @@ public class Controller {
     }
   }
 
+  /**
+   * Delete a recipe from the favourite list of the active user, both in the
+   * database and in the ArrayList.
+   * 
+   * @param recipe The recipe to delete from favourites
+   * @return {@code true} if successful
+   */
   public boolean removeFavourite(Recipe recipe) {
     try {
       this.activeUser.removeFavourite(recipe);
@@ -335,6 +349,12 @@ public class Controller {
     }
   }
 
+  /**
+   * Delete all the favourite recipes of the active user, both in the database
+   * and in the ArrayList.
+   * 
+   * @return {@code true} if successful
+   */
   public boolean clearFavourite() {
     try {
       this.activeUser.clearFavourite();
@@ -503,6 +523,12 @@ public class Controller {
     }
   }
 
+  /**
+   * Find and creates a recipe object from the database using the recipe' id.
+   * 
+   * @param id The id of the recipe to get from the database
+   * @return The recipe as an object
+   */
   public Recipe getRecipeById(int id) {
     try {
       String query = "select * from recipe where id = ?";
@@ -520,6 +546,14 @@ public class Controller {
     return null;
   }
 
+  /**
+   * Add or remove a recipe from the favourite list depending if it is already or
+   * not.
+   * 
+   * @param recipeId The id of the recipe to add/delete.
+   * @return {@code true} if the recipe was not in the favourite list and was then
+   *         added.
+   */
   public boolean toggleFavourite(int recipeId) {
     Recipe r = getRecipeById(recipeId);
     if (r == null) {
