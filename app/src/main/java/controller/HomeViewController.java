@@ -1,5 +1,6 @@
 package controller;
 
+<<<<<<< HEAD
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -8,10 +9,14 @@ import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.util.List;
+=======
+import java.io.IOException;
+>>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
 
 public class HomeViewController {
   Controller controller = Controller.getInstance();
 
+<<<<<<< HEAD
   @FXML
   private TextField search;
 
@@ -37,6 +42,8 @@ public class HomeViewController {
     }
   }
 
+=======
+>>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
   public void openAllRecipes() throws IOException {
     controller.displayBrowserView();
   }
