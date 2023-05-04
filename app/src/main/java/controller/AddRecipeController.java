@@ -36,7 +36,7 @@ public class AddRecipeController implements Initializable {
     @FXML
     private TableColumn<Ingredient, Integer> ammountColumn;
     @FXML
-    private TableColumn<Ingredient, Integer> unitColumn;
+    private TableColumn<Ingredient, String> unitColumn;
     @FXML
     private TableColumn<Ingredient, String> ingredientColumn;
     @FXML
@@ -112,7 +112,7 @@ public class AddRecipeController implements Initializable {
         for(Tag tag : tagsArray) {
             if (tag.getName().equals(addedTag)) {
                i = tag.getId();
-                System.out.println(i);
+               System.out.println(i);
             }
         }
         selectBoxTagInts.add(i);
@@ -128,7 +128,7 @@ public class AddRecipeController implements Initializable {
         for(Unit unit : unitArray) {
             if (unit.getName().equals(addUnit)) {
                 unitID = unit.getId();
-                System.out.println(unitID);
+                System.out.println("UnitID is: " + unitID);
             }
         }
         selectBoxUnitInts.add(unitID);
@@ -147,5 +147,9 @@ public class AddRecipeController implements Initializable {
         Ingredient ingredient = new Ingredient(ingredientItem, Integer.parseInt(ammount), unitID);
         ingredientList.add(ingredient);
         ingredientTable.getItems().add(ingredientMock);
+        //System.out.println(ingredientTable.getItems().get(1).getUnit_id());
+        //unitID is ok but .getName returns one value too high all the time!
+        //System.out.println("name is " + unitArray.get(unitID).getName());
+        //ingredientTable.getItems().add(new Ingredient(1, ingredientItem, Integer.parseInt(ammount), 2));
     }
 }

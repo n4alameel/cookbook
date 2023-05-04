@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="added second constructor to IngredientMocking, changed according calls">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="mocking for adding recipes for now,found error in Controller.newRecipe">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Ingredient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -366,7 +368,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683217724106</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="clean up, added comments">
+      <created>1683220788795</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1683220788795</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -400,7 +409,9 @@
     <MESSAGE value="added ingredients and mocking for the viewtable" />
     <MESSAGE value="made a single getIngredient and changed initialize class in AddedRecipeController" />
     <MESSAGE value="added second constructor to IngredientMocking, changed according calls" />
-    <option name="LAST_COMMIT_MESSAGE" value="added second constructor to IngredientMocking, changed according calls" />
+    <MESSAGE value="clean up, added comments" />
+    <MESSAGE value="mocking for adding recipes for now,found error in Controller.newRecipe" />
+    <option name="LAST_COMMIT_MESSAGE" value="mocking for adding recipes for now,found error in Controller.newRecipe" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

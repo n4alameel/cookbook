@@ -206,6 +206,7 @@ public class Controller {
       ResultSet rs = stmt.executeQuery();
       rs.next();
       recipe_id = rs.getInt(1);
+      //TODO: is always counting from 1 upwards, need to fix the connection here, have to change the list from integer to ingredient and put in the corresponding number for ingredient_id
       for (int i : ingredientListInt) {
         query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
         stmt = this.db.prepareStatement(query);
