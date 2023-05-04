@@ -14,6 +14,7 @@ public class User {
     this.username = username;
     this.password = password;
     this.isAdmin = isAdmin;
+    this.favouriteList = new ArrayList<Recipe>();
   }
 
   public int getId() {
@@ -79,23 +80,23 @@ public class User {
    */
 
   public boolean createEmptyWeeklyList(int weeklyNumber, int isVisible) {
-        WeeklyList weekly = new WeeklyList(weeklyNumber, isVisible);
-        return true;
-    }
+    WeeklyList weekly = new WeeklyList(weeklyNumber, isVisible);
+    return true;
+  }
 
-    public boolean addRecipeToWeeklyList(int recipe) {
-        return true;
-    }
+  public boolean addRecipeToWeeklyList(int recipe) {
+    return true;
+  }
 
   public void addFavourite(Recipe recipe) {
     favourite.add(recipe);
   }
-   
+
   public void removeFavourite(Recipe recipe) {
     favourite.remove(recipe);
   }
 
-  public boolean clearFavourite(){
+  public boolean clearFavourite() {
     return favourite.removeAll(favourite);
   }
 

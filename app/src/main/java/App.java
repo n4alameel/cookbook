@@ -4,7 +4,6 @@ import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import view.ActiveView;
 
 public class App extends Application {
 
@@ -14,14 +13,14 @@ public class App extends Application {
   public void start(Stage primaryStage) throws Exception {
     loaderView.start(new Stage());
 
-    Controller controller = new Controller();
+    Controller controller = Controller.getInstance();
+    controller.setStage(primaryStage);
     PauseTransition delay = new PauseTransition(Duration.seconds(2));
 
     delay.setOnFinished(event -> {
       loaderView.stage.hide();
-      ActiveView activeView = new ActiveView(controller, primaryStage);
       primaryStage.setTitle("Galactic Goodness");
-      activeView.displayLoginScene();
+      controller.displayLoginScene();
     });
     delay.play();
   }

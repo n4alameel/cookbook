@@ -32,7 +32,7 @@ public class Ingredient {
     }
   };
 
-  public Ingredient(int id, String name, int quantity, int unit_id){
+  public Ingredient(int id, String name, int quantity, int unit_id) {
     this.id = id;
     this.name = name;
     this.quantity = quantity;
@@ -52,8 +52,8 @@ public class Ingredient {
   }
 
   public Unit getUnit() {
-        return this.unit;
-    }
+    return this.unit;
+  }
   /*
    * public Ingredient(int id){
    * this.id = id;
