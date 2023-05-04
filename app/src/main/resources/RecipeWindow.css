@@ -5,6 +5,10 @@
 .tag{
     -fx-background-radius: 20;
 }
+#recipeName{
+    -fx-fill: black;
+}
+
 #vegeterian{
     -fx-background-color: #72c76b;
 }

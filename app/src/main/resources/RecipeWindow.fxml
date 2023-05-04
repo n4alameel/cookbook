@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="view.RecipeView">
+<ScrollPane prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RecipeController">
    <content>
       <VBox alignment="CENTER" prefWidth="1200.0" styleClass="window" stylesheets="@RecipeWindow.css">
          <children>
@@ -134,7 +134,7 @@
             </Line>
             <VBox alignment="CENTER" prefWidth="1200.0" spacing="10.0" style="-fx-background-color: #FFFF; ">
                <children>
-                  <Text fx:id="recipeName" strokeType="OUTSIDE" strokeWidth="0.0" text="Baked  Potatoes With Bacon">
+                  <Text fx:id="recipeName" strokeType="OUTSIDE" strokeWidth="0.0" text="">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -185,12 +185,12 @@
                <children>
                   <FlowPane prefWidth="700.0" prefWrapLength="700.0" vgap="20.0">
                      <children>
-                        <Text fx:id="recipeDescription" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="short-desc" text="Cook the linguine according to the package instructions until al dente. Drain and set aside.In a large skillet, melt the butter over medium heat. Add the minced garlic and red pepper flakes and cook for 1-2 minutes until fragrant." wrappingWidth="700.0">
+                        <Text fx:id="recipeDescription" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="short-desc" text="" wrappingWidth="700.0">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </Text>
-                        <Text fx:id="recipeDetail" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cook the linguine according to the package instructions until al dente. Drain and set aside.In a large skillet, melt the butter over medium heat. Add the minced garlic and red pepper flakes and cook for 1-2 minutes until fragrant.Add the shrimp to the skillet and cook for 2-3 minutes on each side until pink and cooked through.Add the cooked linguine to the skillet with the shrimp and toss until well coated with the garlic butter sauce.Add the chopped parsley and grated Parmesan cheese and toss again.Season with salt and freshly ground black pepper to taste.Serve hot with additional Parmesan cheese on top, if desired.Enjoy your Spicy Garlic Shrimp Linguine!" wrappingWidth="700.0" />
+                        <Text fx:id="recipeDetail" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="700.0" />
                      </children>
                      <padding>
                         <Insets top="15.0" />
@@ -210,10 +210,10 @@
                               </Label>
                               <VBox fx:id="ingredientBox" prefWidth="100.0" spacing="5.0">
                                  <children>
-                                    <Text accessibleRole="LIST_ITEM" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="list-item" text="1 lb linguine" />
-                                    <Text accessibleRole="LIST_ITEM" strokeType="OUTSIDE" strokeWidth="0.0" text="1 ml olive oil" wrappingWidth="84.42321395874023" />
-                                    <Text accessibleRole="LIST_ITEM" strokeType="OUTSIDE" strokeWidth="0.0" text="1 kg potatoes" />
-                                    <Text accessibleRole="LIST_ITEM" strokeType="OUTSIDE" strokeWidth="0.0" text="3 onions" />
+<!--                                    <Text accessibleRole="LIST_ITEM" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="list-item" text="1 lb linguine" />-->
+<!--                                    <Text accessibleRole="LIST_ITEM" strokeType="OUTSIDE" strokeWidth="0.0" text="1 ml olive oil" wrappingWidth="84.42321395874023" />-->
+<!--                                    <Text accessibleRole="LIST_ITEM" strokeType="OUTSIDE" strokeWidth="0.0" text="1 kg potatoes" />-->
+<!--                                    <Text accessibleRole="LIST_ITEM" strokeType="OUTSIDE" strokeWidth="0.0" text="3 onions" />-->
                                  </children>
                               </VBox>
                               <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="5.0">
@@ -247,22 +247,22 @@
                   </Text>
                   <HBox fx:id="tagBox" spacing="20.0">
                      <children>
-                        <Label id="vegeterian" alignment="CENTER" styleClass="tag" text="Vegeterian">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                           </padding>
-                        </Label>
-                        <Label id="main-course" alignment="CENTER" styleClass="tag" text="Main course">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                           </padding>
-                        </Label>
+<!--                        <Label id="vegeterian" alignment="CENTER" styleClass="tag" text="Vegeterian">-->
+<!--                           <opaqueInsets>-->
+<!--                              <Insets />-->
+<!--                           </opaqueInsets>-->
+<!--                           <padding>-->
+<!--                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />-->
+<!--                           </padding>-->
+<!--                        </Label>-->
+<!--                        <Label id="main-course" alignment="CENTER" styleClass="tag" text="Main course">-->
+<!--                           <opaqueInsets>-->
+<!--                              <Insets />-->
+<!--                           </opaqueInsets>-->
+<!--                           <padding>-->
+<!--                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />-->
+<!--                           </padding>-->
+<!--                        </Label>-->
                         <TextField id="add-more" alignment="CENTER" promptText="+ add more" style="-fx-border-radius: 10;" styleClass="tag">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />

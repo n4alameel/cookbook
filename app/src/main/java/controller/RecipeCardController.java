@@ -1,21 +1,27 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import model.Recipe;
 
 public class RecipeCardController {
   private Controller controller = Controller.getInstance();
+  private Recipe recipe;
   @FXML
   private Label recipeName;
   @FXML
   private ImageView recipePic;
   @FXML
   private ImageView favBtn;
-
-  public void updateCard(Recipe r) {
-    recipeName.setText(r.getName());
+  @FXML
+  private Button seeRecipe;
+  public void setRecipe(Recipe selectedRecipe){
+    recipe = selectedRecipe;
+  }
+  public void updateCard() {
+    recipeName.setText(recipe.getName());
   }
 
   @FXML
@@ -30,7 +36,7 @@ public class RecipeCardController {
 
   @FXML
   private void seeRecipe() {
-
+    controller.displayRecipeView(recipe);
   }
 
   @FXML

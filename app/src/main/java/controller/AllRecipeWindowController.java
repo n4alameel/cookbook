@@ -60,6 +60,7 @@ public class AllRecipeWindowController {
     if (pageIndex == this.pageNumber) {
       return;
     }
+
     this.pageNumber = pageIndex;
     ArrayList<Recipe> recipeList = controller.getRecipeList();
     int recipeNum = recipeList.size();
@@ -77,7 +78,8 @@ public class AllRecipeWindowController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
         Pane root = loader.load();
         RecipeCardController cardController = loader.getController();
-        cardController.updateCard(recipeList.get(currentIndex));
+        cardController.setRecipe(recipeList.get(currentIndex));
+        cardController.updateCard();
         recipeGrid.add(root, col % 3, row);
         col++;
         if (col % 3 == 0) {
