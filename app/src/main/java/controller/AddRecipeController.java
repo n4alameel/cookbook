@@ -36,7 +36,7 @@ public class AddRecipeController implements Initializable {
     @FXML
     private TableColumn<Ingredient, Integer> ammountColumn;
     @FXML
-    private TableColumn<Ingredient, Integer> unitColumn;
+    private TableColumn<Ingredient, String> unitColumn;
     @FXML
     private TableColumn<Ingredient, String> ingredientColumn;
     @FXML
@@ -66,6 +66,8 @@ public class AddRecipeController implements Initializable {
     private ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
     private String addUnit;
     private Integer unitID;
+    private Integer tagID;
+
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
         try{
@@ -73,7 +75,7 @@ public class AddRecipeController implements Initializable {
             shortDiscription = shortDiscriptionField.getText();
             longDescription = longDescriptionArea.getText();
             controller.newIngredient(ingredientList);
-            controller.newRecipe(name, longDescription, shortDiscription, selectBoxUnitInts, selectBoxTagInts);
+            controller.newRecipe(name, longDescription, shortDiscription, selectBoxUnitInts, selectBoxTagInts, ingredientList);
         }
         catch (Exception e){
             System.out.println(e);
@@ -105,18 +107,17 @@ public class AddRecipeController implements Initializable {
      * @param
      */
     public void setTags(ActionEvent event){
-        Integer i = 0;
         String addedTag = tagSelection.getValue();
         addedtags = tagSelection.getValue();
         tags.setText(tags.getText() + " " + addedtags);
         for(Tag tag : tagsArray) {
             if (tag.getName().equals(addedTag)) {
-               i = tag.getId();
-                System.out.println(i);
+                tagID = tag.getId();
+                //System.out.println(tagID);
             }
         }
-        selectBoxTagInts.add(i);
-        System.out.println(selectBoxTagInts);
+        selectBoxTagInts.add(tagID);
+        //System.out.println(selectBoxTagInts);
         }
 
     /**
@@ -128,11 +129,11 @@ public class AddRecipeController implements Initializable {
         for(Unit unit : unitArray) {
             if (unit.getName().equals(addUnit)) {
                 unitID = unit.getId();
-                System.out.println(unitID);
+                //System.out.println(unitID);
             }
         }
-        selectBoxUnitInts.add(unitID);
-        System.out.println(selectBoxUnitInts);
+        //System.out.println(selectBoxUnitInts);
+
     }
 
     /**
@@ -143,8 +144,10 @@ public class AddRecipeController implements Initializable {
         ammount = addAmmount.getText();
         unit = addUnit;
         ingredientItem = addIngredient.getText();
+        selectBoxUnitInts.add(unitID);
         IngredientMock ingredientMock = new IngredientMock(ingredientItem, ammount, unit);
         Ingredient ingredient = new Ingredient(ingredientItem, Integer.parseInt(ammount), unitID);
+        System.out.println("ammount " + ammount +  "unit" + unit + "unitID" + unitID +" tagID" + tagID);
         ingredientList.add(ingredient);
         ingredientTable.getItems().add(ingredientMock);
     }

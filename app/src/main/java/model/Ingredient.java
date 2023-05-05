@@ -41,9 +41,6 @@ public class Ingredient {
   private SimpleIntegerProperty quantity;
   private SimpleIntegerProperty unit_id;
 
-  public Ingredient() {
-
-  }
   public Ingredient(int id, String name, int quantity, int unit_id) {
     this.id = new SimpleIntegerProperty(id);
     this.name = new SimpleStringProperty(name);

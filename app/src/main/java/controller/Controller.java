@@ -191,9 +191,10 @@ public class Controller {
     }
   }
   //TODO: need to add an Tag as well
-  public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> ingredientListInt, ObservableList<Integer> tagList) {
+  public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> ingredientListInt, ObservableList<Integer> tagList, ObservableList<Ingredient> ingredientObservableList) {
     try {
       int recipe_id;
+      int ingredientIterator = 0;
       String query = "INSERT INTO recipe (name, shortDescription, description) VALUES (?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, name);
@@ -206,13 +207,20 @@ public class Controller {
       ResultSet rs = stmt.executeQuery();
       rs.next();
       recipe_id = rs.getInt(1);
-      for (int i : ingredientListInt) {
-        query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
-        stmt = this.db.prepareStatement(query);
-        stmt.setInt(1, recipe_id);
-        stmt.setInt(2, i);
-        stmt.executeUpdate();
-      }
+      ObservableList<Ingredient> ingredients = generateIngredient();
+      for (Ingredient ingredient : ingredients) {
+        if(ingredientObservableList.get(ingredientIterator).getName().equals(ingredient.getName())) {
+          query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
+          stmt = this.db.prepareStatement(query);
+          stmt.setInt(1, recipe_id);
+          stmt.setInt(2, ingredient.getId());
+          stmt.executeUpdate();
+          ingredientIterator++;
+          System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId() );
+        }
+        /*System.out.println(ingredientIterator + recipe_id + "name: " + ingredient.getName() + " id: " + ingredient.getId() );
+        System.out.println( "ObservableList" + ingredientObservableList.get(ingredientIterator).getName());
+      */}
       for (int i : tagList) {
         query = "INSERT INTO recipe_has_tag (recipe_id, tag_id) VALUES (?, ?)";
         stmt = this.db.prepareStatement(query);
@@ -222,6 +230,7 @@ public class Controller {
       }
       return true;
     } catch (SQLException e) {
+      System.out.println(e);
       return false;
     }
   }
@@ -279,6 +288,28 @@ public class Controller {
     }
     catch (Exception e){
       return false;
+    }
+  }
+  public ObservableList<Ingredient> generateIngredient() {
+    try {
+      String query = "SELECT * FROM ingredient";
+      Statement stmt = this.db.createStatement();
+
+      ResultSet rs = stmt.executeQuery(query);
+      ObservableList<Ingredient> ingredients = FXCollections.observableArrayList();
+
+      while (rs.next()) {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        int quantity = rs.getInt("quantity");
+        int unitId = rs.getInt("unit_id");
+        ingredients.add(new Ingredient(id, name, quantity, unitId));
+      }
+
+      return ingredients;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return null;
     }
   }
 }
