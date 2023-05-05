@@ -49,12 +49,12 @@
                 <Hyperlink fx:id="user" layoutX="1147.0" layoutY="56.0" text="User" />
                 <ImageView fx:id="recipe_image" fitHeight="37.0" fitWidth="34.0" layoutX="863.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@whisk.png" />
+                        <Image url="@img/whisk.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="995.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Heart.png" />
+                        <Image url="@img/Heart.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="1014.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
@@ -62,7 +62,7 @@
                     <children>
                         <ImageView fitHeight="72.0" fitWidth="252.0" layoutX="66.0" layoutY="6.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@logo.png" />
+                                <Image url="@img/logo.png" />
                             </image>
                         </ImageView>
                         <Label layoutX="74.0" layoutY="94.0" prefHeight="73.0" prefWidth="208.0" text="This Cookbook is made by&#10;the students of the Project Course in Computer  Science, &#10;Cobol group" wrapText="true" />

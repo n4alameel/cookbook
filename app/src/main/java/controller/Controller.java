@@ -12,7 +12,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
-import model.User;
+import java.util.ArrayList;
+import javafx.util.Pair;
+
+import model.*;
 import view.*;
 
 public class Controller {
@@ -67,7 +70,7 @@ public class Controller {
   }
 
   public model.User getActiveUser() {
-    return activeUser;
+    return this.activeUser;
   }
 
   public void setActiveUser(model.User activeUser) {
@@ -121,6 +124,7 @@ public class Controller {
         if (this.activeUser == null) {
           return false;
         }
+        this.activeUser.setFavouriteList(this.generateFavouriteListFromDb());
         return true;
       } else {
         return false;
@@ -161,26 +165,41 @@ public class Controller {
       ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
 
       while (rs.next()) {
-        int recipeId = Integer.parseInt(rs.getString(1));
-        String ingQuery = "select * from ingredient I join recipe_has_ingredient R on I.id = R.ingredient_id where R.recipe_id = ?";
-        PreparedStatement ingStmt = this.db.prepareStatement(ingQuery);
-        ingStmt.setInt(1, recipeId);
-        ResultSet ingRs = ingStmt.executeQuery();
-
-        ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
-
-        while (ingRs.next()) {
-          Ingredient i = createIngredient(ingRs);
-          ingredientList.add(i);
-        }
-
-        Recipe r = createRecipe(recipeId, rs, ingredientList);
+        Recipe r = createRecipe(rs);
         recipeList.add(r);
       }
 
       return recipeList;
 
     } catch (SQLException e) {
+      return null;
+    }
+  }
+
+  /**
+   * Generates the list of all favourite recipes (as objects) of the active user
+   * that are stored in the database.
+   * 
+   * @return The ArrayList of favourite recipes of the active user
+   */
+  private ArrayList<Recipe> generateFavouriteListFromDb() {
+    try {
+      String query = "select * from recipe R join favourite F on R.id = F.recipe_id where F.user_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
+
+      ResultSet rs = stmt.executeQuery();
+
+      ArrayList<Recipe> favouriteList = new ArrayList<Recipe>();
+
+      while (rs.next()) {
+        Recipe r = createRecipe(rs);
+        favouriteList.add(r);
+      }
+      return favouriteList;
+
+    } catch (SQLException e) {
+      e.printStackTrace(System.out);
       return null;
     }
   }
@@ -204,17 +223,27 @@ public class Controller {
   /**
    * Create a Recipe object from a MySQL query result.
    * 
-   * @param recipeId       The recipe ID
-   * @param rs             The query result
-   * @param ingredientList The list of all ingredients used in the recipe
+   * @param rs The query result
    * @return A Recipe object
    */
-  private Recipe createRecipe(int recipeId, ResultSet rs, ArrayList<Ingredient> ingredientList) {
+  private Recipe createRecipe(ResultSet rs) {
     try {
+      int recipeId = Integer.parseInt(rs.getString(1));
+      String ingQuery = "select * from ingredient I join recipe_has_ingredient R on I.id = R.ingredient_id where R.recipe_id = ?";
+      PreparedStatement ingStmt = this.db.prepareStatement(ingQuery);
+      ingStmt.setInt(1, recipeId);
+      ResultSet ingRs = ingStmt.executeQuery();
+
+      ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+
+      while (ingRs.next()) {
+        Ingredient i = createIngredient(ingRs);
+        ingredientList.add(i);
+      }
       Recipe r = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList);
       return r;
     } catch (SQLException e) {
-      System.out.println("nope");
+      e.printStackTrace();
       return null;
     }
   }
@@ -278,4 +307,267 @@ public class Controller {
     this.dbClose();
   }
 
+  /**
+   * Add a recipe to the favourite list of the active user, both in the database
+   * and in the ArrayList.
+   * 
+   * @param recipe The recipe to add to favourites
+   * @return {@code true} if successful
+   */
+  public boolean addFavourite(Recipe recipe) {
+    try {
+      this.activeUser.addFavourite(recipe);
+      String query = "INSERT INTO favourite (user_id, recipe_id) VALUES (?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
+      stmt.setInt(2, recipe.getId());
+      stmt.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace(System.out);
+      return false;
+    }
+  }
+
+  /**
+   * Delete a recipe from the favourite list of the active user, both in the
+   * database and in the ArrayList.
+   * 
+   * @param recipe The recipe to delete from favourites
+   * @return {@code true} if successful
+   */
+  public boolean removeFavourite(Recipe recipe) {
+    try {
+      this.activeUser.removeFavourite(recipe);
+      String query = "DELETE FROM favourite WHERE user_id = ? AND recipe_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
+      stmt.setInt(2, recipe.getId());
+      stmt.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace(System.out);
+      return false;
+    }
+  }
+
+  /**
+   * Delete all the favourite recipes of the active user, both in the database
+   * and in the ArrayList.
+   * 
+   * @return {@code true} if successful
+   */
+  public boolean clearFavourite() {
+    try {
+      this.activeUser.clearFavourite();
+      String query = "DELETE FROM favourite WHERE user_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
+      stmt.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      return false;
+    }
+  }
+
+  public boolean createEmptyWeeklyList(int weeklyNumber, int isVisible) {
+    try {
+      String query = "INSERT INTO week_list (weekNumber, isVisible, user_id) VALUES (?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, weeklyNumber);
+      stmt.setInt(2, isVisible);
+      stmt.setInt(3, this.activeUser.getId());
+      stmt.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      return false;
+    }
+  }
+
+  public boolean addRecipeToWeeklyList(int weeklyId, String date, Recipe recipe) {
+    try {
+      String query = "INSERT INTO day_list (date, week_list_id) VALUES (?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setDate(1, java.sql.Date.valueOf(date));
+      stmt.setInt(2, weeklyId);
+      stmt.executeUpdate();
+
+      query = "SELECT id FROM day_list WHERE date = ? AND week_list_id = ?";
+      stmt = this.db.prepareStatement(query);
+      stmt.setDate(1, java.sql.Date.valueOf(date));
+      stmt.setInt(2, weeklyId);
+      ResultSet rs = stmt.executeQuery();
+      rs.next();
+
+      query = "INSERT INTO day_list_has_recipe (recipe_id, day_list_id) VALUES (?, ?)";
+      stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, recipe.getId());
+      stmt.setLong(2, rs.getInt(1));
+      stmt.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return false;
+    }
+  }
+
+  // weekly.get((rs.getInt(2)-1)/7).add(rs.getInt(1));
+  /*
+   * We need to recover all the recipe_id from day_list_has_recipe who has the
+   * right weekNumber. Then we need to sort every dish to fit in a seven days
+   * list. Then we recover every ingredient from every meal of a week and add them
+   * to a list.
+   */
+  public ShoppingList generateShoppingList(int weekNumber, int user_id) {
+    try {
+      ShoppingList shoppingList = new ShoppingList(weekNumber, user_id);
+      String query = "SELECT dlr.* FROM day_list_has_recipe dlr INNER JOIN day_list dl ON dlr.day_list_id = dl.id INNER JOIN week_list wl ON dl.week_list_id = wl.id WHERE wl.weekNumber = ? AND wl.user_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, weekNumber);
+      stmt.setInt(2, user_id);
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        query = "SELECT i.* FROM ingredient i INNER JOIN recipe_has_ingredient rhi ON i.id = rhi.ingredient_id INNER JOIN unit u ON i.unit_id = u.id WHERE rhi.recipe_id = ?";
+        stmt = this.db.prepareStatement(query);
+        stmt.setInt(1, rs.getInt(1));
+        ResultSet rs2 = stmt.executeQuery();
+        while (rs2.next()) {
+          int ingredientId = rs2.getInt(1);
+          String ingredientName = rs2.getString(2);
+          int ingredientQuantity = rs2.getInt(3);
+          int ingredientUnit = rs2.getInt(4);
+
+          boolean ingredientFound = false;
+
+          // Check if the ingredient is already in the shopping list
+          for (Pair<Ingredient, Integer> shoppingListItem : shoppingList.list) {
+
+            Ingredient shoppingListIngredient = shoppingListItem.getKey();
+            int shoppingListQuantity = shoppingListItem.getValue();
+
+            if (shoppingListIngredient.getId() == rs2.getInt("id")) {
+              shoppingList.list.remove(new Pair<Ingredient, Integer>(shoppingListIngredient, shoppingListQuantity));
+              shoppingListQuantity += ingredientQuantity;
+              Pair<Ingredient, Integer> updatedShoppingListItem = new Pair<>(shoppingListIngredient,
+                  shoppingListQuantity);
+              shoppingList.list.add(updatedShoppingListItem);
+              ingredientFound = true;
+              break;
+            }
+          }
+
+          // If the ingredient is not in the shopping list yet, add it
+          if (!ingredientFound) {
+            Ingredient ingredient = new Ingredient(ingredientId, ingredientName, ingredientQuantity, ingredientUnit);
+            Pair<Ingredient, Integer> shoppingListItem = new Pair<>(ingredient, ingredientQuantity);
+            shoppingList.list.add(shoppingListItem);
+          }
+        }
+      }
+      return shoppingList;
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+
+  public void editShoppingList(ShoppingList shoppingList, Ingredient ingredient, int quantity) {
+    for (Pair<Ingredient, Integer> shoppingListItem : shoppingList.list) {
+      Ingredient shoppingListIngredient = shoppingListItem.getKey();
+      int shoppingListQuantity = shoppingListItem.getValue();
+      if (shoppingListIngredient.getId() == ingredient.getId()) {
+        if (quantity >= shoppingListQuantity) {
+          shoppingList.list.remove(new Pair<Ingredient, Integer>(shoppingListIngredient, shoppingListQuantity));
+        } else {
+          shoppingList.list.remove(new Pair<Ingredient, Integer>(shoppingListIngredient, shoppingListQuantity));
+          shoppingListQuantity -= quantity;
+          Pair<Ingredient, Integer> updatedShoppingListItem = new Pair<>(shoppingListIngredient, shoppingListQuantity);
+          shoppingList.list.add(updatedShoppingListItem);
+        }
+        break;
+      }
+    }
+  }
+
+  public boolean eraseShoppingList(ShoppingList shoppingList, int weekNumber) {
+    if (shoppingList.getWeek() == weekNumber) {
+      shoppingList.list.removeAll(shoppingList.list);
+      return true;
+    }
+    return false;
+  }
+
+  public boolean newRecipe(String name, String description, String shortDescription,
+      ArrayList<Integer> ingredientList) {
+    try {
+      int recipe_id;
+      String query = "INSERT INTO recipe (name, shortDescription, description) VALUES (?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, name);
+      stmt.setString(2, shortDescription);
+      stmt.setString(3, description);
+      stmt.executeUpdate();
+      query = "SELECT id FROM recipe WHERE name = ?";
+      stmt = this.db.prepareStatement(query);
+      stmt.setString(1, name);
+      ResultSet rs = stmt.executeQuery();
+      rs.next();
+      recipe_id = rs.getInt(1);
+      for (int i : ingredientList) {
+        query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
+        stmt = this.db.prepareStatement(query);
+        stmt.setInt(1, recipe_id);
+        stmt.setInt(2, i);
+        stmt.executeUpdate();
+      }
+      return true;
+    } catch (SQLException e) {
+      return false;
+    }
+  }
+
+  /**
+   * Find and creates a recipe object from the database using the recipe' id.
+   * 
+   * @param id The id of the recipe to get from the database
+   * @return The recipe as an object
+   */
+  public Recipe getRecipeById(int id) {
+    try {
+      String query = "select * from recipe where id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, id);
+      ResultSet rs = stmt.executeQuery();
+      if (rs.next()) {
+        return this.createRecipe(rs);
+      } else {
+        return null;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  /**
+   * Add or remove a recipe from the favourite list depending if it is already or
+   * not.
+   * 
+   * @param recipeId The id of the recipe to add/delete.
+   * @return {@code true} if the recipe was not in the favourite list and was then
+   *         added.
+   */
+  public boolean toggleFavourite(int recipeId) {
+    Recipe r = getRecipeById(recipeId);
+    if (r == null) {
+      System.out.println("Error when loading recipe");
+      return false;
+    }
+    if (this.activeUser.isFavourite(r)) {
+      this.removeFavourite(r);
+      return false;
+    } else {
+      this.addFavourite(r);
+      return true;
+    }
+  }
 }
