@@ -81,6 +81,10 @@ public class AllRecipeWindowController {
         cardController.setRecipe(recipeList.get(currentIndex));
         cardController.updateCard();
         recipeGrid.add(root, col % 3, row);
+        // Send the card to back so that the short description panel will always show up
+        // on top of the other cards and not behind
+        recipeGrid.getChildren().get(recipeGrid.getChildren().size() - 1).toBack();
+
         col++;
         if (col % 3 == 0) {
           row++;
