@@ -11,7 +11,11 @@ import model.Recipe;
 
 public class RecipeCardController {
   private Controller controller = Controller.getInstance();
+
+  // Delay used when hovering a card to not show the short description panel
+  // directly
   private PauseTransition delay = new PauseTransition(Duration.seconds(0.5));
+
   @FXML
   private Label recipeName;
   @FXML
@@ -46,6 +50,11 @@ public class RecipeCardController {
 
   }
 
+  /**
+   * Toggle the favourite status of the recipe. It sends the id hidden on the card
+   * to the controller and then changes the look of the favourite button depending
+   * of the new status.
+   */
   @FXML
   private void toggleFavourite() {
     if (controller.toggleFavourite(Integer.parseInt(recipeId.getText()))) {
@@ -60,6 +69,9 @@ public class RecipeCardController {
 
   }
 
+  /**
+   * Shows the short description panel after a small delay.
+   */
   @FXML
   private void showDescription() {
     delay.setOnFinished(event -> {
@@ -68,6 +80,12 @@ public class RecipeCardController {
     delay.playFromStart();
   }
 
+  /**
+   * Hides the short description panel.
+   * It also interrupts any delay started by {@code showDescription()} so that if
+   * you remove the ursor from the card before the end of the delay, the panel
+   * will not show.
+   */
   @FXML
   private void hideDescription() {
     delay.stop();
