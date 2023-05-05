@@ -35,9 +35,6 @@ public class HomeViewController {
   }
 
   public void searchEnter(KeyEvent keyEvent) throws IOException {
-    if (keyEvent.getCode() == KeyCode.ENTER) {
       openSearchPage();
-    }
   }
-
 }

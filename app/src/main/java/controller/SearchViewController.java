@@ -30,6 +30,8 @@ public class SearchViewController {
         List<String> data = controller.selectDataFromDatabase();
         ArrayList<Recipe> recipeList = controller.getRecipeList();
 
+        searchGrid.getChildren().clear();
+
         int i = 0;
         int col = 0;
         int row = 0;
@@ -62,8 +64,11 @@ public class SearchViewController {
         }
     }
 
-
     public void goToHomePage() throws IOException {
         controller.displayHomeView();
+    }
+
+    public void openNewRecipe() throws IOException {
+        controller.displayNewRecipeView();
     }
 }
