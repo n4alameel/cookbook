@@ -65,14 +65,14 @@ for me
 to see it
 - [ ] 8. As a user I should be able to search for a recipe by one or more tags to
 see it
-- [ ] 9. As a user I want to be able to browse all recipes to select which I want
+- [X] 9. As a user I want to be able to browse all recipes to select which I want
 to see
-- [ ] 10. As a user I want see more the short description of a dish from a search
+- [X] 10. As a user I want see more the short description of a dish from a search
 by hovering or clicking on it to know if I want to see the whole recipe
 - [ ] 11. As a user I want to create a new recipe so that I can see it later.
 - [ ] 12. As a user I want to be able to add a name, short description, ingredients
 and detailed description to a recipe
-- [ ] 13. As a user I want to see the selected recipe with formatting (bold and
+- [X] 13. As a user I want to see the selected recipe with formatting (bold and
 larger size for name, italics for short description, lists for ingredients
 and detailed description) for easy viewing
 - [ ] 14. As a user I should be able to add comments to a recipe for everyone to
@@ -88,8 +88,8 @@ is easier to find later
 and sweets)
 - [ ] 19. As a user I should be able to add my own tags to a dish for making it
 easy to find later
-- [ ] 20. As a user I should be able to “star” a recipe as one of my favourites
-- [ ] 21. As a user I must be able to “unstar” a recipe to remove it from my list
+- [X] 20. As a user I should be able to “star” a recipe as one of my favourites
+- [X] 21. As a user I must be able to “unstar” a recipe to remove it from my list
 of favourites
 - [ ] 22. As a user I want to be able to create weekly dinner lists for several weeks
 so that I can display them later
