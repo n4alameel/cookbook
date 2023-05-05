@@ -1,14 +1,17 @@
 package controller;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import model.Recipe;
 
 public class RecipeCardController {
   private Controller controller = Controller.getInstance();
+  private PauseTransition delay = new PauseTransition(Duration.seconds(0.5));
   @FXML
   private Label recipeName;
   @FXML
@@ -59,12 +62,15 @@ public class RecipeCardController {
 
   @FXML
   private void showDescription() {
-    shortDescPane.setVisible(true);
-    shortDescPane.toFront();
+    delay.setOnFinished(event -> {
+      shortDescPane.setVisible(true);
+    });
+    delay.playFromStart();
   }
 
   @FXML
   private void hideDescription() {
+    delay.stop();
     shortDescPane.setVisible(false);
   }
 }
