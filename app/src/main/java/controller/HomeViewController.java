@@ -18,51 +18,6 @@ import java.io.IOException;
 public class HomeViewController {
   Controller controller = Controller.getInstance();
 
-  @FXML
-  private TextField search;
-
-  @FXML
-  private GridPane searchGrid;
-
-  public void searchEnter(KeyEvent keyEvent) throws IOException {
-    if (keyEvent.getCode() == KeyCode.ENTER) {
-      searchBtnClicked();
-    }
-  }
-
-  public void searchBtnClicked() throws IOException {
-    String query = search.getText();
-    System.out.println("Search query: " + query);
-
-    List<String> data = controller.selectDataFromDatabase();
-    ArrayList<Recipe> recipeList = controller.getRecipeList();
-
-    int i = 0;
-    int col = 0;
-    int row = 0;
-    for (String value : data) {
-      if (value.contentEquals(query) || value.equalsIgnoreCase(query)) {
-        System.out.println(data.get(i));
-        System.out.println(recipeList.get(i));
-
-        try {
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
-          Pane root = loader.load();
-          RecipeCardController cardController = loader.getController();
-          cardController.updateCard(recipeList.get(i));
-          searchGrid.add(root, col % 3, row);
-          col++;
-          if (col % 3 == 0) {
-            row++;
-          }
-        } catch (IOException e) {
-          e.printStackTrace(System.out);
-        }
-      }
-      i++;
-    }
-  }
-
   public void openAllRecipes() throws IOException {
     controller.displayBrowserView();
   }
@@ -73,6 +28,16 @@ public class HomeViewController {
 
   public void openNewRecipe() throws IOException {
     controller.displayNewRecipeView();
+  }
+
+  public void openSearchPage() throws  IOException {
+    controller.displaySearchView();
+  }
+
+  public void searchEnter(KeyEvent keyEvent) throws IOException {
+    if (keyEvent.getCode() == KeyCode.ENTER) {
+      openSearchPage();
+    }
   }
 
 }

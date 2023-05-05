@@ -296,6 +296,13 @@ public class Controller {
     secondaryStage.show();
   }
 
+  public void displaySearchView() {
+    SearchView searchView = new SearchView();
+    Scene searchScene = new Scene(searchView.getRoot());
+    stage.setScene(searchScene);
+    stage.show();
+  }
+
   /**
    * Closes the app.
    */
