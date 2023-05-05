@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="addIngredient works now">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="now transfering the data from IngredientMock to Ingredient">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -374,7 +375,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683307594313</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="now transfering the data from IngredientMock to Ingredient">
+      <created>1683310199738</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1683310199738</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -409,7 +417,8 @@
     <MESSAGE value="made a single getIngredient and changed initialize class in AddedRecipeController" />
     <MESSAGE value="added second constructor to IngredientMocking, changed according calls" />
     <MESSAGE value="addIngredient works now" />
-    <option name="LAST_COMMIT_MESSAGE" value="addIngredient works now" />
+    <MESSAGE value="now transfering the data from IngredientMock to Ingredient" />
+    <option name="LAST_COMMIT_MESSAGE" value="now transfering the data from IngredientMock to Ingredient" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

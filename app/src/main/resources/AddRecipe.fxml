@@ -49,7 +49,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <TableView fx:id="ingredientTable" layoutX="38.0" layoutY="845.0" prefHeight="365.0" prefWidth="450.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="30.0">
+            <TableView fx:id="ingredientTable" layoutX="38.0" layoutY="845.0" onMouseClicked="#deleteClickedRow" prefHeight="365.0" prefWidth="450.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="30.0">
                <columns>
                   <TableColumn fx:id="ammountColumn" prefWidth="150.0" sortable="false" text="Ammount" />
                   <TableColumn fx:id="unitColumn" prefWidth="150.0" sortable="false" text="Unit" />

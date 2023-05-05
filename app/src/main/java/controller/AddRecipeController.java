@@ -9,11 +9,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import model.Ingredient;
 import model.IngredientMock;
 import model.Tag;
 import model.Unit;
 
+import javax.swing.*;
 import java.net.IDN;
 import java.net.URL;
 import java.util.ArrayList;
@@ -72,31 +74,31 @@ public class AddRecipeController implements Initializable {
 
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
-        try{
+        try {
             ObservableList<IngredientMock> ingredientMock = ingredientTable.getItems();
             for (IngredientMock ingredientMock1 : ingredientMock) {
                 String name = ingredientMock1.getName();
                 int quantity = Integer.parseInt(ingredientMock1.getQuantity());
-                    for(Unit unit : unitArray){
-                        if(unit.getName().equals(ingredientMock1.getUnit_id())){
-                            unit_id = unit.getId();
-                        }
+                for (Unit unit : unitArray) {
+                    if (unit.getName().equals(ingredientMock1.getUnit_id())) {
+                        unit_id = unit.getId();
+                    }
                 }
-                    ingredientList.add(new Ingredient(name, quantity, unit_id));
+                ingredientList.add(new Ingredient(name, quantity, unit_id));
             }
             name = nameField.getText();
             shortDiscription = shortDiscriptionField.getText();
             longDescription = longDescriptionArea.getText();
             controller.newIngredient(ingredientList);
             controller.newRecipe(name, longDescription, shortDiscription, selectBoxUnitInts, selectBoxTagInts, ingredientList);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
+
     //overriding the selectbox on class initialization
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1){
+    public void initialize(URL arg0, ResourceBundle arg1) {
         //tagselection get the tags out of the List and put them into the choicebox
         for (Tag tag : tagsArray) {
             tagSelection.getItems().addAll(tag.getName());
@@ -117,13 +119,14 @@ public class AddRecipeController implements Initializable {
 
     /**
      * is called when the dropbox for setting Tags is used
+     *
      * @param
      */
-    public void setTags(ActionEvent event){
+    public void setTags(ActionEvent event) {
         String addedTag = tagSelection.getValue();
         addedtags = tagSelection.getValue();
         tags.setText(tags.getText() + " " + addedtags);
-        for(Tag tag : tagsArray) {
+        for (Tag tag : tagsArray) {
             if (tag.getName().equals(addedTag)) {
                 tagID = tag.getId();
                 //System.out.println(tagID);
@@ -131,15 +134,16 @@ public class AddRecipeController implements Initializable {
         }
         selectBoxTagInts.add(tagID);
         //System.out.println(selectBoxTagInts);
-        }
+    }
 
     /**
      * is called when the dropbox for setting the Unit is called
+     *
      * @param event
      */
-    public void setUnit(ActionEvent event){
+    public void setUnit(ActionEvent event) {
         addUnit = unitSelection.getValue();
-        for(Unit unit : unitArray) {
+        for (Unit unit : unitArray) {
             if (unit.getName().equals(addUnit)) {
                 unitID = unit.getId();
                 //System.out.println(unitID);
@@ -151,18 +155,30 @@ public class AddRecipeController implements Initializable {
 
     /**
      * is called when the AddIngredientsButton is used
+     *
      * @param event
      */
     //TODO: error handling
-    public void addIngredientButton(ActionEvent event){
-            ammount = addAmmount.getText();
-            unit = addUnit;
-            ingredientItem = addIngredient.getText();
-            selectBoxUnitInts.add(unitID);
-            IngredientMock ingredientMock = new IngredientMock(ingredientItem, ammount, unit);
-            //Ingredient ingredient = new Ingredient(ingredientItem, Integer.parseInt(ammount), unitID);
-            System.out.println("ammount " + ammount + "unit" + unit + "unitID" + unitID + " tagID" + tagID);
-            //ingredientList.add(ingredient);
-            ingredientTable.getItems().add(ingredientMock);
+    public void addIngredientButton(ActionEvent event) {
+        ammount = addAmmount.getText();
+        unit = addUnit;
+        ingredientItem = addIngredient.getText();
+        selectBoxUnitInts.add(unitID);
+        IngredientMock ingredientMock = new IngredientMock(ingredientItem, ammount, unit);
+        //Ingredient ingredient = new Ingredient(ingredientItem, Integer.parseInt(ammount), unitID);
+        System.out.println("ammount " + ammount + "unit" + unit + "unitID" + unitID + " tagID" + tagID);
+        //ingredientList.add(ingredient);
+        ingredientTable.getItems().add(ingredientMock);
     }
+
+    /**
+     * double click to delete a row
+     * @param mouseEvent
+     */
+    public void deleteClickedRow(MouseEvent mouseEvent) {
+        if(mouseEvent.getClickCount() == 2 && !ingredientTable.getSelectionModel().isEmpty()){
+            ingredientTable.getItems().remove(ingredientTable.getSelectionModel().getSelectedItem());
+        }
+    }
+
 }
