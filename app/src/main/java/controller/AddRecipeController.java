@@ -67,10 +67,23 @@ public class AddRecipeController implements Initializable {
     private String addUnit;
     private Integer unitID;
     private Integer tagID;
+    private int unit_id;
+    ObservableList<IngredientMock> ingredientMocks = FXCollections.observableArrayList();
 
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
         try{
+            ObservableList<IngredientMock> ingredientMock = ingredientTable.getItems();
+            for (IngredientMock ingredientMock1 : ingredientMock) {
+                String name = ingredientMock1.getName();
+                int quantity = Integer.parseInt(ingredientMock1.getQuantity());
+                    for(Unit unit : unitArray){
+                        if(unit.getName().equals(ingredientMock1.getUnit_id())){
+                            unit_id = unit.getId();
+                        }
+                }
+                    ingredientList.add(new Ingredient(name, quantity, unit_id));
+            }
             name = nameField.getText();
             shortDiscription = shortDiscriptionField.getText();
             longDescription = longDescriptionArea.getText();
@@ -140,15 +153,16 @@ public class AddRecipeController implements Initializable {
      * is called when the AddIngredientsButton is used
      * @param event
      */
-    public void addIngredientButton(ActionEvent event) {
-        ammount = addAmmount.getText();
-        unit = addUnit;
-        ingredientItem = addIngredient.getText();
-        selectBoxUnitInts.add(unitID);
-        IngredientMock ingredientMock = new IngredientMock(ingredientItem, ammount, unit);
-        Ingredient ingredient = new Ingredient(ingredientItem, Integer.parseInt(ammount), unitID);
-        System.out.println("ammount " + ammount +  "unit" + unit + "unitID" + unitID +" tagID" + tagID);
-        ingredientList.add(ingredient);
-        ingredientTable.getItems().add(ingredientMock);
+    //TODO: error handling
+    public void addIngredientButton(ActionEvent event){
+            ammount = addAmmount.getText();
+            unit = addUnit;
+            ingredientItem = addIngredient.getText();
+            selectBoxUnitInts.add(unitID);
+            IngredientMock ingredientMock = new IngredientMock(ingredientItem, ammount, unit);
+            //Ingredient ingredient = new Ingredient(ingredientItem, Integer.parseInt(ammount), unitID);
+            System.out.println("ammount " + ammount + "unit" + unit + "unitID" + unitID + " tagID" + tagID);
+            //ingredientList.add(ingredient);
+            ingredientTable.getItems().add(ingredientMock);
     }
 }
