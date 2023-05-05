@@ -68,7 +68,6 @@ public class FavouriteRecipeController {
         this.pageNumber = pageIndex;
         ObservableList<Recipe> favouriteList = controller.getFavourites();
         int recipeNum = favouriteList.size();
-        System.out.println(recipeNum);
 
         // Clear the actual grid
         favouriteGrid.getChildren().clear();

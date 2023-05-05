@@ -41,7 +41,7 @@ public class Controller {
     return recipeList;
   }
 
-  public ObservableList<Recipe> getFavourites() { return getFavouritesFromDb(); }
+  public ObservableList<Recipe> getFavourites() { return getFavouritesFromDb(activeUser.getId()); }
 
   private Controller() {
     this.db = dbconnect();
@@ -190,10 +190,12 @@ public class Controller {
   }
 
 
-  private ObservableList<Recipe> getFavouritesFromDb() {
+  private ObservableList<Recipe> getFavouritesFromDb(int userId) {
     try {
-      String query = "SELECT name, shortDescription FROM recipe JOIN favourite on recipe.id = favourite.recipe_id";
+
+      String query = "SELECT name, shortDescription FROM recipe JOIN favourite on recipe.id = favourite.recipe_id WHERE favourite.user_id = ?";
       PreparedStatement ingStmt = this.db.prepareStatement(query);
+      ingStmt.setInt(1, userId);
       ResultSet rs = ingStmt.executeQuery();
 
 
