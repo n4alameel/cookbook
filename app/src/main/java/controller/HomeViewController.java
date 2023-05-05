@@ -11,11 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class HomeViewController implements Initializable {
-  @FXML
-   private Label title;
-
-
+public class HomeViewController {
 
 
 
@@ -33,10 +29,8 @@ public class HomeViewController implements Initializable {
     controller.displayNewRecipeView();
   }
 
+public void seeFavourites() throws IOException {
+    controller.displayFavouriteView();
+}
 
-
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    title.setText(controller.getRecommendationsFromDb(1));
-  }
 }

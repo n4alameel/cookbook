@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 
 import com.mysql.cj.exceptions.StreamingNotifiable;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -39,6 +40,8 @@ public class Controller {
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
   }
+
+  public ObservableList<Recipe> getFavourites() { return getFavouritesFromDb(); }
 
   private Controller() {
     this.db = dbconnect();
@@ -187,19 +190,25 @@ public class Controller {
   }
 
 
-  public String getRecommendationsFromDb(Integer id) {
+  private ObservableList<Recipe> getFavouritesFromDb() {
     try {
-      String query = "SELECT name FROM recipe WHERE id = ?";
+      String query = "SELECT name, shortDescription FROM recipe JOIN favourite on recipe.id = favourite.recipe_id";
       PreparedStatement ingStmt = this.db.prepareStatement(query);
-      ingStmt.setInt(1, id);
       ResultSet rs = ingStmt.executeQuery();
 
-      if (rs.next()) {
+
+      ObservableList<Recipe> favourites = FXCollections.observableArrayList();
+      while (rs.next()) {
+
+        String shortDescription = rs.getString("shortDescription");
         String name = rs.getString("name");
-        return name;
-      } else {
-        return null;
+
+        Recipe recipe = new Recipe(name, shortDescription);
+        recipe.setDescription(shortDescription);
+        recipe.setName(name);
+        favourites.add(recipe);
       }
+        return favourites;
     } catch (SQLException e) {
       System.out.println(e);
       return null;
@@ -277,6 +286,16 @@ public class Controller {
     HomeView homeView = new HomeView();
     Scene mainScene = new Scene(homeView.getRoot());
     stage.setScene(mainScene);
+    stage.show();
+  }
+
+  /**
+   * Creates and display the favourite scene.
+   */
+  public void displayFavouriteView() {
+    FavouriteView favouriteView = new FavouriteView();
+    Scene favouriteScene = new Scene(favouriteView.getRoot());
+    stage.setScene(favouriteScene);
     stage.show();
   }
 
