@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import model.Recipe;
 
 public class RecipeCardController {
@@ -16,6 +17,10 @@ public class RecipeCardController {
   private ImageView favBtn;
   @FXML
   private Label recipeId;
+  @FXML
+  private AnchorPane shortDescPane;
+  @FXML
+  private Label shortDesc;
 
   /**
    * Updates the informations of the card.
@@ -30,6 +35,7 @@ public class RecipeCardController {
     if (controller.getActiveUser().isFavourite(r)) {
       favBtn.setImage(new Image("img/HeartFull.png"));
     }
+    shortDesc.setText(r.getDescription());
   }
 
   @FXML
@@ -53,9 +59,12 @@ public class RecipeCardController {
 
   @FXML
   private void showDescription() {
+    shortDescPane.setVisible(true);
+    shortDescPane.toFront();
   }
 
   @FXML
   private void hideDescription() {
+    shortDescPane.setVisible(false);
   }
 }

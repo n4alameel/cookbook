@@ -79,6 +79,7 @@ public class AllRecipeWindowController {
         RecipeCardController cardController = loader.getController();
         cardController.updateCard(recipeList.get(currentIndex));
         recipeGrid.add(root, col % 3, row);
+        recipeGrid.getChildren().get(recipeGrid.getChildren().size() - 1).toBack();
         col++;
         if (col % 3 == 0) {
           row++;
