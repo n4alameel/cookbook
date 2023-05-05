@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" prefHeight="800.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllRecipeWindowController">
+<ScrollPane fitToWidth="true" prefHeight="800.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllRecipeWindowController">
     <content>
         <AnchorPane fx:id="homePane" stylesheets="@HomeWindow.css">
             <children>

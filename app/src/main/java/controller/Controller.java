@@ -24,7 +24,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
 
   /**
    * Used to make this class a singleton
@@ -35,6 +35,7 @@ public class Controller {
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
   private Stage stage;
+  private model.Recipe recipe;
 
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
@@ -45,6 +46,7 @@ public class Controller {
     this.activeUser = null;
     this.recipeList = generateRecipeListFromDb();
     this.stage = null;
+    this.recipe=null;
   }
 
   /**
@@ -269,8 +271,8 @@ public class Controller {
   /**
    * Creates and display the recipe details scene.
    */
-  public void displayRecipeView(Recipe r) {
-    RecipeView recipeView = new RecipeView();
+  public void displayRecipeView(Recipe recipe) {
+    RecipeView recipeView = new RecipeView(recipe);
     Scene recipeScene = new Scene(recipeView.getRoot());
     stage.setScene(recipeScene);
     stage.show();

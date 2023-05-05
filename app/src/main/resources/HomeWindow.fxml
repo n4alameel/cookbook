@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" prefHeight="800.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeViewController">
+<ScrollPane fitToWidth="true" prefHeight="800.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeViewController">
    <content>
       <AnchorPane fx:id="homePane" stylesheets="@HomeWindow.css">
          <children>
@@ -106,7 +106,7 @@
                   <Button fx:id="help" layoutX="903.0" layoutY="73.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="193.0" text="Go to our help page" />
                </children>
             </Pane>
-            <Hyperlink fx:id="recipes" layoutX="916.0" layoutY="57.0" style="-fx-font-style: black;" text="Recipes" />
+            <Hyperlink fx:id="recipes" layoutX="916.0" layoutY="57.0" text="Recipes" />
             <Hyperlink fx:id="favorites" layoutX="1034.0" layoutY="56.0" text="Favorites" />
             <Button fx:id="newRecipeBtn" layoutX="800.0" layoutY="56.0" mnemonicParsing="false" onAction="#openNewRecipe" text="New Recipe" />
             <Hyperlink fx:id="user" layoutX="1147.0" layoutY="56.0" text="User" />

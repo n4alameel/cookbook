@@ -2,6 +2,7 @@ package controller;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,6 +12,7 @@ import model.Recipe;
 
 public class RecipeCardController {
   private Controller controller = Controller.getInstance();
+  private Recipe recipe;
 
   // Delay used when hovering a card to not show the short description panel
   // directly
@@ -23,6 +25,8 @@ public class RecipeCardController {
   @FXML
   private ImageView favBtn;
   @FXML
+  private Button seeRecipe;
+  @FXML
   private Label recipeId;
   @FXML
   private AnchorPane shortDescPane;
@@ -33,17 +37,21 @@ public class RecipeCardController {
    * Updates the informations of the card.
    * It will add the name, the tags and the picture of the given recipe.
    * It also updates the state of the favourite button.
-   * 
-   * @param r The recipe to display on this card.
+   *
+   * @param selectedRecipe The recipe to display on this card.
    */
-  public void updateCard(Recipe r) {
-    recipeName.setText(r.getName());
-    recipeId.setText(Integer.toString(r.getId()));
-    if (controller.getActiveUser().isFavourite(r)) {
+  public void setRecipe(Recipe selectedRecipe){
+    recipe = selectedRecipe;
+  }
+  public void updateCard() {
+    recipeName.setText(this.recipe.getName());
+    recipeId.setText(Integer.toString(this.recipe.getId()));
+    if (controller.getActiveUser().isFavourite(recipe)) {
       favBtn.setImage(new Image("img/HeartFull.png"));
     }
-    shortDesc.setText(r.getDescription());
+    shortDesc.setText(recipe.getDescription());
   }
+
 
   @FXML
   private void sendRecipeEvent() {
@@ -66,7 +74,7 @@ public class RecipeCardController {
 
   @FXML
   private void seeRecipe() {
-
+    controller.displayRecipeView(recipe);
   }
 
   /**
