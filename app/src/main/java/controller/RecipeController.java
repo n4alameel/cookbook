@@ -25,13 +25,13 @@ public class RecipeController{
     @FXML
     private Text recipeName;
     @FXML
-    private Text recipeDetail;
+    private Text recipeShortDescription;
     @FXML
     private Text recipeDescription;
-    @FXML
-    private List<String> recipeIngredients;
-    @FXML
-    private List<String> tags = new ArrayList<>();
+//    @FXML
+//    private List<String> recipeIngredients;
+
+    private List<Tag> tags = new ArrayList<Tag>();
     @FXML
     private Spinner<Integer> portions;
     @FXML
@@ -44,21 +44,20 @@ public class RecipeController{
 
     public void updatePage(Recipe recipe) {
         recipeName.setText(recipe.getName());
-        recipeDetail.setText(recipe.getDetail());
+        recipeShortDescription.setText(recipe.getShortDescription());
         recipeDescription.setText(recipe.getDescription());
         recipe.getIngredientList()
                 .forEach(ingredient -> {
                     Text textNode = new Text(ingredient.getName());
                     ingredientBox.getChildren().add(textNode);
                 });
-
-        recipe.getTagList()
-                .forEach(tag -> {
+        this.tags = recipe.getTagList();
+        this.tags.forEach(tag -> {
                     Label labelNode = new Label(tag.getName());
                     labelNode.setStyle("-fx-opaque-insets: 0; -fx-padding: 5 10;");
                     tagBox.getChildren().add(labelNode);
                 });
-        portions.setValueFactory(new  SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, recipe.getPortions()));
+        portions.setValueFactory(new  SpinnerValueFactory.IntegerSpinnerValueFactory(recipe.getPortions(), 100*recipe.getPortions(), recipe.getPortions(), recipe.getPortions()));
 
     }
 
