@@ -20,7 +20,6 @@ public class FavouriteView {
         favouriteRecipeController.initPagination();
     }
     catch (IOException e) {
-        System.out.println("no");
         e.printStackTrace(System.out);
         throw new RuntimeException(e);
     }

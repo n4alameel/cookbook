@@ -25,9 +25,6 @@ public class FavouriteRecipeController {
     public FavouriteRecipeController() {
     }
 
-    public void openAllRecipes() throws IOException {
-        controller.displayBrowserView();
-    }
 
     public void goToHomePage() throws IOException {
         controller.displayHomeView();
@@ -61,7 +58,7 @@ public class FavouriteRecipeController {
      * @param pageIndex The page index got from the factory
      */
     public void updatePage(int pageIndex) {
-        // If you click on the page you are, nothing happens
+
         if (pageIndex == this.pageNumber) {
             return;
         }
@@ -82,7 +79,8 @@ public class FavouriteRecipeController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
                 Pane root = loader.load();
                 RecipeCardController cardController = loader.getController();
-                cardController.updateCard(favouriteList.get(currentIndex));
+                cardController.setRecipe(favouriteList.get(currentIndex));
+                cardController.updateCard();
                 favouriteGrid.add(root, col % 3, row);
                 col++;
                 if (col % 3 == 0) {
