@@ -8,6 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
+import com.mysql.cj.exceptions.StreamingNotifiable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Ingredient;
@@ -24,7 +28,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
 
   /**
    * Used to make this class a singleton
@@ -46,7 +50,7 @@ public class Controller {
     this.activeUser = null;
     this.recipeList = generateRecipeListFromDb();
     this.stage = null;
-    this.recipe=null;
+    this.recipe = null;
   }
 
   /**
@@ -289,6 +293,16 @@ public class Controller {
   }
 
   /**
+   * Creates and display the favourite scene.
+   */
+  public void displayFavouriteView() {
+    FavouriteView favouriteView = new FavouriteView();
+    Scene favouriteScene = new Scene(favouriteView.getRoot());
+    stage.setScene(favouriteScene);
+    stage.show();
+  }
+
+  /**
    * Creates and displays the new recipe prompt scene.
    */
   public void displayNewRecipeView() {
@@ -310,7 +324,7 @@ public class Controller {
   /**
    * Add a recipe to the favourite list of the active user, both in the database
    * and in the ArrayList.
-   * 
+   *
    * @param recipe The recipe to add to favourites
    * @return {@code true} if successful
    */
@@ -332,7 +346,7 @@ public class Controller {
   /**
    * Delete a recipe from the favourite list of the active user, both in the
    * database and in the ArrayList.
-   * 
+   *
    * @param recipe The recipe to delete from favourites
    * @return {@code true} if successful
    */
@@ -354,7 +368,7 @@ public class Controller {
   /**
    * Delete all the favourite recipes of the active user, both in the database
    * and in the ArrayList.
-   * 
+   *
    * @return {@code true} if successful
    */
   public boolean clearFavourite() {
@@ -527,7 +541,7 @@ public class Controller {
 
   /**
    * Find and creates a recipe object from the database using the recipe' id.
-   * 
+   *
    * @param id The id of the recipe to get from the database
    * @return The recipe as an object
    */
@@ -551,13 +565,12 @@ public class Controller {
   /**
    * Add or remove a recipe from the favourite list depending if it is already or
    * not.
-   * 
+   *
    * @param recipeId The id of the recipe to add/delete.
    * @return {@code true} if the recipe was not in the favourite list and was then
    *         added.
    */
-  public boolean toggleFavourite(int recipeId) {
-    Recipe r = getRecipeById(recipeId);
+  public boolean toggleFavourite(Recipe r) {
     if (r == null) {
       System.out.println("Error when loading recipe");
       return false;
