@@ -57,7 +57,7 @@ git switch -c dev
 to welcome me
 - [X] 2. As a user I want to be able to log in to the application so that it is personalised
 for me
-- [ ] 3. As a user I want to see my favourite recipes for quick access
+- [X] 3. As a user I want to see my favourite recipes for quick access
 - [ ] 4. As a user I want to be able to see the list of weekly dinner lists
 - [ ] 5. As a user I should be able to select and display the dinner list for a week
 - [ ] 6. As a user I should be able to search for a recipe by name to see it

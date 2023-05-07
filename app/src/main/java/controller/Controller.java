@@ -28,7 +28,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
 
   /**
    * Used to make this class a singleton
@@ -45,14 +45,12 @@ public class Controller {
     return recipeList;
   }
 
-  public ObservableList<Recipe> getFavourites() { return getFavouritesFromDb(activeUser.getId()); }
-
   private Controller() {
     this.db = dbconnect();
     this.activeUser = null;
     this.recipeList = generateRecipeListFromDb();
     this.stage = null;
-    this.recipe=null;
+    this.recipe = null;
   }
 
   /**
@@ -130,6 +128,7 @@ public class Controller {
         if (this.activeUser == null) {
           return false;
         }
+        this.activeUser.setFavouriteList(this.generateFavouriteListFromDb());
         return true;
       } else {
         return false;
@@ -182,33 +181,29 @@ public class Controller {
   }
 
   /**
-  Gets alle the favourite Recipes of the User who is logged in.
-   @param userId the active User
-   @return List of Favourites
+   * Generates the list of all favourite recipes (as objects) of the active user
+   * that are stored in the database.
+   * 
+   * @return The ArrayList of favourite recipes of the active user
    */
-  private ObservableList<Recipe> getFavouritesFromDb(int userId) {
+  private ArrayList<Recipe> generateFavouriteListFromDb() {
     try {
+      String query = "select * from recipe R join favourite F on R.id = F.recipe_id where F.user_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
 
-      String query = "SELECT name, shortDescription FROM recipe JOIN favourite on recipe.id = favourite.recipe_id WHERE favourite.user_id = ?";
-      PreparedStatement ingStmt = this.db.prepareStatement(query);
-      ingStmt.setInt(1, userId);
-      ResultSet rs = ingStmt.executeQuery();
+      ResultSet rs = stmt.executeQuery();
 
+      ArrayList<Recipe> favouriteList = new ArrayList<Recipe>();
 
-      ObservableList<Recipe> favourites = FXCollections.observableArrayList();
       while (rs.next()) {
-
-        String shortDescription = rs.getString("shortDescription");
-        String name = rs.getString("name");
-
-        Recipe recipe = new Recipe(name, shortDescription);
-        recipe.setDescription(shortDescription);
-        recipe.setName(name);
-        favourites.add(recipe);
+        Recipe r = createRecipe(rs);
+        favouriteList.add(r);
       }
-        return favourites;
+      return favouriteList;
+
     } catch (SQLException e) {
-      System.out.println(e);
+      e.printStackTrace(System.out);
       return null;
     }
   }
@@ -575,8 +570,7 @@ public class Controller {
    * @return {@code true} if the recipe was not in the favourite list and was then
    *         added.
    */
-  public boolean toggleFavourite(int recipeId) {
-    Recipe r = getRecipeById(recipeId);
+  public boolean toggleFavourite(Recipe r) {
     if (r == null) {
       System.out.println("Error when loading recipe");
       return false;

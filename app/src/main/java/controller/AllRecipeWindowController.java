@@ -76,13 +76,8 @@ public class AllRecipeWindowController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
         Pane root = loader.load();
         RecipeCardController cardController = loader.getController();
-        cardController.setRecipe(recipeList.get(currentIndex));
-        cardController.updateCard();
+        cardController.updateCard(recipeList.get(currentIndex));
         recipeGrid.add(root, col % 3, row);
-        // Send the card to back so that the short description panel will always show up
-        // on top of the other cards and not behind
-        recipeGrid.getChildren().get(recipeGrid.getChildren().size() - 1).toBack();
-
         col++;
         if (col % 3 == 0) {
           row++;
