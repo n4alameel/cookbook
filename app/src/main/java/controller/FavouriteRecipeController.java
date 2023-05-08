@@ -78,7 +78,8 @@ public class FavouriteRecipeController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
         Pane root = loader.load();
         RecipeCardController cardController = loader.getController();
-        cardController.updateCard(favouriteList.get(currentIndex));
+        cardController.setRecipe(favouriteList.get(currentIndex));
+        cardController.updateCard();
         favouriteGrid.add(root, col % 3, row);
         // Send the card to back so that the short description panel will always show up
         // on top of the other cards and not behind

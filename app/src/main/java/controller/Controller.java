@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
 import java.util.ArrayList;
+import java.util.List;
+
 import javafx.util.Pair;
 
 import model.*;
@@ -28,7 +30,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
 
   /**
    * Used to make this class a singleton
@@ -55,7 +57,7 @@ public class Controller {
 
   /**
    * Get the instance of this class, or create it if it does not exist.
-   * 
+   *
    * @return The Controller singleton
    */
   public static Controller getInstance() {
@@ -81,9 +83,16 @@ public class Controller {
     this.activeUser = activeUser;
   }
 
+  public void displaySearchView() {
+    SearchView searchView = new SearchView();
+    Scene searchScene = new Scene(searchView.getRoot());
+    stage.setScene(searchScene);
+    stage.show();
+  }
+
   /**
    * Try to connect to the database.
-   * 
+   *
    * @return The connection
    */
   public Connection dbconnect() {
@@ -107,7 +116,7 @@ public class Controller {
 
   /**
    * Try to log in a user depending of given credentials.
-   * 
+   *
    * @param username The user's username
    * @param password The user's password
    * @return true if the connection is done, false if the user doesn't exist in
@@ -140,7 +149,7 @@ public class Controller {
 
   /**
    * Create a new User object from an existing user in the database.
-   * 
+   *
    * @param rs The user as a MySQL query result
    * @param id The user's ID
    * @return An object User
@@ -156,7 +165,7 @@ public class Controller {
   /**
    * Takes all the recipes from the database and store them as Recipe objects in a
    * list.
-   * 
+   *
    * @return A list of all existing recipes
    */
   private ArrayList<Recipe> generateRecipeListFromDb() {
@@ -180,10 +189,35 @@ public class Controller {
     }
   }
 
+  public List<String> selectDataFromDatabase() {
+    List<String> data = new ArrayList<>();
+
+    try {
+      String query = "SELECT * FROM cookbook.recipe";
+      PreparedStatement statement = dbconnect().prepareStatement(query);
+      ResultSet resultSet = statement.executeQuery();
+
+      while (resultSet.next()) {
+        String value = resultSet.getString("name");
+        data.add(value);
+      }
+
+      resultSet.close();
+      statement.close();
+      dbClose();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return data;
+  }
+
+
   /**
    * Generates the list of all favourite recipes (as objects) of the active user
    * that are stored in the database.
-   * 
+   *
    * @return The ArrayList of favourite recipes of the active user
    */
   private ArrayList<Recipe> generateFavouriteListFromDb() {
@@ -210,14 +244,14 @@ public class Controller {
 
   /**
    * Create an Ingredient object from a MySQL query result.
-   * 
+   *
    * @param ingRs a query result
    * @return An Ingredient object
    */
   private Ingredient createIngredient(ResultSet ingRs) {
     try {
       Ingredient i = new Ingredient(Integer.parseInt(ingRs.getString(1)), ingRs.getString(2),
-          Integer.parseInt(ingRs.getString(3)), Integer.parseInt(ingRs.getString(4)));
+              Integer.parseInt(ingRs.getString(3)), Integer.parseInt(ingRs.getString(4)));
       return i;
     } catch (SQLException e) {
       return null;
@@ -226,7 +260,7 @@ public class Controller {
 
   /**
    * Create a Recipe object from a MySQL query result.
-   * 
+   *
    * @param rs The query result
    * @return A Recipe object
    */
@@ -463,7 +497,7 @@ public class Controller {
               shoppingList.list.remove(new Pair<Ingredient, Integer>(shoppingListIngredient, shoppingListQuantity));
               shoppingListQuantity += ingredientQuantity;
               Pair<Ingredient, Integer> updatedShoppingListItem = new Pair<>(shoppingListIngredient,
-                  shoppingListQuantity);
+                      shoppingListQuantity);
               shoppingList.list.add(updatedShoppingListItem);
               ingredientFound = true;
               break;
@@ -511,7 +545,7 @@ public class Controller {
   }
 
   public boolean newRecipe(String name, String description, String shortDescription,
-      ArrayList<Integer> ingredientList) {
+                           ArrayList<Integer> ingredientList) {
     try {
       int recipe_id;
       String query = "INSERT INTO recipe (name, shortDescription, description) VALUES (?, ?, ?)";
@@ -566,7 +600,7 @@ public class Controller {
    * Add or remove a recipe from the favourite list depending if it is already or
    * not.
    *
-   * @param recipeId The id of the recipe to add/delete.
+   * // @param recipeId The id of the recipe to add/delete.
    * @return {@code true} if the recipe was not in the favourite list and was then
    *         added.
    */
@@ -584,3 +618,4 @@ public class Controller {
     }
   }
 }
+

@@ -53,10 +53,10 @@ public class RecipeController{
                 });
         this.tags = recipe.getTagList();
         this.tags.forEach(tag -> {
-                    Label labelNode = new Label(tag.getName());
-                    labelNode.setStyle("-fx-opaque-insets: 0; -fx-padding: 5 10;");
-                    tagBox.getChildren().add(labelNode);
-                });
+            Label labelNode = new Label(tag.getName());
+            labelNode.setStyle("-fx-opaque-insets: 0; -fx-padding: 5 10;");
+            tagBox.getChildren().add(labelNode);
+        });
         portions.setValueFactory(new  SpinnerValueFactory.IntegerSpinnerValueFactory(recipe.getPortions(), 100*recipe.getPortions(), recipe.getPortions(), recipe.getPortions()));
 
     }
@@ -66,3 +66,4 @@ public class RecipeController{
 //        tags.setText(tags.getText() + " " + addedtags);
 //    }
 }
+

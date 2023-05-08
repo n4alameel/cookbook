@@ -2,6 +2,10 @@
 build/*
 app/build/
 .vscode/
+<<<<<<< HEAD
+app/bin/
+.idea/*
+=======
 .idea/*
 app/bin/
 .classpath
@@ -10,3 +14,4 @@ app/bin/
 app/.classpath
 app/.project
 app/.settings/
+>>>>>>> 7f5a3b9a8f619903abfdc5609500763208bfe25d
