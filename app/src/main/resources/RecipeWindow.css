@@ -65,15 +65,14 @@
 
 .com-btn{
     -fx-text-fill: rgba(187, 187, 187, 0.93);
-    -fx-font-size: 10;
+    -fx-font-size: 12;
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
-
 .auth-com{
     -fx-text-fill: black;
-    -fx-font-size: 14;
 }
+
 .small{
     -fx-font-size: 10;
     -fx-text-fill: black;
@@ -96,5 +95,8 @@
     -fx-background-radius: 20;
     -fx-font-size: 12;
     -fx-text-fill: white;
+}
+
+#commentator_name{
 }
 
