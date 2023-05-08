@@ -13,17 +13,26 @@ public class Recipe {
   private int id;
   private String name;
   private String description;
-  private String detail;
+  private String shortDescription;
   private int portions = 2;
   private ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
   private ArrayList<Tag> tagList = new ArrayList<Tag>();
 
-  public Recipe(int id, String name, String description, String detail, ArrayList<Ingredient> ingredientList) {
+  public Recipe(int id, String name, String description, String shortDescription,
+      ArrayList<Ingredient> ingredientList) {
     this.id = id;
     this.name = name;
     this.description = description;
-    this.detail = detail;
+    this.shortDescription = shortDescription;
     this.ingredientList = ingredientList;
+  }
+
+  public int getPortions() {
+    return portions;
+  }
+
+  public void setPortions(int portions) {
+    this.portions = portions;
   }
 
   public int getId() {
@@ -50,12 +59,12 @@ public class Recipe {
     this.description = description;
   }
 
-  public String getDetail() {
-    return detail;
+  public String getShortDescription() {
+    return shortDescription;
   }
 
-  public void setDetail(String detail) {
-    this.detail = detail;
+  public void setShortDescription(String shortDescription) {
+    this.shortDescription = shortDescription;
   }
 
   public ArrayList<Ingredient> getIngredientList() {
@@ -72,7 +81,8 @@ public class Recipe {
 
   @Override
   public String toString() {
-    return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", detail=" + detail + "]";
+    return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", shortDescription="
+        + shortDescription + "]";
   }
 
 }
