@@ -35,6 +35,11 @@ public class Recipe {
     this.portions = portions;
   }
 
+  public Recipe(String name, String description) {
+    this.name = name;
+    this.description = description;
+  }
+
   public int getId() {
     return id;
   }

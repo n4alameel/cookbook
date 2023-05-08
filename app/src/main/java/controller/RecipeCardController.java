@@ -27,32 +27,25 @@ public class RecipeCardController {
   @FXML
   private Button seeRecipe;
   @FXML
-  private Label recipeId;
-  @FXML
   private AnchorPane shortDescPane;
   @FXML
   private Label shortDesc;
-
 
   /**
    * Updates the informations of the card.
    * It will add the name, the tags and the picture of the given recipe.
    * It also updates the state of the favourite button.
    *
-   * @param selectedRecipe The recipe to display on this card.
+   * @param recipe The recipe to display on this card
    */
-  public void setRecipe(Recipe selectedRecipe){
-    recipe = selectedRecipe;
-  }
-  public void updateCard() {
+  public void updateCard(Recipe recipe) {
+    this.recipe = recipe;
     recipeName.setText(this.recipe.getName());
-    recipeId.setText(Integer.toString(this.recipe.getId()));
     if (controller.getActiveUser().isFavourite(this.recipe)) {
       favBtn.setImage(new Image("img/HeartFull.png"));
     }
     shortDesc.setText(this.recipe.getDescription());
   }
-
 
   @FXML
   private void sendRecipeEvent() {
@@ -66,7 +59,7 @@ public class RecipeCardController {
    */
   @FXML
   private void toggleFavourite() {
-    if (controller.toggleFavourite(Integer.parseInt(recipeId.getText()))) {
+    if (controller.toggleFavourite(this.recipe)) {
       favBtn.setImage(new Image("img/HeartFull.png"));
     } else {
       favBtn.setImage(new Image("img/Heart.png"));

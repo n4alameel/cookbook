@@ -8,6 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
+import com.mysql.cj.exceptions.StreamingNotifiable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Ingredient;
@@ -26,7 +30,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
 
   /**
    * Used to make this class a singleton
@@ -48,7 +52,7 @@ public class Controller {
     this.activeUser = null;
     this.recipeList = generateRecipeListFromDb();
     this.stage = null;
-    this.recipe=null;
+    this.recipe = null;
   }
 
   /**
@@ -323,6 +327,16 @@ public class Controller {
   }
 
   /**
+   * Creates and display the favourite scene.
+   */
+  public void displayFavouriteView() {
+    FavouriteView favouriteView = new FavouriteView();
+    Scene favouriteScene = new Scene(favouriteView.getRoot());
+    stage.setScene(favouriteScene);
+    stage.show();
+  }
+
+  /**
    * Creates and displays the new recipe prompt scene.
    */
   public void displayNewRecipeView() {
@@ -590,8 +604,7 @@ public class Controller {
    * @return {@code true} if the recipe was not in the favourite list and was then
    *         added.
    */
-  public boolean toggleFavourite(int recipeId) {
-    Recipe r = getRecipeById(recipeId);
+  public boolean toggleFavourite(Recipe r) {
     if (r == null) {
       System.out.println("Error when loading recipe");
       return false;

@@ -16,7 +16,6 @@ import model.Tag;
 import view.RecipeView;
 
 import java.awt.*;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +28,8 @@ public class RecipeController{
     private Text recipeShortDescription;
     @FXML
     private Text recipeDescription;
-
-    Controller controller = Controller.getInstance();
+//    @FXML
+//    private List<String> recipeIngredients;
 
     private List<Tag> tags = new ArrayList<Tag>();
     @FXML
@@ -54,16 +53,12 @@ public class RecipeController{
                 });
         this.tags = recipe.getTagList();
         this.tags.forEach(tag -> {
-                    Label labelNode = new Label(tag.getName());
-                    labelNode.setStyle("-fx-opaque-insets: 0; -fx-padding: 5 10;");
-                    tagBox.getChildren().add(labelNode);
-                });
+            Label labelNode = new Label(tag.getName());
+            labelNode.setStyle("-fx-opaque-insets: 0; -fx-padding: 5 10;");
+            tagBox.getChildren().add(labelNode);
+        });
         portions.setValueFactory(new  SpinnerValueFactory.IntegerSpinnerValueFactory(recipe.getPortions(), 100*recipe.getPortions(), recipe.getPortions(), recipe.getPortions()));
 
-    }
-
-    public void openSearchPage() throws IOException {
-        controller.displaySearchView();
     }
 
 //    public void setTags(ActionEvent event) {
@@ -71,3 +66,4 @@ public class RecipeController{
 //        tags.setText(tags.getText() + " " + addedtags);
 //    }
 }
+
