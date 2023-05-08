@@ -25,7 +25,6 @@ public class SearchViewController {
 
     public void searchBtnClicked() throws IOException {
         String query = search.getText();
-        System.out.println("Search query: " + query);
 
         List<String> data = controller.selectDataFromDatabase();
         ArrayList<Recipe> recipeList = controller.getRecipeList();
@@ -64,6 +63,10 @@ public class SearchViewController {
         }
     }
 
+    public void openAllRecipes() throws IOException {
+        controller.displayBrowserView();
+    }
+
     public void goToHomePage() throws IOException {
         controller.displayHomeView();
     }
@@ -71,4 +74,5 @@ public class SearchViewController {
     public void openNewRecipe() throws IOException {
         controller.displayNewRecipeView();
     }
+
 }

@@ -33,8 +33,4 @@ public class HomeViewController {
   public void openSearchPage() throws  IOException {
     controller.displaySearchView();
   }
-
-  public void searchEnter(KeyEvent keyEvent) throws IOException {
-      openSearchPage();
-  }
 }

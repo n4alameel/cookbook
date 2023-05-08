@@ -37,6 +37,10 @@ public class AllRecipeWindowController {
     controller.displayNewRecipeView();
   }
 
+  public void openSearchPage() throws  IOException {
+    controller.displaySearchView();
+  }
+
   /**
    * Initialize the pagination system
    */
@@ -88,7 +92,6 @@ public class AllRecipeWindowController {
       } catch (IOException e) {
         e.printStackTrace(System.out);
       }
-
     }
   }
 }
