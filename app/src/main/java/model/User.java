@@ -132,6 +132,12 @@ public class User {
     return true;
   }
 
+  @Override
+  public String toString() {
+    return "User [id=" + id + ", username=" + username + ", password=" + password + ", isAdmin=" + isAdmin
+        + "]";
+  }
+
   /*
    * public boolean sendMessage(int recipe, int receiverId, String string) {
    * Connection conn = new App().dbconnect();

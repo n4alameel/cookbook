@@ -7,19 +7,20 @@ import javafx.scene.Parent;
 import java.io.IOException;
 
 public class UsersView {
-    private Parent root;
+  private Parent root;
 
-    public UsersView() {
-        try {
-            root = FXMLLoader.load(getClass().getResource("/UsersWindow.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        UsersViewController usersViewController = new UsersViewController();
-        usersViewController.LoadUsers();
+  public UsersView() {
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/UsersWindow.fxml"));
+      root = (Parent) loader.load();
+      UsersViewController usersViewController = (UsersViewController) loader.getController();
+      usersViewController.LoadUsers();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
+  }
 
-    public Parent getRoot() {
-        return this.root;
-    }
+  public Parent getRoot() {
+    return this.root;
+  }
 }

@@ -24,7 +24,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
 
   /**
    * Used to make this class a singleton
@@ -46,7 +46,7 @@ public class Controller {
     this.activeUser = null;
     this.recipeList = generateRecipeListFromDb();
     this.stage = null;
-    this.recipe=null;
+    this.recipe = null;
   }
 
   /**
@@ -115,7 +115,6 @@ public class Controller {
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, username);
       stmt.setString(2, password);
-
 
       ResultSet rs = stmt.executeQuery();
 
@@ -590,7 +589,7 @@ public class Controller {
       PreparedStatement stmt = this.db.prepareStatement(query);
       ResultSet rs = stmt.executeQuery();
 
-      int id=1;
+      int id = 1;
 
       while (rs.next()) {
         User user = createUser(rs, id);
