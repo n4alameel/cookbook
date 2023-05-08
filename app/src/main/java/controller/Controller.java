@@ -30,7 +30,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
 
   /**
    * Used to make this class a singleton
@@ -600,7 +600,7 @@ public class Controller {
    * Add or remove a recipe from the favourite list depending if it is already or
    * not.
    *
-   * @param recipeId The id of the recipe to add/delete.
+   * // @param recipeId The id of the recipe to add/delete.
    * @return {@code true} if the recipe was not in the favourite list and was then
    *         added.
    */

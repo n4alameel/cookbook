@@ -29,6 +29,14 @@ public class AllRecipeWindowController {
     controller.displayHomeView();
   }
 
+  public void openSearchPage() throws  IOException {
+    controller.displaySearchView();
+  }
+
+  public void seeFavourites() throws IOException {
+    controller.displayFavouriteView();
+  }
+
   @FXML
   public void openNewRecipe() throws IOException {
     controller.displayNewRecipeView();
@@ -76,7 +84,8 @@ public class AllRecipeWindowController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
         Pane root = loader.load();
         RecipeCardController cardController = loader.getController();
-        cardController.updateCard(recipeList.get(currentIndex));
+        cardController.setRecipe(recipeList.get(currentIndex));
+        cardController.updateCard();
         recipeGrid.add(root, col % 3, row);
         // Send the card to back so that the short description panel will always show up
         // on top of the other cards and not behind

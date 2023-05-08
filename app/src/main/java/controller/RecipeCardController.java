@@ -38,14 +38,19 @@ public class RecipeCardController {
    *
    * @param recipe The recipe to display on this card
    */
-  public void updateCard(Recipe recipe) {
-    this.recipe = recipe;
-    recipeName.setText(this.recipe.getName());
-    if (controller.getActiveUser().isFavourite(this.recipe)) {
-      favBtn.setImage(new Image("img/HeartFull.png"));
-    }
-    shortDesc.setText(this.recipe.getDescription());
+
+  public void setRecipe(Recipe selectedRecipe){
+    recipe = selectedRecipe;
   }
+
+    public void updateCard() {
+      this.recipe = recipe;
+      recipeName.setText(this.recipe.getName());
+      if (controller.getActiveUser().isFavourite(this.recipe)) {
+        favBtn.setImage(new Image("img/HeartFull.png"));
+      }
+      shortDesc.setText(this.recipe.getDescription());
+    }
 
   @FXML
   private void sendRecipeEvent() {

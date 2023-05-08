@@ -13,8 +13,6 @@ import java.util.ResourceBundle;
 
 public class HomeViewController {
 
-
-
   Controller controller = Controller.getInstance();
 
   public void openAllRecipes() throws IOException {
@@ -33,4 +31,8 @@ public class HomeViewController {
     controller.displayFavouriteView();
   }
 
-}
+  public void openSearchPage() throws  IOException {
+    controller.displaySearchView();
+  }
+
+  }

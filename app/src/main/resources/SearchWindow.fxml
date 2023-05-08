@@ -58,12 +58,12 @@
                 <ImageView fitHeight="72.0" fitWidth="128.0" layoutX="1.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fx:id="recipe_image" fitHeight="37.0" fitWidth="34.0" layoutX="880.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@whisk.png" />
+                        <Image url="@img/whisk.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="995.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Heart.png" />
+                        <Image url="@img/Heart.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="1014.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />

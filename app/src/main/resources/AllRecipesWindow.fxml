@@ -45,7 +45,7 @@
                 </Label>
                 <ImageView fitHeight="72.0" fitWidth="128.0" layoutX="1.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
                 <Hyperlink fx:id="recipes" layoutX="916.0" layoutY="57.0" text="Recipes" />
-                <Hyperlink fx:id="favorites" layoutX="1034.0" layoutY="56.0" text="Favorites" />
+                <Hyperlink fx:id="favorites" layoutX="1034.0" layoutY="56.0" text="Favorites" onAction="#seeFavourites" />
                 <Hyperlink fx:id="user" layoutX="1147.0" layoutY="56.0" text="User" />
                 <ImageView fx:id="recipe_image" fitHeight="37.0" fitWidth="34.0" layoutX="863.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                     <image>
