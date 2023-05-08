@@ -24,7 +24,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
 
   /**
    * Used to make this class a singleton
@@ -116,6 +116,7 @@ public class Controller {
       stmt.setString(1, username);
       stmt.setString(2, password);
 
+
       ResultSet rs = stmt.executeQuery();
 
       if (rs.next()) {
@@ -143,7 +144,7 @@ public class Controller {
    */
   private User createUser(ResultSet rs, int id) {
     try {
-      return new User(id, rs.getString(2), rs.getString(3), Boolean.parseBoolean(rs.getString(4)));
+      return new User(id, rs.getString(1), rs.getString(2), Boolean.parseBoolean(rs.getString(3)));
     } catch (SQLException e) {
       return null;
     }
@@ -297,6 +298,17 @@ public class Controller {
     Stage secondaryStage = new Stage();
     secondaryStage.setScene(newRecipeScene);
     secondaryStage.show();
+  }
+
+  /**
+   * Creates and displays administrative panel
+   */
+
+  public void displayUsersView() {
+    UsersView usersView = new UsersView();
+    Scene usersScene = new Scene(usersView.getRoot());
+    stage.setScene(usersScene);
+    stage.show();
   }
 
   /**
@@ -568,6 +580,64 @@ public class Controller {
     } else {
       this.addFavourite(r);
       return true;
+    }
+  }
+
+  public ArrayList<User> getUsers() {
+    ArrayList<User> usersArray = new ArrayList<User>();
+    try {
+      String query = "SELECT username, password, isAdmin FROM User";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      ResultSet rs = stmt.executeQuery();
+
+      int id=1;
+
+      while (rs.next()) {
+        User user = createUser(rs, id);
+        id++;
+        usersArray.add(user);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return usersArray;
+  }
+
+  public void addNewUser(String username, String password, boolean isAdmin) {
+    try {
+      String query = "INSERT INTO user (username, password, isAdmin) VALUES (?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, username);
+      stmt.setString(2, password);
+      stmt.setBoolean(3, isAdmin);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void deleteUser(int id) {
+    try {
+      String query = "DELETE FROM user WHERE id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, id);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void changeUser(int id, String username, String password, boolean isAdmin) {
+    try {
+      String query = "UPDATE user SET username = ?, password = ?, isAdmin = ? WHERE id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, username);
+      stmt.setString(2, password);
+      stmt.setBoolean(3, isAdmin);
+      stmt.setInt(4, id);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
   }
 }

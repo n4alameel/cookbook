@@ -20,7 +20,7 @@ public class App extends Application {
     delay.setOnFinished(event -> {
       loaderView.stage.hide();
       primaryStage.setTitle("Galactic Goodness");
-      controller.displayLoginScene();
+      controller.displayUsersView();
     });
     delay.play();
   }
