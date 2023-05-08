@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
@@ -36,6 +37,10 @@ public class AllRecipeWindowController {
     controller.displayNewRecipeView();
   }
 
+  public void openSearchPage() throws  IOException {
+    controller.displaySearchView();
+  }
+
   /**
    * Initialize the pagination system
    */
@@ -60,7 +65,6 @@ public class AllRecipeWindowController {
     if (pageIndex == this.pageNumber) {
       return;
     }
-
     this.pageNumber = pageIndex;
     ArrayList<Recipe> recipeList = controller.getRecipeList();
     int recipeNum = recipeList.size();
@@ -81,10 +85,6 @@ public class AllRecipeWindowController {
         cardController.setRecipe(recipeList.get(currentIndex));
         cardController.updateCard();
         recipeGrid.add(root, col % 3, row);
-        // Send the card to back so that the short description panel will always show up
-        // on top of the other cards and not behind
-        recipeGrid.getChildren().get(recipeGrid.getChildren().size() - 1).toBack();
-
         col++;
         if (col % 3 == 0) {
           row++;
@@ -93,7 +93,6 @@ public class AllRecipeWindowController {
       } catch (IOException e) {
         e.printStackTrace(System.out);
       }
-
     }
   }
 }

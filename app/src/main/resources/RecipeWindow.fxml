@@ -278,7 +278,7 @@
                <children>
                   <FlowPane alignment="CENTER" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TextField promptText="Search here ..." styleClass="search">
+                        <TextField promptText="Search here ..." styleClass="search" onKeyPressed="#openSearchPage">
                            <padding>
                               <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                            </padding>
