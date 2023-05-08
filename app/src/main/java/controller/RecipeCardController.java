@@ -33,6 +33,7 @@ public class RecipeCardController {
   @FXML
   private Label shortDesc;
 
+
   /**
    * Updates the informations of the card.
    * It will add the name, the tags and the picture of the given recipe.
@@ -46,10 +47,10 @@ public class RecipeCardController {
   public void updateCard() {
     recipeName.setText(this.recipe.getName());
     recipeId.setText(Integer.toString(this.recipe.getId()));
-    if (controller.getActiveUser().isFavourite(recipe)) {
+    if (controller.getActiveUser().isFavourite(this.recipe)) {
       favBtn.setImage(new Image("img/HeartFull.png"));
     }
-    shortDesc.setText(recipe.getDescription());
+    shortDesc.setText(this.recipe.getDescription());
   }
 
 

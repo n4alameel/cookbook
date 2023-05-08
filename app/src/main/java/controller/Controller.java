@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
 import java.util.ArrayList;
+import java.util.List;
+
 import javafx.util.Pair;
 
 import model.*;
@@ -75,6 +77,13 @@ public class Controller {
 
   public void setActiveUser(model.User activeUser) {
     this.activeUser = activeUser;
+  }
+
+  public void displaySearchView() {
+    SearchView searchView = new SearchView();
+    Scene searchScene = new Scene(searchView.getRoot());
+    stage.setScene(searchScene);
+    stage.show();
   }
 
   /**
@@ -175,6 +184,31 @@ public class Controller {
       return null;
     }
   }
+
+  public List<String> selectDataFromDatabase() {
+    List<String> data = new ArrayList<>();
+
+    try {
+      String query = "SELECT * FROM cookbook.recipe";
+      PreparedStatement statement = dbconnect().prepareStatement(query);
+      ResultSet resultSet = statement.executeQuery();
+
+      while (resultSet.next()) {
+        String value = resultSet.getString("name");
+        data.add(value);
+      }
+
+      resultSet.close();
+      statement.close();
+      dbClose();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return data;
+  }
+
 
   /**
    * Generates the list of all favourite recipes (as objects) of the active user
