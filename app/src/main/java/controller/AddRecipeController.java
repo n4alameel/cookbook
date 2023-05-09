@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddRecipeController implements Initializable {
-    Controller controller = new Controller();
+    Controller controller = Controller.getInstance();
     @FXML
     private TextField nameField;
     @FXML
@@ -118,7 +118,7 @@ public class AddRecipeController implements Initializable {
 
     /**
      * is called when the dropbox for setting Tags is used
-     *
+     * //TODO: double imput handling for this(same as enterPressed)
      * @param
      */
     public void setTags(ActionEvent event) {

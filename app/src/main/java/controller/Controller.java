@@ -576,7 +576,7 @@ public class Controller {
     }
   }
   //TODO: need to add an Tag as well
-  public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> ingredientListInt, ObservableList<Integer> tagList, ObservableList<Ingredient> ingredientObservableList) {
+  public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList, ObservableList<Ingredient> ingredientObservableList) {
     try {
       int recipe_id;
       int ingredientIterator = 0;
@@ -836,6 +836,18 @@ public class Controller {
     }
     catch (SQLException sqlExcept){
       sqlExcept.printStackTrace();
+    }
+  }
+  public boolean newTag (String name ) throws SQLException {
+    try {
+      String query = "INSERT INTO tag (name) VALUES (?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, name);
+      stmt.executeUpdate();
+      return true;
+    }
+    catch (Exception e){
+      return false;
     }
   }
 }
