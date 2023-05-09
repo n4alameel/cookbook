@@ -39,7 +39,7 @@ public class WeeklyPlanListController {
     int year = 2023;
     controller.createEmptyWeeklyList(weekNumber, year);
     // To add : error output
-    initWindow();
+    updateWindow();
   }
 
   @FXML
@@ -47,7 +47,7 @@ public class WeeklyPlanListController {
 
   }
 
-  public void initWindow() {
+  public void updateWindow() {
     ArrayList<WeeklyList> planslist = controller.getActiveUser().getWeeklyPlanList();
     for (WeeklyList list : planslist) {
       try {
@@ -58,7 +58,6 @@ public class WeeklyPlanListController {
         weeklyPlanRowController.updateRow();
         listBox.getChildren().addAll(root, separator);
       } catch (IOException e) {
-        System.out.println("no");
         e.printStackTrace(System.out);
         throw new RuntimeException(e);
       }

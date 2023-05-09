@@ -321,6 +321,13 @@ public class Controller {
     secondaryStage.show();
   }
 
+  public void displayWeeklyPlanListView() {
+    WeeklyPlanListView weeklyPlanListView = new WeeklyPlanListView();
+    Scene weeklyPlanListScene = new Scene(weeklyPlanListView.getRoot());
+    stage.setScene(weeklyPlanListScene);
+    stage.show();
+  }
+
   /**
    * Closes the app.
    */

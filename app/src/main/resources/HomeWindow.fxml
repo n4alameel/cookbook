@@ -31,7 +31,7 @@
             <MenuBar fx:id="menuBar" layoutX="-4.0" layoutY="-5.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="1222.0" stylesheets="@HomeWindow.css">
               <menus>
                 <Menu fx:id="shoppingList" mnemonicParsing="false" text="Shopping List" />
-                <Menu fx:id="mealPlans" mnemonicParsing="false" text="Meal Plans" />
+                <Menu fx:id="mealPlans" mnemonicParsing="false" onAction="#goToMealPlansView" text="Meal Plans" />
                 <Menu fx:id="Chatroom" mnemonicParsing="false" text="Chat room" />
               </menus>
                <padding>
