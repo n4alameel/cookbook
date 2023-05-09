@@ -65,6 +65,7 @@ public class AddRecipeController implements Initializable {
     public void saveRecipe(ActionEvent event) {
         try {
             ObservableList<IngredientMock> ingredientMock = ingredientTable.getItems();
+            //adds Ingredients coresponding to the unit_id that exists in the database, TODO: if the tableview has the same element twice i need to filter it.
             for (IngredientMock ingredientMock1 : ingredientMock) {
                 String name = ingredientMock1.getName();
                 int quantity = Integer.parseInt(ingredientMock1.getQuantity());
@@ -83,17 +84,12 @@ public class AddRecipeController implements Initializable {
                     }
                 }
             }
-            for (int b : selectBoxTagInts) {
-                System.out.println("Inside: " + b);
-            }
             //selectBoxTagInts for loop for reading the elements out of the List
             String name = nameField.getText();
             String shortDiscription = shortDiscriptionField.getText();
             String longDescription = longDescriptionArea.getText();
             controller.newIngredient(ingredientList);
-            System.out.println("before");
             controller.newRecipe(name, longDescription, shortDiscription, selectBoxTagInts, ingredientList);
-            System.out.println("here");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -157,12 +153,22 @@ public class AddRecipeController implements Initializable {
      */
     //TODO: error handling
     public void addIngredientButton(ActionEvent event) {
+        boolean unique = true;
         ammount = addAmmount.getText();
         unit = addUnit;
         ingredientItem = addIngredient.getText();
         IngredientMock ingredientMock = new IngredientMock(ingredientItem, ammount, unit);
-        //System.out.println("ammount " + ammount + "unit" + unit + "unitID" + unitID + " tagID" + tagID);
-        ingredientTable.getItems().add(ingredientMock);
+        for (IngredientMock ingredientMock1 : ingredientTable.getItems()) {
+            if (ingredientMock1.getName().equals(ingredientItem)) {
+                System.out.println("exists already please change give in another ingredient");
+                unique = false;
+                break;
+            }
+        }
+        if (unique) {
+            ingredientTable.getItems().add(ingredientMock);
+            System.out.println("added: " + ingredientMock.getName());
+        }
     }
 
     /**
@@ -194,6 +200,7 @@ public class AddRecipeController implements Initializable {
             String addTag = newTag.getText();
             for (Tag tag : tagsArray) {
                 if (tag.getName().equals(addTag)) {
+                    tagView.getItems().add(addTag);
                     System.out.println("tag exists already");
                     unique = false;
                     break;
@@ -201,7 +208,7 @@ public class AddRecipeController implements Initializable {
             }
             if (unique) {
                 controller.newTag(addTag);
-                System.out.println("unique");
+                tagView.getItems().add(addTag);
             }
         }
         tagsArray = controller.generateTag();
