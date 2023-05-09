@@ -74,7 +74,7 @@
                     <children>
                         <ImageView fitHeight="72.0" fitWidth="252.0" layoutX="66.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#goToHomePage">
                             <image>
-                                <Image url="@logo.png" />
+                                <Image url="@img/logo.png" />
                             </image>
                         </ImageView>
                         <Label layoutX="74.0" layoutY="94.0" prefHeight="73.0" prefWidth="208.0" text="This Cookbook is made by&#10;the students of the Project Course in Computer  Science, &#10;Cobol group" wrapText="true" />
