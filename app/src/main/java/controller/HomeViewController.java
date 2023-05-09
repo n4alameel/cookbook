@@ -2,7 +2,12 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import model.Query;
 import model.Recipe;
 
 import java.awt.*;
@@ -13,26 +18,42 @@ import java.util.ResourceBundle;
 
 public class HomeViewController {
 
-  Controller controller = Controller.getInstance();
+    @FXML
+    ComboBox categoryComboBox;
 
-  public void openAllRecipes() throws IOException {
-    controller.displayBrowserView();
-  }
+    @FXML
+    TextField searchField;
 
-  public void goToHomePage() throws IOException {
-    controller.displayHomeView();
-  }
+    Controller controller = Controller.getInstance();
 
-  public void openNewRecipe() throws IOException {
-    controller.displayNewRecipeView();
-  }
+    public void openAllRecipes() throws IOException {
+        controller.displayBrowserView();
+    }
 
-  public void seeFavourites() throws IOException {
-    controller.displayFavouriteView();
-  }
+    public void goToHomePage() throws IOException {
+        controller.displayHomeView();
+    }
 
-  public void openSearchPage() throws  IOException {
-    controller.displaySearchView();
-  }
+    public void openNewRecipe() throws IOException {
+        controller.displayNewRecipeView();
+    }
 
-  }
+    public void seeFavourites() throws IOException {
+        controller.displayFavouriteView();
+    }
+
+    public void openSearchPage() throws IOException {
+        String query = searchField.getText().toString();
+        Query queryModel = new Query();
+        System.out.println(query);
+        queryModel.setQuery(query);
+        System.out.println(queryModel.getQuery());
+        controller.displaySearchView();
+    }
+
+    public void onSearchEnter(KeyEvent keyEvent) throws IOException {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            openSearchPage();
+        }
+    }
+}

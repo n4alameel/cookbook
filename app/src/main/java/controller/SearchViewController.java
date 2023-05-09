@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
@@ -8,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import model.Query;
 import model.Recipe;
 
 import java.io.IOException;
@@ -18,17 +20,29 @@ public class SearchViewController {
     Controller controller = Controller.getInstance();
 
     @FXML
-    private TextField search;
+    private TextField searchField;
 
     @FXML
     private GridPane searchGrid;
 
-    public void searchBtnClicked() throws IOException {
-        String query = search.getText();
+    Query searchQuery = new Query();
 
+    public void searchBtnClicked() throws IOException {
+        String query = searchQuery.getQuery();
+
+        if (!query.isEmpty()){
+            System.out.println(query + "is in here");
+        } else {
+            System.out.println("No query here");
+        }
+
+        searchField.setText(query);
+
+        System.out.println(query);
         List<String> data = controller.selectDataFromDatabase();
         ArrayList<Recipe> recipeList = controller.getRecipeList();
 
+        System.out.println(searchField.getText());
         searchGrid.getChildren().clear();
 
         int i = 0;
