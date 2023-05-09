@@ -48,12 +48,7 @@ public class Ingredient {
     this.quantity = new SimpleIntegerProperty(quantity);
     this.unit_id = new SimpleIntegerProperty(unit_id);
   }
-  /*//might be needed later used for mocking cause a bug around the tableview got discovered
-  public Ingredient(String name, int quantity, String unitName) {
-    this.name = new SimpleStringProperty(name);
-    this.quantity = new SimpleIntegerProperty(quantity);
-    this.unitName = new SimpleStringProperty(unitName);
-  }*/
+
   public Ingredient(String name, int quantity, int unit_id) {
     this.name = new SimpleStringProperty(name);
     this.quantity = new SimpleIntegerProperty(quantity);

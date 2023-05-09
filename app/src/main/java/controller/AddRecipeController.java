@@ -26,7 +26,7 @@ public class AddRecipeController implements Initializable {
     @FXML
     private TextArea longDescriptionArea;
     @FXML
-    private ListView<String> tags;
+    private ListView<String> tagView;
     @FXML
     private ChoiceBox<String> tagSelection;
     @FXML
@@ -43,10 +43,6 @@ public class AddRecipeController implements Initializable {
     private ChoiceBox<String> unitSelection;
     @FXML
     private TextField addIngredient;
-    private String name;
-    private String shortDiscription;
-    private String longDescription;
-    private String addedtags;
     private ObservableList<Tag> tagsArray = controller.generateTag();
     private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
 
@@ -54,7 +50,6 @@ public class AddRecipeController implements Initializable {
     private String unit;
     private String ingredientItem;
     private ObservableList<Unit> unitArray = controller.generateUnit();
-    private ObservableList<Integer> selectBoxUnitInts = FXCollections.observableArrayList();
     private ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
     private String addUnit;
     private Integer unitID;
@@ -76,15 +71,24 @@ public class AddRecipeController implements Initializable {
                 ingredientList.add(new Ingredient(name, quantity, unit_id));
             }
 
-            for (String tag : tags.getItems()){
-                //selectBoxTagInts.add(tag)
+            for (String tagName : tagView.getItems()) {
+                for (Tag tag : tagsArray) {
+                    if (tagName == (tag.getName())) {
+                        selectBoxTagInts.add(tag.getId());
+                    }
+                }
+            }
+            for(int b : selectBoxTagInts){
+                System.out.println("Inside: " + b);
             }
             //selectBoxTagInts for loop for reading the elements out of the List
-            name = nameField.getText();
-            shortDiscription = shortDiscriptionField.getText();
-            longDescription = longDescriptionArea.getText();
+            String name = nameField.getText();
+            String shortDiscription = shortDiscriptionField.getText();
+            String longDescription = longDescriptionArea.getText();
             controller.newIngredient(ingredientList);
+            System.out.println("before");
             controller.newRecipe(name, longDescription, shortDiscription, selectBoxTagInts, ingredientList);
+            System.out.println("here");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -118,7 +122,7 @@ public class AddRecipeController implements Initializable {
      */
     public void setTags(ActionEvent event) {
         String addedTag = tagSelection.getValue();
-        tags.getItems().add(addedTag);
+        tagView.getItems().add(addedTag);
         for (Tag tag : tagsArray) {
             if (tag.getName().equals(addedTag)) {
                 tagID = tag.getId();
@@ -166,8 +170,9 @@ public class AddRecipeController implements Initializable {
         }
     }
     public void deleteClickedRowTags(MouseEvent mouseEvent) {
-        if (mouseEvent.getClickCount() == 2 && !tags.getSelectionModel().isEmpty()) {
-            tags.getItems().remove(tags.getSelectionModel().getSelectedItem());
+        if (mouseEvent.getClickCount() == 2 && !tagView.getSelectionModel().isEmpty()) {
+            tagView.getItems().remove(tagView.getSelectionModel().getSelectedItem());
         }
     }
+    //TODO: when adding a Tag that is not in the dropbox via a Textline it has to be added directly to the Database when, cause when saving the recipe it checks the database for the according ints to the name of the tags
 }

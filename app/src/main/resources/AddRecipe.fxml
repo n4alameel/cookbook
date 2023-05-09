@@ -84,7 +84,7 @@
             <ChoiceBox fx:id="unitSelection" layoutX="210.0" layoutY="1296.0" prefWidth="150.0" />
             <TextField fx:id="addIngredient" layoutX="370.0" layoutY="1296.0" />
             <Button fx:id="addIngredientButton" layoutX="359.0" layoutY="1329.0" mnemonicParsing="false" onAction="#addIngredientButton" text="Add Ingredient" />
-            <ListView fx:id="tags" layoutX="26.0" layoutY="510.0" prefHeight="200.0" prefWidth="506.0" onMouseClicked="#deleteClickedRowTags" />
+            <ListView fx:id="tagView" layoutX="26.0" layoutY="510.0" prefHeight="200.0" prefWidth="506.0" onMouseClicked="#deleteClickedRowTags" />
          </children>
       </AnchorPane>
    </content>
