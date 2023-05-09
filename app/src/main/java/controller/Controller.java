@@ -1178,4 +1178,42 @@ public class Controller {
     }
     return null;
   }
+
+  public boolean sendMessage(int recipeId, String text, int senderId, int receiverId){
+    try {
+      String query = "INSERT INTO message (text, isRead, senderId, receiverId, recipeId) VALUES (?, ?, ?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, text);
+      stmt.setInt(2, 0);
+      stmt.setInt(3, senderId);
+      stmt.setInt(4, receiverId);
+      stmt.setInt(5, recipeId);
+      stmt.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return false;
+    }
+}
+
+public boolean retrieveMessage(int receiverId){
+    try {
+      String query = "SELECT * FROM message WHERE receiverId = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, receiverId);
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()){
+        System.out.println("From "+rs.getInt(4)+" to "+rs.getInt(5)+" RecipeId = "+rs.getInt(6)+" Saying "+rs.getString(2));
+        if (rs.getInt(3) == 0){
+          query = "UPDATE message SET isRead = 1 WHERE id = ?";
+          stmt = this.db.prepareStatement(query);
+          stmt.setInt(1, rs.getInt(1));
+          stmt.executeUpdate();
+        }
+      }
+      return true;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return false;
+    }
 }
