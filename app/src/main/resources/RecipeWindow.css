@@ -70,10 +70,6 @@
     -fx-border-color: transparent;
 }
 
-.auth-com{
-    -fx-text-fill: black;
-    -fx-font-size: 14;
-}
 .small{
     -fx-font-size: 10;
     -fx-text-fill: black;
@@ -92,9 +88,22 @@
     -fx-background-radius: 20;
 }
 
-#help-btn{
+.help-btn{
     -fx-background-radius: 20;
     -fx-font-size: 12;
     -fx-text-fill: white;
 }
 
+.add-btn{
+    -fx-border-radius: 20;
+    -fx-border-color: #618C03;
+    -fx-font-size: 12;
+    -fx-text-fill: #618C03;
+    -fx-background-color: white;
+}
+.com-field{
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(68, 68, 68, 0.71);
+    -fx-background-color: white;
+}

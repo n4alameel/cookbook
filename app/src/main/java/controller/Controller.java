@@ -110,7 +110,7 @@ public class Controller {
   }
 
   /**
-   * Try to log in a user depending of given credentials.
+   * Try to log in a user depending on given credentials.
    *
    * @param username The user's username
    * @param password The user's password
@@ -367,8 +367,8 @@ public class Controller {
   /**
    * Creates and display the recipe details scene.
    */
-  public void displayRecipeView(Recipe recipe) {
-    RecipeView recipeView = new RecipeView(recipe);
+  public void displayRecipeView(int recipeId) {
+    RecipeView recipeView = new RecipeView(recipeId);
     Scene recipeScene = new Scene(recipeView.getRoot());
     stage.setScene(recipeScene);
     stage.show();
@@ -754,7 +754,7 @@ public class Controller {
   }
 
   /**
-   * Find and creates a recipe object from the database using the recipe' id.
+   * Find and creates a recipe object from the database using the recipe id.
    *
    * @param id The id of the recipe to get from the database
    * @return The recipe as an object
@@ -777,7 +777,7 @@ public class Controller {
   }
 
   /**
-   * Add or remove a recipe from the favourite list depending if it is already or
+   * Add or remove a recipe from the favourite list depending on if it is already or
    * not.
    *
    * // @param recipeId The id of the recipe to add/delete.
@@ -795,6 +795,47 @@ public class Controller {
     } else {
       this.addFavourite(r);
       return true;
+    }
+  }
+  public void postComment(String commentText,int recipeId ){
+    try{
+
+      String query = "INSERT INTO comment (text, user_id, recipe_id) VALUES  (?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, commentText);
+      stmt.setInt(2, this.getActiveUser().getId());
+      stmt.setInt(3, recipeId);
+      stmt.executeUpdate();
+    }
+    catch (SQLException sqlExcept){
+      sqlExcept.printStackTrace();
+    }
+  }
+
+  public void deleteCommentById(int commentId){
+    try{
+      String query = "DELETE FROM comment WHERE id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, commentId);
+      stmt.executeUpdate();
+    }
+    catch (SQLException sqlExcept){
+      sqlExcept.printStackTrace();
+    }
+  }
+
+  public void updateComment(Comment changedComment) {
+    try{
+      String query = "UPDATE comment set text = ? WHERE id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, changedComment.getText());
+      stmt.setInt(2, changedComment.getId());
+      stmt.executeUpdate();
+      System.out.println(changedComment);
+      this.displayRecipeView(changedComment.getRecipeId());
+    }
+    catch (SQLException sqlExcept){
+      sqlExcept.printStackTrace();
     }
   }
 }
