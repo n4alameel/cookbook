@@ -12,10 +12,14 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import com.sun.javafx.binding.StringFormatter;
-import model.Ingredient;
-import model.Recipe;
-import model.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.util.Pair;
+import model.*;
 import org.w3c.dom.Text;
+import view.*;
 
 public class Controller {
 
@@ -25,11 +29,14 @@ public class Controller {
    */
   private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
 
+  private static volatile Controller instance;
+
   private Connection db;
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
   private Stage stage;
   private model.Recipe recipe;
+
 
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
@@ -318,9 +325,9 @@ public class Controller {
   /**
    * Create a Recipe object from a MySQL query result.
    * 
-   * @param recipeId       The recipe ID
+   * @recipeId       The recipe ID
    * @param rs             The query result
-   * @param ingredientList The list of all ingredients used in the recipe
+   * @ingredientList The list of all ingredients used in the recipe
    * @return A Recipe object
    */
   private Recipe createRecipe(ResultSet rs) {

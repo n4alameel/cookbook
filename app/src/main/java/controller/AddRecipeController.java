@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddRecipeController implements Initializable {
-    Controller controller = new Controller();
+    Controller controller = Controller.getInstance();
     @FXML
     private TextField nameField;
     @FXML
@@ -53,7 +53,6 @@ public class AddRecipeController implements Initializable {
     private String addedtags;
     //import from Database
     private ObservableList<Tag> tagsArray = controller.generateTag();
-    private ObservableList<String> selectBoxTags = FXCollections.observableArrayList();
     private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
 
     private String ammount;
@@ -63,14 +62,12 @@ public class AddRecipeController implements Initializable {
     private String ingredientItem;
     //impoer from database
     private ObservableList<Unit> unitArray = controller.generateUnit();
-    private ObservableList<String> selectBoxUnits = FXCollections.observableArrayList();
     private ObservableList<Integer> selectBoxUnitInts = FXCollections.observableArrayList();
     private ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
     private String addUnit;
     private Integer unitID;
     private Integer tagID;
     private int unit_id;
-    ObservableList<IngredientMock> ingredientMocks = FXCollections.observableArrayList();
 
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
@@ -129,11 +126,9 @@ public class AddRecipeController implements Initializable {
         for (Tag tag : tagsArray) {
             if (tag.getName().equals(addedTag)) {
                 tagID = tag.getId();
-                //System.out.println(tagID);
             }
         }
         selectBoxTagInts.add(tagID);
-        //System.out.println(selectBoxTagInts);
     }
 
     /**
@@ -146,11 +141,8 @@ public class AddRecipeController implements Initializable {
         for (Unit unit : unitArray) {
             if (unit.getName().equals(addUnit)) {
                 unitID = unit.getId();
-                //System.out.println(unitID);
             }
         }
-        //System.out.println(selectBoxUnitInts);
-
     }
 
     /**
