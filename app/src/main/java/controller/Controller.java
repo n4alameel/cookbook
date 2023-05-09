@@ -191,7 +191,7 @@ public class Controller {
     }
   }
   //TODO: need to add an Tag as well
-  public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> ingredientListInt, ObservableList<Integer> tagList, ObservableList<Ingredient> ingredientObservableList) {
+  public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList, ObservableList<Ingredient> ingredientObservableList) {
     try {
       int recipe_id;
       int ingredientIterator = 0;
