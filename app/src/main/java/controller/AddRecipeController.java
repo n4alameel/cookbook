@@ -16,6 +16,7 @@ import model.Ingredient;
 import model.IngredientMock;
 import model.Tag;
 import model.Unit;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -82,7 +83,7 @@ public class AddRecipeController implements Initializable {
                     }
                 }
             }
-            for(int b : selectBoxTagInts){
+            for (int b : selectBoxTagInts) {
                 System.out.println("Inside: " + b);
             }
             //selectBoxTagInts for loop for reading the elements out of the List
@@ -166,24 +167,43 @@ public class AddRecipeController implements Initializable {
 
     /**
      * double click to delete a row
+     *
      * @param mouseEvent
      */
     public void deleteClickedRowIngredients(MouseEvent mouseEvent) {
-        if(mouseEvent.getClickCount() == 2 && !ingredientTable.getSelectionModel().isEmpty()){
+        if (mouseEvent.getClickCount() == 2 && !ingredientTable.getSelectionModel().isEmpty()) {
             ingredientTable.getItems().remove(ingredientTable.getSelectionModel().getSelectedItem());
         }
     }
+
     public void deleteClickedRowTags(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2 && !tagView.getSelectionModel().isEmpty()) {
             tagView.getItems().remove(tagView.getSelectionModel().getSelectedItem());
         }
     }
 
+    /**
+     * generates a new Tag in the Database on enter press, then generates a new Taglist to check if the next entry is already part of the database
+     *
+     * @param keyEvent
+     * @throws SQLException
+     */
     public void enterPressed(KeyEvent keyEvent) throws SQLException {
-        if(keyEvent.getCode() == KeyCode.ENTER){
-            String tag = newTag.getText();
-            controller.newTag(tag);
+        boolean unique = true;
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            String addTag = newTag.getText();
+            for (Tag tag : tagsArray) {
+                if (tag.getName().equals(addTag)) {
+                    System.out.println("tag exists already");
+                    unique = false;
+                    break;
+                }
+            }
+            if (unique) {
+                controller.newTag(addTag);
+                System.out.println("unique");
+            }
         }
+        tagsArray = controller.generateTag();
     }
-    //TODO: when adding a Tag that is not in the dropbox via a Textline it has to be added directly to the Database when, cause when saving the recipe it checks the database for the according ints to the name of the tags
 }
