@@ -59,13 +59,13 @@
 }
 
 #ava{
-    -fx-background-image: url("ava.jpg");
+    -fx-background-image: url("img/ava.jpg");
     -fx-background-color: transparent;
 }
 
 .com-btn{
     -fx-text-fill: rgba(187, 187, 187, 0.93);
-    -fx-font-size: 10;
+    -fx-font-size: 12;
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
@@ -80,7 +80,7 @@
 }
 
 .search-zone{
-    -fx-background-image: url("background.jpg");
+    -fx-background-image: url("img/background.jpg");
     -fx-background-position: center;
     -fx-opacity: 0.55;
 

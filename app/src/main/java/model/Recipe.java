@@ -1,13 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-
-import model.Ingredient;
 
 public class Recipe {
   private int id;
@@ -16,15 +9,17 @@ public class Recipe {
   private String shortDescription;
   private int portions = 2;
   private ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+  private ArrayList<Comment> commentList = new ArrayList<Comment>();
   private ArrayList<Tag> tagList = new ArrayList<Tag>();
 
   public Recipe(int id, String name, String description, String shortDescription,
-      ArrayList<Ingredient> ingredientList) {
+      ArrayList<Ingredient> ingredientList, ArrayList<Comment> commentList) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.shortDescription = shortDescription;
     this.ingredientList = ingredientList;
+    this.commentList = commentList;
   }
 
   public int getPortions() {
@@ -82,6 +77,14 @@ public class Recipe {
 
   public boolean addTag(Tag tag) {
     return true;
+  }
+
+  public ArrayList<Comment> getCommentList() {
+    return commentList;
+  }
+
+  public void setCommentList(ArrayList<Comment> commentList) {
+    this.commentList = commentList;
   }
 
   @Override

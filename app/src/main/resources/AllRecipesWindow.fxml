@@ -49,7 +49,7 @@
                 <Hyperlink fx:id="user" layoutX="1147.0" layoutY="56.0" text="User" />
                 <ImageView fx:id="recipe_image" fitHeight="37.0" fitWidth="34.0" layoutX="863.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@img/whisk.png" />
+                        <Image url="@img/Whisk.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="995.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">

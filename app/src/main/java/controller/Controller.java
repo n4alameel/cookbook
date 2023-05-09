@@ -189,6 +189,27 @@ public class Controller {
     }
   }
 
+  private ArrayList<Comment> generateCommentListFromDb(int recipeId) {
+    try {
+      String query = "select * from comment where recipe_id==recipeId";
+      Statement stmt = this.db.createStatement();
+
+      ResultSet rs = stmt.executeQuery(query);
+
+      ArrayList<Comment> commentList = new ArrayList<>();
+
+//      while (rs.next()) {
+//        Comment comment = createRecipe(rs);
+//        commentList.add(comment);
+//      }
+
+      return commentList;
+
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+
   public List<String> selectDataFromDatabase() {
     List<String> data = new ArrayList<>();
 
@@ -267,19 +288,11 @@ public class Controller {
   private Recipe createRecipe(ResultSet rs) {
     try {
       int recipeId = Integer.parseInt(rs.getString(1));
-      String ingQuery = "select * from ingredient I join recipe_has_ingredient R on I.id = R.ingredient_id where R.recipe_id = ?";
-      PreparedStatement ingStmt = this.db.prepareStatement(ingQuery);
-      ingStmt.setInt(1, recipeId);
-      ResultSet ingRs = ingStmt.executeQuery();
+      ArrayList<Ingredient> ingredientList = getIngListByRecipeID(recipeId);
+      ArrayList<Comment> commentList = getCommentListByRecipeID(recipeId);
 
-      ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
-
-      while (ingRs.next()) {
-        Ingredient i = createIngredient(ingRs);
-        ingredientList.add(i);
-      }
-      Recipe r = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList);
-      return r;
+      Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList, commentList);
+      return recipe;
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
