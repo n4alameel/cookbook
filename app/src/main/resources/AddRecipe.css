@@ -1,0 +1,46 @@
+#menuBar{
+-fx-background-color: #618C03;
+}
+
+.label {
+    -fx-font-weight: bold;
+}
+
+#addImage, #addIngredientButton{
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color:"orange";
+-fx-text-fill:"white";
+}
+
+
+#saveRecipe{
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color:"#618C03";
+-fx-text-fill:"white";
+}
+
+
+.text-field{
+-fx-background-radius: 20 20 20 20;
+-fx-border-radius: 20 20 20 20;
+}
+
+.column-header .label{
+-fx-background-color:"#618C03";
+-fx-text-fill:"white";
+-fx-background-radius: 20 20 20 20;
+-fx-border-radius: 20 20 20 20;
+}
+
+#ingredientTable{
+-fx-background-color:"transparent";
+-fx-background-radius: 20 20 20 20;
+-fx-border-radius: 20 20 20 20;
+-fx-border-color: lightgrey;
+}
+
+
+
+
