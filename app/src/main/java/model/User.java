@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -68,10 +69,14 @@ public class User {
     return weeklyPlanList;
   }
 
+  public void setWeeklyPlanList(ArrayList<WeeklyList> weeklyPlanList) {
+    this.weeklyPlanList = weeklyPlanList;
+  }
+
   /*************************************************************************/
 
   public void createEmptyWeeklyList(int weekNumber, int year, int id) {
-    WeeklyList weekly = new WeeklyList(weekNumber, year, id);
+    WeeklyList weekly = new WeeklyList(weekNumber, year, id, LocalDate.now());
     this.weeklyPlanList.add(weekly);
     Comparator<WeeklyList> comp = Comparator.comparing(WeeklyList::getWeekNumber);
     Collections.sort(this.weeklyPlanList, comp);

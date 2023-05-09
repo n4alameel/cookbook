@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.sql.ResultSet;
 
 import com.mysql.cj.exceptions.StreamingNotifiable;
@@ -18,6 +20,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
+import model.WeeklyList.WeekDay;
+
 import java.util.ArrayList;
 import javafx.util.Pair;
 
@@ -137,6 +141,7 @@ public class Controller {
           return false;
         }
         this.activeUser.setFavouriteList(this.generateFavouriteListFromDb());
+        this.activeUser.setWeeklyPlanList(this.generateWeeklyPlansFromDb());
         return true;
       } else {
         return false;
@@ -216,6 +221,52 @@ public class Controller {
     }
   }
 
+  public ArrayList<WeeklyList> generateWeeklyPlansFromDb() {
+    try {
+      String query = "select * from week_list where user_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
+      ResultSet rs = stmt.executeQuery();
+
+      ArrayList<WeeklyList> weeklyPlanList = new ArrayList<WeeklyList>();
+      while (rs.next()) {
+        weeklyPlanList.add(createWeeklyList(rs));
+      }
+      return weeklyPlanList;
+    } catch (SQLException e) {
+      e.printStackTrace(System.out);
+      return null;
+    }
+  }
+
+  private WeeklyList createWeeklyList(ResultSet rs) {
+    try {
+      int id = rs.getInt(1);
+      int weekNumber = rs.getInt(2);
+      int year = rs.getInt(3);
+      LocalDate creationDate = rs.getDate(4).toLocalDate();
+      WeeklyList newWeekly = new WeeklyList(weekNumber, year, id, creationDate);
+
+      EnumMap<WeeklyList.WeekDay, ArrayList<Recipe>> list = newWeekly.getList();
+
+      String query = "select * from recipe R join day_list D on R.id = D.recipe_id where D.week_list_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, id);
+      ResultSet rs_ = stmt.executeQuery();
+
+      while (rs_.next()) {
+        WeekDay day = WeekDay.valueOf(rs_.getString("day"));
+        Recipe r = createRecipe(rs_);
+        list.get(day).add(r);
+      }
+      return newWeekly;
+    } catch (SQLException e) {
+      e.printStackTrace(System.out);
+      return null;
+    }
+
+  }
+
   /**
    * Create an Ingredient object from a MySQL query result.
    * 
@@ -240,7 +291,7 @@ public class Controller {
    */
   private Recipe createRecipe(ResultSet rs) {
     try {
-      int recipeId = Integer.parseInt(rs.getString(1));
+      int recipeId = Integer.parseInt(rs.getString("id"));
       String ingQuery = "select * from ingredient I join recipe_has_ingredient R on I.id = R.ingredient_id where R.recipe_id = ?";
       PreparedStatement ingStmt = this.db.prepareStatement(ingQuery);
       ingStmt.setInt(1, recipeId);
@@ -252,7 +303,8 @@ public class Controller {
         Ingredient i = createIngredient(ingRs);
         ingredientList.add(i);
       }
-      Recipe r = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList);
+      Recipe r = new Recipe(recipeId, rs.getString("name"), rs.getString("description"),
+          rs.getString("shortDescription"), ingredientList);
       return r;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -410,15 +462,13 @@ public class Controller {
       ResultSet rs = stmt.executeQuery();
 
       if (!rs.next()) {
-        String query2 = "INSERT INTO week_list (weekNumber, isVisible, user_id, year, creation_date) VALUES (?, ?, ?, ?, ?)";
+        String query2 = "INSERT INTO week_list (weekNumber, user_id, year, creation_date) VALUES (?, ?, ?, ?)";
         PreparedStatement stmt2 = this.db.prepareStatement(query2);
         stmt2.setInt(1, weekNumber);
-        stmt2.setInt(2, 1);
-        stmt2.setInt(3, userId);
-        stmt2.setInt(4, year);
-        java.util.Date javaDate = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
-        stmt2.setDate(5, sqlDate);
+        stmt2.setInt(2, userId);
+        stmt2.setInt(3, year);
+        java.sql.Date sqlDate = java.sql.Date.valueOf(LocalDate.now());
+        stmt2.setDate(4, sqlDate);
         stmt2.executeUpdate();
 
         rs = stmt.executeQuery();

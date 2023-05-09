@@ -47,6 +47,11 @@ public class WeeklyPlanListController {
 
   }
 
+  @FXML
+  private void goToMainMenu() throws IOException {
+    controller.displayHomeView();
+  }
+
   public void updateWindow() {
     ArrayList<WeeklyList> planslist = controller.getActiveUser().getWeeklyPlanList();
     for (WeeklyList list : planslist) {
@@ -56,7 +61,10 @@ public class WeeklyPlanListController {
         WeeklyPlanRowController weeklyPlanRowController = (WeeklyPlanRowController) loader.getController();
         weeklyPlanRowController.setWeeklyList(list);
         weeklyPlanRowController.updateRow();
-        listBox.getChildren().addAll(root, separator);
+        Line newSeparator = new Line();
+        newSeparator.setStartX(-100);
+        newSeparator.setEndX(940);
+        listBox.getChildren().addAll(root, newSeparator);
       } catch (IOException e) {
         e.printStackTrace(System.out);
         throw new RuntimeException(e);

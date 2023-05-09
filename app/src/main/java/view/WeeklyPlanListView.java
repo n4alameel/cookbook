@@ -12,7 +12,7 @@ public class WeeklyPlanListView {
 
   public WeeklyPlanListView() {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/WeeklyPlanList.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/WeeklyPlanListWindow.fxml"));
       root = (Parent) loader.load();
       WeeklyPlanListController weeklyPlanListController = (WeeklyPlanListController) loader.getController();
       weeklyPlanListController.updateWindow();

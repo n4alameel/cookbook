@@ -19,14 +19,14 @@ public class WeeklyList {
 
   private EnumMap<WeekDay, ArrayList<Recipe>> list = new EnumMap<WeekDay, ArrayList<Recipe>>(WeekDay.class);
 
-  public WeeklyList(int weekNumber, int year, int id) {
+  public WeeklyList(int weekNumber, int year, int id, LocalDate creationDate) {
     this.weekNumber = weekNumber;
     this.year = year;
     this.id = id;
     for (WeekDay d : WeekDay.values()) {
       this.list.put(d, new ArrayList<Recipe>());
     }
-    this.creationDate = LocalDate.now();
+    this.creationDate = creationDate;
     Time time = new Time();
     this.startDate = time.getMondayFromWeekNumber(weekNumber, year);
     this.endDate = time.getSundayFromWeekNumber(weekNumber, year);
