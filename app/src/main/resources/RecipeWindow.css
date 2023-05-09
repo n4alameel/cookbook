@@ -59,7 +59,7 @@
 }
 
 #ava{
-    -fx-background-image: url("ava.jpg");
+    -fx-background-image: url("img/ava.jpg");
     -fx-background-color: transparent;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .search-zone{
-    -fx-background-image: url("background.jpg");
+    -fx-background-image: url("img/background.jpg");
     -fx-background-position: center;
     -fx-opacity: 0.55;
 

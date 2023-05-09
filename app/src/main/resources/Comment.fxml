@@ -15,7 +15,7 @@
         <children>
             <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image fx:id="commentatorAva" url="@ava.jpg" />
+                    <Image fx:id="commentatorAva" url="@img/ava.jpg" />
                 </image>
             </ImageView>
             <Text fx:id="commentatorName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="auth-com" text="Username" />

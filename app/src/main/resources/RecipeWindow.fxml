@@ -62,7 +62,7 @@
                      <children>
                         <ImageView fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@logo.jpg" />
+                              <Image url="@img/logo.jpg" />
                            </image>
                            <viewport>
                               <Rectangle2D />
@@ -76,7 +76,7 @@
                            <children>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@whisk.png" />
+                                    <Image url="@img/Whisk.png" />
                                  </image>
                               </ImageView>
                               <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="top-link" text="Recipes" textAlignment="CENTER">
@@ -90,7 +90,7 @@
                            <children>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@Heart.png" />
+                                    <Image url="@img/Heart.png" />
                                  </image>
                               </ImageView>
                               <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="top-link" text="Favourite Recipes" textAlignment="CENTER">
@@ -104,7 +104,7 @@
                            <children>
                               <ImageView id="ava" fitHeight="43.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@ava.jpg" />
+                                    <Image url="@img/ava.jpg" />
                                  </image>
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -145,7 +145,7 @@
                            <children>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@Heart.png" />
+                                    <Image url="@img/Heart.png" />
                                  </image>
                               </ImageView>
                             <Button id="make-favourite" mnemonicParsing="false" styleClass="action-btn" text="Favourite" />
@@ -155,7 +155,7 @@
                            <children>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@send.png" />
+                                    <Image url="@img/send.png" />
                                  </image>
                               </ImageView>
                               <Button id="make-favourite" mnemonicParsing="false" styleClass="action-btn" text="Send Recipe" />
@@ -165,7 +165,7 @@
                            <children>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@whisk.png" />
+                                    <Image url="@img/Whisk.png" />
                                  </image>
                               </ImageView>
                               <Button id="make-favourite" mnemonicParsing="false" styleClass="action-btn" text="Select Recipe" />
@@ -322,7 +322,7 @@
                            <children>
                               <ImageView fitHeight="63.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@logo-removebg.png" />
+                                    <Image url="@img/logo-removebg.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
