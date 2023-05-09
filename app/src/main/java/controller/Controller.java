@@ -1,10 +1,12 @@
 package controller;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
@@ -36,6 +38,7 @@ public class Controller {
   private static volatile Controller instance;
 
   private Connection db;
+  private Time time;
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
   private Stage stage;
@@ -47,6 +50,7 @@ public class Controller {
 
   private Controller() {
     this.db = dbconnect();
+    this.time = new Time();
     this.activeUser = null;
     this.recipeList = generateRecipeListFromDb();
     this.stage = null;
@@ -79,6 +83,10 @@ public class Controller {
 
   public void setActiveUser(model.User activeUser) {
     this.activeUser = activeUser;
+  }
+
+  public Time getTime() {
+    return time;
   }
 
   /**
@@ -384,15 +392,36 @@ public class Controller {
     }
   }
 
-  public boolean createEmptyWeeklyList(int weeklyNumber, int isVisible) {
+  public boolean createEmptyWeeklyList(int weekNumber, int year) {
     try {
-      String query = "INSERT INTO week_list (weekNumber, isVisible, user_id) VALUES (?, ?, ?)";
+      int userId = this.activeUser.getId();
+      String query = "select id from week_list where weekNumber=? and user_id=? and year=?";
       PreparedStatement stmt = this.db.prepareStatement(query);
-      stmt.setInt(1, weeklyNumber);
-      stmt.setInt(2, isVisible);
-      stmt.setInt(3, this.activeUser.getId());
-      stmt.executeUpdate();
-      return true;
+      stmt.setInt(1, weekNumber);
+      stmt.setInt(2, userId);
+      stmt.setInt(3, year);
+      ResultSet rs = stmt.executeQuery();
+
+      if (!rs.next()) {
+        String query2 = "INSERT INTO week_list (weekNumber, isVisible, user_id, year, creation_date) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement stmt2 = this.db.prepareStatement(query2);
+        stmt2.setInt(1, weekNumber);
+        stmt2.setInt(2, 1);
+        stmt2.setInt(3, userId);
+        stmt2.setInt(4, year);
+        java.util.Date javaDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+        stmt2.setDate(5, sqlDate);
+        stmt2.executeUpdate();
+
+        rs = stmt.executeQuery();
+
+        if (rs.next()) {
+          this.activeUser.createEmptyWeeklyList(weekNumber, year, rs.getInt(1));
+          return true;
+        }
+      }
+      return false;
     } catch (SQLException e) {
       return false;
     }
