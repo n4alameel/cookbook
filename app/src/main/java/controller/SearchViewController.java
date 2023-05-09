@@ -43,7 +43,7 @@ public class SearchViewController {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
                     Pane root = loader.load();
                     RecipeCardController cardController = loader.getController();
-                    cardController.setRecipe(recipeList.get(i));
+                    cardController.setRecipe(recipeList.get(i).getId());
                     cardController.updateCard();
                     searchGrid.add(root, col % 3, row);
                     col++;

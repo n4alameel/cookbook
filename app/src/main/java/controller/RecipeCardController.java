@@ -39,12 +39,12 @@ public class RecipeCardController {
    * @param recipe The recipe to display on this card
    */
 
-  public void setRecipe(Recipe selectedRecipe){
-    recipe = selectedRecipe;
+  public void setRecipe(int selectedRecipeId){
+    Recipe updatedRecipe = this.controller.getRecipeById(selectedRecipeId);
+    this.recipe = updatedRecipe;
   }
 
     public void updateCard() {
-      this.recipe = recipe;
       recipeName.setText(this.recipe.getName());
       if (controller.getActiveUser().isFavourite(this.recipe)) {
         favBtn.setImage(new Image("img/HeartFull.png"));
@@ -73,7 +73,7 @@ public class RecipeCardController {
 
   @FXML
   private void seeRecipe() {
-    controller.displayRecipeView(recipe);
+    controller.displayRecipeView(recipe.getId());
   }
 
   /**

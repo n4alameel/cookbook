@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<VBox spacing="10.0" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CommentController">
+<VBox fx:id="processingComment" spacing="10.0" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CommentController">
     <FlowPane alignment="CENTER_LEFT" columnHalignment="RIGHT" hgap="10.0" prefHeight="39.0" prefWidth="522.0">
         <children>
             <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -18,7 +18,7 @@
                     <Image fx:id="commentatorAva" url="@img/ava.jpg" />
                 </image>
             </ImageView>
-            <Text fx:id="commentatorName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="auth-com" text="Username" />
+            <Text fx:id="commentatorName" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
          <ButtonBar buttonMinWidth="0.0" buttonOrder="">
             <buttons>
                   <Button fx:id="editBtn" graphicTextGap="0.0" mnemonicParsing="false" onAction="#editCommentAction" styleClass="com-btn" text="edit" />
