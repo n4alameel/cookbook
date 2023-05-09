@@ -1,79 +1,62 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class Ingredient {
-  private int id;
-  public String name;
-  private int quantity;
-  private Unit unit;
-
-  private enum Unit {
-    gram(1), millilitre(2), drop(3), unity(5), pinch(4), grams(6), millilitres(7);
-
-    private final int id;
-
-    private Unit(int id) {
-      this.id = id;
-    }
-
-    public int getId() {
-      return id;
-    }
-
-    public static Unit fromId(int id) {
-      for (Unit unit : Unit.values()) {
-        if (unit.getId() == id) {
-          return unit;
-        }
-      }
-      throw new IllegalArgumentException("Invalid unit ID: " + id);
-    }
-  };
-
-  public Ingredient(int id, String name, int quantity, int unit_id) {
-    this.id = id;
-    this.name = name;
-    this.quantity = quantity;
-    this.unit = Unit.fromId(unit_id);
-  }
-
   public int getId() {
-    return this.id;
+    return id.get();
   }
 
-  public int getQuantity() {
-    return this.quantity;
+  public SimpleIntegerProperty idProperty() {
+    return id;
   }
 
   public String getName() {
-    return this.name;
+    return name.get();
   }
 
-  public Unit getUnit() {
-    return this.unit;
+  public SimpleStringProperty nameProperty() {
+    return name;
   }
-  /*
-   * public Ingredient(int id){
-   * this.id = id;
-   * Connection conn = new App().dbconnect();
-   * try {
-   * Statement stmt = conn.createStatement();
-   * ResultSet rs = stmt.executeQuery("SELECT * FROM ingredient WHERE id = "+id);
-   * rs.next();
-   * this.name = rs.getString("name");
-   * this.quantity = rs.getInt("quantity");
-   * this.unit_id = rs.getInt("unit_id");
-   * this.unity = Arrays.stream(unit.values())
-   * .filter(unit -> unit.getId() == unit_id)
-   * .findFirst()
-   * .orElseThrow(() -> new IllegalArgumentException("Invalid unit ID: " +
-   * unit_id));
-   * conn.close();
-   * } catch (SQLException e) {
-   * System.out.println(e.getMessage());
-   * }
-   * }
-   */
+
+  public int getQuantity() {
+    return quantity.get();
+  }
+
+  public SimpleIntegerProperty quantityProperty() {
+    return quantity;
+  }
+
+  public int getUnit_id() {
+    return unit_id.get();
+  }
+
+  public SimpleIntegerProperty unit_idProperty() {
+    return unit_id;
+  }
+
+  private SimpleIntegerProperty id;
+  public SimpleStringProperty name;
+  private SimpleIntegerProperty quantity;
+  private SimpleIntegerProperty unit_id;
+  private SimpleStringProperty unitName;
+
+  public Ingredient(int id, String name, int quantity, int unit_id) {
+    this.id = new SimpleIntegerProperty(id);
+    this.name = new SimpleStringProperty(name);
+    this.quantity = new SimpleIntegerProperty(quantity);
+    this.unit_id = new SimpleIntegerProperty(unit_id);
+  }
+  /*//might be needed later used for mocking cause a bug around the tableview got discovered
+  public Ingredient(String name, int quantity, String unitName) {
+    this.name = new SimpleStringProperty(name);
+    this.quantity = new SimpleIntegerProperty(quantity);
+    this.unitName = new SimpleStringProperty(unitName);
+  }*/
+  public Ingredient(String name, int quantity, int unit_id) {
+    this.name = new SimpleStringProperty(name);
+    this.quantity = new SimpleIntegerProperty(quantity);
+    this.unit_id = new SimpleIntegerProperty(unit_id);
+  }
 }

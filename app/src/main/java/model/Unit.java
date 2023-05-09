@@ -1,18 +1,17 @@
 package model;
 
-public class Tag {
+public class Unit {
     private int id;
-    private String name = null;
-    
-    public Tag(int id, String name){
-        this.name = name;
+    private String name;
+    public Unit(int id, String name){
         this.id = id;
-        //SQL QUERY
+        this.name = name;
     }
 
     public String getName() {
         return this.name;
     }
+
     public int getId() {
         return this.id;
     }

@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="added second constructor to IngredientMocking, changed according calls">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="cookbook" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2OhG1RxrUisR48FIyMj3NEhNZxe" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "last_opened_file_path": "C:/Users/vanes/IdeaProjects/cookbook/app/src/main/resources",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="model" />
+      <recent name="view" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\resources" />
+      <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\resources\view" />
+      <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\java" />
+      <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\java\view" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="model" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.cookbook:app [buildDependents]">
+    <configuration name="cookbook [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="cookbook:app [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/app" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="buildDependents" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="cookbook:app [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/app" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="cookbook:app [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/app" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.cookbook:app [buildDependents]" />
+      <item itemvalue="Gradle.cookbook [build]" />
+      <item itemvalue="Gradle.cookbook:app [build]" />
+      <item itemvalue="Gradle.cookbook:app [run]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.cookbook:app [run]" />
+        <item itemvalue="Gradle.cookbook:app [build]" />
+        <item itemvalue="Gradle.cookbook [build]" />
+        <item itemvalue="Gradle.cookbook:app [buildDependents]" />
+        <item itemvalue="Gradle.cookbook:app [run]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="" />
+      <created>1682005190442</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682005190442</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Setup HomeWindow">
+      <created>1682345135867</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682345135868</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Setup HomeWindow">
+      <created>1682345173483</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682345173483</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fxml and css">
+      <created>1682508373831</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682508373831</updated>
+    </task>
+    <task id="LOCAL-00004" summary="finished home windows design">
+      <created>1682528091876</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1682528091876</updated>
+    </task>
+    <task id="LOCAL-00005" summary="switch to another scene and design fixes">
+      <created>1682593661097</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682593661098</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fixes">
+      <created>1682594415090</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682594415090</updated>
+    </task>
+    <task id="LOCAL-00007" summary="running window.">
+      <created>1682597803297</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682597803297</updated>
+    </task>
+    <task id="LOCAL-00008" summary="running window.">
+      <created>1682597906101</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1682597906101</updated>
+    </task>
+    <task id="LOCAL-00009" summary="running window.">
+      <created>1682598151955</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1682598151955</updated>
+    </task>
+    <task id="LOCAL-00010" summary="working login Page with FXML">
+      <created>1682604665527</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682604665527</updated>
+    </task>
+    <task id="LOCAL-00011" summary="deleted old login method">
+      <created>1682604721436</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682604721437</updated>
+    </task>
+    <task id="LOCAL-00012" summary="login home and add recipe(wrong button tho)">
+      <created>1682605643912</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682605643912</updated>
+    </task>
+    <task id="LOCAL-00013" summary="static dropox for tags">
+      <created>1682932130420</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1682932130420</updated>
+    </task>
+    <task id="LOCAL-00014" summary="new Branch (gitlab was down)">
+      <created>1682934090276</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682934090276</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added add ingredient fields">
+      <created>1682936398797</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1682936398797</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added mocking for unit">
+      <created>1682938436072</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1682938436072</updated>
+    </task>
+    <task id="LOCAL-00017" summary="github check">
+      <created>1682949933121</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1682949933121</updated>
+    </task>
+    <task id="LOCAL-00018" summary="mocking for adding ingredients to the viewtable">
+      <created>1682963482647</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1682963482647</updated>
+    </task>
+    <task id="LOCAL-00019" summary="changed property in the Ingredient.java to match tableViews.">
+      <created>1682966363709</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1682966363709</updated>
+    </task>
+    <task id="LOCAL-00020" summary="added ingredients and mocking for the viewtable">
+      <created>1683131363343</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1683131363343</updated>
+    </task>
+    <task id="LOCAL-00021" summary="made a single getIngredient and changed initialize class in AddedRecipeController">
+      <created>1683215572729</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1683215572729</updated>
+    </task>
+    <task id="LOCAL-00022" summary="added second constructor to IngredientMocking, changed according calls">
+      <created>1683217724106</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1683217724106</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Setup HomeWindow" />
+    <MESSAGE value="fxml and css" />
+    <MESSAGE value="finished home windows design" />
+    <MESSAGE value="switch to another scene and design fixes" />
+    <MESSAGE value="fixes" />
+    <MESSAGE value="running window." />
+    <MESSAGE value="working login Page with FXML" />
+    <MESSAGE value="deleted old login method" />
+    <MESSAGE value="login home and add recipe(wrong button tho)" />
+    <MESSAGE value="static dropox for tags" />
+    <MESSAGE value="new Branch (gitlab was down)" />
+    <MESSAGE value="Added add ingredient fields" />
+    <MESSAGE value="added mocking for unit" />
+    <MESSAGE value="github check" />
+    <MESSAGE value="mocking for adding ingredients to the viewtable" />
+    <MESSAGE value="changed property in the Ingredient.java to match tableViews." />
+    <MESSAGE value="added ingredients and mocking for the viewtable" />
+    <MESSAGE value="made a single getIngredient and changed initialize class in AddedRecipeController" />
+    <MESSAGE value="added second constructor to IngredientMocking, changed according calls" />
+    <option name="LAST_COMMIT_MESSAGE" value="added second constructor to IngredientMocking, changed according calls" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

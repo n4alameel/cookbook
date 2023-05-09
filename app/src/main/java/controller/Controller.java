@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.*;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,22 +9,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
-
-import com.mysql.cj.exceptions.StreamingNotifiable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import model.Ingredient;
-import model.Recipe;
-import java.util.ArrayList;
 import java.util.List;
 
-import javafx.util.Pair;
-
-import model.*;
-import view.*;
+import com.sun.javafx.binding.StringFormatter;
+import model.Ingredient;
+import model.Recipe;
+import model.User;
+import org.w3c.dom.Text;
 
 public class Controller {
 
@@ -30,12 +23,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
-
-  /**
-   * Used to make this class a singleton
-   */
-  private static volatile Controller instance;
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
 
   private Connection db;
   private model.User activeUser;
@@ -265,7 +253,7 @@ public class Controller {
 
   /**
    * Create an Ingredient object from a MySQL query result.
-   *
+   * 
    * @param ingRs a query result
    * @return An Ingredient object
    */
@@ -329,8 +317,10 @@ public class Controller {
 
   /**
    * Create a Recipe object from a MySQL query result.
-   *
-   * @param rs The query result
+   * 
+   * @param recipeId       The recipe ID
+   * @param rs             The query result
+   * @param ingredientList The list of all ingredients used in the recipe
    * @return A Recipe object
    */
   private Recipe createRecipe(ResultSet rs) {
@@ -575,6 +565,128 @@ public class Controller {
       }
       return shoppingList;
     } catch (SQLException e) {
+      return null;
+    }
+  }
+  //TODO: need to add an Tag as well
+  public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> ingredientListInt, ObservableList<Integer> tagList, ObservableList<Ingredient> ingredientObservableList) {
+    try {
+      int recipe_id;
+      int ingredientIterator = 0;
+      String query = "INSERT INTO recipe (name, shortDescription, description) VALUES (?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, name);
+      stmt.setString(2, shortDescription);
+      stmt.setString(3, description);
+      stmt.executeUpdate();
+      query = "SELECT id FROM recipe WHERE name = ?";
+      stmt = this.db.prepareStatement(query);
+      stmt.setString(1, name);
+      ResultSet rs = stmt.executeQuery();
+      rs.next();
+      recipe_id = rs.getInt(1);
+      ObservableList<Ingredient> ingredients = generateIngredient();
+      for (Ingredient ingredient : ingredients) {
+        if(ingredientObservableList.get(ingredientIterator).getName().equals(ingredient.getName())) {
+          query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
+          stmt = this.db.prepareStatement(query);
+          stmt.setInt(1, recipe_id);
+          stmt.setInt(2, ingredient.getId());
+          stmt.executeUpdate();
+          ingredientIterator++;
+          System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId() );
+        }
+        /*System.out.println(ingredientIterator + recipe_id + "name: " + ingredient.getName() + " id: " + ingredient.getId() );
+        System.out.println( "ObservableList" + ingredientObservableList.get(ingredientIterator).getName());
+      */}
+      for (int i : tagList) {
+        query = "INSERT INTO recipe_has_tag (recipe_id, tag_id) VALUES (?, ?)";
+        stmt = this.db.prepareStatement(query);
+        stmt.setInt(1, recipe_id);
+        stmt.setInt(2, i);
+        stmt.executeUpdate();
+      }
+      return true;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return false;
+    }
+  }
+  public ObservableList<Tag> generateTag() {
+    try {
+      String query = "SELECT id, name FROM tag";
+      Statement stmt = this.db.createStatement();
+
+      ResultSet rs = stmt.executeQuery(query);
+      ObservableList<Tag> tags = FXCollections.observableArrayList();
+
+      while (rs.next()) {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        tags.add(new Tag(id, name));
+      }
+
+      return tags;
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+  public ObservableList<Unit> generateUnit() {
+    try {
+      String query = "SELECT id, name FROM unit";
+      Statement stmt = this.db.createStatement();
+
+      ResultSet rs = stmt.executeQuery(query);
+      ObservableList<Unit> units = FXCollections.observableArrayList();
+
+      while (rs.next()) {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        units.add(new Unit(id, name));
+      }
+
+      return units;
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+
+  public boolean newIngredient(ObservableList<Ingredient> ingredientList) throws SQLException {
+    try {
+      String query = "INSERT INTO ingredient (name, quantity, unit_id) VALUES (?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+
+      for (Ingredient ingredient : ingredientList) {
+        stmt.setString(1, ingredient.getName());
+        stmt.setInt(2, ingredient.getQuantity());
+        stmt.setInt(3, ingredient.getUnit_id());
+        stmt.executeUpdate();
+      }
+      return true;
+    }
+    catch (Exception e){
+      return false;
+    }
+  }
+  public ObservableList<Ingredient> generateIngredient() {
+    try {
+      String query = "SELECT * FROM ingredient";
+      Statement stmt = this.db.createStatement();
+
+      ResultSet rs = stmt.executeQuery(query);
+      ObservableList<Ingredient> ingredients = FXCollections.observableArrayList();
+
+      while (rs.next()) {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        int quantity = rs.getInt("quantity");
+        int unitId = rs.getInt("unit_id");
+        ingredients.add(new Ingredient(id, name, quantity, unitId));
+      }
+
+      return ingredients;
+    } catch (SQLException e) {
+      System.out.println(e);
       return null;
     }
   }
