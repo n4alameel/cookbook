@@ -312,4 +312,16 @@ public class Controller {
       return null;
     }
   }
+  public boolean newTag (String name ) throws SQLException {
+    try {
+      String query = "INSERT INTO tag (name) VALUES (?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, name);
+      stmt.executeUpdate();
+      return true;
+    }
+    catch (Exception e){
+      return false;
+    }
+  }
 }

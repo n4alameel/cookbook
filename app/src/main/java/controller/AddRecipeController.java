@@ -9,12 +9,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Ingredient;
 import model.IngredientMock;
 import model.Tag;
 import model.Unit;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddRecipeController implements Initializable {
@@ -43,9 +46,10 @@ public class AddRecipeController implements Initializable {
     private ChoiceBox<String> unitSelection;
     @FXML
     private TextField addIngredient;
+    @FXML
+    private TextField newTag;
     private ObservableList<Tag> tagsArray = controller.generateTag();
     private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
-
     private String ammount;
     private String unit;
     private String ingredientItem;
@@ -172,6 +176,13 @@ public class AddRecipeController implements Initializable {
     public void deleteClickedRowTags(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2 && !tagView.getSelectionModel().isEmpty()) {
             tagView.getItems().remove(tagView.getSelectionModel().getSelectedItem());
+        }
+    }
+
+    public void enterPressed(KeyEvent keyEvent) throws SQLException {
+        if(keyEvent.getCode() == KeyCode.ENTER){
+            String tag = newTag.getText();
+            controller.newTag(tag);
         }
     }
     //TODO: when adding a Tag that is not in the dropbox via a Textline it has to be added directly to the Database when, cause when saving the recipe it checks the database for the according ints to the name of the tags
