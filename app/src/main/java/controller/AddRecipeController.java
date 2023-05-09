@@ -9,20 +9,20 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Ingredient;
 import model.IngredientMock;
 import model.Tag;
 import model.Unit;
 
-import javax.swing.*;
-import java.net.IDN;
 import java.net.URL;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddRecipeController implements Initializable {
-    Controller controller = Controller.getInstance();
+    Controller controller = new Controller();
     @FXML
     private TextField nameField;
     @FXML
@@ -30,7 +30,7 @@ public class AddRecipeController implements Initializable {
     @FXML
     private TextArea longDescriptionArea;
     @FXML
-    private TextArea tags;
+    private ListView<String> tagView;
     @FXML
     private ChoiceBox<String> tagSelection;
     @FXML
@@ -47,22 +47,14 @@ public class AddRecipeController implements Initializable {
     private ChoiceBox<String> unitSelection;
     @FXML
     private TextField addIngredient;
-    private String name;
-    private String shortDiscription;
-    private String longDescription;
-    private String addedtags;
-    //import from Database
+    @FXML
+    private TextField newTag;
     private ObservableList<Tag> tagsArray = controller.generateTag();
     private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
-
-    private String ammount;
-    //should be int
+    private Integer ammount;
     private String unit;
-    //should be unit_id
     private String ingredientItem;
-    //impoer from database
     private ObservableList<Unit> unitArray = controller.generateUnit();
-    private ObservableList<Integer> selectBoxUnitInts = FXCollections.observableArrayList();
     private ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
     private String addUnit;
     private Integer unitID;
@@ -73,9 +65,10 @@ public class AddRecipeController implements Initializable {
     public void saveRecipe(ActionEvent event) {
         try {
             ObservableList<IngredientMock> ingredientMock = ingredientTable.getItems();
+            //adds Ingredients coresponding to the unit_id that exists in the database, TODO: if the tableview has the same element twice i need to filter it.
             for (IngredientMock ingredientMock1 : ingredientMock) {
                 String name = ingredientMock1.getName();
-                int quantity = Integer.parseInt(ingredientMock1.getQuantity());
+                int quantity = (ingredientMock1.getQuantity());
                 for (Unit unit : unitArray) {
                     if (unit.getName().equals(ingredientMock1.getUnit_id())) {
                         unit_id = unit.getId();
@@ -83,11 +76,20 @@ public class AddRecipeController implements Initializable {
                 }
                 ingredientList.add(new Ingredient(name, quantity, unit_id));
             }
-            name = nameField.getText();
-            shortDiscription = shortDiscriptionField.getText();
-            longDescription = longDescriptionArea.getText();
+
+            for (String tagName : tagView.getItems()) {
+                for (Tag tag : tagsArray) {
+                    if (tagName == (tag.getName())) {
+                        selectBoxTagInts.add(tag.getId());
+                    }
+                }
+            }
+            //selectBoxTagInts for loop for reading the elements out of the List
+            String name = nameField.getText();
+            String shortDiscription = shortDiscriptionField.getText();
+            String longDescription = longDescriptionArea.getText();
             controller.newIngredient(ingredientList);
-            controller.newRecipe(name, longDescription, shortDiscription, selectBoxUnitInts, selectBoxTagInts, ingredientList);
+            controller.newRecipe(name, longDescription, shortDiscription, selectBoxTagInts, ingredientList);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -121,14 +123,13 @@ public class AddRecipeController implements Initializable {
      */
     public void setTags(ActionEvent event) {
         String addedTag = tagSelection.getValue();
-        addedtags = tagSelection.getValue();
-        tags.setText(tags.getText() + " " + addedtags);
+        tagView.getItems().add(addedTag);
         for (Tag tag : tagsArray) {
             if (tag.getName().equals(addedTag)) {
                 tagID = tag.getId();
             }
         }
-        selectBoxTagInts.add(tagID);
+        //selectBoxTagInts.add(tagID);
     }
 
     /**
@@ -152,25 +153,77 @@ public class AddRecipeController implements Initializable {
      */
     //TODO: error handling
     public void addIngredientButton(ActionEvent event) {
-        ammount = addAmmount.getText();
+        boolean unique = true;
+        try {
+            ammount = Integer.valueOf(addAmmount.getText());
+        } catch (Exception e) {
+            System.out.println("Please select a Number as amount.");
+            System.out.println(e);
+        }
         unit = addUnit;
         ingredientItem = addIngredient.getText();
-        selectBoxUnitInts.add(unitID);
         IngredientMock ingredientMock = new IngredientMock(ingredientItem, ammount, unit);
-        //Ingredient ingredient = new Ingredient(ingredientItem, Integer.parseInt(ammount), unitID);
-        System.out.println("ammount " + ammount + "unit" + unit + "unitID" + unitID + " tagID" + tagID);
-        //ingredientList.add(ingredient);
-        ingredientTable.getItems().add(ingredientMock);
+        for (IngredientMock ingredientMock1 : ingredientTable.getItems()) {
+            if (ingredientMock1.getName().equals(ingredientMock.getName())) {
+                System.out.println("exists already please change give in another ingredient");
+                unique = false;
+                break;
+            }
+        }
+        if (unique) {
+            ingredientTable.getItems().add(ingredientMock);
+            System.out.println("added: " + ingredientMock.getName());
+        }
     }
 
     /**
      * double click to delete a row
+     *
      * @param mouseEvent
      */
-    public void deleteClickedRow(MouseEvent mouseEvent) {
-        if(mouseEvent.getClickCount() == 2 && !ingredientTable.getSelectionModel().isEmpty()){
+    public void deleteClickedRowIngredients(MouseEvent mouseEvent) {
+        if (mouseEvent.getClickCount() == 2 && !ingredientTable.getSelectionModel().isEmpty()) {
             ingredientTable.getItems().remove(ingredientTable.getSelectionModel().getSelectedItem());
         }
     }
 
+    public void deleteClickedRowTags(MouseEvent mouseEvent) {
+        if (mouseEvent.getClickCount() == 2 && !tagView.getSelectionModel().isEmpty()) {
+            tagView.getItems().remove(tagView.getSelectionModel().getSelectedItem());
+        }
+    }
+
+    /**
+     * generates a new Tag in the Database on enter press, then generates a new Taglist to check if the next entry is already part of the database
+     *
+     * @param keyEvent
+     * @throws SQLException
+     */
+    public void enterPressed(KeyEvent keyEvent) throws SQLException {
+        boolean unique = true;
+        boolean viewUnique = true;
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            String addTag = newTag.getText();
+            for(String name : tagView.getItems()){
+                if(name.equals(addTag)){
+                    viewUnique = false;
+                    unique = false;
+                    break;
+                }
+            }
+                for (Tag tag : tagsArray) {
+                    if (tag.getName().equals(addTag) && viewUnique) {
+                        tagView.getItems().add(addTag);
+                        System.out.println("tag exists already");
+                        unique = false;
+                        break;
+                    }
+                }
+                if (unique && viewUnique) {
+                    controller.newTag(addTag);
+                    tagView.getItems().add(addTag);
+                }
+        }
+        tagsArray = controller.generateTag();
+    }
 }
