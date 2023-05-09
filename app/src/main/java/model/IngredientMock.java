@@ -24,11 +24,11 @@ public class IngredientMock {
     return name;
   }
 
-  public String getQuantity() {
+  public int getQuantity() {
     return quantity.get();
   }
 
-  public SimpleStringProperty quantityProperty() {
+  public SimpleIntegerProperty quantityProperty() {
     return quantity;
   }
 
@@ -42,12 +42,12 @@ public class IngredientMock {
 
   private SimpleIntegerProperty id;
   public SimpleStringProperty name;
-  private SimpleStringProperty quantity;
+  private SimpleIntegerProperty quantity;
   private SimpleStringProperty unit_id;
 
-  public IngredientMock(String name, String quantity, String unit_id) {
+  public IngredientMock(String name, int quantity, String unit_id) {
     this.name = new SimpleStringProperty(name);
-    this.quantity = new SimpleStringProperty(quantity);
+    this.quantity = new SimpleIntegerProperty(quantity);
     this.unit_id = new SimpleStringProperty(unit_id);
   }
 }

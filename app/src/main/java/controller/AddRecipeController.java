@@ -51,7 +51,7 @@ public class AddRecipeController implements Initializable {
     private TextField newTag;
     private ObservableList<Tag> tagsArray = controller.generateTag();
     private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
-    private String ammount;
+    private Integer ammount;
     private String unit;
     private String ingredientItem;
     private ObservableList<Unit> unitArray = controller.generateUnit();
@@ -68,7 +68,7 @@ public class AddRecipeController implements Initializable {
             //adds Ingredients coresponding to the unit_id that exists in the database, TODO: if the tableview has the same element twice i need to filter it.
             for (IngredientMock ingredientMock1 : ingredientMock) {
                 String name = ingredientMock1.getName();
-                int quantity = Integer.parseInt(ingredientMock1.getQuantity());
+                int quantity = (ingredientMock1.getQuantity());
                 for (Unit unit : unitArray) {
                     if (unit.getName().equals(ingredientMock1.getUnit_id())) {
                         unit_id = unit.getId();
@@ -154,12 +154,17 @@ public class AddRecipeController implements Initializable {
     //TODO: error handling
     public void addIngredientButton(ActionEvent event) {
         boolean unique = true;
-        ammount = addAmmount.getText();
+        try {
+            ammount = Integer.valueOf(addAmmount.getText());
+        } catch (Exception e) {
+            System.out.println("Please select a Number as amount.");
+            System.out.println(e);
+        }
         unit = addUnit;
         ingredientItem = addIngredient.getText();
         IngredientMock ingredientMock = new IngredientMock(ingredientItem, ammount, unit);
         for (IngredientMock ingredientMock1 : ingredientTable.getItems()) {
-            if (ingredientMock1.getName().equals(ingredientItem)) {
+            if (ingredientMock1.getName().equals(ingredientMock.getName())) {
                 System.out.println("exists already please change give in another ingredient");
                 unique = false;
                 break;
@@ -196,20 +201,28 @@ public class AddRecipeController implements Initializable {
      */
     public void enterPressed(KeyEvent keyEvent) throws SQLException {
         boolean unique = true;
+        boolean viewUnique = true;
         if (keyEvent.getCode() == KeyCode.ENTER) {
             String addTag = newTag.getText();
-            for (Tag tag : tagsArray) {
-                if (tag.getName().equals(addTag)) {
-                    tagView.getItems().add(addTag);
-                    System.out.println("tag exists already");
+            for(String name : tagView.getItems()){
+                if(name.equals(addTag)){
+                    viewUnique = false;
                     unique = false;
                     break;
                 }
             }
-            if (unique) {
-                controller.newTag(addTag);
-                tagView.getItems().add(addTag);
-            }
+                for (Tag tag : tagsArray) {
+                    if (tag.getName().equals(addTag) && viewUnique) {
+                        tagView.getItems().add(addTag);
+                        System.out.println("tag exists already");
+                        unique = false;
+                        break;
+                    }
+                }
+                if (unique && viewUnique) {
+                    controller.newTag(addTag);
+                    tagView.getItems().add(addTag);
+                }
         }
         tagsArray = controller.generateTag();
     }

@@ -3,11 +3,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -34,7 +34,6 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextArea fx:id="tags" editable="false" layoutX="31.0" layoutY="549.0" prefHeight="201.0" prefWidth="500.0" style="-fx-border-color: grey; -fx-background-color: white; -fx-border-radius: 40; -fx-background-radius: 40;" stylesheets="@AddRecipe.css" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="654.0" />
             <Label layoutX="32.0" layoutY="511.0" prefHeight="35.0" prefWidth="1149.0" text="Tags" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="4.0">
                <font>
                   <Font size="24.0" />
@@ -51,7 +50,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <TableView fx:id="ingredientTable" layoutX="30.0" layoutY="949.0" onMouseClicked="#deleteClickedRow" prefHeight="365.0" prefWidth="450.0" style="-fx-background-color: white;" stylesheets="@AddRecipe.css" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="38.0">
+            <TableView fx:id="ingredientTable" layoutX="30.0" layoutY="949.0" onMouseClicked="#deleteClickedRowIngredients" prefHeight="365.0" prefWidth="450.0" style="-fx-background-color: white;" stylesheets="@AddRecipe.css" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="38.0">
                <columns>
                   <TableColumn fx:id="ammountColumn" prefWidth="150.0" sortable="false" text="Amount" />
                   <TableColumn fx:id="unitColumn" prefWidth="150.0" sortable="false" text="Unit" />
@@ -96,6 +95,13 @@
             <Button fx:id="addImage" layoutX="886.0" layoutY="459.0" mnemonicParsing="false" text="Add Image" />
             <TextField fx:id="longDescriptionField" alignment="TOP_LEFT" layoutX="30.0" layoutY="1411.0" prefHeight="186.0" prefWidth="494.0" promptText="Add the full description of the recipe..." styleClass="text-field" stylesheets="@AddRecipe.css" />
             <Pane layoutX="731.0" layoutY="206.0" prefHeight="231.0" prefWidth="367.0" style="-fx-border-color: lightgrey;" styleClass="text-field" />
+            <ListView fx:id="tagView" layoutX="32.0" layoutY="552.0" onKeyPressed="#enterPressed" onMouseClicked="#deleteClickedRowTags" prefHeight="200.0" prefWidth="460.0" />
+            <TextField fx:id="newTag" layoutX="608.0" layoutY="683.0" onKeyPressed="#enterPressed" />
+            <Label layoutX="642.0" layoutY="641.0" prefHeight="35.0" prefWidth="81.0" styleClass="Style.css" text="new Tag">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </content>
