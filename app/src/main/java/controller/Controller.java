@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
@@ -24,7 +25,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
 
   /**
    * Used to make this class a singleton
@@ -143,7 +144,7 @@ public class Controller {
    */
   private User createUser(ResultSet rs, int id) {
     try {
-      return new User(id, rs.getString(1), rs.getString(2), Boolean.parseBoolean(rs.getString(3)));
+      return new User(Integer.valueOf(rs.getString("id")), rs.getString("username"), rs.getString("password"), Boolean.parseBoolean(rs.getString("isAdmin")));
     } catch (SQLException e) {
       return null;
     }
@@ -307,6 +308,26 @@ public class Controller {
     UsersView usersView = new UsersView();
     Scene usersScene = new Scene(usersView.getRoot());
     stage.setScene(usersScene);
+    stage.show();
+  }
+  /**
+   * Displays a window for adding new users.
+   */
+  public void displayNewUserView() {
+    AddNewUserView addNewUserView = new AddNewUserView();
+    Scene newUserScene = new Scene(addNewUserView.getRoot());
+    stage.setScene(newUserScene);
+    stage.show();
+  }
+
+  /**
+   * Displays a window for changing users.
+   */
+
+  public void displayNewUserView(int id, String username, String password, boolean isAdmin) {
+    AddNewUserView addNewUserView = new AddNewUserView(id, username, password, isAdmin);
+    Scene newUserScene = new Scene(addNewUserView.getRoot());
+    stage.setScene(newUserScene);
     stage.show();
   }
 
@@ -585,7 +606,7 @@ public class Controller {
   public ArrayList<User> getUsers() {
     ArrayList<User> usersArray = new ArrayList<User>();
     try {
-      String query = "SELECT username, password, isAdmin FROM User";
+      String query = "SELECT * FROM User";
       PreparedStatement stmt = this.db.prepareStatement(query);
       ResultSet rs = stmt.executeQuery();
 
@@ -638,5 +659,23 @@ public class Controller {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  public User getUserById(int id) {
+    try {
+      String query = "SELECT * FROM User WHERE id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, id);
+      ResultSet rs = stmt.executeQuery();
+      if (rs.next()) {
+        User user = createUser(rs, id);
+        return user;
+      } else {
+        return null;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }
