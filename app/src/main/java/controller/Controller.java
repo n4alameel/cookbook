@@ -27,7 +27,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -36,7 +36,6 @@ public class Controller {
   private ArrayList<Recipe> recipeList;
   private Stage stage;
   private model.Recipe recipe;
-
 
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
@@ -193,10 +192,10 @@ public class Controller {
 
       ArrayList<Comment> commentList = new ArrayList<>();
 
-//      while (rs.next()) {
-//        Comment comment = createRecipe(rs);
-//        commentList.add(comment);
-//      }
+      // while (rs.next()) {
+      // Comment comment = createRecipe(rs);
+      // commentList.add(comment);
+      // }
 
       return commentList;
 
@@ -220,7 +219,6 @@ public class Controller {
 
       resultSet.close();
       statement.close();
-      dbClose();
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -228,7 +226,6 @@ public class Controller {
 
     return data;
   }
-
 
   /**
    * Generates the list of all favourite recipes (as objects) of the active user
@@ -267,20 +264,23 @@ public class Controller {
   private Ingredient createIngredient(ResultSet ingRs) {
     try {
       Ingredient i = new Ingredient(Integer.parseInt(ingRs.getString(1)), ingRs.getString(2),
-              Integer.parseInt(ingRs.getString(3)), Integer.parseInt(ingRs.getString(4)));
+          Integer.parseInt(ingRs.getString(3)), Integer.parseInt(ingRs.getString(4)));
       return i;
     } catch (SQLException e) {
       return null;
     }
   }
+
   private Comment createComment(ResultSet comRs) {
     try {
-      Comment c = new Comment(Integer.parseInt(comRs.getString(1)), Integer.parseInt(comRs.getString(2)), Integer.parseInt(comRs.getString(3)), comRs.getString(4), comRs.getString(5));
+      Comment c = new Comment(Integer.parseInt(comRs.getString(1)), Integer.parseInt(comRs.getString(2)),
+          Integer.parseInt(comRs.getString(3)), comRs.getString(4), comRs.getString(5));
       return c;
     } catch (SQLException e) {
       return null;
     }
   }
+
   public ArrayList<Comment> getCommentListByRecipeID(int recipeId) {
     try {
       String query = "select C.id, C.user_id, C.recipe_id, C.text, U.username from comment C join user U on C.user_id = U.id where C.recipe_id = ?";
@@ -321,12 +321,11 @@ public class Controller {
     }
   }
 
-
   /**
    * Create a Recipe object from a MySQL query result.
    * 
-   * @recipeId       The recipe ID
-   * @param rs             The query result
+   * @recipeId The recipe ID
+   * @param rs The query result
    * @ingredientList The list of all ingredients used in the recipe
    * @return A Recipe object
    */
@@ -336,7 +335,8 @@ public class Controller {
       ArrayList<Ingredient> ingredientList = getIngListByRecipeID(recipeId);
       ArrayList<Comment> commentList = getCommentListByRecipeID(recipeId);
 
-      Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList, commentList);
+      Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
+          commentList);
       return recipe;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -555,7 +555,7 @@ public class Controller {
               shoppingList.list.remove(new Pair<Ingredient, Integer>(shoppingListIngredient, shoppingListQuantity));
               shoppingListQuantity += ingredientQuantity;
               Pair<Ingredient, Integer> updatedShoppingListItem = new Pair<>(shoppingListIngredient,
-                      shoppingListQuantity);
+                  shoppingListQuantity);
               shoppingList.list.add(updatedShoppingListItem);
               ingredientFound = true;
               break;
@@ -575,8 +575,10 @@ public class Controller {
       return null;
     }
   }
-  //TODO: need to add an Tag as well
-  public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList, ObservableList<Ingredient> ingredientObservableList) {
+
+  // TODO: need to add an Tag as well
+  public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList,
+      ObservableList<Ingredient> ingredientObservableList) {
     try {
       int recipe_id;
       int ingredientIterator = 0;
@@ -594,18 +596,21 @@ public class Controller {
       recipe_id = rs.getInt(1);
       ObservableList<Ingredient> ingredients = generateIngredient();
       for (Ingredient ingredient : ingredients) {
-        if(ingredientObservableList.get(ingredientIterator).getName().equals(ingredient.getName())) {
+        if (ingredientObservableList.get(ingredientIterator).getName().equals(ingredient.getName())) {
           query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
           stmt = this.db.prepareStatement(query);
           stmt.setInt(1, recipe_id);
           stmt.setInt(2, ingredient.getId());
           stmt.executeUpdate();
           ingredientIterator++;
-          System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId() );
+          System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
         }
-        /*System.out.println(ingredientIterator + recipe_id + "name: " + ingredient.getName() + " id: " + ingredient.getId() );
-        System.out.println( "ObservableList" + ingredientObservableList.get(ingredientIterator).getName());
-      */}
+        /*
+         * System.out.println(ingredientIterator + recipe_id + "name: " +
+         * ingredient.getName() + " id: " + ingredient.getId() );
+         * System.out.println( "ObservableList" +
+         * ingredientObservableList.get(ingredientIterator).getName());
+         */}
       for (int i : tagList) {
         query = "INSERT INTO recipe_has_tag (recipe_id, tag_id) VALUES (?, ?)";
         stmt = this.db.prepareStatement(query);
@@ -619,6 +624,7 @@ public class Controller {
       return false;
     }
   }
+
   public ObservableList<Tag> generateTag() {
     try {
       String query = "SELECT id, name FROM tag";
@@ -638,6 +644,7 @@ public class Controller {
       return null;
     }
   }
+
   public ObservableList<Unit> generateUnit() {
     try {
       String query = "SELECT id, name FROM unit";
@@ -670,11 +677,11 @@ public class Controller {
         stmt.executeUpdate();
       }
       return true;
-    }
-    catch (Exception e){
+    } catch (Exception e) {
       return false;
     }
   }
+
   public ObservableList<Ingredient> generateIngredient() {
     try {
       String query = "SELECT * FROM ingredient";
@@ -725,7 +732,7 @@ public class Controller {
   }
 
   public boolean newRecipe(String name, String description, String shortDescription,
-                           ArrayList<Integer> ingredientList) {
+      ArrayList<Integer> ingredientList) {
     try {
       int recipe_id;
       String query = "INSERT INTO recipe (name, shortDescription, description) VALUES (?, ?, ?)";
@@ -777,10 +784,12 @@ public class Controller {
   }
 
   /**
-   * Add or remove a recipe from the favourite list depending on if it is already or
+   * Add or remove a recipe from the favourite list depending on if it is already
+   * or
    * not.
    *
    * // @param recipeId The id of the recipe to add/delete.
+   * 
    * @return {@code true} if the recipe was not in the favourite list and was then
    *         added.
    */
@@ -797,8 +806,9 @@ public class Controller {
       return true;
     }
   }
-  public void postComment(String commentText,int recipeId ){
-    try{
+
+  public void postComment(String commentText, int recipeId) {
+    try {
 
       String query = "INSERT INTO comment (text, user_id, recipe_id) VALUES  (?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
@@ -806,26 +816,24 @@ public class Controller {
       stmt.setInt(2, this.getActiveUser().getId());
       stmt.setInt(3, recipeId);
       stmt.executeUpdate();
-    }
-    catch (SQLException sqlExcept){
+    } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
     }
   }
 
-  public void deleteCommentById(int commentId){
-    try{
+  public void deleteCommentById(int commentId) {
+    try {
       String query = "DELETE FROM comment WHERE id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setInt(1, commentId);
       stmt.executeUpdate();
-    }
-    catch (SQLException sqlExcept){
+    } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
     }
   }
 
   public void updateComment(Comment changedComment) {
-    try{
+    try {
       String query = "UPDATE comment set text = ? WHERE id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, changedComment.getText());
@@ -833,22 +841,20 @@ public class Controller {
       stmt.executeUpdate();
       System.out.println(changedComment);
       this.displayRecipeView(changedComment.getRecipeId());
-    }
-    catch (SQLException sqlExcept){
+    } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
     }
   }
-  public boolean newTag (String name ) throws SQLException {
+
+  public boolean newTag(String name) throws SQLException {
     try {
       String query = "INSERT INTO tag (name) VALUES (?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, name);
       stmt.executeUpdate();
       return true;
-    }
-    catch (Exception e){
+    } catch (Exception e) {
       return false;
     }
   }
 }
-
