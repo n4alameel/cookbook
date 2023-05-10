@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -9,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
@@ -26,8 +25,6 @@ public class WeeklyPlanListController {
 
   @FXML
   private VBox listBox;
-  @FXML
-  private Line separator;
   @FXML
   private VBox noListPane;
   @FXML
@@ -52,7 +49,6 @@ public class WeeklyPlanListController {
         System.out.println("Weekly list creation failed");
       }
     }
-
   }
 
   @FXML
@@ -69,8 +65,11 @@ public class WeeklyPlanListController {
 
   @FXML
   private void updateSelection() throws IOException {
-    selectionPane.setVisible(true);
     LocalDate selectedDate = daySelector.getValue();
+    if (selectedDate == null) {
+      return;
+    }
+    selectionPane.setVisible(true);
     Time time = new Time();
     weekNum = time.getWeekNumberFromDate(selectedDate);
     year = selectedDate.getYear();
@@ -86,11 +85,16 @@ public class WeeklyPlanListController {
   }
 
   public void updateWindow() {
+    listBox.getChildren().clear();
+    Line firstSeparator = new Line();
+    firstSeparator.setStartX(-100);
+    firstSeparator.setEndX(940);
+    listBox.getChildren().add(firstSeparator);
     ArrayList<WeeklyList> planslist = controller.getActiveUser().getWeeklyPlanList();
     for (WeeklyList list : planslist) {
       try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/WeeklyPlanRow.fxml"));
-        HBox root = (HBox) loader.load();
+        AnchorPane root = (AnchorPane) loader.load();
         WeeklyPlanRowController weeklyPlanRowController = (WeeklyPlanRowController) loader.getController();
         weeklyPlanRowController.setWeeklyList(list);
         weeklyPlanRowController.updateRow();

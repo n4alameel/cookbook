@@ -5,6 +5,9 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+/**
+ * Used to get a week number from a date and the other way around.
+ */
 public class Time {
   private GregorianCalendar calendar = new GregorianCalendar();
 

@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.EnumMap;
 
+/**
+ * A meal plan for a specific week that will contain several recipes for the 7
+ * days of the week.
+ */
 public class WeeklyList {
   public enum WeekDay {
     Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
@@ -17,6 +21,10 @@ public class WeeklyList {
   private LocalDate endDate;
   private LocalDate creationDate;
 
+  /**
+   * A map where the keys are the days of the week (from {@code enum WeekDay}) and
+   * the values are ArrayLists of recipes.
+   */
   private EnumMap<WeekDay, ArrayList<Recipe>> list = new EnumMap<WeekDay, ArrayList<Recipe>>(WeekDay.class);
 
   public WeeklyList(int weekNumber, int year, int id, LocalDate creationDate) {

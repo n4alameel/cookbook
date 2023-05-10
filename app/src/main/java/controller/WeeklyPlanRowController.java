@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import model.WeeklyList;
 
 public class WeeklyPlanRowController {
@@ -22,10 +23,23 @@ public class WeeklyPlanRowController {
   private Label mealsAmount;
   @FXML
   private Label creationDate;
+  @FXML
+  private Pane erasePane;
 
   @FXML
   private void eraseList() throws IOException {
+    erasePane.setVisible(true);
+  }
 
+  @FXML
+  private void confirmErase() throws IOException {
+    controller.deleteWeeklyList(this.weeklyList.getId());
+    controller.displayWeeklyPlanListView();
+  }
+
+  @FXML
+  private void cancelErase() throws IOException {
+    erasePane.setVisible(false);
   }
 
   @FXML

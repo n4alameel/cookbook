@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.EnumMap;
 import java.sql.ResultSet;
 
@@ -118,7 +120,8 @@ public class Controller {
   }
 
   /**
-   * Try to log in a user depending of given credentials.
+   * Try to log in a user depending of given credentials. It also loads all the
+   * necessary data from the database that are linked to that user.
    * 
    * @param username The user's username
    * @param password The user's password
@@ -221,6 +224,11 @@ public class Controller {
     }
   }
 
+  /**
+   * Generates the list of all weekly lists of active user from the database.
+   * 
+   * @return An ArrayList of WeeklyList objects
+   */
   public ArrayList<WeeklyList> generateWeeklyPlansFromDb() {
     try {
       String query = "select * from week_list where user_id = ?";
@@ -232,6 +240,8 @@ public class Controller {
       while (rs.next()) {
         weeklyPlanList.add(createWeeklyList(rs));
       }
+      Comparator<WeeklyList> comp = Comparator.comparing(WeeklyList::getWeekNumber);
+      Collections.sort(weeklyPlanList, comp);
       return weeklyPlanList;
     } catch (SQLException e) {
       e.printStackTrace(System.out);
@@ -239,6 +249,13 @@ public class Controller {
     }
   }
 
+  /**
+   * Creates a WeeklyList object from a SQL query result.
+   * 
+   * @param rs A query result. Must contain the values {@code id},
+   *           {@code weekNumber}, {@code year} and {@code creation_date}.
+   * @return A {@code WeeklyList} object
+   */
   private WeeklyList createWeeklyList(ResultSet rs) {
     try {
       int id = rs.getInt("id");
@@ -480,6 +497,23 @@ public class Controller {
       }
       return false;
     } catch (SQLException e) {
+      return false;
+    }
+  }
+
+  public boolean deleteWeeklyList(int listId) {
+    try {
+      String query = "delete from week_list where id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, listId);
+      stmt.executeUpdate();
+
+      this.activeUser.removeWeeklyList(listId);
+
+      return true;
+
+    } catch (SQLException e) {
+      System.out.println(e);
       return false;
     }
   }

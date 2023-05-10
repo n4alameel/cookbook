@@ -82,6 +82,16 @@ public class User {
     Collections.sort(this.weeklyPlanList, comp);
   }
 
+  public boolean removeWeeklyList(int listId) {
+    for (WeeklyList list : this.weeklyPlanList) {
+      if (list.getId() == listId) {
+        this.weeklyPlanList.remove(list);
+        return true;
+      }
+    }
+    return false;
+  }
+
   public boolean addRecipeToWeeklyList(Recipe recipe, int weekNumber, WeekDay day) {
     for (WeeklyList list : this.weeklyPlanList) {
       if (list.getWeekNumber() == weekNumber) {
