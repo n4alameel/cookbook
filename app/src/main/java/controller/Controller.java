@@ -241,10 +241,10 @@ public class Controller {
 
   private WeeklyList createWeeklyList(ResultSet rs) {
     try {
-      int id = rs.getInt(1);
-      int weekNumber = rs.getInt(2);
-      int year = rs.getInt(3);
-      LocalDate creationDate = rs.getDate(4).toLocalDate();
+      int id = rs.getInt("id");
+      int weekNumber = rs.getInt("weekNumber");
+      int year = rs.getInt("year");
+      LocalDate creationDate = rs.getDate("creation_date").toLocalDate();
       WeeklyList newWeekly = new WeeklyList(weekNumber, year, id, creationDate);
 
       EnumMap<WeeklyList.WeekDay, ArrayList<Recipe>> list = newWeekly.getList();

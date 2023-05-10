@@ -13,8 +13,8 @@ public class WeeklyList {
   private int id;
   private int weekNumber;
   private int year;
-  private Date startDate;
-  private Date endDate;
+  private LocalDate startDate;
+  private LocalDate endDate;
   private LocalDate creationDate;
 
   private EnumMap<WeekDay, ArrayList<Recipe>> list = new EnumMap<WeekDay, ArrayList<Recipe>>(WeekDay.class);
@@ -56,11 +56,11 @@ public class WeeklyList {
     return year;
   }
 
-  public Date getStartDate() {
+  public LocalDate getStartDate() {
     return startDate;
   }
 
-  public Date getEndDate() {
+  public LocalDate getEndDate() {
     return endDate;
   }
 

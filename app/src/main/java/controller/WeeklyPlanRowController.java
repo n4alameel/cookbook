@@ -28,6 +28,11 @@ public class WeeklyPlanRowController {
 
   }
 
+  @FXML
+  private void viewList() throws IOException {
+
+  }
+
   public void setWeeklyList(WeeklyList weeklyList) {
     this.weeklyList = weeklyList;
   }

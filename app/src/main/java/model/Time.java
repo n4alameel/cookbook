@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -12,14 +13,14 @@ public class Time {
     calendar.setMinimalDaysInFirstWeek(4);
   }
 
-  public Date getMondayFromWeekNumber(int weeknumber, int year) {
+  public LocalDate getMondayFromWeekNumber(int weeknumber, int year) {
     calendar.setWeekDate(year, weeknumber, GregorianCalendar.MONDAY);
-    return calendar.getTime();
+    return calendar.getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
   }
 
-  public Date getSundayFromWeekNumber(int weeknumber, int year) {
+  public LocalDate getSundayFromWeekNumber(int weeknumber, int year) {
     calendar.setWeekDate(year, weeknumber, GregorianCalendar.SUNDAY);
-    return calendar.getTime();
+    return calendar.getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
   }
 
   public int getWeekNumberFromDate(Date date) {
