@@ -31,8 +31,12 @@ public class HomeViewController {
     controller.displayFavouriteView();
   }
 
-  public void openSearchPage() throws  IOException {
+  public void goToMealPlansView() throws IOException {
+    controller.displayWeeklyPlanListView();
+  }
+
+  public void openSearchPage() throws IOException {
     controller.displaySearchView();
   }
 
-  }
+}

@@ -1,6 +1,11 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import model.WeeklyList.WeekDay;
 
 public class User {
   private int id;
@@ -8,8 +13,12 @@ public class User {
   private String password;
   private boolean isAdmin = false;
   private ArrayList<Recipe> favouriteList = new ArrayList<Recipe>();
+  private ArrayList<WeeklyList> weeklyPlanList = new ArrayList<WeeklyList>();
 
-  public User(int id, String username, String password, boolean isAdmin) {
+  public User(
+      int id, String username,
+      String password,
+      boolean isAdmin) {
     this.id = id;
     this.username = username;
     this.password = password;
@@ -56,43 +65,41 @@ public class User {
     this.favouriteList = favouriteList;
   }
 
-  /*
-   * public boolean newRecipe(String name, String description, String detail, int
-   * portion,
-   * ArrayList<Integer> ingredientList) {
-   * int recipe_id;
-   * Connection conn = new App().dbconnect();
-   * try {
-   * Statement stmt = conn.createStatement();
-   * stmt.
-   * executeUpdate("INSERT INTO recipe (name, shortDescription, description) VALUES ('"
-   * + name + "', '" + detail
-   * + "', '" + description + "')");
-   * ResultSet rs = stmt.executeQuery("SELECT id FROM recipe WHERE name = '" +
-   * name + "'");
-   * rs.next();
-   * recipe_id = rs.getInt("id");
-   * for (int i : ingredientList) {
-   * stmt.executeUpdate(
-   * "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES ('" +
-   * recipe_id + "', '" + i + "')");
-   * }
-   * conn.close();
-   * return true;
-   * } catch (SQLException e) {
-   * System.out.println(e.getMessage());
-   * }
-   * return false;
-   * }
-   */
-
-  public boolean createEmptyWeeklyList(int weeklyNumber, int isVisible) {
-    WeeklyList weekly = new WeeklyList(weeklyNumber, isVisible);
-    return true;
+  public ArrayList<WeeklyList> getWeeklyPlanList() {
+    return weeklyPlanList;
   }
 
-  public boolean addRecipeToWeeklyList(int recipe) {
-    return true;
+  public void setWeeklyPlanList(ArrayList<WeeklyList> weeklyPlanList) {
+    this.weeklyPlanList = weeklyPlanList;
+  }
+
+  /*************************************************************************/
+
+  public void createEmptyWeeklyList(int weekNumber, int year, int id) {
+    WeeklyList weekly = new WeeklyList(weekNumber, year, id, LocalDate.now());
+    this.weeklyPlanList.add(weekly);
+    Comparator<WeeklyList> comp = Comparator.comparing(WeeklyList::getWeekNumber);
+    Collections.sort(this.weeklyPlanList, comp);
+  }
+
+  public boolean removeWeeklyList(int listId) {
+    for (WeeklyList list : this.weeklyPlanList) {
+      if (list.getId() == listId) {
+        this.weeklyPlanList.remove(list);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean addRecipeToWeeklyList(Recipe recipe, int weekNumber, WeekDay day) {
+    for (WeeklyList list : this.weeklyPlanList) {
+      if (list.getWeekNumber() == weekNumber) {
+        list.addRecipeToDay(recipe, day);
+        return true;
+      }
+    }
+    return false;
   }
 
   public void addFavourite(Recipe recipe) {
@@ -131,89 +138,5 @@ public class User {
   public boolean eraseShoppingList(int weekNumber) {
     return true;
   }
-
-  /*
-   * public boolean sendMessage(int recipe, int receiverId, String string) {
-   * Connection conn = new App().dbconnect();
-   * try {
-   * Statement stmt = conn.createStatement();
-   * stmt.
-   * executeUpdate("INSERT INTO message (text, isRead, senderId, receiverId, recipeId) VALUES ('"
-   * + string
-   * + "', '0', '" + this.id + "', '" + receiverId + "', '" + recipe + "')");
-   * conn.close();
-   * return true;
-   * } catch (SQLException e) {
-   * System.out.println(e.getMessage());
-   * }
-   * return false;
-   * }
-   */
-
-  /*
-   * public boolean commentRecipe(int recipe, String string) {
-   * Connection conn = new App().dbconnect();
-   * try {
-   * Statement stmt = conn.createStatement();
-   * stmt.executeUpdate("INSERT INTO comment (text, user_id, recipe_id) VALUES ('"
-   * + string + "', '" + this.id + "', '"
-   * + recipe + "')");
-   * conn.close();
-   * return true;
-   * } catch (SQLException e) {
-   * System.out.println(e.getMessage());
-   * }
-   * return false;
-   * }
-   */
-
-  /*
-   * public void editComment(int id, String string) {
-   * Connection conn = new App().dbconnect();
-   * try {
-   * Statement stmt = conn.createStatement();
-   * stmt.executeUpdate("UPDATE comment SET text = '" + string + "' WHERE id = " +
-   * id);
-   * conn.close();
-   * } catch (SQLException e) {
-   * System.out.println(e.getMessage());
-   * }
-   * }
-   */
-
-  /*
-   * public boolean removeComment(int id) {
-   * Connection conn = new App().dbconnect();
-   * try {
-   * Statement stmt = conn.createStatement();
-   * stmt.executeUpdate("DELETE FROM comment WHERE id = " + id);
-   * conn.close();
-   * return true;
-   * } catch (SQLException e) {
-   * System.out.println(e.getMessage());
-   * }
-   * return false;
-   * }
-   */
-
-  /*
-   * public boolean isAuthorOfComment(int id) {
-   * Connection conn = new App().dbconnect();
-   * try {
-   * Statement stmt = conn.createStatement();
-   * ResultSet rs = stmt.executeQuery("SELECT * FROM comment WHERE id = " + id);
-   * rs.next();
-   * if (this.id == rs.getInt("user_id")) {
-   * conn.close();
-   * return true;
-   * }
-   * conn.close();
-   * return false;
-   * } catch (SQLException e) {
-   * System.out.println(e.getMessage());
-   * }
-   * return false;
-   * }
-   */
 
 }

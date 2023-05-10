@@ -3,11 +3,16 @@ package controller;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.EnumMap;
 import java.sql.ResultSet;
 import java.util.List;
 
@@ -16,6 +21,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Ingredient;
+import model.Recipe;
+import model.WeeklyList.WeekDay;
+
+import java.util.ArrayList;
 import javafx.util.Pair;
 import model.*;
 import org.w3c.dom.Text;
@@ -32,6 +42,7 @@ public class Controller {
   private static volatile Controller instance;
 
   private Connection db;
+  private Time time;
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
   private Stage stage;
@@ -43,6 +54,7 @@ public class Controller {
 
   private Controller() {
     this.db = dbconnect();
+    this.time = new Time();
     this.activeUser = null;
     this.recipeList = generateRecipeListFromDb();
     this.stage = null;
@@ -77,6 +89,10 @@ public class Controller {
     this.activeUser = activeUser;
   }
 
+  public Time getTime() {
+    return time;
+  }
+
   public void displaySearchView() {
     SearchView searchView = new SearchView();
     Scene searchScene = new Scene(searchView.getRoot());
@@ -109,8 +125,9 @@ public class Controller {
   }
 
   /**
-   * Try to log in a user depending on given credentials.
-   *
+   * Try to log in a user depending of given credentials. It also loads all the
+   * necessary data from the database that are linked to that user.
+   * 
    * @param username The user's username
    * @param password The user's password
    * @return true if the connection is done, false if the user doesn't exist in
@@ -132,6 +149,7 @@ public class Controller {
           return false;
         }
         this.activeUser.setFavouriteList(this.generateFavouriteListFromDb());
+        this.activeUser.setWeeklyPlanList(this.generateWeeklyPlansFromDb());
         return true;
       } else {
         return false;
@@ -253,6 +271,66 @@ public class Controller {
       e.printStackTrace(System.out);
       return null;
     }
+  }
+
+  /**
+   * Generates the list of all weekly lists of active user from the database.
+   * 
+   * @return An ArrayList of WeeklyList objects
+   */
+  public ArrayList<WeeklyList> generateWeeklyPlansFromDb() {
+    try {
+      String query = "select * from week_list where user_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
+      ResultSet rs = stmt.executeQuery();
+
+      ArrayList<WeeklyList> weeklyPlanList = new ArrayList<WeeklyList>();
+      while (rs.next()) {
+        weeklyPlanList.add(createWeeklyList(rs));
+      }
+      Comparator<WeeklyList> comp = Comparator.comparing(WeeklyList::getWeekNumber);
+      Collections.sort(weeklyPlanList, comp);
+      return weeklyPlanList;
+    } catch (SQLException e) {
+      e.printStackTrace(System.out);
+      return null;
+    }
+  }
+
+  /**
+   * Creates a WeeklyList object from a SQL query result.
+   * 
+   * @param rs A query result. Must contain the values {@code id},
+   *           {@code weekNumber}, {@code year} and {@code creation_date}.
+   * @return A {@code WeeklyList} object
+   */
+  private WeeklyList createWeeklyList(ResultSet rs) {
+    try {
+      int id = rs.getInt("id");
+      int weekNumber = rs.getInt("weekNumber");
+      int year = rs.getInt("year");
+      LocalDate creationDate = rs.getDate("creation_date").toLocalDate();
+      WeeklyList newWeekly = new WeeklyList(weekNumber, year, id, creationDate);
+
+      EnumMap<WeeklyList.WeekDay, ArrayList<Recipe>> list = newWeekly.getList();
+
+      String query = "select * from recipe R join day_list D on R.id = D.recipe_id where D.week_list_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, id);
+      ResultSet rs_ = stmt.executeQuery();
+
+      while (rs_.next()) {
+        WeekDay day = WeekDay.valueOf(rs_.getString("day"));
+        Recipe r = createRecipe(rs_);
+        list.get(day).add(r);
+      }
+      return newWeekly;
+    } catch (SQLException e) {
+      e.printStackTrace(System.out);
+      return null;
+    }
+
   }
 
   /**
@@ -405,6 +483,13 @@ public class Controller {
     secondaryStage.show();
   }
 
+  public void displayWeeklyPlanListView() {
+    WeeklyPlanListView weeklyPlanListView = new WeeklyPlanListView();
+    Scene weeklyPlanListScene = new Scene(weeklyPlanListView.getRoot());
+    stage.setScene(weeklyPlanListScene);
+    stage.show();
+  }
+
   /**
    * Closes the app.
    */
@@ -476,16 +561,52 @@ public class Controller {
     }
   }
 
-  public boolean createEmptyWeeklyList(int weeklyNumber, int isVisible) {
+  public boolean createEmptyWeeklyList(int weekNumber, int year) {
     try {
-      String query = "INSERT INTO week_list (weekNumber, isVisible, user_id) VALUES (?, ?, ?)";
+      int userId = this.activeUser.getId();
+      String query = "select id from week_list where weekNumber=? and user_id=? and year=?";
       PreparedStatement stmt = this.db.prepareStatement(query);
-      stmt.setInt(1, weeklyNumber);
-      stmt.setInt(2, isVisible);
-      stmt.setInt(3, this.activeUser.getId());
-      stmt.executeUpdate();
-      return true;
+      stmt.setInt(1, weekNumber);
+      stmt.setInt(2, userId);
+      stmt.setInt(3, year);
+      ResultSet rs = stmt.executeQuery();
+
+      if (!rs.next()) {
+        String query2 = "INSERT INTO week_list (weekNumber, user_id, year, creation_date) VALUES (?, ?, ?, ?)";
+        PreparedStatement stmt2 = this.db.prepareStatement(query2);
+        stmt2.setInt(1, weekNumber);
+        stmt2.setInt(2, userId);
+        stmt2.setInt(3, year);
+        java.sql.Date sqlDate = java.sql.Date.valueOf(LocalDate.now());
+        stmt2.setDate(4, sqlDate);
+        stmt2.executeUpdate();
+
+        rs = stmt.executeQuery();
+
+        if (rs.next()) {
+          this.activeUser.createEmptyWeeklyList(weekNumber, year, rs.getInt(1));
+          return true;
+        }
+      }
+      return false;
     } catch (SQLException e) {
+      return false;
+    }
+  }
+
+  public boolean deleteWeeklyList(int listId) {
+    try {
+      String query = "delete from week_list where id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, listId);
+      stmt.executeUpdate();
+
+      this.activeUser.removeWeeklyList(listId);
+
+      return true;
+
+    } catch (SQLException e) {
+      System.out.println(e);
       return false;
     }
   }
