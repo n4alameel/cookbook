@@ -23,8 +23,9 @@ public class Time {
     return calendar.getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
   }
 
-  public int getWeekNumberFromDate(Date date) {
-    calendar.setTime(date);
+  public int getWeekNumberFromDate(LocalDate date) {
+    Date date_ = java.util.Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    calendar.setTime(date_);
     return calendar.get(GregorianCalendar.WEEK_OF_YEAR);
   }
 

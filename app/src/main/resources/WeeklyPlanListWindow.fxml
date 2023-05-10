@@ -167,7 +167,7 @@
                      </padding>
                   </VBox>
                   <Button alignment="CENTER" layoutX="554.0" layoutY="286.0" mnemonicParsing="false" onAction="#toggleNewWeeklyPane" text="New Weekly List" AnchorPane.bottomAnchor="60.0" />
-                  <VBox fx:id="noListPane" layoutX="533.0" layoutY="124.0" prefHeight="200.0" prefWidth="145.0" visible="false">
+                  <VBox fx:id="noListPane" layoutX="533.0" layoutY="124.0" prefHeight="200.0" prefWidth="145.0" visible="false" AnchorPane.topAnchor="124.0">
                      <children>
                         <Label maxWidth="1.7976931348623157E308" prefHeight="103.0" prefWidth="157.0" text="Wow, that is a big blank page !" textAlignment="CENTER" wrapText="true">
                            <font>
@@ -181,11 +181,11 @@
                         </Label>
                      </children>
                   </VBox>
-                  <Pane fx:id="newWeeklyPane" layoutX="477.0" layoutY="117.0" prefHeight="251.0" prefWidth="246.0" visible="false">
+                  <Pane fx:id="newWeeklyPane" layoutX="477.0" layoutY="117.0" prefHeight="251.0" prefWidth="246.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.bottomAnchor="99.0">
                      <children>
                         <Label layoutX="8.0" layoutY="14.0" prefHeight="34.0" prefWidth="230.0" text="Pick a week by selecting any date within that week :" wrapText="true" />
-                        <DatePicker fx:id="daySelector" layoutX="36.0" layoutY="57.0" prefHeight="27.0" prefWidth="175.0" />
-                        <Pane fx:id="selectionPane" layoutX="10.0" layoutY="94.0" prefHeight="108.0" prefWidth="226.0">
+                        <DatePicker fx:id="daySelector" layoutX="36.0" layoutY="57.0" onAction="#updateSelection" prefHeight="27.0" prefWidth="175.0" showWeekNumbers="true" />
+                        <Pane fx:id="selectionPane" layoutX="10.0" layoutY="94.0" prefHeight="108.0" prefWidth="226.0" visible="false">
                            <children>
                               <Label layoutX="2.0" layoutY="6.0" text="Your selection :" />
                               <Label fx:id="weekSelected" layoutX="14.0" layoutY="30.0" text="Week n° X" />

@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javafx.fxml.FXML;
@@ -11,10 +13,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
+import model.Time;
 import model.WeeklyList;
 
 public class WeeklyPlanListController {
   Controller controller = Controller.getInstance();
+
+  private int weekNum;
+  private int year;
+  private LocalDate startDay;
+  private LocalDate endDay;
 
   @FXML
   private VBox listBox;
@@ -25,7 +33,7 @@ public class WeeklyPlanListController {
   @FXML
   private Pane newWeeklyPane;
   @FXML
-  private DatePicker dateSelector;
+  private DatePicker daySelector;
   @FXML
   private Pane selectionPane;
   @FXML
@@ -35,16 +43,41 @@ public class WeeklyPlanListController {
 
   @FXML
   private void eventCreateWeeklyList() throws IOException {
-    int weekNumber = Integer.parseInt(weekSelected.getText());
-    int year = 2023;
-    controller.createEmptyWeeklyList(weekNumber, year);
-    // To add : error output
-    updateWindow();
+    if (selectionPane.isVisible()) {
+      if (controller.createEmptyWeeklyList(weekNum, year)) {
+        System.out.println("New Weekly list created for week n° " + weekNum);
+        toggleNewWeeklyPane();
+        updateWindow();
+      } else {
+        System.out.println("Weekly list creation failed");
+      }
+    }
+
   }
 
   @FXML
   private void toggleNewWeeklyPane() throws IOException {
+    if (newWeeklyPane.isVisible()) {
+      newWeeklyPane.setVisible(false);
+      selectionPane.setVisible(false);
+      daySelector.setValue(null);
+    } else {
+      newWeeklyPane.setVisible(true);
+    }
 
+  }
+
+  @FXML
+  private void updateSelection() throws IOException {
+    selectionPane.setVisible(true);
+    LocalDate selectedDate = daySelector.getValue();
+    Time time = new Time();
+    weekNum = time.getWeekNumberFromDate(selectedDate);
+    year = selectedDate.getYear();
+    startDay = time.getMondayFromWeekNumber(weekNum, year);
+    endDay = time.getSundayFromWeekNumber(weekNum, year);
+    weekSelected.setText("Week n° " + weekNum);
+    dayRange.setText("From " + startDay.toString() + " to " + endDay.toString());
   }
 
   @FXML
