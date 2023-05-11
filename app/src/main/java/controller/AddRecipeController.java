@@ -11,13 +11,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import model.Ingredient;
-import model.IngredientMock;
-import model.Tag;
-import model.Unit;
+import model.*;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddRecipeController implements Initializable {
@@ -57,36 +55,55 @@ public class AddRecipeController implements Initializable {
     private ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
     private String addUnit;
     private int unit_id;
-
+    private ArrayList<Recipe> recipes = controller.getRecipeList();
+//TODO: need a way to refresh everything (Taglist and recipelist after posting a recipe)
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
+        boolean uniqueName = true;
         try {
+            System.out.println(recipes);
+            String name = nameField.getText();
+            String shortDescription = shortDescriptionField.getText();
+            String longDescription = longDescriptionField.getText();
+            for (Recipe recipe : recipes){
+                if (name.equalsIgnoreCase(recipe.getName())){
+                    System.out.println("changed");
+                    uniqueName = false;
+                    break;
+                }
+            }
+            //ingredients are added and checked if they are double
+            //is checking if the Name exists already enough of a check or do i have to get tags in as well?
             ObservableList<IngredientMock> ingredientMock = ingredientTable.getItems();
-            //adds Ingredients coresponding to the unit_id that exists in the database, TODO: if the tableview has the same element twice i need to filter it.
             for (IngredientMock ingredientMock1 : ingredientMock) {
-                String name = ingredientMock1.getName();
+                String ingredientMock1Name = ingredientMock1.getName();
                 int quantity = (ingredientMock1.getQuantity());
                 for (Unit unit : unitArray) {
                     if (unit.getName().equals(ingredientMock1.getUnit_id())) {
                         unit_id = unit.getId();
                     }
                 }
-                ingredientList.add(new Ingredient(name, quantity, unit_id));
+                ingredientList.add(new Ingredient(ingredientMock1Name, quantity, unit_id));
             }
 
             for (String tagName : tagView.getItems()) {
                 for (Tag tag : tagsArray) {
                     if (tagName == (tag.getName())) {
                         selectBoxTagInts.add(tag.getId());
+                        //might break for speed
                     }
                 }
             }
-            //selectBoxTagInts for loop for reading the elements out of the List
-            String name = nameField.getText();
-            String shortDescription = shortDescriptionField.getText();
-            String longDescription = longDescriptionField.getText();
-            controller.newIngredient(ingredientList);
-            controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList);
+            if(uniqueName) {
+                //selectBoxTagInts for loop for reading the elements out of the List
+                controller.newIngredient(ingredientList);
+                controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList);
+                System.out.println("new Recipe created");
+                System.out.println(uniqueName);
+            }
+            else{
+                System.out.println("Please select a new Name");
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -96,6 +113,7 @@ public class AddRecipeController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         //tagselection get the tags out of the List and put them into the choicebox
+
         for (Tag tag : tagsArray) {
             if(tag.getUser_id() == -1 || tag.getUser_id() == controller.getActiveUser().getId())
             tagSelection.getItems().addAll(tag.getName());
