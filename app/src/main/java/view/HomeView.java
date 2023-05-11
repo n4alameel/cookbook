@@ -1,5 +1,6 @@
 package view;
 
+import controller.HomeViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -11,7 +12,11 @@ public class HomeView {
   public HomeView() {
     // setting the scene
     try {
-      root = FXMLLoader.load(getClass().getResource("/HomeWindow.fxml"));
+      FXMLLoader loader =  new FXMLLoader(getClass().getResource("/HomeWindow.fxml"));
+      root = (Parent) loader.load();
+      HomeViewController homeViewController = loader.getController();
+      homeViewController.showFavourites();
+      homeViewController.showRecommondations();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
