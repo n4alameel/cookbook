@@ -1,29 +1,38 @@
 package model;
 
 import java.util.ArrayList;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-
-import model.Ingredient;
 
 public class Recipe {
   private int id;
   private String name;
   private String description;
-  private String detail;
+  private String shortDescription;
   private int portions = 2;
   private ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+  private ArrayList<Comment> commentList = new ArrayList<Comment>();
   private ArrayList<Tag> tagList = new ArrayList<Tag>();
 
-  public Recipe(int id, String name, String description, String detail, ArrayList<Ingredient> ingredientList) {
+  public Recipe(int id, String name, String description, String shortDescription,
+      ArrayList<Ingredient> ingredientList, ArrayList<Comment> commentList) {
     this.id = id;
     this.name = name;
     this.description = description;
-    this.detail = detail;
+    this.shortDescription = shortDescription;
     this.ingredientList = ingredientList;
+    this.commentList = commentList;
+  }
+
+  public int getPortions() {
+    return portions;
+  }
+
+  public void setPortions(int portions) {
+    this.portions = portions;
+  }
+
+  public Recipe(String name, String description) {
+    this.name = name;
+    this.description = description;
   }
 
   public int getId() {
@@ -50,12 +59,12 @@ public class Recipe {
     this.description = description;
   }
 
-  public String getDetail() {
-    return detail;
+  public String getShortDescription() {
+    return shortDescription;
   }
 
-  public void setDetail(String detail) {
-    this.detail = detail;
+  public void setShortDescription(String shortDescription) {
+    this.shortDescription = shortDescription;
   }
 
   public ArrayList<Ingredient> getIngredientList() {
@@ -70,9 +79,18 @@ public class Recipe {
     return true;
   }
 
+  public ArrayList<Comment> getCommentList() {
+    return commentList;
+  }
+
+  public void setCommentList(ArrayList<Comment> commentList) {
+    this.commentList = commentList;
+  }
+
   @Override
   public String toString() {
-    return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", detail=" + detail + "]";
+    return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", shortDescription="
+        + shortDescription + "]";
   }
 
 }

@@ -1,15 +1,29 @@
 package view;
 
-import controller.Controller;
+import controller.RecipeController;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import model.Recipe;
 
+import java.io.IOException;
 
 public class RecipeView {
 
-    private Parent root;
-    public RecipeView(Controller controller, ActiveView activeView) {
+  private Parent root;
+
+  public RecipeView(int selectedRecipeId) {
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeWindow.fxml"));
+      root = loader.load();
+      RecipeController recipeController = loader.getController();
+      recipeController.setRecipe(selectedRecipeId);
+      recipeController.updatePage();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
-    public Parent getRoot(){
-        return this.root;
-    }
+  }
+
+  public Parent getRoot() {
+    return this.root;
+  }
 }
