@@ -122,14 +122,17 @@ public class AddRecipeController implements Initializable {
      * @param
      */
     public void setTags(ActionEvent event) {
+        boolean unique = true;
         String addedTag = tagSelection.getValue();
-        tagView.getItems().add(addedTag);
-        for (Tag tag : tagsArray) {
-            if (tag.getName().equals(addedTag)) {
-                tagID = tag.getId();
+        for (String tag : tagView.getItems()) {
+            if (tag.equals(addedTag)) {
+                unique = false;
+                break;
             }
         }
-        //selectBoxTagInts.add(tagID);
+        if (unique) {
+            tagView.getItems().add(addedTag);
+        }
     }
 
     /**
@@ -139,11 +142,6 @@ public class AddRecipeController implements Initializable {
      */
     public void setUnit(ActionEvent event) {
         addUnit = unitSelection.getValue();
-        for (Unit unit : unitArray) {
-            if (unit.getName().equals(addUnit)) {
-                unitID = unit.getId();
-            }
-        }
     }
 
     /**
@@ -204,25 +202,25 @@ public class AddRecipeController implements Initializable {
         boolean viewUnique = true;
         if (keyEvent.getCode() == KeyCode.ENTER) {
             String addTag = newTag.getText();
-            for(String name : tagView.getItems()){
-                if(name.equals(addTag)){
+            for (String name : tagView.getItems()) {
+                if (name.equals(addTag)) {
                     viewUnique = false;
                     unique = false;
                     break;
                 }
             }
-                for (Tag tag : tagsArray) {
-                    if (tag.getName().equals(addTag) && viewUnique) {
-                        tagView.getItems().add(addTag);
-                        System.out.println("tag exists already");
-                        unique = false;
-                        break;
-                    }
-                }
-                if (unique && viewUnique) {
-                    controller.newTag(addTag);
+            for (Tag tag : tagsArray) {
+                if (tag.getName().equals(addTag) && viewUnique) {
                     tagView.getItems().add(addTag);
+                    System.out.println("tag exists already");
+                    unique = false;
+                    break;
                 }
+            }
+            if (unique && viewUnique) {
+                controller.newTag(addTag);
+                tagView.getItems().add(addTag);
+            }
         }
         tagsArray = controller.generateTag();
     }
