@@ -601,6 +601,11 @@ public class Controller {
       stmt.setInt(1, listId);
       stmt.executeUpdate();
 
+      query = "delete from day_list where week_list_id = ?";
+      stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, listId);
+      stmt.executeUpdate();
+
       this.activeUser.removeWeeklyList(listId);
 
       return true;
