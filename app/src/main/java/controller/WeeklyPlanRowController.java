@@ -44,7 +44,7 @@ public class WeeklyPlanRowController {
 
   @FXML
   private void viewList() throws IOException {
-
+    controller.displayWeeklyPlanView(weeklyList);
   }
 
   public void setWeeklyList(WeeklyList weeklyList) {

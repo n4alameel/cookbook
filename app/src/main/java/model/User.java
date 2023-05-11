@@ -102,6 +102,16 @@ public class User {
     return false;
   }
 
+  public boolean deleteRecipefromWeeklyList(Recipe recipe, int weekId, WeekDay day) {
+    for (WeeklyList list : this.weeklyPlanList) {
+      if (list.getId() == weekId) {
+        list.getList().get(day).remove(recipe);
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void addFavourite(Recipe recipe) {
     favouriteList.add(recipe);
   }
