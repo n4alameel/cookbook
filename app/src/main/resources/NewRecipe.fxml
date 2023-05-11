@@ -60,7 +60,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TextField fx:id="shortDiscriptionField" alignment="TOP_LEFT" layoutX="32.0" layoutY="265.0" prefHeight="219.0" prefWidth="513.0" promptText="Write 2-3 sentences for  the short description..." styleClass="text-field" stylesheets="@AddRecipe.css" AnchorPane.bottomAnchor="1286.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="640.0" AnchorPane.topAnchor="265.0" />
+            <TextField fx:id="shortDescriptionField" alignment="TOP_LEFT" layoutX="32.0" layoutY="265.0" prefHeight="219.0" prefWidth="513.0" promptText="Write 2-3 sentences for  the short description..." styleClass="text-field" stylesheets="@AddRecipe.css" AnchorPane.bottomAnchor="1286.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="640.0" AnchorPane.topAnchor="265.0" />
             <Label layoutX="32.0" layoutY="798.0" prefHeight="35.0" prefWidth="553.0" text="Ingredients" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="-23.0">
                <font>
                   <Font size="24.0" />

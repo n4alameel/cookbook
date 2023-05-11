@@ -37,7 +37,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -759,7 +759,7 @@ public class Controller {
 
   public ObservableList<Tag> generateTag() {
     try {
-      String query = "SELECT id, name FROM tag";
+      String query = "SELECT id, name, user_id FROM tag";
       Statement stmt = this.db.createStatement();
 
       ResultSet rs = stmt.executeQuery(query);
@@ -768,7 +768,8 @@ public class Controller {
       while (rs.next()) {
         int id = rs.getInt("id");
         String name = rs.getString("name");
-        tags.add(new Tag(id, name));
+        int user_id = rs.getInt("user_id");
+        tags.add(new Tag(id, name, user_id));
       }
 
       return tags;
@@ -978,11 +979,19 @@ public class Controller {
     }
   }
 
+  /**
+   *
+   * @param name name of the Tag
+   * @user_id is fetched from active user so careful to not use this method if you don't want the tag to be set to the active User
+   * @throws SQLException
+   */
   public boolean newTag(String name) throws SQLException {
     try {
-      String query = "INSERT INTO tag (name) VALUES (?)";
+      int user_id = activeUser.getId();
+      String query = "INSERT INTO tag (name, user_id) VALUES (?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, name);
+      stmt.setInt(2, user_id);
       stmt.executeUpdate();
       return true;
     } catch (Exception e) {
