@@ -17,42 +17,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchViewController {
-    Controller controller = Controller.getInstance();
 
-    @FXML
-    private TextField searchField;
+    Query searchQuery;
+
+    SearchViewController(){}
+
+    Controller controller = Controller.getInstance();
 
     @FXML
     private GridPane searchGrid;
 
-    Query searchQuery = new Query();
 
-    public void searchBtnClicked() throws IOException {
-        String query = searchQuery.getQuery();
+   /* TO DO
+        - When textField is empty "show no results" or give smth like a tag line "Enter something"....
+        - Extend for US-07/08 to search ingredients/tags
+        - Fix other Windows
+        - Give CSS.
+    */
 
-        if (!query.isEmpty()){
-            System.out.println(query + "is in here");
-        } else {
-            System.out.println("No query here");
-        }
-
-        searchField.setText(query);
-
-        System.out.println(query);
+    public void searchBtnClicked(Query queryModel, GridPane searchGrid) throws IOException {
+        String query = queryModel.getQuery();
         List<String> data = controller.selectDataFromDatabase();
         ArrayList<Recipe> recipeList = controller.getRecipeList();
 
-        System.out.println(searchField.getText());
+        //        System.out.println(searchField.getText());
         searchGrid.getChildren().clear();
 
         int i = 0;
         int col = 0;
         int row = 0;
         for (String value : data) {
-            if (value.contentEquals(query) || value.equalsIgnoreCase(query)) {
-                System.out.println(data.get(i));
-                System.out.println(recipeList.get(i));
-
+            if (value.contains(query) || value.toLowerCase().contains(query)) {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
                     Pane root = loader.load();
@@ -70,24 +65,6 @@ public class SearchViewController {
             }
             i++;
         }
-    }
-
-    public void searchEnter(KeyEvent keyEvent) throws IOException {
-        if (keyEvent.getCode() == KeyCode.ENTER) {
-            searchBtnClicked();
-        }
-    }
-
-    public void openAllRecipes() throws IOException {
-        controller.displayBrowserView();
-    }
-
-    public void goToHomePage() throws IOException {
-        controller.displayHomeView();
-    }
-
-    public void openNewRecipe() throws IOException {
-        controller.displayNewRecipeView();
     }
 
 }

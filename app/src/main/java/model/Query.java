@@ -2,7 +2,14 @@ package model;
 
 public class Query {
 
-    String query = new String();
+    String query;
+
+    public Query(){}
+
+    public Query(String query) {
+        this.query = query;
+    }
+
 
     public String getQuery() {
         return query;

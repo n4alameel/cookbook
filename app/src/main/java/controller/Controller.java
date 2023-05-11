@@ -26,6 +26,7 @@ import view.*;
 
 public class Controller {
 
+
   /**
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
@@ -47,13 +48,14 @@ public class Controller {
     return recipeList;
   }
 
-  private Controller() {
+  protected Controller() {
     this.db = dbconnect();
     this.activeUser = null;
     this.recipeList = generateRecipeListFromDb();
     this.stage = null;
     this.recipe = null;
   }
+
 
   /**
    * Get the instance of this class, or create it if it does not exist.
@@ -81,13 +83,6 @@ public class Controller {
 
   public void setActiveUser(model.User activeUser) {
     this.activeUser = activeUser;
-  }
-
-  public void displaySearchView() {
-    SearchView searchView = new SearchView();
-    Scene searchScene = new Scene(searchView.getRoot());
-    stage.setScene(searchScene);
-    stage.show();
   }
 
   /**
