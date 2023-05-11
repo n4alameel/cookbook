@@ -245,7 +245,8 @@ public class Controller {
       while (rs.next()) {
         int id = rs.getInt("id");
         String name = rs.getString("name");
-        tags.add(new Tag(id, name));
+        int user_id = rs.getInt("user_id");
+        tags.add(new Tag(id, name, user_id));
       }
 
       return tags;

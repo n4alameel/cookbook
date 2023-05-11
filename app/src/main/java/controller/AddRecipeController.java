@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
@@ -26,9 +25,9 @@ public class AddRecipeController implements Initializable {
     @FXML
     private TextField nameField;
     @FXML
-    private TextField shortDiscriptionField;
+    private TextField shortDescriptionField;
     @FXML
-    private TextField longDescriptionArea;
+    private TextField longDescriptionField;
     @FXML
     private ListView<String> tagView;
     @FXML
@@ -84,10 +83,10 @@ public class AddRecipeController implements Initializable {
             }
             //selectBoxTagInts for loop for reading the elements out of the List
             String name = nameField.getText();
-            String shortDiscription = shortDiscriptionField.getText();
-            String longDescription = longDescriptionArea.getText();
+            String shortDescription = shortDescriptionField.getText();
+            String longDescription = longDescriptionField.getText();
             controller.newIngredient(ingredientList);
-            controller.newRecipe(name, longDescription, shortDiscription, selectBoxTagInts, ingredientList);
+            controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -98,6 +97,7 @@ public class AddRecipeController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         //tagselection get the tags out of the List and put them into the choicebox
         for (Tag tag : tagsArray) {
+            if(tag.getUser_id() == -1 || tag.getUser_id() == controller.getActiveUser().getId())
             tagSelection.getItems().addAll(tag.getName());
         }
         tagSelection.setOnAction(this::setTags);
