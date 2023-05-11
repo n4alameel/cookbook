@@ -92,9 +92,9 @@ public class User {
     return false;
   }
 
-  public boolean addRecipeToWeeklyList(Recipe recipe, int weekNumber, WeekDay day) {
+  public boolean addRecipeToWeeklyList(Recipe recipe, int weekId, WeekDay day) {
     for (WeeklyList list : this.weeklyPlanList) {
-      if (list.getWeekNumber() == weekNumber) {
+      if (list.getId() == weekId) {
         list.addRecipeToDay(recipe, day);
         return true;
       }

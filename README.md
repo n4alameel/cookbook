@@ -58,9 +58,9 @@ to welcome me
 - [X] 2. As a user I want to be able to log in to the application so that it is personalised
 for me
 - [X] 3. As a user I want to see my favourite recipes for quick access
-- [ ] 4. As a user I want to be able to see the list of weekly dinner lists
+- [X] 4. As a user I want to be able to see the list of weekly dinner lists
 - [ ] 5. As a user I should be able to select and display the dinner list for a week
-- [ ] 6. As a user I should be able to search for a recipe by name to see it
+- [X] 6. As a user I should be able to search for a recipe by name to see it
 - [ ] 7. As a user I should be able to search for a recipe by one or more ingredients
 to see it
 - [ ] 8. As a user I should be able to search for a recipe by one or more tags to
@@ -75,9 +75,9 @@ and detailed description to a recipe
 - [X] 13. As a user I want to see the selected recipe with formatting (bold and
 larger size for name, italics for short description, lists for ingredients
 and detailed description) for easy viewing
-- [ ] 14. As a user I should be able to add comments to a recipe for everyone to
+- [X] 14. As a user I should be able to add comments to a recipe for everyone to
 see to highlight something important with it
-- [ ] 15. As a user I must be able to edit and remove comments I make on recipes
+- [X] 15. As a user I must be able to edit and remove comments I make on recipes
 if I make a mistake
 - [ ] 16. As a user I should be able to adjust the number of persons a recipe is
 for by even numbers so that I get the correct amount of ingredients
@@ -91,9 +91,9 @@ easy to find later
 - [X] 20. As a user I should be able to “star” a recipe as one of my favourites
 - [X] 21. As a user I must be able to “unstar” a recipe to remove it from my list
 of favourites
-- [ ] 22. As a user I want to be able to create weekly dinner lists for several weeks
+- [X] 22. As a user I want to be able to create weekly dinner lists for several weeks
 so that I can display them later
-- [ ] 23. As a user I want to add dishes to created weekly dinner lists (one, two
+- [X] 23. As a user I want to add dishes to created weekly dinner lists (one, two
 or more dishes per day)
 - [ ] 24. As a user I want to be able to generate a shopping list with what I need
 to by for a week

@@ -594,10 +594,22 @@ public class Controller {
     }
   }
 
+  /**
+   * Deletes a Weekly list from the database and the user list. It also deletes
+   * the corresponding day lists from the database.
+   * 
+   * @param listId The id of the list to delete
+   * @return true if successful
+   */
   public boolean deleteWeeklyList(int listId) {
     try {
-      String query = "delete from week_list where id = ?";
+      String query = "delete from day_list where week_list_id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, listId);
+      stmt.executeUpdate();
+
+      query = "delete from week_list where id = ?";
+      stmt = this.db.prepareStatement(query);
       stmt.setInt(1, listId);
       stmt.executeUpdate();
 
@@ -611,26 +623,25 @@ public class Controller {
     }
   }
 
-  public boolean addRecipeToWeeklyList(int weeklyId, String date, Recipe recipe) {
+  /**
+   * Adds a recipe to a weekly list in the database and in the user's list.
+   * 
+   * @param weekId The id of the weekly list in which we add the recipe.
+   * @param day    The day for which we add the recipe.
+   * @param recipe the recipe to add.
+   * @return true if successful.
+   */
+  public boolean addRecipeToWeeklyList(int weekId, WeekDay day, Recipe recipe) {
     try {
-      String query = "INSERT INTO day_list (date, week_list_id) VALUES (?, ?)";
+      String query = "INSERT INTO day_list (week_list_id, day, recipe_id) VALUES (?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
-      stmt.setDate(1, java.sql.Date.valueOf(date));
-      stmt.setInt(2, weeklyId);
+      stmt.setInt(1, weekId);
+      stmt.setString(2, day.toString());
+      stmt.setInt(3, recipe.getId());
       stmt.executeUpdate();
 
-      query = "SELECT id FROM day_list WHERE date = ? AND week_list_id = ?";
-      stmt = this.db.prepareStatement(query);
-      stmt.setDate(1, java.sql.Date.valueOf(date));
-      stmt.setInt(2, weeklyId);
-      ResultSet rs = stmt.executeQuery();
-      rs.next();
+      this.activeUser.addRecipeToWeeklyList(recipe, weekId, day);
 
-      query = "INSERT INTO day_list_has_recipe (recipe_id, day_list_id) VALUES (?, ?)";
-      stmt = this.db.prepareStatement(query);
-      stmt.setInt(1, recipe.getId());
-      stmt.setLong(2, rs.getInt(1));
-      stmt.executeUpdate();
       return true;
     } catch (SQLException e) {
       System.out.println(e);
