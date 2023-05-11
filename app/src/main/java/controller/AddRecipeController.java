@@ -28,7 +28,7 @@ public class AddRecipeController implements Initializable {
     @FXML
     private TextField shortDiscriptionField;
     @FXML
-    private TextArea longDescriptionArea;
+    private TextField longDescriptionArea;
     @FXML
     private ListView<String> tagView;
     @FXML
@@ -57,8 +57,6 @@ public class AddRecipeController implements Initializable {
     private ObservableList<Unit> unitArray = controller.generateUnit();
     private ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
     private String addUnit;
-    private Integer unitID;
-    private Integer tagID;
     private int unit_id;
 
     //saveRecipe button
