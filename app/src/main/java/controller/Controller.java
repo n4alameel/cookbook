@@ -603,12 +603,12 @@ public class Controller {
    */
   public boolean deleteWeeklyList(int listId) {
     try {
-      String query = "delete from week_list where id = ?";
+      String query = "delete from day_list where week_list_id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setInt(1, listId);
       stmt.executeUpdate();
 
-      query = "delete from day_list where week_list_id = ?";
+      query = "delete from week_list where id = ?";
       stmt = this.db.prepareStatement(query);
       stmt.setInt(1, listId);
       stmt.executeUpdate();
