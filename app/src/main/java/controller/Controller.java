@@ -611,26 +611,17 @@ public class Controller {
     }
   }
 
-  public boolean addRecipeToWeeklyList(int weeklyId, String date, Recipe recipe) {
+  public boolean addRecipeToWeeklyList(int weekId, WeekDay day, Recipe recipe) {
     try {
-      String query = "INSERT INTO day_list (date, week_list_id) VALUES (?, ?)";
+      String query = "INSERT INTO day_list (week_list_id, day, recipe_id) VALUES (?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
-      stmt.setDate(1, java.sql.Date.valueOf(date));
-      stmt.setInt(2, weeklyId);
+      stmt.setInt(1, weekId);
+      stmt.setString(2, day.toString());
+      stmt.setInt(3, recipe.getId());
       stmt.executeUpdate();
 
-      query = "SELECT id FROM day_list WHERE date = ? AND week_list_id = ?";
-      stmt = this.db.prepareStatement(query);
-      stmt.setDate(1, java.sql.Date.valueOf(date));
-      stmt.setInt(2, weeklyId);
-      ResultSet rs = stmt.executeQuery();
-      rs.next();
+      this.activeUser.addRecipeToWeeklyList(recipe, weekId, day);
 
-      query = "INSERT INTO day_list_has_recipe (recipe_id, day_list_id) VALUES (?, ?)";
-      stmt = this.db.prepareStatement(query);
-      stmt.setInt(1, recipe.getId());
-      stmt.setLong(2, rs.getInt(1));
-      stmt.executeUpdate();
       return true;
     } catch (SQLException e) {
       System.out.println(e);
