@@ -155,11 +155,11 @@
                   <Insets bottom="60.0" top="60.0" />
                </padding>
             </AnchorPane>
-            <AnchorPane prefHeight="310.0" prefWidth="1200.0">
+            <AnchorPane maxHeight="1.7976931348623157E308" prefWidth="1200.0">
                <children>
-                  <VBox layoutX="63.0" layoutY="30.0" AnchorPane.bottomAnchor="60.0" AnchorPane.topAnchor="30.0">
+                  <VBox layoutX="63.0" layoutY="30.0" maxHeight="1.7976931348623157E308" prefWidth="1071.0" AnchorPane.bottomAnchor="110.0" AnchorPane.topAnchor="30.0">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox prefHeight="34.0" prefWidth="1071.0">
                            <children>
                               <Label prefHeight="18.0" prefWidth="345.0" />
                               <Label prefHeight="18.0" prefWidth="47.0" text="Week n°">
@@ -187,10 +187,10 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox maxHeight="1.7976931348623157E308" prefHeight="339.0" prefWidth="1071.0">
+                        <HBox maxHeight="1.7976931348623157E308" prefWidth="1071.0">
                            <children>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <VBox prefHeight="200.0" prefWidth="200.0">
+                              <VBox maxHeight="1.7976931348623157E308" prefWidth="200.0">
                                  <children>
                                     <Label prefHeight="18.0" prefWidth="50.0" text="Monday">
                                        <VBox.margin>
@@ -198,11 +198,11 @@
                                        </VBox.margin>
                                     </Label>
                                     <Separator prefWidth="146.0" />
-                                    <VBox fx:id="Monday" prefHeight="200.0" prefWidth="100.0" />
+                                    <VBox fx:id="monCol" maxHeight="1.7976931348623157E308" prefWidth="146.0" />
                                  </children>
                               </VBox>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <VBox prefHeight="200.0" prefWidth="200.0">
+                              <VBox maxHeight="1.7976931348623157E308" prefWidth="200.0">
                                  <children>
                                     <Label prefHeight="18.0" prefWidth="50.0" text="Tuesday">
                                        <VBox.margin>
@@ -210,7 +210,11 @@
                                        </VBox.margin>
                                     </Label>
                                     <Separator prefWidth="200.0" />
-                                    <VBox fx:id="Tuesday" prefHeight="200.0" prefWidth="100.0" />
+                                    <VBox fx:id="tueCol" maxHeight="1.7976931348623157E308" prefWidth="146.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </VBox>
                                  </children>
                               </VBox>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -222,7 +226,7 @@
                                        </VBox.margin>
                                     </Label>
                                     <Separator prefWidth="200.0" />
-                                    <VBox fx:id="Wednesday" prefHeight="200.0" prefWidth="100.0" />
+                                    <VBox fx:id="wedCol" prefWidth="100.0" />
                                  </children>
                               </VBox>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -234,7 +238,7 @@
                                        </VBox.margin>
                                     </Label>
                                     <Separator prefWidth="200.0" />
-                                    <VBox fx:id="Thursday" prefHeight="200.0" prefWidth="100.0" />
+                                    <VBox fx:id="thuCol" prefWidth="100.0" />
                                  </children>
                               </VBox>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -246,7 +250,7 @@
                                        </VBox.margin>
                                     </Label>
                                     <Separator prefWidth="200.0" />
-                                    <VBox fx:id="Friday" prefHeight="200.0" prefWidth="100.0" />
+                                    <VBox fx:id="friCol" prefWidth="100.0" />
                                  </children>
                               </VBox>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -258,11 +262,11 @@
                                        </VBox.margin>
                                     </Label>
                                     <Separator prefWidth="200.0" />
-                                    <VBox fx:id="Saturday" prefHeight="200.0" prefWidth="100.0" />
+                                    <VBox fx:id="satCol" prefWidth="100.0" />
                                  </children>
                               </VBox>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <VBox prefHeight="200.0" prefWidth="200.0">
+                              <VBox prefWidth="200.0">
                                  <children>
                                     <Label prefHeight="18.0" prefWidth="50.0" text="Sunday">
                                        <VBox.margin>
@@ -270,7 +274,7 @@
                                        </VBox.margin>
                                     </Label>
                                     <Separator prefWidth="200.0" />
-                                    <VBox fx:id="Sunday" prefHeight="200.0" prefWidth="100.0" />
+                                    <VBox fx:id="sunCol" maxHeight="1.7976931348623157E308" prefWidth="100.0" />
                                  </children>
                               </VBox>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />

@@ -490,6 +490,13 @@ public class Controller {
     stage.show();
   }
 
+  public void displayWeeklyPlanView(WeeklyList weeklyList) {
+    WeeklyPlanView weeklyPlanView = new WeeklyPlanView(weeklyList);
+    Scene weeklyScene = new Scene(weeklyPlanView.getRoot());
+    stage.setScene(weeklyScene);
+    stage.show();
+  }
+
   /**
    * Closes the app.
    */
@@ -645,6 +652,24 @@ public class Controller {
       return true;
     } catch (SQLException e) {
       System.out.println(e);
+      return false;
+    }
+  }
+
+  public boolean deleteRecipeFromWeeklyList(int weekId, WeekDay day, Recipe recipe) {
+    try {
+      String query = "delete from day_list where week_list_id = ? and day = ? and recipe_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, weekId);
+      stmt.setString(2, day.toString());
+      stmt.setInt(3, recipe.getId());
+      stmt.executeUpdate();
+
+      this.activeUser.deleteRecipefromWeeklyList(recipe, weekId, day);
+
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
       return false;
     }
   }
