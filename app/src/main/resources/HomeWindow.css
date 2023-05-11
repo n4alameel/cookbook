@@ -9,9 +9,9 @@
   -fx-background-color: #618C03;
 }
 
-.menu {
+.links {
   -fx-background-color: transparent;
-  -fx-color: black;
+  -fx-text-fill: "white";
 }
 
 
