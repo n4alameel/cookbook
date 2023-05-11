@@ -35,10 +35,16 @@ public class HomeViewController {
     @FXML
     private TextField searchField;
 
+    @FXML
+    private ComboBox categoryComboBox;
+
     private SearchViewController searchController = new SearchViewController();
 
     Controller controller = Controller.getInstance();
 
+    public void initialize() {
+        categoryComboBox.setValue("Recipe");
+    }
 
     public void openAllRecipes() throws IOException {
         controller.displayBrowserView();
@@ -57,13 +63,6 @@ public class HomeViewController {
     }
 
     public void openSearchPage() throws IOException {
-//        String query = searchField.getText().toString();
-//        Query queryModel = new Query(query);
-//        System.out.println(query);
-//        queryModel.setQuery(query);
-//        System.out.println(queryModel.getQuery());
-//        controller.displaySearchView(queryModel);
-//        SearchViewController searchVC = new SearchViewController(queryModel);
         Query search = new Query();
         search.setQuery(searchField.getText());
 
@@ -71,14 +70,26 @@ public class HomeViewController {
         searchPane.setVisible(true);
         System.out.println(search.getQuery());
 
-        // geeft error wanneer die dit uitvoerd
-        searchController.searchBtnClicked(search, searchGrid);
+        String selectedOption = (String) categoryComboBox.getValue();
+
+        switch (selectedOption) {
+            case "Recipe": {
+                searchController.searchRecipe(search, searchGrid);
+                break;
+            } case "Ingredients": {
+                System.out.println("Ingredients selected");
+                break;
+            } case "Tags": {
+                System.out.println("Tags selected");
+                break;
+            }
+        }
+
     }
 
     public void onSearchEnter(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             openSearchPage();
-//            System.out.println("HOI JA GEKLIKT HOOR");
         }
     }
 }

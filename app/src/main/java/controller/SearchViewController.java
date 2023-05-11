@@ -35,14 +35,40 @@ public class SearchViewController {
         - Give CSS.
     */
 
-    public void searchBtnClicked(Query queryModel, GridPane searchGrid) throws IOException {
+    public void searchRecipe(Query queryModel, GridPane searchGrid) throws IOException {
         String query = queryModel.getQuery();
-        List<String> data = controller.selectDataFromDatabase();
+        List<String> data = controller.selectRecipeFromDatabase();
         ArrayList<Recipe> recipeList = controller.getRecipeList();
-
-        //        System.out.println(searchField.getText());
         searchGrid.getChildren().clear();
+        int i = 0;
+        int col = 0;
+        int row = 0;
+        for (String value : data) {
+            if (value.contains(query) || value.toLowerCase().contains(query)) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
+                    Pane root = loader.load();
+                    RecipeCardController cardController = loader.getController();
+                    cardController.setRecipe(recipeList.get(i));
+                    cardController.updateCard();
+                    searchGrid.add(root, col % 3, row);
+                    col++;
+                    if (col % 3 == 0) {
+                        row++;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace(System.out);
+                }
+            }
+            i++;
+        }
+    }
 
+    public void searchIngredients(Query queryModel){
+        String query = queryModel.getQuery();
+        List<String> data = controller.selectIngredientsFromDatabase();
+        ArrayList<Recipe> recipeList = controller.getRecipeList();
+        searchGrid.getChildren().clear();
         int i = 0;
         int col = 0;
         int row = 0;

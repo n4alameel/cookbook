@@ -184,30 +184,50 @@ public class Controller {
     }
   }
 
-  public List<String> selectDataFromDatabase() {
+  public List<String> selectRecipeFromDatabase() {
     List<String> data = new ArrayList<>();
 
-    try {
-      String query = "SELECT * FROM cookbook.recipe";
-      PreparedStatement statement = dbconnect().prepareStatement(query);
-      ResultSet resultSet = statement.executeQuery();
+    try (Connection connection = dbconnect();
+         Statement statement = connection.createStatement();
+         ResultSet resultSet = statement.executeQuery("SELECT name FROM cookbook.recipe")) {
 
       while (resultSet.next()) {
         String value = resultSet.getString("name");
         data.add(value);
       }
 
-      resultSet.close();
-      statement.close();
-      dbClose();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return data;
+  }
+
+  public List<String> selectIngredientsFromDatabase() {
+
+
+    // Ingredient name
+    // Get Ingredient ID
+
+    // Where Ingredient ID is shown, get Recipe ID
+    // Get Name from Recipe ID
+
+
+    List<String> data = new ArrayList<>();
+
+    try (Connection connection = dbconnect();
+         Statement statement = connection.createStatement();
+         ResultSet resultSet = statement.executeQuery("  SELECT * FROM cookbook.recipe_has_ingredient")) {
+
+      while (resultSet.next()) {
+        String value = resultSet.getString("recipe_id");
+        data.add(value);
+      }
 
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
     return data;
   }
-
 
   /**
    * Generates the list of all favourite recipes (as objects) of the active user
