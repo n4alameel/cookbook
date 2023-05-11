@@ -21,7 +21,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddRecipeController implements Initializable {
-    Controller controller = new Controller();
+    Controller controller = Controller.getInstance();
     @FXML
     private TextField nameField;
     @FXML
