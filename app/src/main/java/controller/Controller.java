@@ -236,7 +236,7 @@ public class Controller {
   }
   public ObservableList<Tag> generateTag() {
     try {
-      String query = "SELECT id, name FROM tag";
+      String query = "SELECT id, name, user_id  FROM tag";
       Statement stmt = this.db.createStatement();
 
       ResultSet rs = stmt.executeQuery(query);
