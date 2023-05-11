@@ -5,10 +5,10 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,14 +17,13 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WeeklyPlanListController">
+<ScrollPane prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WeeklyPlanViewController">
    <content>
       <VBox alignment="CENTER" prefWidth="1200.0" styleClass="window" stylesheets="@RecipeWindow.css">
          <children>
@@ -156,36 +155,130 @@
                   <Insets bottom="60.0" top="60.0" />
                </padding>
             </AnchorPane>
-            <AnchorPane prefHeight="379.0" prefWidth="1200.0">
+            <AnchorPane prefHeight="310.0" prefWidth="1200.0">
                <children>
-                  <VBox fx:id="noListPane" layoutX="533.0" layoutY="124.0" prefHeight="200.0" prefWidth="145.0" visible="false" AnchorPane.topAnchor="124.0">
+                  <VBox layoutX="63.0" layoutY="30.0" AnchorPane.bottomAnchor="60.0" AnchorPane.topAnchor="30.0">
                      <children>
-                        <Label maxWidth="1.7976931348623157E308" prefHeight="103.0" prefWidth="157.0" text="Wow, that is a big blank page !" textAlignment="CENTER" wrapText="true">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label maxWidth="1.7976931348623157E308" text=" Try creating a new weekly meal list with the button below." textAlignment="CENTER" wrapText="true">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="345.0" />
+                              <Label prefHeight="18.0" prefWidth="47.0" text="Week n°">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="weekNum" prefHeight="18.0" prefWidth="262.0" text="XX">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="18.0" prefWidth="34.0" text="Year">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="year" text="XXXX">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox maxHeight="1.7976931348623157E308" prefHeight="339.0" prefWidth="1071.0">
+                           <children>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="50.0" text="Monday">
+                                       <VBox.margin>
+                                          <Insets left="50.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Separator prefWidth="146.0" />
+                                    <VBox fx:id="Monday" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="50.0" text="Tuesday">
+                                       <VBox.margin>
+                                          <Insets left="50.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Separator prefWidth="200.0" />
+                                    <VBox fx:id="Tuesday" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="67.0" text="Wednesday">
+                                       <VBox.margin>
+                                          <Insets left="40.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Separator prefWidth="200.0" />
+                                    <VBox fx:id="Wednesday" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="50.0" text="Thursday">
+                                       <VBox.margin>
+                                          <Insets left="50.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Separator prefWidth="200.0" />
+                                    <VBox fx:id="Thursday" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="50.0" text="Friday">
+                                       <VBox.margin>
+                                          <Insets left="55.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Separator prefWidth="200.0" />
+                                    <VBox fx:id="Friday" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="50.0" text="Saturday">
+                                       <VBox.margin>
+                                          <Insets left="50.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Separator prefWidth="200.0" />
+                                    <VBox fx:id="Saturday" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="50.0" text="Sunday">
+                                       <VBox.margin>
+                                          <Insets left="50.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Separator prefWidth="200.0" />
+                                    <VBox fx:id="Sunday" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
-                  <Pane fx:id="newWeeklyPane" layoutX="477.0" layoutY="117.0" prefHeight="251.0" prefWidth="246.0" style="-fx-background-color: #ffffff; -fx-border-width: 2; -fx-border-color: #618C03;" visible="false" AnchorPane.bottomAnchor="99.0">
-                     <children>
-                        <Label layoutX="8.0" layoutY="14.0" prefHeight="34.0" prefWidth="230.0" text="Pick a week by selecting any date within that week :" wrapText="true" />
-                        <DatePicker fx:id="daySelector" layoutX="36.0" layoutY="57.0" onAction="#updateSelection" prefHeight="27.0" prefWidth="175.0" showWeekNumbers="true" />
-                        <Pane fx:id="selectionPane" layoutX="10.0" layoutY="94.0" prefHeight="108.0" prefWidth="226.0" visible="false">
-                           <children>
-                              <Label layoutX="2.0" layoutY="6.0" text="Your selection :" />
-                              <Label fx:id="weekSelected" layoutX="14.0" layoutY="30.0" text="Week n° X" />
-                              <Label fx:id="dayRange" layoutX="14.0" layoutY="54.0" text="From MM/DD/AAAA to MM/DD/AAAA" wrapText="true" />
-                           </children>
-                        </Pane>
-                        <Button layoutX="95.0" layoutY="201.0" mnemonicParsing="false" onAction="#eventCreateWeeklyList" text="Validate" />
-                     </children>
-                  </Pane>
+                  <Button layoutX="979.0" layoutY="230.0" mnemonicParsing="false" onAction="#eventShoppingList" text="Generate a shopping list" AnchorPane.bottomAnchor="14.799999999999983" AnchorPane.rightAnchor="75.4" />
                </children>
             </AnchorPane>
             <HBox alignment="CENTER" prefHeight="118.0" prefWidth="1200.0" styleClass="bottom">
