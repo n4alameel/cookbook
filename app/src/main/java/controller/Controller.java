@@ -594,6 +594,13 @@ public class Controller {
     }
   }
 
+  /**
+   * Deletes a Weekly list from the database and the user list. It also deletes
+   * the corresponding day lists from the database.
+   * 
+   * @param listId The id of the list to delete
+   * @return true if successful
+   */
   public boolean deleteWeeklyList(int listId) {
     try {
       String query = "delete from week_list where id = ?";
@@ -616,6 +623,14 @@ public class Controller {
     }
   }
 
+  /**
+   * Adds a recipe to a weekly list in the database and in the user's list.
+   * 
+   * @param weekId The id of the weekly list in which we add the recipe.
+   * @param day    The day for which we add the recipe.
+   * @param recipe the recipe to add.
+   * @return true if successful.
+   */
   public boolean addRecipeToWeeklyList(int weekId, WeekDay day, Recipe recipe) {
     try {
       String query = "INSERT INTO day_list (week_list_id, day, recipe_id) VALUES (?, ?, ?)";
