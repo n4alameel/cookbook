@@ -37,7 +37,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -490,6 +490,13 @@ public class Controller {
     stage.show();
   }
 
+  public void displayWeeklyPlanView(WeeklyList weeklyList) {
+    WeeklyPlanView weeklyPlanView = new WeeklyPlanView(weeklyList);
+    Scene weeklyScene = new Scene(weeklyPlanView.getRoot());
+    stage.setScene(weeklyScene);
+    stage.show();
+  }
+
   /**
    * Closes the app.
    */
@@ -645,6 +652,24 @@ public class Controller {
       return true;
     } catch (SQLException e) {
       System.out.println(e);
+      return false;
+    }
+  }
+
+  public boolean deleteRecipeFromWeeklyList(int weekId, WeekDay day, Recipe recipe) {
+    try {
+      String query = "delete from day_list where week_list_id = ? and day = ? and recipe_id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, weekId);
+      stmt.setString(2, day.toString());
+      stmt.setInt(3, recipe.getId());
+      stmt.executeUpdate();
+
+      this.activeUser.deleteRecipefromWeeklyList(recipe, weekId, day);
+
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
       return false;
     }
   }
@@ -982,7 +1007,8 @@ public class Controller {
   /**
    *
    * @param name name of the Tag
-   * @user_id is fetched from active user so careful to not use this method if you don't want the tag to be set to the active User
+   * @user_id is fetched from active user so careful to not use this method if you
+   *          don't want the tag to be set to the active User
    * @throws SQLException
    */
   public boolean newTag(String name) throws SQLException {
