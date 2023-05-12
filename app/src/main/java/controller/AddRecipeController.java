@@ -61,19 +61,21 @@ public class AddRecipeController implements Initializable {
     public void saveRecipe(ActionEvent event) {
         boolean uniqueName = true;
         try {
-            System.out.println(recipes);
             String name = nameField.getText();
             String shortDescription = shortDescriptionField.getText();
             String longDescription = longDescriptionField.getText();
             for (Recipe recipe : recipes){
                 if (name.equalsIgnoreCase(recipe.getName())){
-                    System.out.println("changed");
                     uniqueName = false;
                     break;
                 }
             }
-            //ingredients are added and checked if they are double
             //is checking if the Name exists already enough of a check or do i have to get tags in as well?
+            //if there are no ingredients stop.
+            if(ingredientTable.getItems().isEmpty()){
+                System.out.println("stopped");
+                return;
+            }
             ObservableList<IngredientMock> ingredientMock = ingredientTable.getItems();
             for (IngredientMock ingredientMock1 : ingredientMock) {
                 String ingredientMock1Name = ingredientMock1.getName();
@@ -99,7 +101,6 @@ public class AddRecipeController implements Initializable {
                 controller.newIngredient(ingredientList);
                 controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList);
                 System.out.println("new Recipe created");
-                System.out.println(uniqueName);
             }
             else{
                 System.out.println("Please select a new Name");
@@ -228,7 +229,7 @@ public class AddRecipeController implements Initializable {
             for (Tag tag : tagsArray) {
                 if (tag.getName().equals(addTag) && viewUnique) {
                     tagView.getItems().add(addTag);
-                    System.out.println("tag exists already");
+                    //System.out.println("tag exists already");
                     unique = false;
                     break;
                 }
