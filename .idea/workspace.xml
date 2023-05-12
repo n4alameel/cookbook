@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="mocking for empty Ingredientlist error">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Popup beginning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/NewRecipe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/NewRecipe.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -420,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683893174424</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Popup beginning">
+      <created>1683894170142</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1683894170142</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -435,7 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fxml and css" />
     <MESSAGE value="finished home windows design" />
     <MESSAGE value="switch to another scene and design fixes" />
     <MESSAGE value="fixes" />
@@ -460,7 +469,8 @@
     <MESSAGE value="ingredientName is unique" />
     <MESSAGE value="new Tags are directly inserted into the Dropbox" />
     <MESSAGE value="mocking for empty Ingredientlist error" />
-    <option name="LAST_COMMIT_MESSAGE" value="mocking for empty Ingredientlist error" />
+    <MESSAGE value="Popup beginning" />
+    <option name="LAST_COMMIT_MESSAGE" value="Popup beginning" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

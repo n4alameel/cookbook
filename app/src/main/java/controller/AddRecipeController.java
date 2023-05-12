@@ -11,8 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Popup;
-import javafx.stage.PopupWindow;
 import model.*;
 
 import java.net.URL;
@@ -35,13 +33,13 @@ public class AddRecipeController implements Initializable {
     @FXML
     private TableView<IngredientMock> ingredientTable;
     @FXML
-    private TableColumn<Ingredient, Integer> ammountColumn;
+    private TableColumn<Ingredient, Integer> amountColumn;
     @FXML
     private TableColumn<Ingredient, String> unitColumn;
     @FXML
     private TableColumn<Ingredient, String> ingredientColumn;
     @FXML
-    private TextField addAmmount;
+    private TextField addAmount;
     @FXML
     private ChoiceBox<String> unitSelection;
     @FXML
@@ -50,17 +48,13 @@ public class AddRecipeController implements Initializable {
     private TextField newTag;
     private ObservableList<Tag> tagsArray = controller.generateTag();
     private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
-    private Integer ammount;
-    private String unit;
-    private String ingredientItem;
     private ObservableList<Unit> unitArray = controller.generateUnit();
     private ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
     private String addUnit;
     private int unit_id;
     private ArrayList<Recipe> recipes = controller.getRecipeList();
-    Popup popup = new Popup();
-    Label popupLabel = new Label();
-//TODO: need a way to refresh everything (Taglist and recipelist after posting a recipe)
+
+    //TODO: some out of bounds error that I guess that the code executes everytime even if it should stop at some point.
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
         boolean uniqueName = true;
@@ -68,16 +62,15 @@ public class AddRecipeController implements Initializable {
             String name = nameField.getText();
             String shortDescription = shortDescriptionField.getText();
             String longDescription = longDescriptionField.getText();
-            for (Recipe recipe : recipes){
-                if (name.equalsIgnoreCase(recipe.getName())){
+            for (Recipe recipe : recipes) {
+                if (name.equalsIgnoreCase(recipe.getName())) {
                     uniqueName = false;
                     break;
                 }
             }
-            //is checking if the Name exists already enough of a check or do i have to get tags in as well?
             //if there are no ingredients stop.
-            if(ingredientTable.getItems().isEmpty()){
-                System.out.println("stopped");
+            if (ingredientTable.getItems().isEmpty()) {
+                alert("Please add at least one Ingredient to the Table!");
                 return;
             }
             ObservableList<IngredientMock> ingredientMock = ingredientTable.getItems();
@@ -87,6 +80,7 @@ public class AddRecipeController implements Initializable {
                 for (Unit unit : unitArray) {
                     if (unit.getName().equals(ingredientMock1.getUnit_id())) {
                         unit_id = unit.getId();
+                        break;
                     }
                 }
                 ingredientList.add(new Ingredient(ingredientMock1Name, quantity, unit_id));
@@ -96,43 +90,46 @@ public class AddRecipeController implements Initializable {
                 for (Tag tag : tagsArray) {
                     if (tagName == (tag.getName())) {
                         selectBoxTagInts.add(tag.getId());
-                        //might break for speed
+                        break;
                     }
                 }
             }
-            if(uniqueName) {
+            if (uniqueName) {
                 //selectBoxTagInts for loop for reading the elements out of the List
                 controller.newIngredient(ingredientList);
                 controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList);
-                System.out.println("new Recipe created");
+                alert("Recipe has been saved");
+                recipes.add(new Recipe(name));
             }
-            else{
-                System.out.println("Please select a new Name");
+            if (!uniqueName) {
+                alert(name, "recipe name");
             }
         } catch (Exception e) {
             System.out.println(e);
+            //TODO: delete
+            alert("something went wrong");
+            return;
         }
     }
 
-    //overriding the selectbox on class initialization
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         //tagselection get the tags out of the List and put them into the choicebox
 
         for (Tag tag : tagsArray) {
-            if(tag.getUser_id() == -1 || tag.getUser_id() == controller.getActiveUser().getId())
-            tagSelection.getItems().addAll(tag.getName());
+            if (tag.getUser_id() == -1 || tag.getUser_id() == controller.getActiveUser().getId())
+                tagSelection.getItems().addAll(tag.getName());
         }
         tagSelection.setOnAction(this::setTags);
 
-        //Unitselection, get the units out of the List and put them into the choicebox
+        //unitselection, get the units out of the List and put them into the choicebox
         for (Unit unit : unitArray) {
             unitSelection.getItems().addAll(unit.getName());
         }
         unitSelection.setOnAction(this::setUnit);
 
         // TableView
-        ammountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         unitColumn.setCellValueFactory(new PropertyValueFactory<>("unit_id"));
         ingredientColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     }
@@ -154,6 +151,9 @@ public class AddRecipeController implements Initializable {
         if (unique) {
             tagView.getItems().add(addedTag);
         }
+        if (!unique) {
+            alert(addedTag, "Tag");
+        }
     }
 
     /**
@@ -173,25 +173,31 @@ public class AddRecipeController implements Initializable {
     //TODO: error handling
     public void addIngredientButton(ActionEvent event) {
         boolean unique = true;
+        String unit = addUnit;
+        String ingredientItem = addIngredient.getText();
+        Integer amount;
         try {
-            ammount = Integer.valueOf(addAmmount.getText());
+            amount = Integer.valueOf(addAmount.getText());
         } catch (Exception e) {
-            System.out.println("Please select a Number as amount.");
-            System.out.println(e);
+            alert("Please set the amount of the ingredient!");
+            return;
         }
-        unit = addUnit;
-        ingredientItem = addIngredient.getText();
-        IngredientMock ingredientMock = new IngredientMock(ingredientItem, ammount, unit);
+        if(ingredientItem.isBlank()) {
+            alert("Please set the name of the ingredient!");
+            return;
+        }
+        IngredientMock ingredientMock = new IngredientMock(ingredientItem, amount, unit);
         for (IngredientMock ingredientMock1 : ingredientTable.getItems()) {
             if (ingredientMock1.getName().equals(ingredientMock.getName())) {
-                System.out.println("exists already please change give in another ingredient");
                 unique = false;
                 break;
             }
         }
         if (unique) {
             ingredientTable.getItems().add(ingredientMock);
-            System.out.println("added: " + ingredientMock.getName());
+        }
+        if (!unique) {
+            alert(ingredientMock.getName(), "Ingredient");
         }
     }
 
@@ -233,7 +239,6 @@ public class AddRecipeController implements Initializable {
             for (Tag tag : tagsArray) {
                 if (tag.getName().equals(addTag) && viewUnique) {
                     tagView.getItems().add(addTag);
-                    //System.out.println("tag exists already");
                     unique = false;
                     break;
                 }
@@ -242,15 +247,22 @@ public class AddRecipeController implements Initializable {
                 controller.newTag(addTag);
                 tagView.getItems().add(addTag);
             }
-            if(!viewUnique){
-
+            if (!viewUnique) {
+                alert(addTag, "Tag");
             }
             tagSelection.getItems().add(addTag);
         }
     }
-    public void existsAlready(){
-        popupLabel.setText("Tag: " + addTag + " exists already");
-        popup.getContent().add(popupLabel);
-        popup.show(controller.getStage());
+
+    private void alert(String exist, String type) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("a " + exist + " " + type + " exists already! Please choose another one.");
+        alert.show();
+    }
+
+    private void alert(String information) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(information);
+        alert.show();
     }
 }

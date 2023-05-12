@@ -735,7 +735,7 @@ public class Controller {
           stmt.setInt(2, ingredient.getId());
           stmt.executeUpdate();
           ingredientIterator++;
-          System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
+          //System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
         }
         /*
          * System.out.println(ingredientIterator + recipe_id + "name: " +
