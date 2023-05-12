@@ -360,7 +360,7 @@ public class Controller {
   }
   private Tag createTag(ResultSet tagRs) {
     try {
-      Tag t = new Tag(Integer.parseInt(tagRs.getString(1)), tagRs.getString(2));
+      Tag t = new Tag(Integer.parseInt(tagRs.getString(1)), tagRs.getString(2), Integer.parseInt(tagRs.getString(3)));
       return t;
     } catch (SQLException e) {
       return null;
@@ -408,7 +408,7 @@ public class Controller {
   }
   public ArrayList<Tag> getTagListByRecipeID(int recipeId) {
     try {
-      String query = "select T.id, T.name from recipe R join recipe_has_tag RT on R.id = RT.recipe_id join tag T on T.id = RT.tag_id where R.id = ?";
+      String query = "select T.id, T.name, T.user_id from recipe R join recipe_has_tag RT on R.id = RT.recipe_id join tag T on T.id = RT.tag_id where R.id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setInt(1, recipeId);
       ResultSet rs = stmt.executeQuery();

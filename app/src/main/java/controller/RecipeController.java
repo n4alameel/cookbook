@@ -86,8 +86,6 @@ public class RecipeController{
     public void openShoppingListView() throws IOException {
     }
     @FXML
-    private javafx.scene.control.TextArea commentTextArea;
-    @FXML
     private ComboBox<String> weekSelector;
     @FXML
     private ComboBox<WeekDay> daySelector;
@@ -138,14 +136,14 @@ public class RecipeController{
             catch(IOException e){}
         });
 
-    ArrayList<WeeklyList> weeklies = controller.getActiveUser().getWeeklyPlanList();
-    ArrayList<String> weeks = new ArrayList<String>();
-    for (WeeklyList w : weeklies) {
-      weeks.add(Integer.toString(w.getYear()) + " w" + Integer.toString(w.getWeekNumber()));
+        ArrayList<WeeklyList> weeklies = controller.getActiveUser().getWeeklyPlanList();
+        ArrayList<String> weeks = new ArrayList<String>();
+        for (WeeklyList w : weeklies) {
+          weeks.add(Integer.toString(w.getYear()) + " w" + Integer.toString(w.getWeekNumber()));
+        }
+        weekSelector.setItems(FXCollections.observableArrayList(weeks));
+        daySelector.setItems(FXCollections.observableArrayList(WeekDay.values()));
     }
-    weekSelector.setItems(FXCollections.observableArrayList(weeks));
-    daySelector.setItems(FXCollections.observableArrayList(WeekDay.values()));
-  }
 
     private void setIngredients(){
         ingredientBox.getChildren().clear();
@@ -164,14 +162,32 @@ public class RecipeController{
                 commentTextArea.setText("");
                 this.setRecipe(this.recipe.getId());
                 this.updatePage();
-      } else {
-        System.out.println("Comment can not be empty");
-      }
-    } catch (Exception e) {
-      System.out.println("mehr eingeben");
+            } else {
+                System.out.println("Comment can not be empty");
+            }
+        } catch (Exception e) {
+          System.out.println("mehr eingeben");
+        }
     }
-  }
+    @FXML
+    private void goToHomePage() throws IOException {
+        controller.displayHomeView();
+    }
 
+    @FXML
+    private void eventAddRecipeToPlan() throws IOException {
+        ArrayList<WeeklyList> weeklies = controller.getActiveUser().getWeeklyPlanList();
+        String[] week = weekSelector.getValue().split(" w");
+        int weekId = 0;
+        for (WeeklyList w : weeklies) {
+            if (w.getYear() == Integer.parseInt(week[0]) && w.getWeekNumber() == Integer.parseInt(week[1])) {
+                weekId = w.getId();
+                break;
+            }
+        }
+        controller.addRecipeToWeeklyList(weekId, daySelector.getValue(), recipe);
+        addMessage.setVisible(true);
+    }
 
 }
 

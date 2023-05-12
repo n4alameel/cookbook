@@ -16,7 +16,6 @@ public class Tag {
         this.user_id = user_id;
 
     }
-
     public String getName() {
         return this.name;
     }
