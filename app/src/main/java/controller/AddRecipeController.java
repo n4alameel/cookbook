@@ -11,6 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
 import model.*;
 
 import java.net.URL;
@@ -56,6 +58,8 @@ public class AddRecipeController implements Initializable {
     private String addUnit;
     private int unit_id;
     private ArrayList<Recipe> recipes = controller.getRecipeList();
+    Popup popup = new Popup();
+    Label popupLabel = new Label();
 //TODO: need a way to refresh everything (Taglist and recipelist after posting a recipe)
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
@@ -238,7 +242,15 @@ public class AddRecipeController implements Initializable {
                 controller.newTag(addTag);
                 tagView.getItems().add(addTag);
             }
+            if(!viewUnique){
+
+            }
             tagSelection.getItems().add(addTag);
         }
+    }
+    public void existsAlready(){
+        popupLabel.setText("Tag: " + addTag + " exists already");
+        popup.getContent().add(popupLabel);
+        popup.show(controller.getStage());
     }
 }
