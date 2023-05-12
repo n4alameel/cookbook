@@ -237,7 +237,7 @@ public class AddRecipeController implements Initializable {
                 controller.newTag(addTag);
                 tagView.getItems().add(addTag);
             }
+            tagSelection.getItems().add(addTag);
         }
-        tagsArray = controller.generateTag();
     }
 }
