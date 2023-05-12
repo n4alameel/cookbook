@@ -342,7 +342,7 @@ public class Controller {
   private Ingredient createIngredient(ResultSet ingRs) {
     try {
       Ingredient i = new Ingredient(Integer.parseInt(ingRs.getString(1)), ingRs.getString(2),
-          Integer.parseInt(ingRs.getString(3)), Integer.parseInt(ingRs.getString(4)));
+          Integer.parseInt(ingRs.getString(3)), ingRs.getString(4));
       return i;
     } catch (SQLException e) {
       return null;
@@ -358,7 +358,14 @@ public class Controller {
       return null;
     }
   }
-
+  private Tag createTag(ResultSet tagRs) {
+    try {
+      Tag t = new Tag(Integer.parseInt(tagRs.getString(1)), tagRs.getString(2));
+      return t;
+    } catch (SQLException e) {
+      return null;
+    }
+  }
   public ArrayList<Comment> getCommentListByRecipeID(int recipeId) {
     try {
       String query = "select C.id, C.user_id, C.recipe_id, C.text, U.username from comment C join user U on C.user_id = U.id where C.recipe_id = ?";
@@ -381,18 +388,39 @@ public class Controller {
 
   public ArrayList<Ingredient> getIngListByRecipeID(int recipeId) {
     try {
-      String query = "select * from ingredient I join recipe_has_ingredient R on I.id = R.ingredient_id where R.recipe_id = ?";
+      String query = "select I.id, I.name, I.quantity, U.name from ingredient I join recipe_has_ingredient R on I.id = R.ingredient_id join unit U on I.unit_id = U.id where R.recipe_id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setInt(1, recipeId);
       ResultSet rs = stmt.executeQuery();
 
       ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
 
+
       while (rs.next()) {
         Ingredient ingredient = createIngredient(rs);
         ingredientList.add(ingredient);
       }
       return ingredientList;
+
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+  public ArrayList<Tag> getTagListByRecipeID(int recipeId) {
+    try {
+      String query = "select T.id, T.name from recipe R join recipe_has_tag RT on R.id = RT.recipe_id join tag T on T.id = RT.tag_id where R.id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, recipeId);
+      ResultSet rs = stmt.executeQuery();
+
+      ArrayList<Tag> tagList = new ArrayList<Tag>();
+
+
+      while (rs.next()) {
+        Tag tag = createTag(rs);
+        tagList.add(tag);
+      }
+      return tagList;
 
     } catch (SQLException e) {
       return null;
@@ -412,9 +440,10 @@ public class Controller {
       int recipeId = Integer.parseInt(rs.getString(1));
       ArrayList<Ingredient> ingredientList = getIngListByRecipeID(recipeId);
       ArrayList<Comment> commentList = getCommentListByRecipeID(recipeId);
+      ArrayList<Tag> tagList = getTagListByRecipeID(recipeId);
 
       Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
-          commentList);
+          commentList, tagList);
       return recipe;
     } catch (SQLException e) {
       e.printStackTrace();

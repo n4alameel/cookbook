@@ -73,7 +73,7 @@ public class RecipeCardController {
 
   @FXML
   private void seeRecipe() {
-    controller.displayRecipeView(recipe.getId());
+    controller.displayRecipeView(this.recipe.getId());
   }
 
   /**
