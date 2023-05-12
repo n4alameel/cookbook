@@ -50,6 +50,7 @@ public class RecipeController{
     private Recipe recipe;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     private String commentContext;
+    private int requestedPortions;
     private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
     @FXML
     private Spinner<Integer> portions;
@@ -58,11 +59,27 @@ public class RecipeController{
     @FXML
     private HBox tagBox;
     @FXML
+    private Text activeUserName;
+    @FXML
     private javafx.scene.control.TextArea commentTextArea;
-
-    //TODO  Receive Recipe trough the ResourceBundle
-    //      Create an action that get the recipe by id
-    //      put the object to ResourceBundle
+    @FXML
+    public void openFavouriteView() throws IOException {
+        controller.displayFavouriteView();
+    }
+    @FXML
+    public void openHomeView() throws IOException {
+        controller.displayHomeView();
+    }
+    @FXML
+    public void openWeeklyPlanListView() throws IOException {
+        controller.displayWeeklyPlanListView();
+    }
+    @FXML
+    public void openChatView() throws IOException {
+    }
+    @FXML
+    public void openShoppingListView() throws IOException {
+    }
     public void setRecipe(int currentRecipeId){
         Recipe updatedRecipe = this.controller.getRecipeById(currentRecipeId);
         this.recipe = updatedRecipe;
@@ -72,20 +89,26 @@ public class RecipeController{
         recipeName.setText(this.recipe.getName());
         recipeShortDescription.setText(this.recipe.getShortDescription());
         recipeDescription.setText(this.recipe.getDescription());
-        this.ingredients = this.recipe.getIngredientList();
-        this.ingredients.forEach(ingredient -> {
-                    Text textNode = new Text(ingredient.getName());
-                    ingredientBox.getChildren().add(textNode);
-                });
+        activeUserName.setText(this.controller.getActiveUser().getUsername());
         this.tags = this.recipe.getTagList();
         this.tags.forEach(tag -> {
-            Label labelNode = new Label(tag.getName());
+            Label labelNode = new Label();
+            labelNode.setText("#"+tag.getName());
             labelNode.setStyle("-fx-opaque-insets: 0; -fx-padding: 5 10;");
             tagBox.getChildren().add(labelNode);
         });
-        portions.setValueFactory(new  SpinnerValueFactory.IntegerSpinnerValueFactory(recipe.getPortions(), 100*recipe.getPortions(), recipe.getPortions(), recipe.getPortions()));
+        this.ingredients = this.recipe.getIngredientList();
+        this.requestedPortions = this.recipe.getPortions();
+        this.setIngredients();
+        portions.setValueFactory(new  SpinnerValueFactory.IntegerSpinnerValueFactory(this.recipe.getPortions(), 100*this.recipe.getPortions(), this.recipe.getPortions(), this.recipe.getPortions()));
+        portions.valueProperty().addListener((obs, oldValue, newValue) ->
+        {
+            System.out.println("New value: " + newValue);
+            this.requestedPortions = newValue;
+            this.setIngredients();
+        });
         activeCommentatorName.setFont(Font.font("System", FontWeight.BOLD, 14));
-        activeCommentatorName.setText(this.controller.getActiveUser().getUsername());
+        activeCommentatorName.setText(activeUserName.getText());
         commentBox.getChildren().clear();
         this.comments = this.recipe.getCommentList();
         Collections.reverse(this.comments);
@@ -101,6 +124,14 @@ public class RecipeController{
             catch(IOException e){}
         });
 
+    }
+
+    private void setIngredients(){
+        ingredientBox.getChildren().clear();
+        this.ingredients.forEach(ingredient -> {
+            Text textNode = new Text(ingredient.getQuantity() * ( this.requestedPortions/this.recipe.getPortions()) + " " + ingredient.getUnitName() + " of " + ingredient.getName());
+            ingredientBox.getChildren().add(textNode);
+        });
     }
 
     public void addComment(ActionEvent event) {
@@ -122,9 +153,6 @@ public class RecipeController{
         }
     }
 
-//    public void setTags(ActionEvent event) {
-//        addedtags = tagSelection.getValue();
-//        tags.setText(tags.getText() + " " + addedtags);
-//    }
+
 }
 

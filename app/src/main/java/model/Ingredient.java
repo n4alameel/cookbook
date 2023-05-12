@@ -42,6 +42,13 @@ public class Ingredient {
   private SimpleIntegerProperty unit_id;
   private SimpleStringProperty unitName;
 
+  public Ingredient(int id, String name, int quantity, String unitName) {
+    this.id = new SimpleIntegerProperty(id);
+    this.name = new SimpleStringProperty(name);
+    this.quantity = new SimpleIntegerProperty(quantity);
+    this.unitName = new SimpleStringProperty(unitName);
+  }
+
   public Ingredient(int id, String name, int quantity, int unit_id) {
     this.id = new SimpleIntegerProperty(id);
     this.name = new SimpleStringProperty(name);
@@ -53,5 +60,17 @@ public class Ingredient {
     this.name = new SimpleStringProperty(name);
     this.quantity = new SimpleIntegerProperty(quantity);
     this.unit_id = new SimpleIntegerProperty(unit_id);
+  }
+
+  public String getUnitName() {
+    return unitName.get();
+  }
+
+  public SimpleStringProperty unitNameProperty() {
+    return unitName;
+  }
+
+  public void setUnitName(String unitName) {
+    this.unitName.set(unitName);
   }
 }
