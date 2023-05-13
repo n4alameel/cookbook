@@ -46,6 +46,8 @@ public class AddRecipeController implements Initializable {
     private TextField addIngredient;
     @FXML
     private TextField newTag;
+    @FXML
+    private TextField imageField;
     private ObservableList<Tag> tagsArray = controller.generateTag();
     private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
     private ObservableList<Unit> unitArray = controller.generateUnit();
@@ -54,7 +56,7 @@ public class AddRecipeController implements Initializable {
     private int unit_id;
     private ArrayList<Recipe> recipes = controller.getRecipeList();
 
-    //TODO: some out of bounds error that I guess that the code executes everytime even if it should stop at some point.
+    //TODO: some out of bounds error that I guess that the code executes everytime even if it should stop at some point. ( probably solved)
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
         boolean uniqueName = true;
@@ -62,6 +64,7 @@ public class AddRecipeController implements Initializable {
             String name = nameField.getText();
             String shortDescription = shortDescriptionField.getText();
             String longDescription = longDescriptionField.getText();
+            String imageURL = imageField.getText();
             for (Recipe recipe : recipes) {
                 if (name.equalsIgnoreCase(recipe.getName())) {
                     uniqueName = false;
@@ -97,7 +100,7 @@ public class AddRecipeController implements Initializable {
             if (uniqueName) {
                 //selectBoxTagInts for loop for reading the elements out of the List
                 controller.newIngredient(ingredientList);
-                controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList);
+                controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList, imageURL);
                 alert("Recipe has been saved");
                 recipes.add(new Recipe(name));
             }

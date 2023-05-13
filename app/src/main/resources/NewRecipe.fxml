@@ -9,12 +9,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane centerShape="false" fitToWidth="true" prefHeight="986.0" prefWidth="1191.0" snapToPixel="false" stylesheets="@AddRecipe.css" vvalue="0.39" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddRecipeController">
+<ScrollPane centerShape="false" fitToWidth="true" prefHeight="986.0" prefWidth="1191.0" snapToPixel="false" stylesheets="@AddRecipe.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddRecipeController">
    <content>
       <AnchorPane focusTraversable="true" prefHeight="1770.0" prefWidth="1185.0" style="-fx-background-color: white;" stylesheets="@AddRecipe.css">
          <children>
@@ -86,15 +84,13 @@
             <TextField fx:id="addIngredient" layoutX="707.0" layoutY="882.0" />
             <Button fx:id="addIngredientButton" layoutX="886.0" layoutY="882.0" mnemonicParsing="false" onAction="#addIngredientButton" text="Add Ingredient" />
             <MenuBar fx:id="menuBar" layoutX="-6.0" layoutY="-5.0" prefHeight="43.0" prefWidth="1191.0" stylesheets="@AddRecipe.css" />
-            <ImageView fitHeight="241.0" fitWidth="368.0" layoutX="730.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true" />
             <Label alignment="CENTER" layoutX="-1.0" layoutY="53.0" prefHeight="50.0" prefWidth="1178.0" text="Add Recipe">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Button fx:id="addImage" layoutX="886.0" layoutY="459.0" mnemonicParsing="false" text="Add Image" />
+            <Button fx:id="addImage" layoutX="838.0" layoutY="350.0" mnemonicParsing="false" text="Add Image" />
             <TextField fx:id="longDescriptionField" alignment="TOP_LEFT" layoutX="30.0" layoutY="1411.0" prefHeight="186.0" prefWidth="494.0" promptText="Add the full description of the recipe..." styleClass="text-field" stylesheets="@AddRecipe.css" />
-            <Pane layoutX="731.0" layoutY="206.0" prefHeight="231.0" prefWidth="367.0" style="-fx-border-color: lightgrey;" styleClass="text-field" />
             <ListView fx:id="tagView" layoutX="32.0" layoutY="552.0" onKeyPressed="#enterPressed" onMouseClicked="#deleteClickedRowTags" prefHeight="200.0" prefWidth="460.0" />
             <TextField fx:id="newTag" layoutX="608.0" layoutY="683.0" onKeyPressed="#enterPressed" promptText="Press Enter to confirm" />
             <Label layoutX="642.0" layoutY="641.0" prefHeight="35.0" prefWidth="81.0" styleClass="Style.css" text="new Tag">
@@ -102,6 +98,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <TextField fx:id="imageField" alignment="TOP_LEFT" layoutX="689.0" layoutY="144.0" prefHeight="168.0" prefWidth="373.0" promptText="Insert Image URL" styleClass="text-field" stylesheets="@AddRecipe.css" />
          </children>
       </AnchorPane>
    </content>
