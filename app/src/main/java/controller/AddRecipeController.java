@@ -56,7 +56,6 @@ public class AddRecipeController implements Initializable {
     private int unit_id;
     private ArrayList<Recipe> recipes = controller.getRecipeList();
 
-    //TODO: some out of bounds error that I guess that the code executes everytime even if it should stop at some point. ( probably solved)
     //saveRecipe button
     public void saveRecipe(ActionEvent event) {
         boolean uniqueName = true;
