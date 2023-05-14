@@ -44,6 +44,10 @@ public class HomeViewController {
     controller.displaySearchView();
   }
 
+  public void openHelpPage() throws  IOException{
+    controller.displayHelpPage();
+  }
+
   /**
    * Shows a part of the favourite recipes on the main page
    */

@@ -37,7 +37,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -471,6 +471,17 @@ public class Controller {
     stage.setScene(favouriteScene);
     stage.show();
   }
+
+  /**
+   * Creates and display the help page scene.
+   */
+  public void displayHelpPage() {
+    HelpView helpView = new HelpView();
+    Scene helpScene = new Scene(helpView.getRoot());
+    stage.setScene(helpScene);
+    stage.show();
+  }
+
 
   /**
    * Creates and displays the new recipe prompt scene.

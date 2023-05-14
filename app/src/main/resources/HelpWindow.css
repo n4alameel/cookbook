@@ -1,0 +1,18 @@
+.tab-header-area {
+    -fx-orientation: horizontal;
+    -fx-padding: 0 0 0 0;
+}
+
+.tab {
+    -fx-rotate: 90;
+    -fx-padding: 5 10 5 10; /* Set padding to adjust spacing within each tab */
+        -fx-font-size: 14px; /* Set font size as needed */
+        -fx-font-family: "Arial"; /* Set font family as needed */
+        -fx-text-alignment: center; /* Center align the text within each tab */
+        -fx-alignment: center; /* Center the contents of each tab */
+    -fx-min-height: 100px;
+}
+
+#homePane, #footer{
+-fx-background-color: #618C03
+}
