@@ -31,7 +31,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&allowPublicKeyRetrieval=true&useSSL=false";
 
   /**
    * Used to make this class a singleton
@@ -202,32 +202,32 @@ public class Controller {
     return data;
   }
 
-  public List<String> selectIngredientsFromDatabase() {
-
-
-    // Ingredient name
-    // Get Ingredient ID
-
-    // Where Ingredient ID is shown, get Recipe ID
-    // Get Name from Recipe ID
-
-
-    List<String> data = new ArrayList<>();
-
+  public ArrayList<Ingredient> selectIngredientsFromDatabase() {
+    ArrayList<Ingredient> ingredients = new ArrayList<>();
     try (Connection connection = dbconnect();
          Statement statement = connection.createStatement();
-         ResultSet resultSet = statement.executeQuery("  SELECT * FROM cookbook.recipe_has_ingredient")) {
-
+         ResultSet resultSet = statement.executeQuery("SELECT * FROM cookbook.recipe_has_ingredient " +
+                 "JOIN cookbook.ingredient ON " +
+                 "recipe_has_ingredient.ingredient_id = " +
+                 "ingredient.id")) {
       while (resultSet.next()) {
-        String value = resultSet.getString("recipe_id");
-        data.add(value);
-      }
+        // Get the recipe ID and ingredient ID from the ResultSet
+        int recipeID = resultSet.getInt("recipe_id");
+        String ingredientName = resultSet.getString("name");
+        int ingredientID = resultSet.getInt("ingredient_id");
 
+        // Create a new Ingredient object with the retrieved IDs
+        Ingredient ingredient = new Ingredient(recipeID, ingredientName, ingredientID);
+
+        // Add the new Ingredient object to the list
+        ingredients.add(ingredient);
+      }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return data;
+    return ingredients;
   }
+
 
   /**
    * Generates the list of all favourite recipes (as objects) of the active user

@@ -77,6 +77,7 @@ public class HomeViewController {
                 searchController.searchRecipe(search, searchGrid);
                 break;
             } case "Ingredients": {
+                searchController.searchIngredients(search, searchGrid);
                 System.out.println("Ingredients selected");
                 break;
             } case "Tags": {

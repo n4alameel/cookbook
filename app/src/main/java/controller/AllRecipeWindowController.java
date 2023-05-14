@@ -29,10 +29,6 @@ public class AllRecipeWindowController {
     controller.displayHomeView();
   }
 
-//  public void openSearchPage() throws  IOException {
-//    controller.displaySearchView();
-//  }
-
   public void seeFavourites() throws IOException {
     controller.displayFavouriteView();
   }
