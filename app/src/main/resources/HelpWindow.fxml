@@ -9,9 +9,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" vvalue="0.55" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" side="LEFT" stylesheets="@HelpWindow.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="Infinity" tabMinHeight="100.0" tabMinWidth="70.0">
          <tabs>
@@ -40,6 +41,70 @@
                               <Font name="System Bold" size="36.0" />
                            </font>
                         </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="home11" text="Recipes">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="811.0" prefWidth="1035.0">
+                     <children>
+                        <Pane fx:id="homePane11" prefHeight="40.0" prefWidth="1174.0" style="-fx-background-color: #618C03;" />
+                        <Pane fx:id="footer11" layoutY="1286.0" prefHeight="40.0" prefWidth="1174.0" style="-fx-background-color: #618C03;">
+                           <children>
+                              <Label layoutX="532.0" layoutY="9.0" prefHeight="23.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
+                           </children>
+                        </Pane>
+                        <ImageView fitHeight="83.0" fitWidth="216.0" layoutX="35.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/logo-removebg.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="418.0" layoutY="65.0" text="Recipes">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <TextArea layoutX="35.0" layoutY="154.0" prefHeight="51.0" prefWidth="601.0" text="Sometimes it's hard in everyday life to get new inspiration when cooking and to try out new meals.&#10;We have a lot of different recipes  that you can cook and follow easily!" />
+                        <Label layoutX="36.0" layoutY="221.0" text="Find here many different delicious dishes, you can. Hmmh." />
+                        <ImageView fitHeight="50.0" fitWidth="97.0" layoutX="354.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/pngaaa.com-70754.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="337.0" fitWidth="561.0" layoutX="209.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Documents/Cobol/RecipeDetailed.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="762.0" layoutY="727.0" style="-fx-border-color: black;" text="See all the ingredients and change the portion if needed" />
+                        <Line endX="52.0" endY="125.0" layoutX="711.0" layoutY="601.0" startX="-22.0" startY="19.0" />
+                        <Line endX="83.0" endY="76.0" layoutX="704.0" layoutY="482.0" startX="-99.0" startY="8.0" />
+                        <Label layoutX="788.0" layoutY="557.0" style="-fx-border-color: black;" text="Add recipe to a weekly plan" />
+                        <Label layoutX="835.0" layoutY="447.0" style="-fx-border-color: black;" text="Send recipe to another user." />
+                        <Label layoutX="28.0" layoutY="439.0" style="-fx-border-color: black;" text="Mark this recipe as a favourite" />
+                        <Label layoutX="35.0" layoutY="540.0" style="-fx-border-color: black;" text="Instruction of cooking" />
+                        <Label layoutX="13.0" layoutY="717.0" style="-fx-border-color: black;" text="Add your own tags which fit for you" />
+                        <Line endX="236.0" endY="7.0" layoutX="191.0" layoutY="447.0" startX="-2.0" startY="11.0" />
+                        <Line endX="61.0" endY="-0.5" layoutX="168.0" layoutY="550.0" startX="-14.0" startY="-0.5" />
+                        <Line endX="28.0" endY="-45.0" layoutX="209.0" layoutY="717.0" startX="-4.0" />
+                        <Line endX="98.0" endY="8.0" layoutX="737.0" layoutY="458.0" startX="-157.0" startY="-6.0" />
+                        <Label layoutX="452.0" layoutY="286.0" text="Overview">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="828.0" text="Comment Section">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextArea layoutX="28.0" layoutY="865.0" prefHeight="118.0" prefWidth="582.0" text="You can find on the page also comments from other users and see there what they think about the recipe.&#10;If you also want to say what you liked, disliked or would improve, feel free to write a comment!&#10;That helps other users to see if they would cook it.&#10;&#10;Just write your comment and then click on &quot;publish comment&quot;." />
+                        <ImageView fitHeight="169.0" fitWidth="601.0" layoutX="28.0" layoutY="1002.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Documents/Cobol/Comment.PNG" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
@@ -80,6 +145,11 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
+                        <ImageView fitHeight="83.0" fitWidth="216.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/logo-removebg.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
@@ -126,13 +196,18 @@
                            </image>
                         </ImageView>
                         <Pane prefHeight="39.0" prefWidth="1090.0" style="-fx-background-color: #618C03;" />
+                        <ImageView fitHeight="83.0" fitWidth="216.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/logo-removebg.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
             <Tab text="Meal Plans">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1672.0" prefWidth="1090.0">
                      <children>
                         <Pane prefHeight="43.0" prefWidth="1090.0" style="-fx-background-color: #618C03;" />
                         <Pane prefHeight="39.0" prefWidth="1090.0" style="-fx-background-color: #618C03;" />
@@ -141,8 +216,117 @@
                               <Font name="System Bold" size="36.0" />
                            </font>
                         </Label>
-                        <Label layoutX="58.0" layoutY="139.0" text="Label" />
+                        <TextArea layoutX="25.0" layoutY="148.0" prefHeight="65.0" prefWidth="536.0" text="With the help of this cookbook you can plan easily your week!&#10;You can find a lot of inspiration here and you just have to add these recipes to your plan.&#10;&#10;For other things less effort and more time!  Yeesssssss." />
+                        <Label layoutX="25.0" layoutY="240.0" text="1. Click on &quot;Meal Plans&quot; in the Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="25.0" layoutY="296.0" text="2. Create a new Meal Plan for a Week">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="47.0" layoutY="382.0" text="2.2 Select the Week which you want to plan (any day creates the plan for the whole week)" />
+                        <ImageView fitHeight="291.0" fitWidth="418.0" layoutX="47.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Documents/Cobol/Create%20Weekly%20List.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="29.0" layoutY="739.0" text="3. Select the Recipe you want to add">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="47.0" layoutY="809.0" text="3.2 When you have found one you want to cook, go into the detailed view by clicking on a recipe on &quot;See recipe&quot;" />
+                        <Label layoutX="47.0" layoutY="340.0" text="2.1 Click on &quot;New Weekly List&quot;" />
+                        <Label layoutX="46.0" layoutY="776.0" text="3.1 You can search for tags, ingredients or the name of a recipe in the search at the top" />
+                        <ImageView fitHeight="188.0" fitWidth="179.0" layoutX="47.0" layoutY="839.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Documents/Cobol/FavouriteCard.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="53.0" layoutY="1036.0" text="3.3 Choose the week and day you want to cook this recipe and click on &quot;add&quot;" />
+                        <ImageView fitHeight="236.0" fitWidth="438.0" layoutX="53.0" layoutY="1063.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Documents/Cobol/FavouriteDetailed.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="46.0" layoutY="1321.0" text="4. See the added recipe in your plan">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="66.0" layoutY="1361.0" text="4.1 Go back to &quot;Meal Plans&quot;" />
+                        <Label layoutX="66.0" layoutY="1390.0" text="4.2 Click on the week you added the recipe" />
+                        <ImageView fitHeight="49.0" fitWidth="514.0" layoutX="66.0" layoutY="1409.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Documents/Cobol/ClickOnWeek.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="66.0" layoutY="1473.0" text="4.3. You can see the recipe you added and go into the detailed view. If you changed your plans you can also delete it." />
+                        <ImageView fitHeight="141.0" fitWidth="488.0" layoutX="69.0" layoutY="1496.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Documents/Cobol/WeekListDetailed.PNG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="83.0" fitWidth="216.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/logo-removebg.png" />
+                           </image>
+                        </ImageView>
                      </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="home1" text="Shopping List">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="811.0" prefWidth="1035.0">
+                     <children>
+                        <Pane fx:id="homePane1" prefHeight="40.0" prefWidth="1174.0" style="-fx-background-color: #618C03;" />
+                        <Pane fx:id="footer1" layoutY="879.0" prefHeight="40.0" prefWidth="1174.0" style="-fx-background-color: #618C03;">
+                           <children>
+                              <Label layoutX="532.0" layoutY="9.0" prefHeight="23.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
+                           </children>
+                        </Pane>
+                        <ImageView fitHeight="83.0" fitWidth="216.0" layoutX="35.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/logo-removebg.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="402.0" layoutY="65.0" text="Shopping List">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <TextArea layoutX="35.0" layoutY="154.0" prefHeight="47.0" prefWidth="513.0" text="You can create with the week plans you have made automatically a shopping list.&#10;It includes all the ingredients you need for all the receipes you want to cook in this week." />
+                        <Label layoutX="35.0" layoutY="227.0" text="To save time and to make shopping easier we help you.  Herh herh herh." />
+                        <ImageView fitHeight="50.0" fitWidth="97.0" layoutX="419.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/pngaaa.com-70754.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="35.0" layoutY="308.0" text="1.1 Go to the menu &quot;Meal Plans&quot; and click on the week you want to go shopping for." />
+                        <Label layoutX="35.0" layoutY="337.0" text="1.2 Change the portions if you want to cook more than 2 portions of a meal." />
+                        <Label layoutX="35.0" layoutY="366.0" text="1.3 Click on &quot;Generate shopping list&quot;" />
+                        <Label layoutX="35.0" layoutY="273.0" text="1. Create the shopping list for a week">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="233.0" fitWidth="414.0" layoutX="32.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Documents/Cobol/GenerateShoppingList.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="35.0" layoutY="652.0" text="2. View your shopping list  ">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="34.0" layoutY="687.0" text="2.1 Click on the menu on &quot;Shopping List&quot;" />
+                        <Label layoutX="35.0" layoutY="720.0" text="2.2 You can delete ingredients that you have already at home or you don't want to have in the meal" />
+                     </children>
+                  </AnchorPane>
                </content>
             </Tab>
          </tabs>
