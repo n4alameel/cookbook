@@ -48,6 +48,17 @@ public class AddRecipeController implements Initializable {
     private TextField newTag;
     @FXML
     private TextField imageField;
+    @FXML
+    private Label nameError;
+    @FXML
+    private Label shortDescriptionError;
+    @FXML
+    private Label longDescriptionError;
+    @FXML
+    private Label tagError;
+    @FXML
+    private Label ingredientError;
+
     private ObservableList<Tag> tagsArray = controller.generateTag();
     private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
     private ObservableList<Unit> unitArray = controller.generateUnit();
@@ -57,21 +68,42 @@ public class AddRecipeController implements Initializable {
     private ArrayList<Recipe> recipes = controller.getRecipeList();
 
     //saveRecipe button
+    //TODO: minimum requirement for recipe?
     public void saveRecipe(ActionEvent event) {
         boolean uniqueName = true;
         try {
+            nameError.setText("");
+            shortDescriptionError.setText("");
+            longDescriptionError.setText("");
+            ingredientError.setText("");
+            ingredientList.removeAll();
+            if(nameField.getText().isEmpty()){
+                nameError.setText("Please fill in a name for the Recipe!");
+                return;
+            }
+            if(shortDescriptionField.getText().isEmpty()){
+                shortDescriptionError.setText("Please fill in a name for the Recipe!");
+                return;
+            }
+            if(longDescriptionField.getText().isEmpty()){
+                longDescriptionError.setText("Please fill in a name for the Recipe!");
+                return;
+            }
             String name = nameField.getText();
             String shortDescription = shortDescriptionField.getText();
             String longDescription = longDescriptionField.getText();
             String imageURL = imageField.getText();
+
             for (Recipe recipe : recipes) {
                 if (name.equalsIgnoreCase(recipe.getName())) {
-                    uniqueName = false;
-                    break;
+                    nameError.setText("The name exists already!");
+                    alert(name, "recipe name");
+                    return;
                 }
             }
             //if there are no ingredients stop.
             if (ingredientTable.getItems().isEmpty()) {
+                ingredientError.setText("Please add at least on ingredient to the Table!");
                 alert("Please add at least one Ingredient to the Table!");
                 return;
             }
@@ -102,6 +134,7 @@ public class AddRecipeController implements Initializable {
                 controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList, imageURL);
                 alert("Recipe has been saved");
                 recipes.add(new Recipe(name));
+                Controller.getInstance().getStage().close();
             }
             if (!uniqueName) {
                 alert(name, "recipe name");
@@ -154,7 +187,8 @@ public class AddRecipeController implements Initializable {
             tagView.getItems().add(addedTag);
         }
         if (!unique) {
-            alert(addedTag, "Tag");
+            //alert(addedTag, "Tag");
+            tagError.setText("Tag has already been selected");
         }
     }
 
@@ -250,7 +284,8 @@ public class AddRecipeController implements Initializable {
                 tagView.getItems().add(addTag);
             }
             if (!viewUnique) {
-                alert(addTag, "Tag");
+                //alert(addTag, "Tag");
+                tagError.setText("Tag has already been selected");
             }
             tagSelection.getItems().add(addTag);
         }
