@@ -18,7 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class MessageViewController {
     private Parent root;
     Controller controller = Controller.getInstance();
-    ArrayList<Message> messages = controller.retrieveMessage(2);
+    ArrayList<Message> messages = controller.retrieveMessage(controller.getActiveUser().getId());
 
     @FXML
     private TableView<Message> messageTable;
