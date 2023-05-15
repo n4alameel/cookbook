@@ -37,7 +37,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -764,15 +764,16 @@ public class Controller {
 
   // TODO: need to add an Tag as well
   public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList,
-      ObservableList<Ingredient> ingredientObservableList) {
+      ObservableList<Ingredient> ingredientObservableList, String imageURL) {
     try {
       int recipe_id;
       int ingredientIterator = 0;
-      String query = "INSERT INTO recipe (name, shortDescription, description) VALUES (?, ?, ?)";
+      String query = "INSERT INTO recipe (name, shortDescription, description, imageURL) VALUES (?, ?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, name);
       stmt.setString(2, shortDescription);
       stmt.setString(3, description);
+      stmt.setString(4, imageURL);
       stmt.executeUpdate();
       query = "SELECT id FROM recipe WHERE name = ?";
       stmt = this.db.prepareStatement(query);
@@ -789,7 +790,7 @@ public class Controller {
           stmt.setInt(2, ingredient.getId());
           stmt.executeUpdate();
           ingredientIterator++;
-          System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
+          //System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
         }
         /*
          * System.out.println(ingredientIterator + recipe_id + "name: " +
