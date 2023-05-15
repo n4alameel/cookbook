@@ -17,4 +17,12 @@ public class HomeViewController {
     controller.displayNewRecipeView();
   }
 
+  public void openMessage() throws IOException {
+    controller.displayMessageView();
+  }
+
+  public void sendRecipe() throws IOException {
+    controller.displaySendMessageView();
+  }
+
 }

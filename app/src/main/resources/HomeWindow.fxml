@@ -29,7 +29,7 @@
               <menus>
                 <Menu fx:id="shoppingList" mnemonicParsing="false" text="Shopping List" />
                 <Menu fx:id="mealPlans" mnemonicParsing="false" text="Meal Plans" />
-                <Menu fx:id="Chatroom" mnemonicParsing="false" text="Chat room" />
+                <Menu fx:id="Chatroom" mnemonicParsing="false" text="Chat room" onAction="#openMessage"/>
               </menus>
                <padding>
                   <Insets left="970.0" top="8.0" />
@@ -53,13 +53,13 @@
             </ImageView>
             <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="1014.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
             <HBox layoutX="109.0" layoutY="732.0" prefHeight="251.0" prefWidth="1038.0" />
-            <Button fx:id="allRecipesBtn" layoutX="549.0" layoutY="899.0" mnemonicParsing="false" onAction="#openAllRecipes" text="View all Recipes" />
+            <Button fx:id="allRecipesBtn" layoutX="549.0" layoutY="899.0" mnemonicParsing="false" onAction="#openMessage" text="View all Recipes" /> <!-- openAllRecipes -->
             <HBox layoutX="109.0" layoutY="280.0" prefHeight="362.0" prefWidth="1038.0">
                <children>
                   <Pane fx:id="pane" prefHeight="299.0" prefWidth="289.0">
                      <children>
                         <Label fx:id="title" layoutX="128.0" layoutY="54.0" text="Label" />
-                        <Button fx:id="sendRecipeBtn" layoutX="185.0" layoutY="10.0" minHeight="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Send recipe">
+                        <Button fx:id="sendRecipeBtn" layoutX="185.0" layoutY="10.0" minHeight="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Send recipe" onAction="#sendRecipe">
                            <font>
                               <Font size="9.0" />
                            </font>

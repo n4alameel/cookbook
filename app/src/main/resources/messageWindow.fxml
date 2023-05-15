@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MessageViewController">
+    <center>
+        <TableView fx:id="messageTable" prefHeight="364.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="senderColumn" prefWidth="100.0" text="Sender" />
+                <TableColumn fx:id="textColumn" prefWidth="200.0" text="Text" />
+                <TableColumn fx:id="recipeColumn" prefWidth="100.0" text="Recipe" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

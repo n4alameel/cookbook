@@ -300,6 +300,28 @@ public class Controller {
   }
 
   /**
+   * Creates and displays the message scene.
+   */
+  public void displayMessageView() {
+    MessageView messageView = new MessageView();
+    Scene messageViewScene = new Scene(messageView.getRoot());
+    Stage secondaryStage = new Stage();
+    secondaryStage.setScene(messageViewScene);
+    secondaryStage.show();
+  }
+
+  /**
+   * Creates and displays the send message scene.
+   */
+  public void displaySendMessageView() {
+    SendMessageView sendMessageView = new SendMessageView();
+    Scene sendMessageViewScene = new Scene(sendMessageView.getRoot());
+    Stage secondaryStage = new Stage();
+    secondaryStage.setScene(sendMessageViewScene);
+    secondaryStage.show();
+  }
+
+  /**
    * Closes the app.
    */
   public void closeApp() {
@@ -588,14 +610,15 @@ public class Controller {
     }
 }
 
-public boolean retrieveMessage(int receiverId){
+public ArrayList<Message> retrieveMessage(int receiverId){
+  ArrayList<Message> messages = new ArrayList<Message>();
     try {
       String query = "SELECT * FROM message WHERE receiverId = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setInt(1, receiverId);
       ResultSet rs = stmt.executeQuery();
       while (rs.next()){
-        System.out.println("From "+rs.getInt(4)+" to "+rs.getInt(5)+" RecipeId = "+rs.getInt(6)+" Saying "+rs.getString(2));
+        messages.add(new Message(rs.getInt(1), rs.getString(2), 1, rs.getInt(4), rs.getInt(5), rs.getInt(6)));
         if (rs.getInt(3) == 0){
           query = "UPDATE message SET isRead = 1 WHERE id = ?";
           stmt = this.db.prepareStatement(query);
@@ -603,11 +626,41 @@ public boolean retrieveMessage(int receiverId){
           stmt.executeUpdate();
         }
       }
-      return true;
+      return messages;
     } catch (SQLException e) {
       System.out.println(e);
-      return false;
+      return null;
     }
-}
+  }
+
+  public ArrayList<String> usersList(){
+    ArrayList<String> usersList = new ArrayList<>();
+    try{
+      String query = "SELECT * FROM user";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()){
+        usersList.add(rs.getString(2));
+      }
+      return usersList;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return null;
+    }
+  }
+
+  public int getUserIdFromUsername(String username){
+    try{
+      String query = "SELECT id FROM user WHERE username = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, username);
+      ResultSet rs = stmt.executeQuery();
+      rs.next();
+      return rs.getInt(1);
+    } catch (SQLException e) {
+      System.out.println(e);
+      return 0;
+    }
+  }
 
 }
