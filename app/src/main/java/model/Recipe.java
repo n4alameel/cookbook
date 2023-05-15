@@ -13,13 +13,18 @@ public class Recipe {
   private ArrayList<Tag> tagList = new ArrayList<Tag>();
 
   public Recipe(int id, String name, String description, String shortDescription,
-      ArrayList<Ingredient> ingredientList, ArrayList<Comment> commentList) {
+      ArrayList<Ingredient> ingredientList, ArrayList<Comment> commentList, ArrayList<Tag> tagList) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.shortDescription = shortDescription;
     this.ingredientList = ingredientList;
     this.commentList = commentList;
+    this.tagList = tagList;
+  }
+  //mocking for loading of a new recipe
+  public Recipe(String name) {
+    this.name = name;
   }
 
   public int getPortions() {

@@ -37,7 +37,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -342,7 +342,7 @@ public class Controller {
   private Ingredient createIngredient(ResultSet ingRs) {
     try {
       Ingredient i = new Ingredient(Integer.parseInt(ingRs.getString(1)), ingRs.getString(2),
-          Integer.parseInt(ingRs.getString(3)), Integer.parseInt(ingRs.getString(4)));
+          Integer.parseInt(ingRs.getString(3)), ingRs.getString(4));
       return i;
     } catch (SQLException e) {
       return null;
@@ -358,7 +358,14 @@ public class Controller {
       return null;
     }
   }
-
+  private Tag createTag(ResultSet tagRs) {
+    try {
+      Tag t = new Tag(Integer.parseInt(tagRs.getString(1)), tagRs.getString(2), Integer.parseInt(tagRs.getString(3)));
+      return t;
+    } catch (SQLException e) {
+      return null;
+    }
+  }
   public ArrayList<Comment> getCommentListByRecipeID(int recipeId) {
     try {
       String query = "select C.id, C.user_id, C.recipe_id, C.text, U.username from comment C join user U on C.user_id = U.id where C.recipe_id = ?";
@@ -381,18 +388,39 @@ public class Controller {
 
   public ArrayList<Ingredient> getIngListByRecipeID(int recipeId) {
     try {
-      String query = "select * from ingredient I join recipe_has_ingredient R on I.id = R.ingredient_id where R.recipe_id = ?";
+      String query = "select I.id, I.name, I.quantity, U.name from ingredient I join recipe_has_ingredient R on I.id = R.ingredient_id join unit U on I.unit_id = U.id where R.recipe_id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setInt(1, recipeId);
       ResultSet rs = stmt.executeQuery();
 
       ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
 
+
       while (rs.next()) {
         Ingredient ingredient = createIngredient(rs);
         ingredientList.add(ingredient);
       }
       return ingredientList;
+
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+  public ArrayList<Tag> getTagListByRecipeID(int recipeId) {
+    try {
+      String query = "select T.id, T.name, T.user_id from recipe R join recipe_has_tag RT on R.id = RT.recipe_id join tag T on T.id = RT.tag_id where R.id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, recipeId);
+      ResultSet rs = stmt.executeQuery();
+
+      ArrayList<Tag> tagList = new ArrayList<Tag>();
+
+
+      while (rs.next()) {
+        Tag tag = createTag(rs);
+        tagList.add(tag);
+      }
+      return tagList;
 
     } catch (SQLException e) {
       return null;
@@ -412,9 +440,10 @@ public class Controller {
       int recipeId = Integer.parseInt(rs.getString(1));
       ArrayList<Ingredient> ingredientList = getIngListByRecipeID(recipeId);
       ArrayList<Comment> commentList = getCommentListByRecipeID(recipeId);
+      ArrayList<Tag> tagList = getTagListByRecipeID(recipeId);
 
       Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
-          commentList);
+          commentList, tagList);
       return recipe;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -735,15 +764,16 @@ public class Controller {
 
   // TODO: need to add an Tag as well
   public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList,
-      ObservableList<Ingredient> ingredientObservableList) {
+      ObservableList<Ingredient> ingredientObservableList, String imageURL) {
     try {
       int recipe_id;
       int ingredientIterator = 0;
-      String query = "INSERT INTO recipe (name, shortDescription, description) VALUES (?, ?, ?)";
+      String query = "INSERT INTO recipe (name, shortDescription, description, imageURL) VALUES (?, ?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, name);
       stmt.setString(2, shortDescription);
       stmt.setString(3, description);
+      stmt.setString(4, imageURL);
       stmt.executeUpdate();
       query = "SELECT id FROM recipe WHERE name = ?";
       stmt = this.db.prepareStatement(query);
@@ -760,7 +790,7 @@ public class Controller {
           stmt.setInt(2, ingredient.getId());
           stmt.executeUpdate();
           ingredientIterator++;
-          System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
+          //System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
         }
         /*
          * System.out.println(ingredientIterator + recipe_id + "name: " +

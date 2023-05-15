@@ -31,24 +31,13 @@
       <VBox alignment="CENTER" prefWidth="1200.0" styleClass="window">
          <children>
             <HBox alignment="CENTER_RIGHT" prefWidth="1200.0" spacing="50.0">
-               <Hyperlink alignment="CENTER" contentDisplay="CENTER" opacity="0.87" styleClass="header-link" text="Meal Plans" textAlignment="CENTER" textFill="WHITE">
-                  <HBox.margin>
-                     <Insets />
-                  </HBox.margin>
-               </Hyperlink>
-               <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="header-link" text="Shopping List" textAlignment="CENTER" textFill="WHITE">
-                  <HBox.margin>
-                     <Insets />
-                  </HBox.margin>
-               </Hyperlink>
-               <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="header-link" text="Chat Room" textAlignment="CENTER" textFill="#9f3535">
-                  <HBox.margin>
-                     <Insets />
-                  </HBox.margin>
-                  <font>
-                     <Font size="13.0" />
-                  </font>
-               </Hyperlink>
+               <ButtonBar buttonMinWidth="0.0" buttonOrder="">
+                  <buttons>
+                     <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openWeeklyPlanListView" styleClass="header-link" text="Meal Plans" />
+                     <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openShoppingListView" styleClass="header-link" text="Shopping List" />
+                     <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openChatView" styleClass="header-link" text="Chat Room" />
+                  </buttons>
+               </ButtonBar>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -81,30 +70,22 @@
                      <children>
                         <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
                            <children>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#openHomeView">
                                  <image>
                                     <Image url="@img/Whisk.png" />
                                  </image>
                               </ImageView>
-                              <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="top-link" text="Recipes" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Hyperlink>
+                              <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openHomeView" styleClass="action-btn" text="Recipes" />
                            </children>
                         </FlowPane>
                         <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
                            <children>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#openFavouriteView">
                                  <image>
                                     <Image url="@img/Heart.png" />
                                  </image>
                               </ImageView>
-                              <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="top-link" text="Favourite Recipes" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Hyperlink>
+                              <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openFavouriteView" styleClass="action-btn" text="Favourite Recipes" />
                            </children>
                         </FlowPane>
                         <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="70.0" prefWidth="150.0">
@@ -117,7 +98,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="top-link" text="Charlotte Oliver">
+                              <Text fx:id="activeUserName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="top-link" text="Charlotte Oliver">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -148,7 +129,7 @@
                   </Text>
                   <HBox alignment="CENTER" spacing="50.0">
                      <children>
-                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="128.0">
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0" >
                            <children>
                               <Button id="make-favourite" mnemonicParsing="false" styleClass="action-btn" text="Favourite">
                                  <graphic>
@@ -160,7 +141,7 @@
                                  </graphic></Button>
                            </children>
                         </FlowPane>
-                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="141.0">
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
                            <children>
                               <Button id="make-favourite" mnemonicParsing="false" styleClass="action-btn" text="Send Recipe">
                                  <graphic>
@@ -214,7 +195,7 @@
                <children>
                   <FlowPane prefWidth="700.0" prefWrapLength="700.0" vgap="20.0">
                      <children>
-                        <Text fx:id="recipeShortDescription" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="short-desc" wrappingWidth="700.0">
+                        <Text fx:id="recipeShortDescription" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="short-desc" text="" wrappingWidth="700.0">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
@@ -292,11 +273,11 @@
                         <!--                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />-->
                         <!--                           </padding>-->
                         <!--                        </Label>-->
-                        <TextField id="add-more" alignment="CENTER" promptText="+ add more" style="-fx-border-radius: 10;" styleClass="tag">
-                           <padding>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                           </padding>
-                        </TextField>
+<!--                        <TextField id="add-more" alignment="CENTER" promptText="+ add more" style="-fx-border-radius: 10;" styleClass="tag">-->
+<!--                           <padding>-->
+<!--                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />-->
+<!--                           </padding>-->
+<!--                        </TextField>-->
                      </children>
                   </HBox>
                </children>
@@ -359,7 +340,7 @@
                         </TextArea>
                         <ButtonBar buttonMinWidth="0.0" buttonOrder="">
                            <buttons>
-                              <Button mnemonicParsing="false" onAction="#addComment" styleClass="add-btn" text="Publish comment" />
+                              <Button mnemonicParsing="false" onAction="#addComment" styleClass="add-btn" text="Publish comment"   />
                            </buttons>
                            <padding>
                               <Insets left="50.0" right="50.0" />
@@ -415,22 +396,10 @@
                                     <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Hyperlink contentDisplay="CENTER" opacity="0.87" prefHeight="21.0" prefWidth="74.0" styleClass="small" text="- All Recipes" textAlignment="CENTER">
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font></Hyperlink>
-                                    <Hyperlink contentDisplay="CENTER" opacity="0.87" prefHeight="21.0" prefWidth="74.0" styleClass="small" text="- Meal Plan" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font></Hyperlink>
-                                    <Hyperlink contentDisplay="CENTER" opacity="0.87" prefHeight="24.0" prefWidth="126.0" styleClass="small" text="- Favourite Recipes" textAlignment="CENTER" GridPane.rowIndex="1">
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font></Hyperlink>
-                                    <Hyperlink contentDisplay="CENTER" opacity="0.87" prefHeight="7.0" prefWidth="124.0" styleClass="small" text="- Shopping List" textAlignment="CENTER" GridPane.columnIndex="1">
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font></Hyperlink>
+                                    <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openHomeView" styleClass="quick-access-btn" text="- All Recipes"   GridPane.rowIndex="1" />
+                                    <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openWeeklyPlanListView" styleClass="quick-access-btn" text="- Meal Plan"   GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openFavouriteView" styleClass="quick-access-btn" text="- Favourite Recipes"   GridPane.rowIndex="2" />
+                                    <Button graphicTextGap="0.0" mnemonicParsing="false"  styleClass="quick-access-btn" text="- Shopping List"  GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
