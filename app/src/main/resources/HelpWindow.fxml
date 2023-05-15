@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
+<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" side="LEFT" stylesheets="@HelpWindow.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="Infinity" tabMinHeight="100.0" tabMinWidth="70.0">
          <tabs>
@@ -84,29 +84,65 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="add a Favourite">
+            <Tab text="Favourite Recipe">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextArea layoutX="37.0" layoutY="72.0" prefHeight="88.0" prefWidth="360.0" text="If you like a recipe and want to store it, you can mark it as your favourite, so you can see it later.&#10;You can either click on the heart on the recipe card or in the detailed view of a recipe." wrapText="true" />
-                        <ImageView fitHeight="239.0" fitWidth="402.0" layoutX="37.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+                        <TextArea layoutX="37.0" layoutY="226.0" prefHeight="88.0" prefWidth="360.0" text="If you like a recipe and want to store it you can mark it as your favourite, so you can see it later.&#10;You can either click on the heart in the recipe card or in the detailed view of a recipe." wrapText="true" />
+                        <ImageView fitHeight="239.0" fitWidth="402.0" layoutX="37.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../Documents/Cobol/FavouriteDetailed.PNG" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="262.0" fitWidth="285.0" layoutX="466.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="262.0" fitWidth="285.0" layoutX="479.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../Documents/Cobol/FavouriteCard.PNG" />
                            </image>
                         </ImageView>
                         <Pane prefHeight="43.0" prefWidth="1090.0" style="-fx-background-color: #618C03;" />
+                        <Label layoutX="396.0" layoutY="66.0" text="Favourite Recipes">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="60.0" fitWidth="68.0" layoutX="704.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/Heart.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="37.0" layoutY="172.0" text="1. Choose a favourite recipe">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="37.0" layoutY="625.0" text="2.  See all of them by clicking on &quot;Favourites&quot; ">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="271.0" fitWidth="420.0" layoutX="37.0" layoutY="661.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Documents/Cobol/FavouriteWindow.PNG" />
+                           </image>
+                        </ImageView>
+                        <Pane prefHeight="39.0" prefWidth="1090.0" style="-fx-background-color: #618C03;" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Create Recipe">
+            <Tab text="Meal Plans">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="43.0" prefWidth="1090.0" style="-fx-background-color: #618C03;" />
+                        <Pane prefHeight="39.0" prefWidth="1090.0" style="-fx-background-color: #618C03;" />
+                        <Label layoutX="454.0" layoutY="67.0" text="Meal Plans">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="58.0" layoutY="139.0" text="Label" />
+                     </children></AnchorPane>
                </content>
             </Tab>
          </tabs>
