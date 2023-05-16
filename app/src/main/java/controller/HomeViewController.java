@@ -85,9 +85,18 @@ public class HomeViewController {
    */
   public void showRecommondations() {
 
-    ArrayList<Recipe> recommendationList = controller.getRecipeList();
-    int recipeNum = recommendationList.size();
+    ArrayList<Recipe> recipeList = controller.getRecipeList();
+    ArrayList<Recipe> recommendationList = new ArrayList<>();
+    int index = 0;
 
+    while (index < recipeList.size()) {
+      if (controller.getActiveUser().isFavourite(recipeList.get(index)) == false){
+        recommendationList.add(recipeList.get(index));
+      }
+      index++;
+    }
+
+    int recipeNum = recommendationList.size();
 
     // Clear the actual grid
     recommendationsHome.getChildren().clear();
@@ -97,19 +106,20 @@ public class HomeViewController {
     int col = 0;
     int row = 0;
     // While the recipe list is not empty or we have not added 3 cards
-    while (currentIndex < recipeNum && currentIndex < maxNum) {
-      try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
-        Pane root = loader.load();
-        RecipeCardController cardController = loader.getController();
-        cardController.setRecipe(recommendationList.get(currentIndex).getId());
-        cardController.updateCard();
-        recommendationsHome.add(root, col % 3, row);
-        col++;
-        currentIndex++;
-      } catch (IOException e) {
-        e.printStackTrace(System.out);
-      }
+    while (currentIndex < recipeNum && currentIndex < maxNum ) {
+        try {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
+          Pane root = loader.load();
+          RecipeCardController cardController = loader.getController();
+            cardController.setRecipe(recommendationList.get(currentIndex).getId());
+            cardController.updateCard();
+            recommendationsHome.add(root, col % 3, row);
+            col++;
+            currentIndex++;
+        } catch (IOException e) {
+          e.printStackTrace(System.out);
+        }
+
     }
   }
 }

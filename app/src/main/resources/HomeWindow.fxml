@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" prefHeight="941.0" prefWidth="1230.0" vvalue="1.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeViewController">
+<ScrollPane fitToWidth="true" prefHeight="941.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeViewController">
    <content>
       <AnchorPane fx:id="homePane" prefHeight="1568.0" prefWidth="1220.0" stylesheets="@HomeWindow.css">
          <children>
@@ -45,7 +45,7 @@
                </children>
             </Pane>
             <Button fx:id="allRecipesBtn" layoutX="533.0" layoutY="1262.0" mnemonicParsing="false" onAction="#openAllRecipes" prefHeight="48.0" prefWidth="155.0" text="View all Recipes" />
-            <GridPane fx:id="recommendationsHome" hgap="80.0" layoutX="70.0" layoutY="815.0" prefHeight="380.0" prefWidth="1060.0">
+            <GridPane fx:id="recommendationsHome" focusTraversable="false" hgap="80.0" layoutX="70.0" layoutY="815.0" prefHeight="380.0" prefWidth="1060.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="296.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="522.0" minWidth="10.0" prefWidth="310.0" />
@@ -87,7 +87,7 @@
             <Hyperlink fx:id="favorites" layoutX="1034.0" layoutY="56.0" onAction="#seeFavourites" text="Favourites" />
             <Button fx:id="newRecipeBtn" layoutX="800.0" layoutY="56.0" mnemonicParsing="false" onAction="#openNewRecipe" text="New Recipe" />
             <Hyperlink fx:id="user" layoutX="1147.0" layoutY="56.0" text="User" />
-            <GridPane fx:id="favouriteHome" hgap="80.0" layoutX="70.0" layoutY="317.0" prefHeight="380.0" prefWidth="1060.0">
+            <GridPane fx:id="favouriteHome" focusTraversable="false" hgap="80.0" layoutX="70.0" layoutY="317.0" prefHeight="380.0" prefWidth="1060.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="296.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="522.0" minWidth="10.0" prefWidth="310.0" />
