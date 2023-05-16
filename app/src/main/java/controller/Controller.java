@@ -144,7 +144,11 @@ public class Controller {
    */
   private User createUser(ResultSet rs, int id) {
     try {
-      return new User(Integer.valueOf(rs.getString("id")), rs.getString("username"), rs.getString("password"), Boolean.parseBoolean(rs.getString("isAdmin")));
+      Boolean b;
+      System.out.println(rs.getString("isAdmin"));
+      if(rs.getString("isAdmin")=="1") b=true;
+      else b=false;
+      return new User(Integer.valueOf(rs.getString("id")), rs.getString("username"), rs.getString("password"), b, rs.getString("imageUrl"));
     } catch (SQLException e) {
       return null;
     }
@@ -324,8 +328,8 @@ public class Controller {
    * Displays a window for changing users.
    */
 
-  public void displayNewUserView(int id, String username, String password, boolean isAdmin) {
-    AddNewUserView addNewUserView = new AddNewUserView(id, username, password, isAdmin);
+  public void displayNewUserView(int id, String username, String password, boolean isAdmin, String imageUrl) {
+    AddNewUserView addNewUserView = new AddNewUserView(id, username, password, isAdmin, imageUrl);
     Scene newUserScene = new Scene(addNewUserView.getRoot());
     stage.setScene(newUserScene);
     stage.show();
@@ -623,13 +627,14 @@ public class Controller {
     return usersArray;
   }
 
-  public void addNewUser(String username, String password, boolean isAdmin) {
+  public void addNewUser(String username, String password, boolean isAdmin, String imageUrl) {
     try {
-      String query = "INSERT INTO user (username, password, isAdmin) VALUES (?, ?, ?)";
+      String query = "INSERT INTO user (username, password, isAdmin, imageUrl) VALUES (?, ?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, username);
       stmt.setString(2, password);
       stmt.setBoolean(3, isAdmin);
+      stmt.setString(4, imageUrl);
       stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -647,14 +652,15 @@ public class Controller {
     }
   }
 
-  public void changeUser(int id, String username, String password, boolean isAdmin) {
+  public void changeUser(int id, String username, String password, boolean isAdmin, String imageUrl) {
     try {
-      String query = "UPDATE user SET username = ?, password = ?, isAdmin = ? WHERE id = ?";
+      String query = "UPDATE user SET username = ?, password = ?, isAdmin = ?, imageUrl = ? WHERE id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, username);
       stmt.setString(2, password);
       stmt.setBoolean(3, isAdmin);
-      stmt.setInt(4, id);
+      stmt.setString(4, imageUrl);
+      stmt.setInt(5, id);
       stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();

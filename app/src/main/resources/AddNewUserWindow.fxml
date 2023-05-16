@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.RadioButton?>
-<ScrollPane fitToWidth="true" prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddNewUserController">
+<ScrollPane fitToWidth="true" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddNewUserController">
     <content>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="320.0" stylesheets="@Style.css">
             <children>
@@ -21,7 +21,9 @@
                 <Label layoutX="50" layoutY="190" fx:id="isAdminLabel" text="Is the user an administrator?"></Label>
                 <RadioButton layoutX="50" layoutY="230" fx:id="yesRB" text="Yes"></RadioButton>
                 <RadioButton layoutY="230" layoutX="140" fx:id="noRB" text="No"></RadioButton>
-                <Button layoutX="200" layoutY="290" fx:id="addUser" onAction="#newUserEvent"></Button>
+                <Label layoutX="50" layoutY="280" fx:id="imageUrlLabel" text="Link to the picture"></Label>
+                <TextField layoutX="50" layoutY="320" fx:id="imageUrlTF"></TextField>
+                <Button layoutX="200" layoutY="380" fx:id="addUser" onAction="#newUserEvent"></Button>
             </children>
         </AnchorPane>
     </content>

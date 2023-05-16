@@ -27,6 +27,10 @@ public class AddNewUserController {
     private Label passwordLabel;
     @FXML
     private Label isAdminLabel;
+    @FXML
+    private Label imageUrlLabel;
+    @FXML
+    private TextField imageUrlTF;
 
     public void initializeToggleGroup() {
         ToggleGroup group = new ToggleGroup();
@@ -38,39 +42,35 @@ public class AddNewUserController {
         isAdminLabel.setFont(new Font(20));
         yesRB.setFont(new Font(20));
         noRB.setFont(new Font(20));
+        imageUrlLabel.setFont(new Font(20));
+        imageUrlTF.setFont(new Font(20));
     }
 
-    public void initializeUserChange(int id, String username, String password, boolean isAdmin) {
-        ToggleGroup group = new ToggleGroup();
-        yesRB.setToggleGroup(group);
-        noRB.setToggleGroup(group);
+    public void initializeUserChange(int id, String username, String password, boolean isAdmin, String imageUrl) {
+        initializeToggleGroup();
         addUser.setText("Change user");
-        usernameLabel.setFont(new Font(20));
-        passwordLabel.setFont(new Font(20));
-        isAdminLabel.setFont(new Font(20));
-        yesRB.setFont(new Font(20));
-        noRB.setFont(new Font(20));
         usernameTF.setText(username);
         passwordTF.setText(password);
-        System.out.println(Boolean.toString(isAdmin));
         if(isAdmin==false) noRB.setSelected(true);
         else yesRB.setSelected(true);
         addUser.setOnAction(event -> {
             changeUser(id);
         });
+        imageUrlTF.setText(imageUrl);
     }
 
     public void newUserEvent(){
         String username = usernameTF.getText();
         String password = passwordTF.getText();
+        String imageUrl = imageUrlTF.getText();
         try {
             //if fields are empty - can't create a user
-            if(username=="" || password=="" || (yesRB.isSelected()==false && noRB.isSelected()==false));
+            if(username=="" || password=="" || (yesRB.isSelected()==false && noRB.isSelected()==false) || imageUrl=="");
             else {
                 boolean ia;
                 if(yesRB.isSelected()) ia=true;
                 else ia=false;
-                controller.addNewUser(username, password, ia);
+                controller.addNewUser(username, password, ia, imageUrl);
                 controller.displayUsersView();
                 Stage stage = (Stage) usernameTF.getScene().getWindow();
                 stage.close();
@@ -82,14 +82,15 @@ public class AddNewUserController {
     public void changeUser(int id) {
         String username = usernameTF.getText();
         String password = passwordTF.getText();
+        String imageUrl = imageUrlTF.getText();
         try {
             //if fields are empty - can't create a user
-            if(username=="" || password=="" || (yesRB.isSelected()==false && noRB.isSelected()==false));
+            if(username=="" || password=="" || (yesRB.isSelected()==false && noRB.isSelected()==false) || imageUrl=="");
             else {
                 boolean ia;
                 if(yesRB.isSelected()) ia=true;
                 else ia=false;
-                controller.changeUser(id, username, password, ia);
+                controller.changeUser(id, username, password, ia, imageUrl);
                 controller.displayUsersView();
                 Stage stage = (Stage) usernameTF.getScene().getWindow();
                 stage.close();

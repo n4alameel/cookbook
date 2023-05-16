@@ -10,6 +10,8 @@ import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javax.swing.JButton;
+import javafx.scene.shape.Circle;
+import javafx.scene.paint.ImagePattern;
 
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -35,32 +37,40 @@ public class UsersViewController {
             String isAdmin;
             if(isAdmin1=="false") isAdmin="Not admin";
             else isAdmin="Admin";
-            //ImageView image = new ImageView(controller.getPicture());
             Button buttonDelete = new Button("Delete");
             Button buttonChange = new Button("Change");
             Label un = new Label(username);
             Label pd = new Label(password);
             Label ia = new Label(isAdmin);
-            buttonDelete.setLayoutX(1100);
-            System.out.println(Integer.toString((100-username.length())));
-            HBox hbox = new HBox(un, pd, ia, buttonChange, buttonDelete);
+            Circle circle = new Circle(25, 25, 25);
+            ImageView img = new ImageView(user.getImageUrl());
+            img.setFitWidth(60);
+            img.setClip(circle);
+            img.setFitHeight(50);
+            AnchorPane userAnchorPane = new AnchorPane(img, un, pd, ia, buttonChange, buttonDelete);
+            img.setLayoutX(50);
+            un.setLayoutX(300);
+            pd.setLayoutX(600);
+            ia.setLayoutX(700);
+            img.setLayoutY(img.getLayoutY()+5);
+            un.setLayoutY(img.getLayoutY()+5);
+            pd.setLayoutY(img.getLayoutY()+5);
+            ia.setLayoutY(img.getLayoutY()+5);
+            userAnchorPane.setMaxHeight(50);
+            buttonChange.setLayoutX(900);
+            buttonDelete.setLayoutX(1000);
             un.setFont(new Font(30));
             pd.setFont(new Font(30));
             ia.setFont(new Font(30));
-            hbox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-            hbox.setMargin(un, new Insets(0, 100, 0, 10));
-            hbox.setMargin(pd, new Insets(0, 100, 0, 10));
-            hbox.setMargin(pd, new Insets(0, 100, 0, 10));
-            hbox.setMargin(buttonChange, new Insets(10, 100, 10, 200));
-            hbox.setMargin(buttonDelete, new Insets(10, 10, 10, 10));
-            hbox.setId(Integer.toString(user.getId()));
+            userAnchorPane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+            userAnchorPane.setId(Integer.toString(user.getId()));
             buttonDelete.setOnAction(event -> {
-                deleteUserEvent(Integer.valueOf(hbox.getId()));
+                deleteUserEvent(Integer.valueOf(userAnchorPane.getId()));
             });
             buttonChange.setOnAction(event -> {
-                changeUserEvent(Integer.valueOf(hbox.getId()));
+                changeUserEvent(Integer.valueOf(userAnchorPane.getId()));
             });
-            vbox.getChildren().addAll(hbox);
+            vbox.getChildren().addAll(userAnchorPane);
         }
         anchorPane.getChildren().add(vbox);
     }
@@ -83,8 +93,7 @@ public class UsersViewController {
     public void changeUserEvent(int id){
         try {
             User user = controller.getUserById(id);
-            System.out.println(user.getUsername()+ user.getPassword()+ user.isAdmin());
-            controller.displayNewUserView(id, user.getUsername(), user.getPassword(), user.isAdmin());
+            controller.displayNewUserView(id, user.getUsername(), user.getPassword(), user.isAdmin(), user.getImageUrl());
         } catch (Exception e) {
         }
     }

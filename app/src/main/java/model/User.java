@@ -6,14 +6,16 @@ public class User {
   private int id;
   private String username;
   private String password;
+  private String imageUrl;
   private boolean isAdmin = false;
   private ArrayList<Recipe> favouriteList = new ArrayList<Recipe>();
 
-  public User(int id, String username, String password, boolean isAdmin) {
+  public User(int id, String username, String password, boolean isAdmin, String imageUrl) {
     this.id = id;
     this.username = username;
     this.password = password;
     this.isAdmin = isAdmin;
+    this.imageUrl = imageUrl;
   }
 
   public int getId() {
@@ -55,6 +57,10 @@ public class User {
   public void setFavouriteList(ArrayList<Recipe> favouriteList) {
     this.favouriteList = favouriteList;
   }
+
+  public String getImageUrl() { return imageUrl;}
+
+  public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
   /*
    * public boolean newRecipe(String name, String description, String detail, int

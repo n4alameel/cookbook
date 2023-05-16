@@ -24,12 +24,12 @@ public class AddNewUserView {
         }
     }
 
-    public AddNewUserView(int id, String username, String password, boolean isAdmin) {
+    public AddNewUserView(int id, String username, String password, boolean isAdmin, String imageUrl) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddNewUserWindow.fxml"));
             root = (Parent) loader.load();
             AddNewUserController addNewUserController = (AddNewUserController) loader.getController();
-            addNewUserController.initializeUserChange(id, username, password, isAdmin);
+            addNewUserController.initializeUserChange(id, username, password, isAdmin, imageUrl);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
