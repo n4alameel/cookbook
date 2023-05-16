@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Test commit">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Windows">
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/UsersWIndow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Cookbook.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Cookbook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -404,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683650934705</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Windows">
+      <created>1684226216346</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1684226216346</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -444,7 +456,8 @@
     <MESSAGE value="Enter Tag on enter pressed" />
     <MESSAGE value="add Tag on enter Pressed" />
     <MESSAGE value="ingredientName is unique" />
-    <option name="LAST_COMMIT_MESSAGE" value="ingredientName is unique" />
+    <MESSAGE value="Windows" />
+    <option name="LAST_COMMIT_MESSAGE" value="Windows" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
