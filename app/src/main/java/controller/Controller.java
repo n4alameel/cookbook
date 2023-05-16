@@ -168,7 +168,7 @@ public class Controller {
    */
   private User createUser(ResultSet rs, int id) {
     try {
-      return new User(id, rs.getString(2), rs.getString(3), Boolean.parseBoolean(rs.getString(4)));
+      return new User(id, rs.getString(2), rs.getString(3), Boolean.parseBoolean(rs.getString(4)), rs.getString(5));
     } catch (SQLException e) {
       return null;
     }
@@ -352,7 +352,7 @@ public class Controller {
   private Comment createComment(ResultSet comRs) {
     try {
       Comment c = new Comment(Integer.parseInt(comRs.getString(1)), Integer.parseInt(comRs.getString(2)),
-          Integer.parseInt(comRs.getString(3)), comRs.getString(4), comRs.getString(5));
+          Integer.parseInt(comRs.getString(3)), comRs.getString(4), comRs.getString(5), comRs.getString(6));
       return c;
     } catch (SQLException e) {
       return null;
@@ -368,7 +368,7 @@ public class Controller {
   }
   public ArrayList<Comment> getCommentListByRecipeID(int recipeId) {
     try {
-      String query = "select C.id, C.user_id, C.recipe_id, C.text, U.username from comment C join user U on C.user_id = U.id where C.recipe_id = ?";
+      String query = "select C.id, C.user_id, C.recipe_id, C.text, U.username, U.imageUrl from comment C join user U on C.user_id = U.id where C.recipe_id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setInt(1, recipeId);
       ResultSet rs = stmt.executeQuery();

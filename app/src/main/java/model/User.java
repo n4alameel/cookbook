@@ -11,6 +11,7 @@ public class User {
   private int id;
   private String username;
   private String password;
+  private String imageURL;
   private boolean isAdmin = false;
   private ArrayList<Recipe> favouriteList = new ArrayList<Recipe>();
   private ArrayList<WeeklyList> weeklyPlanList = new ArrayList<WeeklyList>();
@@ -18,11 +19,13 @@ public class User {
   public User(
       int id, String username,
       String password,
-      boolean isAdmin) {
+      boolean isAdmin,
+      String imageURL) {
     this.id = id;
     this.username = username;
     this.password = password;
     this.isAdmin = isAdmin;
+    this.imageURL = imageURL;
   }
 
   public int getId() {
@@ -47,6 +50,14 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getImageURL() {
+    return imageURL;
+  }
+
+  public void setImageURL(String imageURL) {
+    this.imageURL = imageURL;
   }
 
   public boolean isAdmin() {

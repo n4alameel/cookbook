@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -30,6 +32,8 @@ public class CommentController {
     private Button removeBtn;
     @FXML
     private VBox processingComment;
+    @FXML
+    private ImageView commentatorAva;
     private int currentUserId;
     public void setComments(Comment commentByRecipe){
         this.comment = commentByRecipe;
@@ -40,6 +44,8 @@ public class CommentController {
         commentText.setFont(Font.font("System", FontWeight.THIN, FontPosture.ITALIC, 12));
         commentatorName.setFont(Font.font("System", FontWeight.BOLD, 14));
         commentatorName.setText(this.comment.getCommentatorName());
+        Image imageObject = new Image(this.comment.getImgUrl());
+        commentatorAva.setImage(imageObject);
         if (this.currentUserId == this.comment.getUserId()){
             editBtn.setStyle("visibility: true");
             removeBtn.setStyle("visibility: true");

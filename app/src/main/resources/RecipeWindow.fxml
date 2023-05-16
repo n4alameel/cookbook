@@ -214,9 +214,9 @@
                      <children>
                         <FlowPane alignment="CENTER_LEFT" columnHalignment="RIGHT" hgap="10.0" prefHeight="39.0" prefWidth="522.0">
                            <children>
-                              <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="commentatorAva" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image fx:id="commentatorAva" url="@img/ava.jpg" />
+                                    <Image url="@img/ava.jpg" />
                                  </image>
                               </ImageView>
                               <Text fx:id="activeCommentatorName" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />

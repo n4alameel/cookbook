@@ -14,13 +14,14 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="rootLayout" prefWidth="600.0" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainLayoutController">
+<BorderPane fx:id="rootLayout" prefHeight="700.0" prefWidth="900.0" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainLayoutController">
 <top>
     <VBox>
         <HBox alignment="CENTER_RIGHT" prefWidth="1200.0" spacing="50.0">
@@ -61,7 +62,7 @@
                 </FlowPane>
                 <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" hgap="50.0" HBox.hgrow="SOMETIMES">
                     <children>
-                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="87.0">
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefWidth="87.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#openAllRecipesView" styleClass="action-btn" text="Recipes">
                                     <graphic>
@@ -74,7 +75,7 @@
                                 </Button>
                             </children>
                         </FlowPane>
-                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="59.0" prefWidth="152.0">
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefWidth="152.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#openFavouriteView" styleClass="action-btn" text="Favourite Recipes">
                                     <graphic>
@@ -87,7 +88,7 @@
                                 </Button>
                             </children>
                         </FlowPane>
-                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="70.0" prefWidth="112.0" prefWrapLength="0.0">
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefWidth="112.0" prefWrapLength="0.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#openNewRecipeView" styleClass="action-btn" text="Add Recipe">
                                     <graphic>
@@ -104,7 +105,7 @@
                             <children>
                                 <Button fx:id="activeUserName" mnemonicParsing="false" styleClass="action-btn">
                                     <graphic>
-                                        <ImageView id="ava" fitHeight="43.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="activeUserPhoto" fitHeight="43.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@img/ava.jpg" />
                                             </image>

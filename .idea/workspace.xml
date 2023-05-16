@@ -4,22 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Implemented switching from login to home window which content was loaded in center part of BorderPane in MainLayout. As we had to change way of displaying pages, therefore all recipes page, search page, home page and recipe page have View, Controller files, fxml files refactored.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/CommentEditionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/CommentEditionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/CommentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/LoginViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/RecipeCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/RecipeCardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/MainLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/MainLayoutController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/RecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/RecipeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/BrowserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/BrowserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/HomeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/HomeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/RecipeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/RecipeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/SearchView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/SearchView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/AllRecipesWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/AllRecipesWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/RecipeWindow.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/RecipeWindow.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/Comment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/Comment.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/MainLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/MainLayout.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/RecipeWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/RecipeWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/SearchWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/SearchWindow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -451,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683879838039</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Implemented switching from login to home window which content was loaded in center part of BorderPane in MainLayout. As we had to change way of displaying pages, therefore all recipes page, search page, home page and recipe page have View, Controller files, fxml files refactored.">
+      <created>1684227690608</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1684227690608</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +492,8 @@
     <MESSAGE value="made a single getIngredient and changed initialize class in AddedRecipeController" />
     <MESSAGE value="added second constructor to IngredientMocking, changed according calls" />
     <MESSAGE value="fixing bugs from resolved conflicts" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing bugs from resolved conflicts" />
+    <MESSAGE value="Implemented switching from login to home window which content was loaded in center part of BorderPane in MainLayout. As we had to change way of displaying pages, therefore all recipes page, search page, home page and recipe page have View, Controller files, fxml files refactored." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented switching from login to home window which content was loaded in center part of BorderPane in MainLayout. As we had to change way of displaying pages, therefore all recipes page, search page, home page and recipe page have View, Controller files, fxml files refactored." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

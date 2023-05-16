@@ -12,6 +12,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -66,6 +68,8 @@ public class RecipeController{
     @FXML
     private javafx.scene.control.TextArea commentTextArea;
     @FXML
+    private ImageView commentatorAva;
+    @FXML
     public void openFavouriteView() throws IOException {
         controller.displayFavouriteView();
     }
@@ -118,6 +122,8 @@ public class RecipeController{
         });
         activeCommentatorName.setFont(Font.font("System", FontWeight.BOLD, 14));
         activeCommentatorName.setText(this.controller.getActiveUser().getUsername());
+        Image imageObject = new Image(this.controller.getActiveUser().getImageURL());
+        commentatorAva.setImage(imageObject);
         commentBox.getChildren().clear();
         this.comments = this.recipe.getCommentList();
         Collections.reverse(this.comments);

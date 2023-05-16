@@ -113,3 +113,15 @@ name and a password
 is wrong
 - [ ] 32. As an admin I want to be able to delete an existing user it the user no
 longer should be able to use the system
+
+
+**Implenting loding content of page to the center of MainLayout :**
+- [ ] 1. Begin from fxml file: remove part that displays header and footer.
+Make sure that part that was left is wrapped in ScrollPane.
+- [ ] 2. Move to View file of your page and change 'private Parent root;' to 'private ScrollPane root;'.
+Then accordingly to that changes refactor the type of return value in getRoot() function(ScrollPane instead Parent)
+- [ ] 3. Move to Controller.java file and refactor function that is responsible for displaying your page.
+          Create a class instance of View and invoke LoadContent on this.mainView 
+          with parameter that equals to root of the previous created instances of View:
+         PageView pageView = new PageView();
+         this.mainView.LoadContent(pageView.getRoot());
