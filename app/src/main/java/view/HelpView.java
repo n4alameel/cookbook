@@ -1,5 +1,6 @@
 package view;
 
+import controller.HomeViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 

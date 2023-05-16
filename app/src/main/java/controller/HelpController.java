@@ -4,10 +4,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Side;
 import javafx.scene.control.TabPane;
 
-public class HelpController {
+import java.io.IOException;
 
-    @FXML
-    private TabPane tabPane;
+public class HelpController {
+    Controller controller = Controller.getInstance();
+
+    public void backToHome() throws IOException {
+        controller.displayHomeView();
+    }
 
 
 }
