@@ -4,15 +4,36 @@
 }
 
 .tab {
-    -fx-rotate: 90;
-    -fx-padding: 5 10 5 10; /* Set padding to adjust spacing within each tab */
-        -fx-font-size: 14px; /* Set font size as needed */
-        -fx-font-family: "Arial"; /* Set font family as needed */
-        -fx-text-alignment: center; /* Center align the text within each tab */
-        -fx-alignment: center; /* Center the contents of each tab */
-    -fx-min-height: 100px;
+-fx-rotate: 90;
+-fx-padding: 5 10 5 10;
+-fx-font-family: "Arial";
+-fx-text-alignment: center;
+
+
+}
+
+.tab .tab-label {
+    -fx-min-width: 0;
+    -fx-max-width: 1fr;
+    -fx-min-height: 0;
 }
 
 #homePane, #footer{
 -fx-background-color: #618C03
 }
+
+.text-area{
+-fx-background-color: transparent;
+-fx-padding: 0;
+-fx-background-insets: 0;
+-fx-border-width: 0;
+-fx-effect: null;
+-fx-text-fill: black;
+-fx-blend-mode: darken;
+}
+
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+
