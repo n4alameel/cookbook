@@ -33,9 +33,9 @@ public class UsersViewController {
         for (User user: userList) {
             String username = user.getUsername();
             String password = (String) user.getPassword();
-            String isAdmin1 = Boolean.toString(user.isAdmin());
+            Boolean isAdmin1 = user.isAdmin();
             String isAdmin;
-            if(isAdmin1=="false") isAdmin="Not admin";
+            if(isAdmin1==false) isAdmin="Not admin";
             else isAdmin="Admin";
             Button buttonDelete = new Button("Delete");
             Button buttonChange = new Button("Change");
@@ -96,5 +96,9 @@ public class UsersViewController {
             controller.displayNewUserView(id, user.getUsername(), user.getPassword(), user.isAdmin(), user.getImageUrl());
         } catch (Exception e) {
         }
+    }
+
+    public void homeViewEvent() {
+        controller.displayHomeView();
     }
 }

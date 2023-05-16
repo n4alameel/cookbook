@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Windows">
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/UsersWIndow.fxml" afterDir="false" />
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Controllers and classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Cookbook.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Cookbook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/HomeViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/HomeViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/UsersViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/UsersViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/HomeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/HomeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/UsersWIndow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/UsersWIndow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +62,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="US-30-32" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -110,7 +111,7 @@
       <recent name="model" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.cookbook:app [buildDependents]">
+  <component name="RunManager" selected="Gradle.cookbook:app [run]">
     <configuration name="cookbook [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -204,9 +205,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.cookbook:app [run]" />
+        <item itemvalue="Gradle.cookbook:app [buildDependents]" />
         <item itemvalue="Gradle.cookbook:app [build]" />
         <item itemvalue="Gradle.cookbook [build]" />
-        <item itemvalue="Gradle.cookbook:app [buildDependents]" />
         <item itemvalue="Gradle.cookbook:app [run]" />
       </list>
     </recent_temporary>

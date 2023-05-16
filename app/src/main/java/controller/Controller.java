@@ -170,8 +170,7 @@ public class Controller {
   private User createUser(ResultSet rs, int id) {
     try {
       Boolean b;
-      System.out.println(rs.getString("isAdmin"));
-      if(rs.getString("isAdmin")=="1") b=true;
+      if(rs.getInt("isAdmin")==1) b=true;
       else b=false;
       return new User(Integer.valueOf(rs.getString("id")), rs.getString("username"), rs.getString("password"), b, rs.getString("imageUrl"));
     } catch (SQLException e) {

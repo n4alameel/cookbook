@@ -28,7 +28,8 @@
                         <Insets left="970.0" top="8.0" />
                     </padding>
                 </MenuBar>
-                <Button layoutY="100" layoutX="1050" fx:id="addUser" text="New user" onAction="#addNewUserEvent"></Button>
+                <Button layoutY="100" layoutX="1050" fx:id="backHome" text="Home" onAction="#homeViewEvent"></Button>
+                <Button layoutY="100" layoutX="50" fx:id="addUser" text="New user" onAction="#addNewUserEvent"></Button>
                 <Pane fx:id="footer" layoutY="1794.0">
                     <children>
                         <ImageView fitHeight="72.0" fitWidth="252.0" layoutX="66.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">

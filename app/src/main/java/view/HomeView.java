@@ -17,6 +17,8 @@ public class HomeView {
       HomeViewController homeViewController = loader.getController();
       homeViewController.showFavourites();
       homeViewController.showRecommondations();
+      homeViewController.showAdminPanel();
+      homeViewController.showActiveUser();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

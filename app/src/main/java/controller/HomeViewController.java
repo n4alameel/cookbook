@@ -1,9 +1,14 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import model.Recipe;
 import javafx.fxml.Initializable;
 
@@ -11,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import model.User;
 
 public class HomeViewController {
 
@@ -19,6 +25,12 @@ public class HomeViewController {
   @FXML
   private GridPane recommendationsHome;
   Controller controller = Controller.getInstance();
+  @FXML
+  private Hyperlink adminPanel;
+  @FXML
+  private Hyperlink activeUser;
+  @FXML
+  private ImageView activeUserPicture;
 
   public void openAllRecipes() throws IOException {
     controller.displayBrowserView();
@@ -42,6 +54,14 @@ public class HomeViewController {
 
   public void openSearchPage() throws IOException {
     controller.displaySearchView();
+  }
+
+  public void goToUsersView() throws IOException {
+    controller.displayUsersView();
+  }
+
+  public void logoutEvent() {
+    controller.displayLoginScene();
   }
 
   /**
@@ -107,6 +127,19 @@ public class HomeViewController {
         e.printStackTrace(System.out);
       }
     }
+  }
+
+  public void showAdminPanel() {
+    User user = controller.getActiveUser();
+    if(user.isAdmin()==true) adminPanel.setVisible(true);
+  }
+
+  public void showActiveUser() {
+    User user = controller.getActiveUser();
+    activeUser.setText(user.getUsername());
+    activeUserPicture.setImage(new Image(user.getImageUrl()));
+    Circle circle = new Circle(25, 25, 25);
+    activeUserPicture.setClip(circle);
   }
 }
 
