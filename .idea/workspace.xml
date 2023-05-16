@@ -39,20 +39,7 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="cookbook" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="cookbook" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="cookbook" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="application" type="c8890929:TasksNode$1" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -72,7 +59,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="US-16" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -92,18 +79,12 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/vanes/IdeaProjects/cookbook/app/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -124,29 +105,7 @@
       <recent name="model" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.cookbook:app [run]">
-    <configuration name="CookBook:app [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/app" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.cookbook:app [buildDependents]">
     <configuration name="cookbook [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -236,7 +195,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Gradle.CookBook:app [clean]" />
       <item itemvalue="Gradle.cookbook:app [buildDependents]" />
       <item itemvalue="Gradle.cookbook [build]" />
       <item itemvalue="Gradle.cookbook:app [build]" />
@@ -245,10 +203,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.cookbook:app [run]" />
-        <item itemvalue="Gradle.CookBook:app [clean]" />
         <item itemvalue="Gradle.cookbook:app [build]" />
         <item itemvalue="Gradle.cookbook [build]" />
         <item itemvalue="Gradle.cookbook:app [buildDependents]" />
+        <item itemvalue="Gradle.cookbook:app [run]" />
       </list>
     </recent_temporary>
   </component>
@@ -260,8 +218,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682005190442</updated>
-      <workItem from="1683790968638" duration="15000" />
-      <workItem from="1683839402805" duration="7087000" />
     </task>
     <task id="LOCAL-00001" summary="Setup HomeWindow">
       <created>1682345135867</created>
@@ -417,11 +373,43 @@
       <option name="project" value="LOCAL" />
       <updated>1683217724106</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="no longer giving ingredient Units as well as ingredients">
+      <created>1683639607528</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1683639607528</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Tag is read from within the ListView">
+      <created>1683642128149</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1683642128149</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Enter Tag on enter pressed">
+      <created>1683643035600</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1683643035600</updated>
+    </task>
+    <task id="LOCAL-00026" summary="add Tag on enter Pressed">
+      <created>1683647317719</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1683647317719</updated>
+    </task>
+    <task id="LOCAL-00027" summary="ingredientName is unique">
+      <created>1683650934705</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1683650934705</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -454,7 +442,12 @@
     <MESSAGE value="added ingredients and mocking for the viewtable" />
     <MESSAGE value="made a single getIngredient and changed initialize class in AddedRecipeController" />
     <MESSAGE value="added second constructor to IngredientMocking, changed according calls" />
-    <option name="LAST_COMMIT_MESSAGE" value="added second constructor to IngredientMocking, changed according calls" />
+    <MESSAGE value="no longer giving ingredient Units as well as ingredients" />
+    <MESSAGE value="Tag is read from within the ListView" />
+    <MESSAGE value="Enter Tag on enter pressed" />
+    <MESSAGE value="add Tag on enter Pressed" />
+    <MESSAGE value="ingredientName is unique" />
+    <option name="LAST_COMMIT_MESSAGE" value="ingredientName is unique" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

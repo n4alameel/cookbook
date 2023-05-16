@@ -22,6 +22,10 @@ public class Recipe {
     this.commentList = commentList;
     this.tagList = tagList;
   }
+  //mocking for loading of a new recipe
+  public Recipe(String name) {
+    this.name = name;
+  }
 
   public int getPortions() {
     return portions;
