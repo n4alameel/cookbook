@@ -21,10 +21,6 @@
     -fx-background-color: #f6e599;
 }
 
-#make-favourite{
-
-}
-
 .green-fill{
     -fx-background-color: #618C03;
 }
@@ -112,4 +108,11 @@
 
 Button{
     -fx-cursor: hand;
+}
+
+center{-fx-background-color: white;
+-fx-border-color: transperent;}
+
+ScrollPane{
+    -fx-background-color: white;
 }

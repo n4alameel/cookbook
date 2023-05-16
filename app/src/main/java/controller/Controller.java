@@ -48,6 +48,8 @@ public class Controller {
   private Stage stage;
   private model.Recipe recipe;
 
+  public MainLayoutView mainView;
+
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
   }
@@ -93,11 +95,9 @@ public class Controller {
     return time;
   }
 
-  public void displaySearchView() {
+  public void displaySearchView() throws IOException {
     SearchView searchView = new SearchView();
-    Scene searchScene = new Scene(searchView.getRoot());
-    stage.setScene(searchScene);
-    stage.show();
+    this.mainView.LoadContent(searchView.getRoot());
   }
 
   /**
@@ -464,31 +464,26 @@ public class Controller {
   /**
    * Creates and displays the recipe browser scene.
    */
-  public void displayBrowserView() {
+  public void displayBrowserView() throws IOException {
     BrowserView browserView = new BrowserView();
-    Scene browserScene = new Scene(browserView.getRoot());
-    stage.setScene(browserScene);
-    stage.show();
+    this.mainView.LoadContent(browserView.getRoot());
   }
 
   /**
    * Creates and display the recipe details scene.
    */
-  public void displayRecipeView(int recipeId) {
+  public void displayRecipeView(int recipeId) throws IOException {
     RecipeView recipeView = new RecipeView(recipeId);
-    Scene recipeScene = new Scene(recipeView.getRoot());
-    stage.setScene(recipeScene);
-    stage.show();
+    this.mainView.LoadContent(recipeView.getRoot());
   }
 
   /**
    * Creates and displays the home scene.
    */
-  public void displayHomeView() {
+//  private Scene mainScene;
+  public void displayHomeView() throws IOException {
     HomeView homeView = new HomeView();
-    Scene mainScene = new Scene(homeView.getRoot());
-    stage.setScene(mainScene);
-    stage.show();
+    this.mainView.LoadContent(homeView.getRoot());
   }
 
   /**
@@ -1031,6 +1026,8 @@ public class Controller {
       this.displayRecipeView(changedComment.getRecipeId());
     } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
   }
 
@@ -1053,5 +1050,13 @@ public class Controller {
     } catch (Exception e) {
       return false;
     }
+  }
+
+  public void displayMainLayout() throws IOException {
+    this.mainView = new MainLayoutView();
+    Scene mainScene = new Scene(this.mainView.getRoot());
+    stage.setScene(mainScene);
+    stage.show();
+    this.displayHomeView();
   }
 }

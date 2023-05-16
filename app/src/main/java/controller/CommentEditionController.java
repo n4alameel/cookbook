@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import model.Comment;
 
+import java.io.IOException;
+
 public class CommentEditionController {
     private Controller controller = Controller.getInstance();
     private Comment comment;
@@ -18,7 +20,7 @@ public class CommentEditionController {
         this.controller.updateComment(this.comment);
     }
 
-    public void cancelChangings(ActionEvent actionEvent) {
+    public void cancelChangings(ActionEvent actionEvent) throws IOException {
         box.setStyle("visibility: false");
         this.controller.displayRecipeView(this.comment.getRecipeId());
     }

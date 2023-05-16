@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import model.Recipe;
 
+import java.io.IOException;
+
 public class RecipeCardController {
   private Controller controller = Controller.getInstance();
   private Recipe recipe;
@@ -72,8 +74,8 @@ public class RecipeCardController {
   }
 
   @FXML
-  private void seeRecipe() {
-    controller.displayRecipeView(this.recipe.getId());
+  private void seeRecipe() throws IOException {
+    this.controller.displayRecipeView(this.recipe.getId());
   }
 
   /**

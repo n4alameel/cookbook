@@ -29,7 +29,7 @@ import model.WeeklyList;
 import model.WeeklyList.WeekDay;
 import view.RecipeView;
 
-import java.awt.*;
+import javafx.scene.control.Button;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -63,8 +63,6 @@ public class RecipeController{
     private VBox ingredientBox;
     @FXML
     private HBox tagBox;
-    @FXML
-    private Text activeUserName;
     @FXML
     private javafx.scene.control.TextArea commentTextArea;
     @FXML
@@ -101,7 +99,6 @@ public class RecipeController{
         recipeName.setText(this.recipe.getName());
         recipeShortDescription.setText(this.recipe.getShortDescription());
         recipeDescription.setText(this.recipe.getDescription());
-        activeUserName.setText(this.controller.getActiveUser().getUsername());
         this.tags = this.recipe.getTagList();
         this.tags.forEach(tag -> {
             Label labelNode = new Label();
@@ -120,7 +117,7 @@ public class RecipeController{
             this.setIngredients();
         });
         activeCommentatorName.setFont(Font.font("System", FontWeight.BOLD, 14));
-        activeCommentatorName.setText(activeUserName.getText());
+        activeCommentatorName.setText(this.controller.getActiveUser().getUsername());
         commentBox.getChildren().clear();
         this.comments = this.recipe.getCommentList();
         Collections.reverse(this.comments);
@@ -185,9 +182,18 @@ public class RecipeController{
                 break;
             }
         }
-        controller.addRecipeToWeeklyList(weekId, daySelector.getValue(), recipe);
+        controller.addRecipeToWeeklyList(weekId, daySelector.getValue(), this.recipe);
         addMessage.setVisible(true);
     }
 
+    public void openAllrecipesView(ActionEvent actionEvent) {
+    }
+
+    public void openNewRecipeView(ActionEvent actionEvent) {
+    }
+
+    public void openAllRecipesView(ActionEvent actionEvent) throws IOException {
+        this.controller.displayBrowserView();
+    }
 }
 
