@@ -20,6 +20,7 @@ import com.sun.javafx.binding.StringFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
@@ -37,7 +38,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -168,7 +169,10 @@ public class Controller {
    */
   private User createUser(ResultSet rs, int id) {
     try {
-      return new User(id, rs.getString(2), rs.getString(3), Boolean.parseBoolean(rs.getString(4)));
+      Boolean b;
+      if(rs.getInt("isAdmin")==1) b=true;
+      else b=false;
+      return new User(Integer.valueOf(rs.getString("id")), rs.getString("username"), rs.getString("password"), b, rs.getString("imageUrl"));
     } catch (SQLException e) {
       return null;
     }
@@ -275,7 +279,7 @@ public class Controller {
 
   /**
    * Generates the list of all weekly lists of active user from the database.
-   * 
+   *
    * @return An ArrayList of WeeklyList objects
    */
   public ArrayList<WeeklyList> generateWeeklyPlansFromDb() {
@@ -300,7 +304,7 @@ public class Controller {
 
   /**
    * Creates a WeeklyList object from a SQL query result.
-   * 
+   *
    * @param rs A query result. Must contain the values {@code id},
    *           {@code weekNumber}, {@code year} and {@code creation_date}.
    * @return A {@code WeeklyList} object
@@ -527,6 +531,37 @@ public class Controller {
   }
 
   /**
+   * Creates and displays administrative panel
+   */
+
+  public void displayUsersView() {
+    UsersView usersView = new UsersView();
+    Scene usersScene = new Scene(usersView.getRoot());
+    stage.setScene(usersScene);
+    stage.show();
+  }
+  /**
+   * Displays a window for adding new users.
+   */
+  public void displayNewUserView() {
+    AddNewUserView addNewUserView = new AddNewUserView();
+    Scene newUserScene = new Scene(addNewUserView.getRoot());
+    stage.setScene(newUserScene);
+    stage.show();
+  }
+
+  /**
+   * Displays a window for changing users.
+   */
+
+  public void displayNewUserView(int id, String username, String password, boolean isAdmin, String imageUrl) {
+    AddNewUserView addNewUserView = new AddNewUserView(id, username, password, isAdmin, imageUrl);
+    Scene newUserScene = new Scene(addNewUserView.getRoot());
+    stage.setScene(newUserScene);
+    stage.show();
+  }
+
+  /**
    * Closes the app.
    */
   public void closeApp() {
@@ -633,7 +668,7 @@ public class Controller {
   /**
    * Deletes a Weekly list from the database and the user list. It also deletes
    * the corresponding day lists from the database.
-   * 
+   *
    * @param listId The id of the list to delete
    * @return true if successful
    */
@@ -661,7 +696,7 @@ public class Controller {
 
   /**
    * Adds a recipe to a weekly list in the database and in the user's list.
-   * 
+   *
    * @param weekId The id of the weekly list in which we add the recipe.
    * @param day    The day for which we add the recipe.
    * @param recipe the recipe to add.
@@ -977,7 +1012,7 @@ public class Controller {
    * not.
    *
    * // @param recipeId The id of the recipe to add/delete.
-   * 
+   *
    * @return {@code true} if the recipe was not in the favourite list and was then
    *         added.
    */
@@ -1053,5 +1088,83 @@ public class Controller {
     } catch (Exception e) {
       return false;
     }
+  }
+
+  public ArrayList<User> getUsers() {
+    ArrayList<User> usersArray = new ArrayList<User>();
+    try {
+      String query = "SELECT * FROM User";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      ResultSet rs = stmt.executeQuery();
+
+      int id = 1;
+
+      while (rs.next()) {
+        User user = createUser(rs, id);
+        id++;
+        usersArray.add(user);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return usersArray;
+  }
+
+  public void addNewUser(String username, String password, boolean isAdmin, String imageUrl) {
+    try {
+      String query = "INSERT INTO user (username, password, isAdmin, imageUrl) VALUES (?, ?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, username);
+      stmt.setString(2, password);
+      stmt.setBoolean(3, isAdmin);
+      stmt.setString(4, imageUrl);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void deleteUser(int id) {
+    try {
+      String query = "DELETE FROM user WHERE id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, id);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void changeUser(int id, String username, String password, boolean isAdmin, String imageUrl) {
+    try {
+      String query = "UPDATE user SET username = ?, password = ?, isAdmin = ?, imageUrl = ? WHERE id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, username);
+      stmt.setString(2, password);
+      stmt.setBoolean(3, isAdmin);
+      stmt.setString(4, imageUrl);
+      stmt.setInt(5, id);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public User getUserById(int id) {
+    try {
+      String query = "SELECT * FROM User WHERE id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, id);
+      ResultSet rs = stmt.executeQuery();
+      if (rs.next()) {
+        User user = createUser(rs, id);
+        return user;
+      } else {
+        return null;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }
