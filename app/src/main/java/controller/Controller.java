@@ -506,6 +506,17 @@ public class Controller {
   }
 
   /**
+   * Creates and display the help page scene.
+   */
+  public void displayHelpPage() {
+    HelpView helpView = new HelpView();
+    Scene helpScene = new Scene(helpView.getRoot());
+    stage.setScene(helpScene);
+    stage.show();
+  }
+
+
+  /**
    * Creates and displays the new recipe prompt scene.
    */
   public void displayNewRecipeView() {
