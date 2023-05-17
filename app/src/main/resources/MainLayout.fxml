@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
@@ -140,14 +139,14 @@
     <!-- Footer content -->
 </bottom>
    <bottom>
-       <VBox prefWidth="100.0" BorderPane.alignment="CENTER">
-           <HBox alignment="CENTER" prefHeight="118.0" prefWidth="1200.0" styleClass="bottom">
+       <VBox prefWidth="1182.0" BorderPane.alignment="CENTER">
+           <HBox alignment="CENTER" prefHeight="126.0" prefWidth="1182.0" styleClass="bottom">
                <children>
-                   <FlowPane columnHalignment="CENTER" prefHeight="146.0" prefWidth="360.0">
+                   <FlowPane columnHalignment="CENTER" prefWidth="343.0">
                        <children>
-                           <VBox prefHeight="111.0" prefWidth="173.0" spacing="10.0">
+                           <VBox prefHeight="60.0" prefWidth="181.0" spacing="10.0">
                                <children>
-                                   <ImageView fitHeight="63.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                                   <ImageView fitHeight="76.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                            <Image url="@img/logo-removebg.png" />
                                        </image>
@@ -155,7 +154,7 @@
                                            <Rectangle2D />
                                        </viewport>
                                    </ImageView>
-                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This CookBook is made by students of Project course of Computer Sciene, COLOB group" wrappingWidth="180.00457763671875">
+                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This CookBook is made by students of Project course of Computer Science, COBOL group" wrappingWidth="180.00457763671875">
                                        <font>
                                            <Font size="10.0" />
                                        </font></Text>
@@ -163,9 +162,9 @@
                            </VBox>
                        </children>
                    </FlowPane>
-                   <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="126.0" prefWidth="356.0">
+                   <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefWidth="342.0">
                        <children>
-                           <VBox alignment="CENTER_LEFT" prefHeight="104.0" prefWidth="263.0" spacing="10.0">
+                           <VBox alignment="CENTER_LEFT" prefWidth="263.0" spacing="10.0">
                                <children>
                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quick Access" wrappingWidth="175.337890625">
                                        <font>
@@ -193,9 +192,9 @@
                            </VBox>
                        </children>
                    </FlowPane>
-                   <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="119.0" prefWidth="388.0">
+                   <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefWidth="302.0">
                        <children>
-                           <VBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="263.0" spacing="10.0">
+                           <VBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="263.0" spacing="10.0">
                                <children>
                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Need help?" wrappingWidth="175.337890625">
                                        <font>
@@ -220,7 +219,7 @@
                    <Insets />
                </opaqueInsets>
                <padding>
-                   <Insets bottom="30.0" left="60.0" right="60.0" top="10.0" />
+                   <Insets bottom="10.0" left="60.0" right="60.0" top="2.0" />
                </padding>
            </HBox>
            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -229,7 +228,7 @@
                    <String fx:value="footer" />
                </styleClass>
                <children>
-                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="footer-text" text="\@ Group Colob, 2023" />
+                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="footer-text" text="\@ Group Cobol, 2023" />
                </children>
            </HBox>
        </VBox>
