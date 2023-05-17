@@ -214,6 +214,23 @@ public class Controller {
       ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
         messages.add(new Message(rs.getInt(1), rs.getString(2), 1, rs.getInt(4), rs.getInt(5), rs.getInt(6)));
+      }
+      return messages;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return null;
+    }
+  }
+
+  public ArrayList<Message> updateMessages() {
+    ArrayList<Message> messages = new ArrayList<Message>();
+    try {
+      String query = "SELECT * FROM message WHERE receiverId = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        messages.add(new Message(rs.getInt(1), rs.getString(2), 1, rs.getInt(4), rs.getInt(5), rs.getInt(6)));
         if (rs.getInt(3) == 0) {
           query = "UPDATE message SET isRead = 1 WHERE id = ?";
           stmt = this.db.prepareStatement(query);
@@ -337,8 +354,8 @@ public class Controller {
   /**
    * Creates and displays the send message scene.
    */
-  public void displaySendMessageView() {
-    SendMessageView sendMessageView = new SendMessageView();
+  public void displaySendMessageView(Recipe recipe) {
+    SendMessageView sendMessageView = new SendMessageView(recipe);
     Scene sendMessageViewScene = new Scene(sendMessageView.getRoot());
     Stage secondaryStage = new Stage();
     secondaryStage.setScene(sendMessageViewScene);

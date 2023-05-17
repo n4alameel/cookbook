@@ -1,6 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import javafx.fxml.FXML;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.event.ActionEvent;
 
 public class HomeViewController {
   Controller controller = Controller.getInstance();
@@ -19,10 +25,6 @@ public class HomeViewController {
 
   public void openMessage() throws IOException {
     controller.displayMessageView();
-  }
-
-  public void sendRecipe() throws IOException {
-    controller.displaySendMessageView();
   }
 
 }

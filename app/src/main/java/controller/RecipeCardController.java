@@ -52,10 +52,9 @@ public class RecipeCardController {
     shortDesc.setText(recipe.getDescription());
   }
 
-
   @FXML
   private void sendRecipeEvent() {
-
+    controller.displaySendMessageView(recipe);
   }
 
   /**
