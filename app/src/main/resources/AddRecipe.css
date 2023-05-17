@@ -7,6 +7,10 @@
   -fx-font-weight: bold;
 }
 
+#nameError{
+-fx-color:"red"
+}
+
 #addImage, #addIngredientButton{
 -fx-border-radius: 20 20 20 20;
 -fx-background-radius: 20 20 20 20;

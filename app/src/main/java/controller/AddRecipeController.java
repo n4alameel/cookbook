@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -48,31 +49,70 @@ public class AddRecipeController implements Initializable {
     private TextField newTag;
     @FXML
     private TextField imageField;
+    @FXML
+    private Label nameError;
+    @FXML
+    private Label shortDescriptionError;
+    @FXML
+    private Label longDescriptionError;
+    @FXML
+    private Label tagError;
+    @FXML
+    private Label ingredientError;
+    @FXML
+    private Label amountError;
+    @FXML
+    private Label ingredientNameError;
+
     private ObservableList<Tag> tagsArray = controller.generateTag();
     private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
     private ObservableList<Unit> unitArray = controller.generateUnit();
-    private ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
     private String addUnit;
-    private int unit_id;
     private ArrayList<Recipe> recipes = controller.getRecipeList();
+    private ObservableList<Ingredient> ingredients = controller.generateIngredient();
+    //listener for changes in the name
+    ChangeListener<String> changeListener = (observable, oldValue, newValue) -> {
+        for (Recipe recipe : recipes) {
+            if (newValue.equalsIgnoreCase(recipe.getName())) {
+                nameError.setText("The name exists already!");
+                break;
+            } else {
+                nameError.setText("");
+            }
+        }
+    };
 
     //saveRecipe button
+    //TODO: minimum requirement for recipe?
+    //TODO: delete all event listeners on closing the window
     public void saveRecipe(ActionEvent event) {
-        boolean uniqueName = true;
+        ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
+        //5 is the empty string
+         int unit_id = 5;
         try {
+            if(!(nameError.getText().isEmpty())){
+                alert("Name exists already, please change it!");
+                return;
+            }
+            if((nameField.getText().isEmpty())){
+                alert("Please select a name!");
+                return;
+            }
+
             String name = nameField.getText();
-            String shortDescription = shortDescriptionField.getText();
-            String longDescription = longDescriptionField.getText();
-            String imageURL = imageField.getText();
-            for (Recipe recipe : recipes) {
-                if (name.equalsIgnoreCase(recipe.getName())) {
-                    uniqueName = false;
-                    break;
+            for(Recipe recipe : recipes) {
+                if (recipe.getName().contains(name)) {
+                    nameError.setText("Name exists already, please change it!");
+                    alert("Name exists already, please change it!");
+                    return;
                 }
             }
+                String shortDescription = shortDescriptionField.getText();
+            String longDescription = longDescriptionField.getText();
+            String imageURL = imageField.getText();
             //if there are no ingredients stop.
             if (ingredientTable.getItems().isEmpty()) {
-                alert("Please add at least one Ingredient to the Table!");
+                ingredientError.setText("Please add at least on ingredient to the Table!");
                 return;
             }
             ObservableList<IngredientMock> ingredientMock = ingredientTable.getItems();
@@ -96,21 +136,16 @@ public class AddRecipeController implements Initializable {
                     }
                 }
             }
-            if (uniqueName) {
                 //selectBoxTagInts for loop for reading the elements out of the List
                 controller.newIngredient(ingredientList);
                 controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList, imageURL);
                 alert("Recipe has been saved");
                 recipes.add(new Recipe(name));
-            }
-            if (!uniqueName) {
-                alert(name, "recipe name");
-            }
+                Controller.getInstance().getStage().close();
+
         } catch (Exception e) {
             System.out.println(e);
-            //TODO: delete
-            alert("something went wrong");
-            return;
+            alert("there is already a recipe with the same Name and first ingredients");
         }
     }
 
@@ -134,6 +169,8 @@ public class AddRecipeController implements Initializable {
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         unitColumn.setCellValueFactory(new PropertyValueFactory<>("unit_id"));
         ingredientColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        nameField.textProperty().addListener(changeListener);
     }
 
     /**
@@ -152,9 +189,10 @@ public class AddRecipeController implements Initializable {
         }
         if (unique) {
             tagView.getItems().add(addedTag);
+            tagError.setText("");
         }
         if (!unique) {
-            alert(addedTag, "Tag");
+            tagError.setText("Tag has already been selected");
         }
     }
 
@@ -181,11 +219,11 @@ public class AddRecipeController implements Initializable {
         try {
             amount = Integer.valueOf(addAmount.getText());
         } catch (Exception e) {
-            alert("Please set the amount of the ingredient!");
+            amountError.setText("Please set the amount of the ingredient!");
             return;
         }
         if(ingredientItem.isBlank()) {
-            alert("Please set the name of the ingredient!");
+            ingredientNameError.setText("Please set the name of the ingredient!");
             return;
         }
         IngredientMock ingredientMock = new IngredientMock(ingredientItem, amount, unit);
@@ -199,7 +237,7 @@ public class AddRecipeController implements Initializable {
             ingredientTable.getItems().add(ingredientMock);
         }
         if (!unique) {
-            alert(ingredientMock.getName(), "Ingredient");
+            ingredientError.setText("Ingredient exists already, please choose a new one!");
         }
     }
 
@@ -248,18 +286,14 @@ public class AddRecipeController implements Initializable {
             if (unique && viewUnique) {
                 controller.newTag(addTag);
                 tagView.getItems().add(addTag);
+                tagError.setText("");
             }
             if (!viewUnique) {
-                alert(addTag, "Tag");
+                //alert(addTag, "Tag");
+                tagError.setText("Tag has already been selected");
             }
             tagSelection.getItems().add(addTag);
         }
-    }
-
-    private void alert(String exist, String type) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("a " + exist + " " + type + " exists already! Please choose another one.");
-        alert.show();
     }
 
     private void alert(String information) {
