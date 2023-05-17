@@ -7,13 +7,17 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="131.0" prefWidth="146.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WeeklyPlanViewCardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="131.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WeeklyPlanViewCardController">
    <children>
-      <Label fx:id="recipeName" layoutX="5.0" layoutY="-1.0" prefHeight="41.0" prefWidth="136.0" text="recipe name" textAlignment="CENTER" wrapText="true" />
-      <Spinner fx:id="portions" layoutX="76.0" layoutY="41.0" maxHeight="-Infinity" prefHeight="26.0" prefWidth="61.0" />
-      <Label layoutX="12.0" layoutY="45.0" text="Portions :" />
-      <Button layoutX="13.0" layoutY="88.0" mnemonicParsing="false" onAction="#viewRecipe" prefHeight="28.0" prefWidth="36.0">
+      <Label fx:id="recipeName" layoutX="5.0" layoutY="-1.0" prefHeight="41.0" prefWidth="136.0" text="recipe name" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Spinner fx:id="portions" layoutX="76.0" layoutY="41.0" maxHeight="-Infinity" prefHeight="26.0" prefWidth="61.0" AnchorPane.rightAnchor="12.0" />
+      <Label layoutX="12.0" layoutY="45.0" text="Portions :" AnchorPane.rightAnchor="87.0" />
+      <Button layoutX="13.0" layoutY="88.0" mnemonicParsing="false" onAction="#viewRecipe" prefHeight="28.0" prefWidth="36.0" AnchorPane.leftAnchor="15.0">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true">
                <image>
@@ -22,7 +26,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="84.0" layoutY="88.0" mnemonicParsing="false" onAction="#toggleErasePane">
+      <Button layoutX="84.0" layoutY="88.0" mnemonicParsing="false" onAction="#toggleErasePane" AnchorPane.rightAnchor="15.0">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                <image>

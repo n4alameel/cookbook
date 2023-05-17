@@ -511,11 +511,9 @@ public class Controller {
     this.mainView.LoadContent(weeklyPlanListView.getRoot());
   }
 
-  public void displayWeeklyPlanView(WeeklyList weeklyList) {
+  public void displayWeeklyPlanView(WeeklyList weeklyList) throws IOException {
     WeeklyPlanView weeklyPlanView = new WeeklyPlanView(weeklyList);
-    Scene weeklyScene = new Scene(weeklyPlanView.getRoot());
-    stage.setScene(weeklyScene);
-    stage.show();
+    this.mainView.LoadContent((weeklyPlanView.getRoot()));
   }
 
   /**

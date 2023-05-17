@@ -5,15 +5,16 @@ import java.io.IOException;
 import controller.WeeklyPlanViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ScrollPane;
 import model.WeeklyList;
 
 public class WeeklyPlanView {
-  private Parent root;
+  private ScrollPane root;
 
   public WeeklyPlanView(WeeklyList weeklyList) {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/WeeklyPlanView.fxml"));
-      root = (Parent) loader.load();
+      root = (ScrollPane) loader.load();
       WeeklyPlanViewController weeklyPlanListController = (WeeklyPlanViewController) loader.getController();
       weeklyPlanListController.setWeeklyList(weeklyList);
       weeklyPlanListController.updateWindow();
@@ -23,7 +24,7 @@ public class WeeklyPlanView {
     }
   }
 
-  public Parent getRoot() {
+  public ScrollPane getRoot() {
     return this.root;
   }
 }

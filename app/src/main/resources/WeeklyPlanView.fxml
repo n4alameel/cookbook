@@ -1,390 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<ScrollPane prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WeeklyPlanViewController">
-   <content>
-      <VBox alignment="CENTER" prefWidth="1200.0" styleClass="window" stylesheets="@RecipeWindow.css">
+<ScrollPane fitToWidth="true" stylesheets="@HomeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WeeklyPlanViewController">
+    <content>
+      <VBox alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_RIGHT" prefWidth="1200.0" spacing="50.0">
-               <Hyperlink alignment="CENTER" contentDisplay="CENTER" opacity="0.87" styleClass="header-link" text="Meal Plans" textAlignment="CENTER" textFill="WHITE">
-                  <HBox.margin>
-                     <Insets />
-                  </HBox.margin>
-               </Hyperlink>
-               <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="header-link" text="Shopping List" textAlignment="CENTER" textFill="WHITE">
-                  <HBox.margin>
-                     <Insets />
-                  </HBox.margin>
-               </Hyperlink>
-               <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="header-link" text="Chat Room" textAlignment="CENTER" textFill="#9f3535">
-                  <HBox.margin>
-                     <Insets />
-                  </HBox.margin>
-                  <font>
-                     <Font size="13.0" />
-                  </font>
-               </Hyperlink>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets bottom="5.0" right="60.0" top="5.0" />
-               </padding>
-               <styleClass>
-                  <String fx:value="green-fill" />
-                  <String fx:value="header" />
-               </styleClass>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefWidth="1200.0" style="-fx-background-color: #FFFF;">
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308">
                <children>
-                  <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER">
+                  <HBox maxWidth="-Infinity">
                      <children>
-                        <ImageView fitWidth="120.0" onMouseClicked="#goToMainMenu" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/logo.jpg" />
-                           </image>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
+                        <Label prefHeight="18.0" prefWidth="47.0" text="Week n°">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="weekNum" prefHeight="18.0" prefWidth="262.0" text="XX">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="18.0" prefWidth="34.0" text="Year">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="year" text="XXXX">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
                      </children>
-                  </FlowPane>
-                  <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" hgap="50.0" prefWidth="333.0" HBox.hgrow="SOMETIMES">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="600.0">
                      <children>
-                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
                            <children>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/whisk.png" />
-                                 </image>
-                              </ImageView>
-                              <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="top-link" text="Recipes" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Hyperlink>
+                              <Label text="Monday" />
+                              <Separator />
+                              <VBox fx:id="monCol" maxHeight="1.7976931348623157E308" />
                            </children>
-                        </FlowPane>
-                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
                            <children>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/HeartFull.png" />
-                                 </image>
-                              </ImageView>
-                              <Hyperlink contentDisplay="CENTER" opacity="0.87" styleClass="top-link" text="Favourite Recipes" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Hyperlink>
+                              <Label prefHeight="18.0" text="Tuesday">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Separator />
+                              <VBox fx:id="tueCol" maxHeight="1.7976931348623157E308">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </VBox>
                            </children>
-                        </FlowPane>
-                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="70.0" prefWidth="150.0">
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
                            <children>
-                              <ImageView id="ava" fitHeight="43.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/ava.jpg" />
-                                 </image>
-                                 <FlowPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </FlowPane.margin>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="top-link" text="Charlotte Oliver">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Text>
+                              <Label prefHeight="18.0" text="Wednesday">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Separator />
+                              <VBox fx:id="wedCol" maxHeight="1.7976931348623157E308" />
                            </children>
-                        </FlowPane>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
+                           <children>
+                              <Label prefHeight="18.0" text="Thursday">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Separator />
+                              <VBox fx:id="thuCol" maxHeight="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
+                           <children>
+                              <Label prefHeight="18.0" text="Friday">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Separator />
+                              <VBox fx:id="friCol" maxHeight="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
+                           <children>
+                              <Label prefHeight="18.0" text="Saturday">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Separator />
+                              <VBox fx:id="satCol" maxHeight="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
+                           <children>
+                              <Label prefHeight="18.0" text="Sunday">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Separator />
+                              <VBox fx:id="sunCol" maxHeight="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
                      </children>
-                  </FlowPane>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="60.0" right="60.0" />
-               </padding>
-            </HBox>
-            <Line endX="1120.0" startX="60.0" stroke="#bababa">
+            </VBox>
+            <HBox alignment="TOP_RIGHT">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#eventShoppingList" text="Generate a shopping list" />
+               </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="20.0" right="30.0" top="20.0" />
                </VBox.margin>
-            </Line>
-            <AnchorPane prefWidth="1200.0" styleClass="search-zone">
-               <children>
-                  <FlowPane alignment="CENTER" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <TextField promptText="Search here ..." styleClass="search">
-                           <padding>
-                              <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </FlowPane>
-               </children>
-               <padding>
-                  <Insets bottom="60.0" top="60.0" />
-               </padding>
-            </AnchorPane>
-            <AnchorPane maxHeight="1.7976931348623157E308" prefWidth="1200.0">
-               <children>
-                  <VBox layoutX="63.0" layoutY="30.0" maxHeight="1.7976931348623157E308" prefWidth="1071.0" AnchorPane.bottomAnchor="110.0" AnchorPane.topAnchor="30.0">
-                     <children>
-                        <HBox prefHeight="34.0" prefWidth="1071.0">
-                           <children>
-                              <Label prefHeight="18.0" prefWidth="345.0" />
-                              <Label prefHeight="18.0" prefWidth="47.0" text="Week n°">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                              <Label fx:id="weekNum" prefHeight="18.0" prefWidth="262.0" text="XX">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                              <Label prefHeight="18.0" prefWidth="34.0" text="Year">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                              <Label fx:id="year" text="XXXX">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="20.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox maxHeight="1.7976931348623157E308" prefWidth="1071.0">
-                           <children>
-                              <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <VBox maxHeight="1.7976931348623157E308" prefWidth="200.0">
-                                 <children>
-                                    <Label prefHeight="18.0" prefWidth="50.0" text="Monday">
-                                       <VBox.margin>
-                                          <Insets left="50.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Separator prefWidth="146.0" />
-                                    <VBox fx:id="monCol" maxHeight="1.7976931348623157E308" prefWidth="146.0" />
-                                 </children>
-                              </VBox>
-                              <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <VBox maxHeight="1.7976931348623157E308" prefWidth="200.0">
-                                 <children>
-                                    <Label prefHeight="18.0" prefWidth="50.0" text="Tuesday">
-                                       <VBox.margin>
-                                          <Insets left="50.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Separator prefWidth="200.0" />
-                                    <VBox fx:id="tueCol" maxHeight="1.7976931348623157E308" prefWidth="146.0">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </VBox>
-                                 </children>
-                              </VBox>
-                              <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <VBox prefWidth="200.0">
-                                 <children>
-                                    <Label prefHeight="18.0" prefWidth="67.0" text="Wednesday">
-                                       <VBox.margin>
-                                          <Insets left="40.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Separator prefWidth="200.0" />
-                                    <VBox fx:id="wedCol" prefWidth="100.0" />
-                                 </children>
-                              </VBox>
-                              <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <VBox prefWidth="200.0">
-                                 <children>
-                                    <Label prefHeight="18.0" prefWidth="50.0" text="Thursday">
-                                       <VBox.margin>
-                                          <Insets left="50.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Separator prefWidth="200.0" />
-                                    <VBox fx:id="thuCol" prefWidth="100.0" />
-                                 </children>
-                              </VBox>
-                              <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <VBox prefWidth="200.0">
-                                 <children>
-                                    <Label prefHeight="18.0" prefWidth="50.0" text="Friday">
-                                       <VBox.margin>
-                                          <Insets left="55.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Separator prefWidth="200.0" />
-                                    <VBox fx:id="friCol" prefWidth="100.0" />
-                                 </children>
-                              </VBox>
-                              <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <VBox prefWidth="200.0">
-                                 <children>
-                                    <Label prefHeight="18.0" prefWidth="50.0" text="Saturday">
-                                       <VBox.margin>
-                                          <Insets left="50.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Separator prefWidth="200.0" />
-                                    <VBox fx:id="satCol" prefWidth="100.0" />
-                                 </children>
-                              </VBox>
-                              <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <VBox prefWidth="200.0">
-                                 <children>
-                                    <Label prefHeight="18.0" prefWidth="50.0" text="Sunday">
-                                       <VBox.margin>
-                                          <Insets left="50.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Separator prefWidth="200.0" />
-                                    <VBox fx:id="sunCol" maxHeight="1.7976931348623157E308" prefWidth="100.0" />
-                                 </children>
-                              </VBox>
-                              <Separator orientation="VERTICAL" prefHeight="200.0" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <Button layoutX="979.0" layoutY="230.0" mnemonicParsing="false" onAction="#eventShoppingList" text="Generate a shopping list" AnchorPane.bottomAnchor="14.799999999999983" AnchorPane.rightAnchor="75.4" />
-               </children>
-            </AnchorPane>
-            <HBox alignment="CENTER" prefHeight="118.0" prefWidth="1200.0" styleClass="bottom">
-               <children>
-                  <FlowPane columnHalignment="CENTER" prefHeight="146.0" prefWidth="360.0">
-                     <children>
-                        <VBox prefHeight="111.0" prefWidth="173.0" spacing="10.0">
-                           <children>
-                              <ImageView fitHeight="63.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/logo-removebg.png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This CookBook is made by students of Project course of Computer Sciene, COLOB group" wrappingWidth="180.00457763671875">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font></Text>
-                           </children>
-                        </VBox>
-                     </children>
-                  </FlowPane>
-                  <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="126.0" prefWidth="356.0">
-                     <children>
-                        <VBox alignment="CENTER_LEFT" prefHeight="104.0" prefWidth="263.0" spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quick Access" wrappingWidth="175.337890625">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Text>
-                              <GridPane prefHeight="42.0" prefWidth="263.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Hyperlink contentDisplay="CENTER" opacity="0.87" prefHeight="21.0" prefWidth="74.0" styleClass="small" text="- All Recipes" textAlignment="CENTER">
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font></Hyperlink>
-                                    <Hyperlink contentDisplay="CENTER" opacity="0.87" prefHeight="21.0" prefWidth="74.0" styleClass="small" text="- Meal Plan" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font></Hyperlink>
-                                    <Hyperlink contentDisplay="CENTER" opacity="0.87" prefHeight="24.0" prefWidth="126.0" styleClass="small" text="- Favourite Recipes" textAlignment="CENTER" GridPane.rowIndex="1">
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font></Hyperlink>
-                                    <Hyperlink contentDisplay="CENTER" opacity="0.87" prefHeight="7.0" prefWidth="124.0" styleClass="small" text="- Shopping List" textAlignment="CENTER" GridPane.columnIndex="1">
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font></Hyperlink>
-                                 </children>
-                              </GridPane>
-                           </children>
-                        </VBox>
-                     </children>
-                  </FlowPane>
-                  <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="119.0" prefWidth="388.0">
-                     <children>
-                        <VBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="263.0" spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Need help?" wrappingWidth="175.337890625">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Text>
-                              <Hyperlink id="help-btn" alignment="CENTER" contentDisplay="CENTER" opacity="0.87" prefHeight="30.0" prefWidth="200.0" styleClass="green-fill" text="Go to our help page &gt;" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="10.0" />
-                                 </font>
-                              </Hyperlink>
-                           </children>
-                        </VBox>
-                     </children>
-                  </FlowPane>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets bottom="30.0" left="60.0" right="60.0" top="10.0" />
-               </padding>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <styleClass>
-                  <String fx:value="green-fill" />
-                  <String fx:value="footer" />
-               </styleClass>
-               <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="footer-text" text="\@ Group Cobol, 2023" />
-               </children>
-            </HBox>
-      
          </children>
       </VBox>
-   </content>
+    </content>
 </ScrollPane>
