@@ -7,13 +7,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import model.Recipe;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainLayoutController {
   @FXML
@@ -123,5 +129,14 @@ public class MainLayoutController {
 
   public void openHomeView(ActionEvent actionEvent) {
 
+  }
+
+  @FXML
+  private TextField search;
+
+  public void searchBtnClicked() throws IOException {
+  }
+
+  public void searchEnter(KeyEvent keyEvent) throws IOException {
   }
 }

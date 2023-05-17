@@ -1,25 +1,25 @@
 package view;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 
 import java.io.IOException;
 
 public class SearchView {
 
-    public ScrollPane getRoot() {
-        return root;
-    }
+  public Parent getRoot() {
+    return root;
+  }
 
-    public ScrollPane root;
+  public Parent root;
 
-    public SearchView() {
-        try {
-            this.root = FXMLLoader.load(getClass().getResource("/SearchWindow.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+  public SearchView() {
+    try {
+      this.root = FXMLLoader.load(getClass().getResource("/SearchWindow.fxml"));
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
+  }
 
 }
-

@@ -9,12 +9,12 @@ import javafx.scene.control.ScrollPane;
 import model.WeeklyList;
 
 public class WeeklyPlanView {
-  private ScrollPane root;
+  private Parent root;
 
   public WeeklyPlanView(WeeklyList weeklyList) {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/WeeklyPlanView.fxml"));
-      root = (ScrollPane) loader.load();
+      root = (Parent) loader.load();
       WeeklyPlanViewController weeklyPlanListController = (WeeklyPlanViewController) loader.getController();
       weeklyPlanListController.setWeeklyList(weeklyList);
       weeklyPlanListController.updateWindow();
@@ -24,7 +24,7 @@ public class WeeklyPlanView {
     }
   }
 
-  public ScrollPane getRoot() {
+  public Parent getRoot() {
     return this.root;
   }
 }

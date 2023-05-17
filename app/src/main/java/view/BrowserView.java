@@ -4,15 +4,16 @@ import java.io.IOException;
 
 import controller.AllRecipeWindowController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 
 public class BrowserView {
-  public ScrollPane root;
+  public Parent root;
 
   public BrowserView() throws IOException {
     // setting the scene
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/AllRecipesWindow.fxml"));
-    this.root = loader.load();
+    this.root = (Parent) loader.load();
     // Get the controller as an object to be able to call the method
     // initPagination()
     AllRecipeWindowController browserController = (AllRecipeWindowController) loader.getController();
@@ -20,7 +21,7 @@ public class BrowserView {
 
   }
 
-  public ScrollPane getRoot() {
+  public Parent getRoot() {
     return this.root;
   }
 }

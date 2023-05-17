@@ -10,12 +10,12 @@ import java.io.IOException;
 
 public class FavouriteView {
 
-  private ScrollPane root;
+  private Parent root;
 
   public FavouriteView() {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/FavouriteWindow.fxml"));
-      root = (ScrollPane) loader.load();
+      root = (Parent) loader.load();
       FavouriteRecipeController favouriteRecipeController = loader.getController();
       favouriteRecipeController.initPagination();
     } catch (IOException e) {
@@ -25,7 +25,7 @@ public class FavouriteView {
 
   }
 
-  public ScrollPane getRoot() {
+  public Parent getRoot() {
     return this.root;
   }
 }
