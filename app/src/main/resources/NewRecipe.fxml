@@ -22,7 +22,7 @@
                </font>
             </Label>
             <TextField fx:id="nameField" layoutX="32.0" layoutY="167.0" prefHeight="41.0" prefWidth="513.0" promptText="Enter the title of your recipe..." styleClass="text-field" stylesheets="@AddRecipe.css" />
-            <Label layoutX="32.0" layoutY="228.0" prefHeight="35.0" prefWidth="553.0" text="Short description">
+            <Label layoutX="32.0" layoutY="235.0" prefHeight="35.0" prefWidth="553.0" text="Short description">
                <font>
                   <Font size="24.0" />
                </font>
@@ -58,13 +58,13 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TextField fx:id="shortDescriptionField" alignment="TOP_LEFT" layoutX="32.0" layoutY="265.0" prefHeight="35.0" prefWidth="513.0" promptText="Write 2-3 sentences for  the short description..." styleClass="text-field" stylesheets="@AddRecipe.css" />
+            <TextField fx:id="shortDescriptionField" alignment="TOP_LEFT" layoutX="32.0" layoutY="272.0" prefHeight="35.0" prefWidth="513.0" promptText="Write 2-3 sentences for  the short description..." styleClass="text-field" stylesheets="@AddRecipe.css" />
             <Label layoutX="32.0" layoutY="798.0" prefHeight="35.0" prefWidth="553.0" text="Ingredients">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="406.0" layoutY="846.0" text="Amount">
+            <Label layoutX="426.0" layoutY="846.0" text="Amount">
                <font>
                   <Font size="18.0" />
                </font>
@@ -74,7 +74,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="726.0" layoutY="846.0" text="Ingredient">
+            <Label fx:id="ingredientNameError" layoutX="737.0" layoutY="846.0" text="Ingredient">
                <font>
                   <Font size="18.0" />
                </font>
@@ -99,12 +99,12 @@
                </font>
             </Label>
             <TextField fx:id="imageField" alignment="TOP_LEFT" layoutX="689.0" layoutY="144.0" prefHeight="168.0" prefWidth="373.0" promptText="Insert Image URL" styleClass="text-field" stylesheets="@AddRecipe.css" />
-            <Label fx:id="nameError" layoutX="32.0" layoutY="208.0" prefHeight="17.0" prefWidth="501.0" textAlignment="CENTER">
+            <Label fx:id="nameError" layoutX="32.0" layoutY="208.0" prefHeight="17.0" prefWidth="501.0" textAlignment="CENTER" textFill="RED">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="shortDescriptionError" layoutX="38.0" layoutY="299.0" prefHeight="17.0" prefWidth="501.0" textAlignment="CENTER">
+            <Label fx:id="shortDescriptionError" layoutX="38.0" layoutY="312.0" prefHeight="17.0" prefWidth="501.0" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -114,7 +114,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="ingredientError" layoutX="393.0" layoutY="820.0" prefHeight="27.0" prefWidth="461.0">
+            <Label fx:id="ingredientError" layoutX="390.0" layoutY="785.0" prefHeight="27.0" prefWidth="461.0" textFill="RED">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -124,6 +124,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
+            <Label fx:id="amountError" layoutX="427.0" layoutY="825.0" prefHeight="27.0" prefWidth="81.0" textAlignment="CENTER" />
          </children>
       </AnchorPane>
    </content>

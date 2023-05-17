@@ -727,8 +727,8 @@ public class Controller {
       ResultSet rs = stmt.executeQuery();
       rs.next();
       recipe_id = rs.getInt(1);
-      ObservableList<Ingredient> ingredients = generateIngredient();
-      for (Ingredient ingredient : ingredients) {
+      ObservableList<Ingredient> ingredientDB = generateIngredient();
+      for (Ingredient ingredient : ingredientDB) {
         if (ingredientObservableList.get(ingredientIterator).getName().equals(ingredient.getName())) {
           query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
           stmt = this.db.prepareStatement(query);

@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Simple error handling through labels">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="check on every input if name exists">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/AddRecipe.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/NewRecipe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/NewRecipe.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -448,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684169568669</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="check on every input if name exists">
+      <created>1684316895756</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1684316895756</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +488,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="running window." />
     <MESSAGE value="working login Page with FXML" />
     <MESSAGE value="deleted old login method" />
     <MESSAGE value="login home and add recipe(wrong button tho)" />
@@ -503,7 +512,24 @@
     <MESSAGE value="Error handling with alerts and some error handling" />
     <MESSAGE value="some css and design changes" />
     <MESSAGE value="Simple error handling through labels" />
-    <option name="LAST_COMMIT_MESSAGE" value="Simple error handling through labels" />
+    <MESSAGE value="check on every input if name exists" />
+    <option name="LAST_COMMIT_MESSAGE" value="check on every input if name exists" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java</url>
+          <line>142</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
