@@ -155,9 +155,5 @@ public class HomeViewController {
     controller.displayMessageView();
   }
 
-  public void sendRecipe() throws IOException {
-    controller.displaySendMessageView();
-  }
-
 }
 
