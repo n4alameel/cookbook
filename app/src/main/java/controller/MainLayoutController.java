@@ -16,104 +16,112 @@ import javafx.scene.control.ScrollPane;
 import java.io.IOException;
 
 public class MainLayoutController {
-    @FXML
-    private Button activeUserName;
-    @FXML
-    private ImageView activeUserPhoto;
-    public MainLayoutController() {
-    }
+  @FXML
+  private Button activeUserName;
+  @FXML
+  private ImageView activeUserPhoto;
 
-    public void updateLayout(){
-        activeUserName.setText(this.controller.getActiveUser().getUsername());
-        Image imageObject = new Image(this.controller.getActiveUser().getImageURL());
-        activeUserPhoto.setImage(imageObject);
-        // Calculate the aspect ratio of the image
-//        double imageAspectRatio = activeUserPhoto.getImage().getWidth() / activeUserPhoto.getImage().getHeight();
-//
-//        // Calculate the aspect ratio of the target view
-//        double targetAspectRatio = imageObject.getWidth() / imageObject.getHeight();
-//
-//        // Calculate the viewport dimensions
-//        double viewportWidth;
-//        double viewportHeight;
-//
-//        if (imageAspectRatio > targetAspectRatio) {
-//            // Image is wider than the target view
-//            viewportWidth = activeUserPhoto.getImage().getHeight() * targetAspectRatio;
-//            viewportHeight = activeUserPhoto.getImage().getHeight();
-//        } else {
-//            // Image is taller or equal to the target view
-//            viewportWidth = activeUserPhoto.getImage().getWidth();
-//            viewportHeight = activeUserPhoto.getImage().getWidth() / targetAspectRatio;
-//        }
-//        Circle clip = new Circle();
-//        // Calculate the viewport position to center the image
-//        double viewportX = (activeUserPhoto.getImage().getWidth() - viewportWidth) / 2;
-//        double viewportY = (activeUserPhoto.getImage().getHeight() - viewportHeight) / 2;
-//        activeUserPhoto.setViewport(new javafx.geometry.Rectangle2D(viewportX, viewportY, viewportWidth, viewportHeight));
-//
-//        clip.radiusProperty().bind(new SimpleDoubleProperty(Math.min((activeUserPhoto.getFitWidth()/2.0), (activeUserPhoto.getFitHeight()/2.0))));
-//        clip.centerXProperty().bind(activeUserPhoto.fitWidthProperty().divide(2));
-//        clip.centerYProperty().bind(activeUserPhoto.fitHeightProperty().divide(2));
-//
-//        activeUserPhoto.setClip(clip);
-    }
+  public MainLayoutController() {
+  }
 
+  public void updateLayout() {
+    activeUserName.setText(this.controller.getActiveUser().getUsername());
+    Image imageObject = new Image(this.controller.getActiveUser().getImageURL());
+    activeUserPhoto.setImage(imageObject);
+    // Calculate the aspect ratio of the image
+    // double imageAspectRatio = activeUserPhoto.getImage().getWidth() /
+    // activeUserPhoto.getImage().getHeight();
+    //
+    // // Calculate the aspect ratio of the target view
+    // double targetAspectRatio = imageObject.getWidth() / imageObject.getHeight();
+    //
+    // // Calculate the viewport dimensions
+    // double viewportWidth;
+    // double viewportHeight;
+    //
+    // if (imageAspectRatio > targetAspectRatio) {
+    // // Image is wider than the target view
+    // viewportWidth = activeUserPhoto.getImage().getHeight() * targetAspectRatio;
+    // viewportHeight = activeUserPhoto.getImage().getHeight();
+    // } else {
+    // // Image is taller or equal to the target view
+    // viewportWidth = activeUserPhoto.getImage().getWidth();
+    // viewportHeight = activeUserPhoto.getImage().getWidth() / targetAspectRatio;
+    // }
+    // Circle clip = new Circle();
+    // // Calculate the viewport position to center the image
+    // double viewportX = (activeUserPhoto.getImage().getWidth() - viewportWidth) /
+    // 2;
+    // double viewportY = (activeUserPhoto.getImage().getHeight() - viewportHeight)
+    // / 2;
+    // activeUserPhoto.setViewport(new javafx.geometry.Rectangle2D(viewportX,
+    // viewportY, viewportWidth, viewportHeight));
+    //
+    // clip.radiusProperty().bind(new
+    // SimpleDoubleProperty(Math.min((activeUserPhoto.getFitWidth()/2.0),
+    // (activeUserPhoto.getFitHeight()/2.0))));
+    // clip.centerXProperty().bind(activeUserPhoto.fitWidthProperty().divide(2));
+    // clip.centerYProperty().bind(activeUserPhoto.fitHeightProperty().divide(2));
+    //
+    // activeUserPhoto.setClip(clip);
+  }
 
-    @FXML
-    private BorderPane rootLayout;
+  @FXML
+  private BorderPane rootLayout;
 
-    public BorderPane getRootLayout() {
-        return rootLayout;
-    }
+  public BorderPane getRootLayout() {
+    return rootLayout;
+  }
 
-    public void setRootLayout(BorderPane rootLayout) {
-        this.rootLayout = rootLayout;
-    }
+  public void setRootLayout(BorderPane rootLayout) {
+    this.rootLayout = rootLayout;
+  }
 
-    public ScrollPane getContent() {
-        return content;
-    }
+  public ScrollPane getContent() {
+    return content;
+  }
 
-    public void setContent(ScrollPane content) {
-        this.content = content;
-    }
+  public void setContent(ScrollPane content) {
+    this.content = content;
+  }
 
-    @FXML private ScrollPane content;
+  @FXML
+  private ScrollPane content;
 
-    Controller controller = Controller.getInstance();
-    public void openAllRecipesView(ActionEvent actionEvent) throws IOException {
-        this.controller.displayBrowserView();
-    }
+  Controller controller = Controller.getInstance();
 
-    public void openWeeklyPlanListView(ActionEvent actionEvent) {
-        this.controller.displayWeeklyPlanListView();
-    }
+  public void openAllRecipesView(ActionEvent actionEvent) throws IOException {
+    this.controller.displayBrowserView();
+  }
 
-    public void openShoppingListView(ActionEvent actionEvent) {
+  public void openWeeklyPlanListView(ActionEvent actionEvent) {
+    this.controller.displayWeeklyPlanListView();
+  }
 
-    }
+  public void openShoppingListView(ActionEvent actionEvent) {
 
-    public void openChatView(ActionEvent actionEvent) {
-    }
+  }
 
-    public void openHomeView(MouseEvent mouseEvent) throws IOException {
-        this.controller.displayHomeView();
-    }
+  public void openChatView(ActionEvent actionEvent) {
+  }
 
-    public void openFavouriteView(ActionEvent actionEvent) {
-        this.controller.displayFavouriteView();
-    }
+  public void openHomeView(MouseEvent mouseEvent) throws IOException {
+    this.controller.displayHomeView();
+  }
 
-    public void openNewRecipeView(ActionEvent actionEvent) {
-        this.controller.displayNewRecipeView();
-    }
+  public void openFavouriteView(ActionEvent actionEvent) throws IOException {
+    this.controller.displayFavouriteView();
+  }
 
-    public void loadPage2(ActionEvent actionEvent) {
+  public void openNewRecipeView(ActionEvent actionEvent) {
+    this.controller.displayNewRecipeView();
+  }
 
-    }
+  public void loadPage2(ActionEvent actionEvent) {
 
-    public void openHomeView(ActionEvent actionEvent) {
+  }
 
-    }
+  public void openHomeView(ActionEvent actionEvent) {
+
+  }
 }

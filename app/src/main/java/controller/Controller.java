@@ -37,7 +37,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -358,6 +358,7 @@ public class Controller {
       return null;
     }
   }
+
   private Tag createTag(ResultSet tagRs) {
     try {
       Tag t = new Tag(Integer.parseInt(tagRs.getString(1)), tagRs.getString(2), Integer.parseInt(tagRs.getString(3)));
@@ -366,6 +367,7 @@ public class Controller {
       return null;
     }
   }
+
   public ArrayList<Comment> getCommentListByRecipeID(int recipeId) {
     try {
       String query = "select C.id, C.user_id, C.recipe_id, C.text, U.username, U.imageUrl from comment C join user U on C.user_id = U.id where C.recipe_id = ?";
@@ -395,7 +397,6 @@ public class Controller {
 
       ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
 
-
       while (rs.next()) {
         Ingredient ingredient = createIngredient(rs);
         ingredientList.add(ingredient);
@@ -406,6 +407,7 @@ public class Controller {
       return null;
     }
   }
+
   public ArrayList<Tag> getTagListByRecipeID(int recipeId) {
     try {
       String query = "select T.id, T.name, T.user_id from recipe R join recipe_has_tag RT on R.id = RT.recipe_id join tag T on T.id = RT.tag_id where R.id = ?";
@@ -414,7 +416,6 @@ public class Controller {
       ResultSet rs = stmt.executeQuery();
 
       ArrayList<Tag> tagList = new ArrayList<Tag>();
-
 
       while (rs.next()) {
         Tag tag = createTag(rs);
@@ -480,7 +481,7 @@ public class Controller {
   /**
    * Creates and displays the home scene.
    */
-//  private Scene mainScene;
+  // private Scene mainScene;
   public void displayHomeView() throws IOException {
     HomeView homeView = new HomeView();
     this.mainView.LoadContent(homeView.getRoot());
@@ -489,11 +490,9 @@ public class Controller {
   /**
    * Creates and display the favourite scene.
    */
-  public void displayFavouriteView() {
+  public void displayFavouriteView() throws IOException {
     FavouriteView favouriteView = new FavouriteView();
-    Scene favouriteScene = new Scene(favouriteView.getRoot());
-    stage.setScene(favouriteScene);
-    stage.show();
+    this.mainView.LoadContent(favouriteView.getRoot());
   }
 
   /**
@@ -785,7 +784,8 @@ public class Controller {
           stmt.setInt(2, ingredient.getId());
           stmt.executeUpdate();
           ingredientIterator++;
-          //System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
+          // System.out.println(ingredientIterator + recipe_id + ingredient.getName() +
+          // ingredient.getId());
         }
         /*
          * System.out.println(ingredientIterator + recipe_id + "name: " +
