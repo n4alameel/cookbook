@@ -8,6 +8,7 @@ public class User {
   private String password;
   private boolean isAdmin = false;
   private ArrayList<Recipe> favouriteList = new ArrayList<Recipe>();
+  private ArrayList<Message> messageList = new ArrayList<Message>();
 
   public User(int id, String username, String password, boolean isAdmin) {
     this.id = id;
@@ -56,35 +57,13 @@ public class User {
     this.favouriteList = favouriteList;
   }
 
-  /*
-   * public boolean newRecipe(String name, String description, String detail, int
-   * portion,
-   * ArrayList<Integer> ingredientList) {
-   * int recipe_id;
-   * Connection conn = new App().dbconnect();
-   * try {
-   * Statement stmt = conn.createStatement();
-   * stmt.
-   * executeUpdate("INSERT INTO recipe (name, shortDescription, description) VALUES ('"
-   * + name + "', '" + detail
-   * + "', '" + description + "')");
-   * ResultSet rs = stmt.executeQuery("SELECT id FROM recipe WHERE name = '" +
-   * name + "'");
-   * rs.next();
-   * recipe_id = rs.getInt("id");
-   * for (int i : ingredientList) {
-   * stmt.executeUpdate(
-   * "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES ('" +
-   * recipe_id + "', '" + i + "')");
-   * }
-   * conn.close();
-   * return true;
-   * } catch (SQLException e) {
-   * System.out.println(e.getMessage());
-   * }
-   * return false;
-   * }
-   */
+  public ArrayList<Message> getMessageList() {
+    return messageList;
+  }
+
+  public void setMessageList(ArrayList<Message> messageList) {
+    this.messageList = messageList;
+  }
 
   public boolean createEmptyWeeklyList(int weeklyNumber, int isVisible) {
     WeeklyList weekly = new WeeklyList(weeklyNumber, isVisible);

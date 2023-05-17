@@ -46,7 +46,7 @@ public class Controller {
     this.activeUser = null;
     this.recipeList = generateRecipeListFromDb();
     this.stage = null;
-    this.recipe=null;
+    this.recipe = null;
   }
 
   /**
@@ -125,6 +125,7 @@ public class Controller {
           return false;
         }
         this.activeUser.setFavouriteList(this.generateFavouriteListFromDb());
+        this.activeUser.setMessageList(this.getMessageListFromDb());
         return true;
       } else {
         return false;
@@ -200,6 +201,29 @@ public class Controller {
 
     } catch (SQLException e) {
       e.printStackTrace(System.out);
+      return null;
+    }
+  }
+
+  private ArrayList<Message> getMessageListFromDb() {
+    ArrayList<Message> messages = new ArrayList<Message>();
+    try {
+      String query = "SELECT * FROM message WHERE receiverId = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        messages.add(new Message(rs.getInt(1), rs.getString(2), 1, rs.getInt(4), rs.getInt(5), rs.getInt(6)));
+        if (rs.getInt(3) == 0) {
+          query = "UPDATE message SET isRead = 1 WHERE id = ?";
+          stmt = this.db.prepareStatement(query);
+          stmt.setInt(1, rs.getInt(1));
+          stmt.executeUpdate();
+        }
+      }
+      return messages;
+    } catch (SQLException e) {
+      System.out.println(e);
       return null;
     }
   }
@@ -593,7 +617,7 @@ public class Controller {
     }
   }
 
-  public boolean sendMessage(int recipeId, String text, int senderId, int receiverId){
+  public boolean sendMessage(int recipeId, String text, int senderId, int receiverId) {
     try {
       String query = "INSERT INTO message (text, isRead, senderId, receiverId, recipeId) VALUES (?, ?, ?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
@@ -608,38 +632,15 @@ public class Controller {
       System.out.println(e);
       return false;
     }
-}
-
-public ArrayList<Message> retrieveMessage(int receiverId){
-  ArrayList<Message> messages = new ArrayList<Message>();
-    try {
-      String query = "SELECT * FROM message WHERE receiverId = ?";
-      PreparedStatement stmt = this.db.prepareStatement(query);
-      stmt.setInt(1, receiverId);
-      ResultSet rs = stmt.executeQuery();
-      while (rs.next()){
-        messages.add(new Message(rs.getInt(1), rs.getString(2), 1, rs.getInt(4), rs.getInt(5), rs.getInt(6)));
-        if (rs.getInt(3) == 0){
-          query = "UPDATE message SET isRead = 1 WHERE id = ?";
-          stmt = this.db.prepareStatement(query);
-          stmt.setInt(1, rs.getInt(1));
-          stmt.executeUpdate();
-        }
-      }
-      return messages;
-    } catch (SQLException e) {
-      System.out.println(e);
-      return null;
-    }
   }
 
-  public ArrayList<String> usersList(){
+  public ArrayList<String> usersList() {
     ArrayList<String> usersList = new ArrayList<>();
-    try{
+    try {
       String query = "SELECT * FROM user";
       PreparedStatement stmt = this.db.prepareStatement(query);
       ResultSet rs = stmt.executeQuery();
-      while (rs.next()){
+      while (rs.next()) {
         usersList.add(rs.getString(2));
       }
       return usersList;
@@ -649,8 +650,8 @@ public ArrayList<Message> retrieveMessage(int receiverId){
     }
   }
 
-  public int getUserIdFromUsername(String username){
-    try{
+  public int getUserIdFromUsername(String username) {
+    try {
       String query = "SELECT id FROM user WHERE username = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, username);
