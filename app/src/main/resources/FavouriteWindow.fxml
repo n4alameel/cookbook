@@ -27,7 +27,7 @@
                       </Button>
                </children>
             </AnchorPane>
-                <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="1200.0" stylesheets="@HomeWindow.css" text="Your Favourites" textAlignment="CENTER">
+                <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" stylesheets="@HomeWindow.css" text="Your Favourites" textAlignment="CENTER">
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>

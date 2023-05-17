@@ -506,11 +506,9 @@ public class Controller {
     secondaryStage.show();
   }
 
-  public void displayWeeklyPlanListView() {
+  public void displayWeeklyPlanListView() throws IOException {
     WeeklyPlanListView weeklyPlanListView = new WeeklyPlanListView();
-    Scene weeklyPlanListScene = new Scene(weeklyPlanListView.getRoot());
-    stage.setScene(weeklyPlanListScene);
-    stage.show();
+    this.mainView.LoadContent(weeklyPlanListView.getRoot());
   }
 
   public void displayWeeklyPlanView(WeeklyList weeklyList) {

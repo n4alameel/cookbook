@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
@@ -9,25 +10,32 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" prefHeight="800.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllRecipeWindowController">
+<ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllRecipeWindowController">
     <content>
-        <AnchorPane fx:id="homePane" stylesheets="@HomeWindow.css">
-            <children>
-                <TextField fx:id="search" layoutX="332.0" layoutY="116.0" prefHeight="55.0" prefWidth="591.0" promptText="Search here..." onKeyPressed="#openSearchPage" />
-                <Button fx:id="searchBtn" layoutX="843.0" layoutY="122.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="73.0" text="Search" textFill="#171717" onAction="#openSearchPage">
-                <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-                <Label alignment="CENTER" contentDisplay="TOP" layoutX="12.0" layoutY="203.0" prefHeight="39.0" prefWidth="1200.0" stylesheets="@HomeWindow.css" text="All Recipes" textAlignment="CENTER">
+      <VBox alignment="CENTER" stylesheets="@HomeWindow.css">
+         <children>
+            <AnchorPane maxWidth="-Infinity">
+               <children>
+                      <TextField fx:id="search" onKeyPressed="#openSearchPage" prefHeight="55.0" prefWidth="591.0" promptText="Search here..." />
+                      <Button fx:id="searchBtn" layoutX="510.0" layoutY="7.0" mnemonicParsing="false" onAction="#openSearchPage" prefHeight="40.0" prefWidth="74.0" text="Search" textFill="#171717">
+                      <font>
+                              <Font size="13.0" />
+                          </font>
+                      </Button>
+               </children>
+            </AnchorPane>
+                <Label alignment="CENTER" contentDisplay="TOP" prefHeight="39.0" prefWidth="1200.0" stylesheets="@HomeWindow.css" text="All Recipes" textAlignment="CENTER">
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
                 </Label>
-                <Pagination fx:id="recipePages" layoutX="64.0" layoutY="270.0" maxPageIndicatorCount="5" pageCount="10" prefHeight="1461.0" prefWidth="1095.0" />
-                <GridPane fx:id="recipeGrid" hgap="80.0" layoutX="86.0" layoutY="287.0" vgap="80.0">
+                <GridPane fx:id="recipeGrid" hgap="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1300.0" prefWidth="1060.0" vgap="80.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
@@ -39,7 +47,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                 </GridPane>
-            </children>
-        </AnchorPane>
+                <Pagination fx:id="recipePages" maxPageIndicatorCount="5" pageCount="10">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="20.0" />
+               </VBox.margin>
+            </Pagination>
+         </children>
+      </VBox>
     </content>
 </ScrollPane>

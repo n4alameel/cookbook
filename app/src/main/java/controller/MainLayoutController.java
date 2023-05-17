@@ -94,7 +94,7 @@ public class MainLayoutController {
     this.controller.displayBrowserView();
   }
 
-  public void openWeeklyPlanListView(ActionEvent actionEvent) {
+  public void openWeeklyPlanListView(ActionEvent actionEvent) throws IOException {
     this.controller.displayWeeklyPlanListView();
   }
 

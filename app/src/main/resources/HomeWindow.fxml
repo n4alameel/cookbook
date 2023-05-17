@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -8,35 +9,35 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" prefHeight="941.0" vvalue="1.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeViewController">
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeViewController">
    <content>
-      <AnchorPane fx:id="homePane" prefHeight="1568.0" prefWidth="1220.0" stylesheets="@HomeWindow.css">
+      <VBox alignment="CENTER" stylesheets="@HomeWindow.css">
          <children>
-            <Button fx:id="allRecipesBtn" layoutX="533.0" layoutY="1262.0" mnemonicParsing="false" onAction="#openAllRecipes" prefHeight="48.0" prefWidth="155.0" text="View all Recipes" />
-            <GridPane fx:id="recommendationsHome" hgap="80.0" layoutX="70.0" layoutY="815.0" prefHeight="380.0" prefWidth="1060.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="296.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="522.0" minWidth="10.0" prefWidth="310.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="414.0" minWidth="10.0" prefWidth="294.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-            <TextField fx:id="search" layoutX="332.0" layoutY="116.0" onKeyPressed="#openSearchPage" prefHeight="55.0" prefWidth="591.0" promptText="Search here..." />
-            <Button fx:id="searchBtn" layoutX="843.0" layoutY="122.0" mnemonicParsing="false" onAction="#openSearchPage" prefHeight="41.0" prefWidth="73.0" text="Search" textFill="#171717">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="743.0" prefHeight="17.0" prefWidth="1200.0" text="Our Recommendations">
+            <AnchorPane maxWidth="-Infinity">
+               <children>
+                  <TextField fx:id="search" onKeyPressed="#openSearchPage" prefHeight="55.0" prefWidth="591.0" promptText="Search here..." />
+                  <Button fx:id="searchBtn" layoutX="517.0" layoutY="7.0" mnemonicParsing="false" onAction="#openSearchPage" prefHeight="40.0" prefWidth="67.0" text="Search" textFill="#171717">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </AnchorPane>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="1200.0" text="Our Recommendations">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
             </Label>
-            <GridPane fx:id="favouriteHome" hgap="80.0" layoutX="70.0" layoutY="317.0" prefHeight="380.0" prefWidth="1060.0">
+            <GridPane fx:id="favouriteHome" hgap="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="1060.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="296.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="522.0" minWidth="10.0" prefWidth="310.0" />
@@ -46,7 +47,33 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="1200.0" text="Your favourites">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="20.0" />
+               </VBox.margin>
+            </Label>
+            <GridPane fx:id="recommendationsHome" hgap="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="1060.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="296.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="522.0" minWidth="10.0" prefWidth="310.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="414.0" minWidth="10.0" prefWidth="294.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </GridPane>
+            <Button fx:id="allRecipesBtn" mnemonicParsing="false" onAction="#openAllRecipes" prefHeight="48.0" prefWidth="155.0" text="View all Recipes">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="5.0" />
+               </VBox.margin>
+            </Button>
          </children>
-      </AnchorPane>
+      </VBox>
    </content>
 </ScrollPane>
