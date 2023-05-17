@@ -66,17 +66,15 @@ public class AddRecipeController implements Initializable {
     private String addUnit;
     private int unit_id;
     private ArrayList<Recipe> recipes = controller.getRecipeList();
+    public void errorHandler(){
+    }
 
     //saveRecipe button
     //TODO: minimum requirement for recipe?
+    //TODO: delete all event listeners on closing the window
     public void saveRecipe(ActionEvent event) {
         boolean uniqueName = true;
         try {
-            nameError.setText("");
-            shortDescriptionError.setText("");
-            longDescriptionError.setText("");
-            ingredientError.setText("");
-            ingredientList.removeAll();
             if(nameField.getText().isEmpty()){
                 nameError.setText("Please fill in a name for the Recipe!");
                 return;
@@ -167,6 +165,17 @@ public class AddRecipeController implements Initializable {
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         unitColumn.setCellValueFactory(new PropertyValueFactory<>("unit_id"));
         ingredientColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        nameField.textProperty().addListener((observable, oldValue, newValue) -> {
+            for (Recipe recipe : recipes) {
+                if (newValue.equalsIgnoreCase(recipe.getName())) {
+                    nameError.setText("The name exists already!");
+                    break;
+                } else {
+                    nameError.setText("");
+                }
+            }
+        });
     }
 
     /**

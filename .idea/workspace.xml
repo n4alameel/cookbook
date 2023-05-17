@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="some css and design changes">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Simple error handling through labels">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AddRecipeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/NewRecipe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/NewRecipe.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -442,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684001659182</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Simple error handling through labels">
+      <created>1684169568669</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1684169568669</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -472,7 +478,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixes" />
     <MESSAGE value="running window." />
     <MESSAGE value="working login Page with FXML" />
     <MESSAGE value="deleted old login method" />
@@ -497,7 +502,8 @@
     <MESSAGE value="Popup beginning" />
     <MESSAGE value="Error handling with alerts and some error handling" />
     <MESSAGE value="some css and design changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="some css and design changes" />
+    <MESSAGE value="Simple error handling through labels" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simple error handling through labels" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
