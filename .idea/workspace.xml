@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Controllers and classes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/HomeViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/HomeViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/UsersViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/UsersViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/view/HomeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/view/HomeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/UsersWIndow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/UsersWIndow.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="some css and design changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,28 +54,13 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="US-30-32" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/app/src/main/java/Cookbook.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/src/main/java/model/User.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/src/main/java/App.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/src/main/java/controller/RecipeController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/src/main/java/view/AddNewUserView.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/src/main/resources/HomeWindow.fxml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/src/main/java/controller/Controller.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/src/main/java/model/Recipe.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/src/main/java/controller/UsersViewController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/src/main/java/controller/AddNewUserController.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="2OhG1RxrUisR48FIyMj3NEhNZxe" />
   <component name="ProjectLevelVcsManager">
@@ -93,6 +70,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vanes/IdeaProjects/cookbook/app/src/main/resources&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="model" />
@@ -111,7 +100,7 @@
       <recent name="model" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.cookbook:app [run]">
+  <component name="RunManager" selected="Gradle.cookbook:app [buildDependents]">
     <configuration name="cookbook [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -131,6 +120,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="cookbook:app [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -152,6 +142,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="cookbook:app [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -173,6 +164,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="cookbook:app [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -194,6 +186,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <list>
@@ -205,9 +198,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.cookbook:app [run]" />
-        <item itemvalue="Gradle.cookbook:app [buildDependents]" />
         <item itemvalue="Gradle.cookbook:app [build]" />
         <item itemvalue="Gradle.cookbook [build]" />
+        <item itemvalue="Gradle.cookbook:app [buildDependents]" />
         <item itemvalue="Gradle.cookbook:app [run]" />
       </list>
     </recent_temporary>
@@ -410,14 +403,42 @@
       <option name="project" value="LOCAL" />
       <updated>1683650934705</updated>
     </task>
-    <task id="LOCAL-00028" summary="Windows">
-      <created>1684226216346</created>
+    <task id="LOCAL-00028" summary="new Tags are directly inserted into the Dropbox">
+      <created>1683892350998</created>
       <option name="number" value="00028" />
       <option name="presentableId" value="LOCAL-00028" />
       <option name="project" value="LOCAL" />
-      <updated>1684226216346</updated>
+      <updated>1683892350998</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="mocking for empty Ingredientlist error">
+      <created>1683893174424</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1683893174424</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Popup beginning">
+      <created>1683894170142</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1683894170142</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Error handling with alerts and some error handling">
+      <created>1683915278325</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1683915278325</updated>
+    </task>
+    <task id="LOCAL-00032" summary="some css and design changes">
+      <created>1684001659182</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1684001659182</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -430,13 +451,8 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Setup HomeWindow" />
-    <MESSAGE value="fxml and css" />
-    <MESSAGE value="finished home windows design" />
-    <MESSAGE value="switch to another scene and design fixes" />
     <MESSAGE value="fixes" />
     <MESSAGE value="running window." />
     <MESSAGE value="working login Page with FXML" />
@@ -457,8 +473,12 @@
     <MESSAGE value="Enter Tag on enter pressed" />
     <MESSAGE value="add Tag on enter Pressed" />
     <MESSAGE value="ingredientName is unique" />
-    <MESSAGE value="Windows" />
-    <option name="LAST_COMMIT_MESSAGE" value="Windows" />
+    <MESSAGE value="new Tags are directly inserted into the Dropbox" />
+    <MESSAGE value="mocking for empty Ingredientlist error" />
+    <MESSAGE value="Popup beginning" />
+    <MESSAGE value="Error handling with alerts and some error handling" />
+    <MESSAGE value="some css and design changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="some css and design changes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
