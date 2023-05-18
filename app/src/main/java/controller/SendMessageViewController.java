@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import java.io.IOException;
 
 import model.Message;
@@ -25,6 +26,9 @@ public class SendMessageViewController {
 
     @FXML
     private ChoiceBox<String> choiceBox;
+
+    @FXML
+    private TextArea messageTextArea;
 
     private Recipe recipe;
     private int senderId;
@@ -44,7 +48,7 @@ public class SendMessageViewController {
 
     @FXML
     private void sendMessage() throws IOException {
-        String messageText = recipeName.getText();
+        String messageText = messageTextArea.getText();
         String selectedUser = choiceBox.getValue();
         int selectedUserId = controller.getUserIdFromUsername(selectedUser);
         int senderId = controller.getActiveUser().getId();
@@ -53,6 +57,7 @@ public class SendMessageViewController {
     }
 
     public void initialize(Recipe recipe) {
+        this.recipe = recipe;
         recipeName.setText(recipe.getName());
         ArrayList<String> usernames = controller.usersList();
         choiceBox.getItems().addAll(usernames);
