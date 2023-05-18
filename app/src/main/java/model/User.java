@@ -65,6 +65,13 @@ public class User {
     this.favouriteList = favouriteList;
   }
 
+  public ArrayList<Message> getMessageList() {
+    return messageList;
+  }
+
+  public void setMessageList(ArrayList<Message> messageList) {
+    this.messageList = messageList;
+  }
   public ArrayList<WeeklyList> getWeeklyPlanList() {
     return weeklyPlanList;
   }
