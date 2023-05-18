@@ -37,9 +37,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.ResourceBundle;
-
-import static java.awt.SystemColor.control;
 
 public class RecipeController{
     private Controller controller = Controller.getInstance();
@@ -53,6 +50,19 @@ public class RecipeController{
     private VBox commentBox;
     @FXML
     private Text activeCommentatorName;
+
+    @FXML
+    private ImageView favBtn;
+    @FXML
+    private void toggleFavourite() {
+        if (this.controller.toggleFavourite(this.recipe)) {
+            favBtn.setImage(new Image("img/HeartFull.png"));
+            System.out.println("favourited");
+        } else {
+            favBtn.setImage(new Image("img/Heart.png"));
+            System.out.println("UNfavourited");
+        }
+    }
     private List<Tag> tags = new ArrayList<Tag>();
     private Recipe recipe;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
@@ -70,24 +80,6 @@ public class RecipeController{
     @FXML
     private ImageView commentatorAva;
     @FXML
-    public void openFavouriteView() throws IOException {
-        controller.displayFavouriteView();
-    }
-    @FXML
-    public void openHomeView() throws IOException {
-        controller.displayHomeView();
-    }
-    @FXML
-    public void openWeeklyPlanListView() throws IOException {
-        controller.displayWeeklyPlanListView();
-    }
-    @FXML
-    public void openChatView() throws IOException {
-    }
-    @FXML
-    public void openShoppingListView() throws IOException {
-    }
-    @FXML
     private ComboBox<String> weekSelector;
     @FXML
     private ComboBox<WeekDay> daySelector;
@@ -101,6 +93,9 @@ public class RecipeController{
 
     public void updatePage() {
         recipeName.setText(this.recipe.getName());
+        if (this.controller.getActiveUser().isFavourite(this.recipe)) {
+            favBtn.setImage(new Image("img/HeartFull.png"));
+        }
         recipeShortDescription.setText(this.recipe.getShortDescription());
         recipeDescription.setText(this.recipe.getDescription());
         this.tags = this.recipe.getTagList();
@@ -172,10 +167,6 @@ public class RecipeController{
           System.out.println("mehr eingeben");
         }
     }
-    @FXML
-    private void goToHomePage() throws IOException {
-        controller.displayHomeView();
-    }
 
     @FXML
     private void eventAddRecipeToPlan() throws IOException {
@@ -192,14 +183,5 @@ public class RecipeController{
         addMessage.setVisible(true);
     }
 
-    public void openAllrecipesView(ActionEvent actionEvent) {
-    }
-
-    public void openNewRecipeView(ActionEvent actionEvent) {
-    }
-
-    public void openAllRecipesView(ActionEvent actionEvent) throws IOException {
-        this.controller.displayBrowserView();
-    }
 }
 
