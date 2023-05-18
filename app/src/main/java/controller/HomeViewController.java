@@ -151,5 +151,9 @@ public class HomeViewController {
     Circle circle = new Circle(25, 25, 25);
     activeUserPicture.setClip(circle);
   }
+  public void openMessage() throws IOException {
+    controller.displayMessageView();
+  }
+
 }
 

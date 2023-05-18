@@ -15,6 +15,7 @@ public class User {
   private boolean isAdmin = false;
   private ArrayList<Recipe> favouriteList = new ArrayList<Recipe>();
   private ArrayList<WeeklyList> weeklyPlanList = new ArrayList<WeeklyList>();
+  private ArrayList<Message> messageList = new ArrayList<Message>();
 
   public User(int id, String username, String password, boolean isAdmin, String imageUrl) {
     this.id = id;
@@ -64,6 +65,13 @@ public class User {
     this.favouriteList = favouriteList;
   }
 
+  public ArrayList<Message> getMessageList() {
+    return messageList;
+  }
+
+  public void setMessageList(ArrayList<Message> messageList) {
+    this.messageList = messageList;
+  }
   public ArrayList<WeeklyList> getWeeklyPlanList() {
     return weeklyPlanList;
   }
@@ -113,6 +121,13 @@ public class User {
    * return false;
    * }
    */
+  public ArrayList<Message> getMessageList() {
+    return messageList;
+  }
+
+  public void setMessageList(ArrayList<Message> messageList) {
+    this.messageList = messageList;
+  }
 
   public boolean removeWeeklyList(int listId) {
     for (WeeklyList list : this.weeklyPlanList) {
