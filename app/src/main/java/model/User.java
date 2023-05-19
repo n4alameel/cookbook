@@ -121,13 +121,6 @@ public class User {
    * return false;
    * }
    */
-  public ArrayList<Message> getMessageList() {
-    return messageList;
-  }
-
-  public void setMessageList(ArrayList<Message> messageList) {
-    this.messageList = messageList;
-  }
 
   public boolean removeWeeklyList(int listId) {
     for (WeeklyList list : this.weeklyPlanList) {
