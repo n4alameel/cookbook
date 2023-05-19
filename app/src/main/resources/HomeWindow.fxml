@@ -103,7 +103,7 @@
             <Pane fx:id="menuBar" layoutX="1.0" layoutY="-1.0" prefHeight="40.0" prefWidth="1218.0" stylesheets="@HomeWindow.css">
                <children>
                   <Hyperlink accessibleRole="BUTTON" layoutX="871.0" layoutY="8.0" onAction="#goToMealPlansView" style="-fx-text-fill: white;" styleClass="links" text="Meal Plans" />
-                  <Hyperlink layoutX="1121.0" layoutY="8.0" style="-fx-text-fill: white;" styleClass="links" text="Chatroom" />
+                  <Hyperlink layoutX="1121.0" layoutY="8.0" style="-fx-text-fill: white;" styleClass="links" text="Chatroom" onAction="#openMessage"/>
                   <Hyperlink layoutX="991.0" layoutY="8.0" style="-fx-text-fill: white;" styleClass="links" stylesheets="@HomeWindow.css" text="Shopping List" />
                </children>
             </Pane>
