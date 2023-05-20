@@ -211,15 +211,10 @@ public class Controller {
                  "recipe_has_ingredient.ingredient_id = " +
                  "ingredient.id")) {
       while (resultSet.next()) {
-        // Get the recipe ID and ingredient ID from the ResultSet
         int recipeID = resultSet.getInt("recipe_id");
         String ingredientName = resultSet.getString("name");
         int ingredientID = resultSet.getInt("ingredient_id");
-
-        // Create a new Ingredient object with the retrieved IDs
         Ingredient ingredient = new Ingredient(recipeID, ingredientName, ingredientID);
-
-        // Add the new Ingredient object to the list
         ingredients.add(ingredient);
       }
     } catch (SQLException e) {

@@ -15,6 +15,7 @@ import model.Recipe;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SearchViewController {
@@ -73,31 +74,54 @@ public class SearchViewController {
         searchGrid.getChildren().clear();
         int col = 0;
         int row = 0;
-        for (Ingredient ingredient : data) {
-            if (ingredient.getName().contains(query) || ingredient.getName().toLowerCase().contains(query)) {
-                // see if recipe id contains ingredient
-                for (Recipe recipe : recipeList){
-                    int tst = recipe.getId();
-                    int idk = ingredient.getId();
-                    if (tst == idk){
-                        System.out.println("recipe id is " + tst + " ingredient id is " + idk);
-                        try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
-                            Pane root = loader.load();
-                            RecipeCardController cardController = loader.getController();
-                            cardController.setRecipe(recipe);
-                            cardController.updateCard();
-                            searchGrid.add(root, col % 3, row);
-                            col++;
-                            if (col % 3 == 0) {
-                                row++;
+
+        if (!query.contains(",")){
+            for (Ingredient ingredient : data) {
+                if (ingredient.getName().contains(query) || ingredient.getName().toLowerCase().contains(query)) {
+                    for (Recipe recipe : recipeList){
+                        int recipeId = recipe.getId();
+                        int ingredientId = ingredient.getId();
+                        if (recipeId == ingredientId){
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
+                                Pane root = loader.load();
+                                RecipeCardController cardController = loader.getController();
+                                cardController.setRecipe(recipe);
+                                cardController.updateCard();
+                                searchGrid.add(root, col % 3, row);
+                                col++;
+                                if (col % 3 == 0) {
+                                    row++;
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace(System.out);
                             }
-                        } catch (IOException e) {
-                            e.printStackTrace(System.out);
                         }
                     }
                 }
             }
+        } else {
+            System.out.println("contains ',");
+            List<String> ingredientList = Arrays.asList(query.split(","));
+
+            for (String queryIngredient : ingredientList){
+                for (Ingredient ingredient : data){
+                    if (queryIngredient.toLowerCase().equals(ingredient)){
+                    }
+                }
+            }
+
+            /*
+                Split query
+                For every word - search ingredient id       [LIST with regex]
+                Ingredient ID - search recipe id        [for every ingredient id.getRecipeID();]
+
+                    if recipeID contains ingredient IDs [check cookbook.has_ingredient table]
+                                show card
+             */
+
+
         }
+
     }
 }
