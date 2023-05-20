@@ -64,7 +64,7 @@ public class AddRecipeController implements Initializable {
     @FXML
     private Label ingredientNameError;
 
-    private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
+    private ObservableList<Tag> tagsArray = controller.generateTag();
     private ObservableList<Unit> unitArray = controller.generateUnit();
     private String addUnit;
     private ArrayList<Recipe> recipes = controller.getRecipeList();
@@ -86,7 +86,7 @@ public class AddRecipeController implements Initializable {
     //TODO: delete all event listeners on closing the window
     public void saveRecipe(ActionEvent event) {
         ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
-        ObservableList<Tag> tagsArray = controller.generateTag();
+        ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
         //5 is the empty string
          int unit_id = 5;
         try {
