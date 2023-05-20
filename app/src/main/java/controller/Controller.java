@@ -38,7 +38,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -890,15 +890,15 @@ public class Controller {
       ResultSet rs = stmt.executeQuery();
       rs.next();
       recipe_id = rs.getInt(1);
-      ObservableList<Ingredient> ingredients = generateIngredient();
-      for (Ingredient ingredient : ingredients) {
-        if (ingredientObservableList.get(ingredientIterator).getName().equals(ingredient.getName())) {
+      ObservableList<Ingredient> ingredientsDB = generateIngredient();
+      for (Ingredient ingredient : ingredientObservableList) {
+        for (Ingredient ingredient1 : ingredientsDB)
+        if (ingredient.getName().equals(ingredient1.getName())) {
           query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
           stmt = this.db.prepareStatement(query);
           stmt.setInt(1, recipe_id);
           stmt.setInt(2, ingredient.getId());
           stmt.executeUpdate();
-          ingredientIterator++;
           //System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
         }
         /*
