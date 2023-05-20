@@ -101,12 +101,13 @@ public class AddRecipeController implements Initializable {
 
             String name = nameField.getText();
             for(Recipe recipe : recipes) {
-                if (recipe.getName().contains(name)) {
+                if (recipe.getName().equals(name)) {
                     nameError.setText("Name exists already, please change it!");
                     alert("Name exists already, please change it!");
                     return;
                 }
             }
+
                 String shortDescription = shortDescriptionField.getText();
             String longDescription = longDescriptionField.getText();
             String imageURL = imageField.getText();
@@ -115,6 +116,7 @@ public class AddRecipeController implements Initializable {
                 ingredientError.setText("Please add at least on ingredient to the Table!");
                 return;
             }
+
             ObservableList<IngredientMock> ingredientMock = ingredientTable.getItems();
             for (IngredientMock ingredientMock1 : ingredientMock) {
                 String ingredientMock1Name = ingredientMock1.getName();
@@ -220,12 +222,12 @@ public class AddRecipeController implements Initializable {
             amount = Integer.valueOf(addAmount.getText());
         } catch (Exception e) {
             amountError.setText("Please set the amount of the ingredient!");
+            if(ingredientItem.isBlank()) {
+                ingredientNameError.setText("Please set the name of the ingredient!");
+            }
             return;
         }
-        if(ingredientItem.isBlank()) {
-            ingredientNameError.setText("Please set the name of the ingredient!");
-            return;
-        }
+
         IngredientMock ingredientMock = new IngredientMock(ingredientItem, amount, unit);
         for (IngredientMock ingredientMock1 : ingredientTable.getItems()) {
             if (ingredientMock1.getName().equals(ingredientMock.getName())) {
