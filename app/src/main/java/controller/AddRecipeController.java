@@ -65,7 +65,6 @@ public class AddRecipeController implements Initializable {
     private Label ingredientNameError;
 
     private ObservableList<Tag> tagsArray = controller.generateTag();
-    private ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
     private ObservableList<Unit> unitArray = controller.generateUnit();
     private String addUnit;
     private ArrayList<Recipe> recipes = controller.getRecipeList();
@@ -87,6 +86,7 @@ public class AddRecipeController implements Initializable {
     //TODO: delete all event listeners on closing the window
     public void saveRecipe(ActionEvent event) {
         ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
+        ObservableList<Integer> selectBoxTagInts = FXCollections.observableArrayList();
         //5 is the empty string
          int unit_id = 5;
         try {
@@ -101,12 +101,13 @@ public class AddRecipeController implements Initializable {
 
             String name = nameField.getText();
             for(Recipe recipe : recipes) {
-                if (recipe.getName().contains(name)) {
+                if (recipe.getName().equals(name)) {
                     nameError.setText("Name exists already, please change it!");
                     alert("Name exists already, please change it!");
                     return;
                 }
             }
+
                 String shortDescription = shortDescriptionField.getText();
             String longDescription = longDescriptionField.getText();
             String imageURL = imageField.getText();
@@ -115,6 +116,7 @@ public class AddRecipeController implements Initializable {
                 ingredientError.setText("Please add at least on ingredient to the Table!");
                 return;
             }
+
             ObservableList<IngredientMock> ingredientMock = ingredientTable.getItems();
             for (IngredientMock ingredientMock1 : ingredientMock) {
                 String ingredientMock1Name = ingredientMock1.getName();
@@ -219,13 +221,13 @@ public class AddRecipeController implements Initializable {
         try {
             amount = Integer.valueOf(addAmount.getText());
         } catch (Exception e) {
-            amountError.setText("Please set the amount of the ingredient!");
+            amountError.setText("set the amount of the ingredient!");
+            if(ingredientItem.isBlank()) {
+                ingredientNameError.setText("set the name of the ingredient!");
+            }
             return;
         }
-        if(ingredientItem.isBlank()) {
-            ingredientNameError.setText("Please set the name of the ingredient!");
-            return;
-        }
+
         IngredientMock ingredientMock = new IngredientMock(ingredientItem, amount, unit);
         for (IngredientMock ingredientMock1 : ingredientTable.getItems()) {
             if (ingredientMock1.getName().equals(ingredientMock.getName())) {
@@ -268,6 +270,10 @@ public class AddRecipeController implements Initializable {
         boolean unique = true;
         boolean viewUnique = true;
         if (keyEvent.getCode() == KeyCode.ENTER) {
+            if(newTag.getText().isBlank()){
+                tagError.setText("Empty Tags are not allowed");
+                return;
+            }
             String addTag = newTag.getText();
             for (String name : tagView.getItems()) {
                 if (name.equals(addTag)) {
