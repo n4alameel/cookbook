@@ -270,6 +270,10 @@ public class AddRecipeController implements Initializable {
         boolean unique = true;
         boolean viewUnique = true;
         if (keyEvent.getCode() == KeyCode.ENTER) {
+            if(newTag.getText().isBlank()){
+                tagError.setText("Empty Tags are not allowed");
+                return;
+            }
             String addTag = newTag.getText();
             for (String name : tagView.getItems()) {
                 if (name.equals(addTag)) {

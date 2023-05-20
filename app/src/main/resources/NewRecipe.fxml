@@ -74,7 +74,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="ingredientNameError" layoutX="737.0" layoutY="846.0" text="Ingredient">
+            <Label fx:id="ingredientName" layoutX="737.0" layoutY="846.0" text="Ingredient">
                <font>
                   <Font size="18.0" />
                </font>
@@ -124,9 +124,8 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="amountError" layoutX="427.0" layoutY="825.0" prefHeight="27.0" prefWidth="81.0" textAlignment="CENTER" />
-            <Label fx:id="amountError1" layoutX="332.0" layoutY="915.0" prefHeight="27.0" prefWidth="273.0" textFill="RED" />
-            <Label fx:id="amountError11" layoutX="645.0" layoutY="915.0" prefHeight="27.0" prefWidth="273.0" textFill="RED" />
+            <Label fx:id="amountError" layoutX="332.0" layoutY="915.0" prefHeight="27.0" prefWidth="273.0" textFill="RED" />
+            <Label fx:id="ingredientNameError" layoutX="645.0" layoutY="915.0" prefHeight="27.0" prefWidth="273.0" textFill="RED" />
          </children>
       </AnchorPane>
    </content>

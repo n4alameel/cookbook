@@ -876,7 +876,6 @@ public class Controller {
       ObservableList<Ingredient> ingredientObservableList, String imageURL) {
     try {
       int recipe_id;
-      int ingredientIterator = 0;
       String query = "INSERT INTO recipe (name, shortDescription, description, imageURL) VALUES (?, ?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, name);
@@ -897,7 +896,7 @@ public class Controller {
           query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
           stmt = this.db.prepareStatement(query);
           stmt.setInt(1, recipe_id);
-          stmt.setInt(2, ingredient.getId());
+          stmt.setInt(2, ingredient1.getId());
           stmt.executeUpdate();
           //System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
         }
