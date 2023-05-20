@@ -124,8 +124,8 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="amountError" layoutX="332.0" layoutY="915.0" prefHeight="27.0" prefWidth="273.0" textFill="RED" />
-            <Label fx:id="ingredientNameError" layoutX="645.0" layoutY="915.0" prefHeight="27.0" prefWidth="273.0" textFill="RED" />
+            <Label fx:id="amountError" layoutX="296.0" layoutY="921.0" prefHeight="27.0" prefWidth="330.0" textAlignment="CENTER" textFill="RED" />
+            <Label fx:id="ingredientNameError" layoutX="616.0" layoutY="921.0" prefHeight="27.0" prefWidth="331.0" textAlignment="CENTER" textFill="RED" />
          </children>
       </AnchorPane>
    </content>

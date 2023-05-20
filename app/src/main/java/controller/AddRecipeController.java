@@ -221,9 +221,9 @@ public class AddRecipeController implements Initializable {
         try {
             amount = Integer.valueOf(addAmount.getText());
         } catch (Exception e) {
-            amountError.setText("Please set the amount of the ingredient!");
+            amountError.setText("set the amount of the ingredient!");
             if(ingredientItem.isBlank()) {
-                ingredientNameError.setText("Please set the name of the ingredient!");
+                ingredientNameError.setText("set the name of the ingredient!");
             }
             return;
         }
