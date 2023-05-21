@@ -56,7 +56,7 @@ public class RecipeCardController {
 
   @FXML
   private void sendRecipeEvent() {
-
+    controller.displaySendMessageView(recipe);
   }
 
   /**

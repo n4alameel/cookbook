@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane focusTraversable="true" prefHeight="1499.0" prefWidth="1200.0" style="-fx-background-color: white;" stylesheets="@AddRecipe.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddRecipeController">
    <children>
       <Label layoutX="32.0" layoutY="121.0" prefHeight="35.0" prefWidth="553.0" text="Name">
@@ -28,12 +27,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="32.0" layoutY="325.0" prefHeight="40.0" prefWidth="1116.0" stylesheets="@AddRecipe.css" text="Long description">
+      <Label layoutX="28.0" layoutY="339.0" prefHeight="40.0" prefWidth="1116.0" stylesheets="@AddRecipe.css" text="Long description">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="33.0" layoutY="531.0" prefHeight="35.0" prefWidth="1149.0" text="Tags">
+      <Label layoutX="33.0" layoutY="556.0" prefHeight="35.0" prefWidth="1149.0" text="Tags">
          <font>
             <Font size="24.0" />
          </font>
@@ -82,9 +81,10 @@
                      </font>
                   </Label>
                   <TextField fx:id="addAmount" />
+                  <Label fx:id="amountError" maxWidth="1.7976931348623157E308" prefHeight="27.0" textAlignment="CENTER" textFill="RED" />
                </children>
             </VBox>
-            <VBox alignment="BOTTOM_CENTER">
+            <VBox alignment="TOP_CENTER">
                <children>
                   <Label text="Unit">
                      <font>
@@ -102,6 +102,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="addIngredient" />
+                  <Label fx:id="ingredientNameError" maxWidth="1.7976931348623157E308" textAlignment="CENTER" textFill="RED" />
                </children>
             </VBox>
             <Button fx:id="addIngredientButton" mnemonicParsing="false" onAction="#addIngredientButton" text="Add Ingredient" />
@@ -117,10 +118,10 @@
          </children>
       </VBox>
       <Button fx:id="addImage" layoutX="831.0" layoutY="203.0" mnemonicParsing="false" text="Add Image" />
-      <TextField fx:id="longDescriptionField" alignment="TOP_LEFT" layoutX="32.0" layoutY="365.0" prefHeight="142.0" prefWidth="511.0" promptText="Add the full description of the recipe..." styleClass="text-field" stylesheets="@AddRecipe.css" />
-      <ListView fx:id="tagView" layoutX="33.0" layoutY="566.0" onKeyPressed="#enterPressed" onMouseClicked="#deleteClickedRowTags" prefHeight="142.0" prefWidth="511.0" />
+      <TextField fx:id="longDescriptionField" alignment="TOP_LEFT" layoutX="28.0" layoutY="379.0" prefHeight="142.0" prefWidth="511.0" promptText="Add the full description of the recipe..." styleClass="text-field" stylesheets="@AddRecipe.css" />
+      <ListView fx:id="tagView" layoutX="33.0" layoutY="591.0" onKeyPressed="#enterPressed" onMouseClicked="#deleteClickedRowTags" prefHeight="142.0" prefWidth="511.0" />
       <TextField fx:id="newTag" layoutX="814.0" layoutY="687.0" onKeyPressed="#enterPressed" promptText="Press Enter to confirm" />
-      <Label layoutX="848.0" layoutY="645.0" prefHeight="35.0" prefWidth="103.0" styleClass="Style.css" text="new Tag">
+      <Label layoutX="848.0" layoutY="645.0" prefHeight="35.0" prefWidth="103.0" styleClass="Style.css" text="New Tag">
          <font>
             <Font size="18.0" />
          </font>
@@ -128,5 +129,30 @@
       <TextField fx:id="imageField" alignment="TOP_LEFT" layoutX="688.0" layoutY="165.0" prefHeight="31.0" prefWidth="374.0" promptText="Insert Image URL" styleClass="text-field" stylesheets="@AddRecipe.css" />
       <ImageView fitHeight="142.0" fitWidth="282.0" layoutX="731.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="812.0" layoutY="270.0" text="Image preview" />
+      <Label fx:id="nameError" layoutX="32.0" layoutY="208.0" prefHeight="17.0" prefWidth="501.0" textAlignment="CENTER" textFill="RED">
+        <font>
+          <Font name="System Bold" size="24.0" />
+        </font>
+      </Label>
+      <Label fx:id="shortDescriptionError" layoutX="38.0" layoutY="315.0" prefHeight="17.0" prefWidth="501.0" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="longDescriptionError" layoutX="38.0" layoutY="521.0" prefHeight="17.0" prefWidth="501.0" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="ingredientError" layoutX="390.0" layoutY="785.0" prefHeight="27.0" prefWidth="461.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="tagError" layoutX="38.0" layoutY="733.0" prefHeight="17.0" prefWidth="501.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

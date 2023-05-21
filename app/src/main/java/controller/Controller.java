@@ -20,6 +20,7 @@ import com.sun.javafx.binding.StringFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
@@ -150,6 +151,7 @@ public class Controller {
         }
         this.activeUser.setFavouriteList(this.generateFavouriteListFromDb());
         this.activeUser.setWeeklyPlanList(this.generateWeeklyPlansFromDb());
+        this.activeUser.setMessageList(this.getMessageListFromDb());
         return true;
       } else {
         return false;
@@ -273,9 +275,49 @@ public class Controller {
     }
   }
 
+  private ArrayList<Message> getMessageListFromDb() {
+    ArrayList<Message> messages = new ArrayList<Message>();
+    try {
+      String query = "SELECT * FROM message WHERE receiverId = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        messages.add(new Message(rs.getInt(1), rs.getString(2), 1, rs.getInt(4), rs.getInt(5), rs.getInt(6)));
+      }
+      return messages;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return null;
+    }
+  }
+
+  public ArrayList<Message> updateMessages() {
+    ArrayList<Message> messages = new ArrayList<Message>();
+    try {
+      String query = "SELECT * FROM message WHERE receiverId = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, this.activeUser.getId());
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        messages.add(new Message(rs.getInt(1), rs.getString(2), 1, rs.getInt(4), rs.getInt(5), rs.getInt(6)));
+        if (rs.getInt(3) == 0) {
+          query = "UPDATE message SET isRead = 1 WHERE id = ?";
+          stmt = this.db.prepareStatement(query);
+          stmt.setInt(1, rs.getInt(1));
+          stmt.executeUpdate();
+        }
+      }
+      return messages;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return null;
+    }
+  }
+
   /**
    * Generates the list of all weekly lists of active user from the database.
-   * 
+   *
    * @return An ArrayList of WeeklyList objects
    */
   public ArrayList<WeeklyList> generateWeeklyPlansFromDb() {
@@ -300,7 +342,7 @@ public class Controller {
 
   /**
    * Creates a WeeklyList object from a SQL query result.
-   * 
+   *
    * @param rs A query result. Must contain the values {@code id},
    *           {@code weekNumber}, {@code year} and {@code creation_date}.
    * @return A {@code WeeklyList} object
@@ -496,6 +538,16 @@ public class Controller {
   }
 
   /**
+   * Creates and display the help page scene.
+   */
+  public void displayHelpPage() {
+    HelpView helpView = new HelpView();
+    Scene helpScene = new Scene(helpView.getRoot());
+    stage.setScene(helpScene);
+    stage.show();
+  }
+
+  /**
    * Creates and displays the new recipe prompt scene.
    */
   public void displayNewRecipeView() throws IOException {
@@ -511,6 +563,60 @@ public class Controller {
   public void displayWeeklyPlanView(WeeklyList weeklyList) throws IOException {
     WeeklyPlanView weeklyPlanView = new WeeklyPlanView(weeklyList);
     this.mainView.LoadContent((weeklyPlanView.getRoot()));
+  }
+
+  /**
+   * Creates and displays administrative panel
+   */
+
+  public void displayUsersView() {
+    UsersView usersView = new UsersView();
+    Scene usersScene = new Scene(usersView.getRoot());
+    stage.setScene(usersScene);
+    stage.show();
+  }
+
+  /**
+   * Displays a window for adding new users.
+   */
+  public void displayNewUserView() {
+    AddNewUserView addNewUserView = new AddNewUserView();
+    Scene newUserScene = new Scene(addNewUserView.getRoot());
+    stage.setScene(newUserScene);
+    stage.show();
+  }
+
+  /**
+   * Displays a window for changing users.
+   */
+
+  public void displayNewUserView(int id, String username, String password, boolean isAdmin, String imageUrl) {
+    AddNewUserView addNewUserView = new AddNewUserView(id, username, password, isAdmin, imageUrl);
+    Scene newUserScene = new Scene(addNewUserView.getRoot());
+    stage.setScene(newUserScene);
+    stage.show();
+  }
+
+  /**
+   * Creates and displays the message scene.
+   */
+  public void displayMessageView() {
+    MessageView messageView = new MessageView();
+    Scene messageViewScene = new Scene(messageView.getRoot());
+    Stage secondaryStage = new Stage();
+    secondaryStage.setScene(messageViewScene);
+    secondaryStage.show();
+  }
+
+  /**
+   * Creates and displays the send message scene.
+   */
+  public void displaySendMessageView(Recipe recipe) {
+    SendMessageView sendMessageView = new SendMessageView(recipe);
+    Scene sendMessageViewScene = new Scene(sendMessageView.getRoot());
+    Stage secondaryStage = new Stage();
+    secondaryStage.setScene(sendMessageViewScene);
+    secondaryStage.show();
   }
 
   /**
@@ -620,7 +726,7 @@ public class Controller {
   /**
    * Deletes a Weekly list from the database and the user list. It also deletes
    * the corresponding day lists from the database.
-   * 
+   *
    * @param listId The id of the list to delete
    * @return true if successful
    */
@@ -648,7 +754,7 @@ public class Controller {
 
   /**
    * Adds a recipe to a weekly list in the database and in the user's list.
-   * 
+   *
    * @param weekId The id of the weekly list in which we add the recipe.
    * @param day    The day for which we add the recipe.
    * @param recipe the recipe to add.
@@ -754,7 +860,6 @@ public class Controller {
       ObservableList<Ingredient> ingredientObservableList, String imageURL) {
     try {
       int recipe_id;
-      int ingredientIterator = 0;
       String query = "INSERT INTO recipe (name, shortDescription, description, imageURL) VALUES (?, ?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, name);
@@ -768,18 +873,18 @@ public class Controller {
       ResultSet rs = stmt.executeQuery();
       rs.next();
       recipe_id = rs.getInt(1);
-      ObservableList<Ingredient> ingredients = generateIngredient();
-      for (Ingredient ingredient : ingredients) {
-        if (ingredientObservableList.get(ingredientIterator).getName().equals(ingredient.getName())) {
-          query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
-          stmt = this.db.prepareStatement(query);
-          stmt.setInt(1, recipe_id);
-          stmt.setInt(2, ingredient.getId());
-          stmt.executeUpdate();
-          ingredientIterator++;
-          // System.out.println(ingredientIterator + recipe_id + ingredient.getName() +
-          // ingredient.getId());
-        }
+      ObservableList<Ingredient> ingredientsDB = generateIngredient();
+      for (Ingredient ingredient : ingredientObservableList) {
+        for (Ingredient ingredient1 : ingredientsDB)
+          if (ingredient.getName().equals(ingredient1.getName())) {
+            query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
+            stmt = this.db.prepareStatement(query);
+            stmt.setInt(1, recipe_id);
+            stmt.setInt(2, ingredient1.getId());
+            stmt.executeUpdate();
+            // System.out.println(ingredientIterator + recipe_id + ingredient.getName() +
+            // ingredient.getId());
+          }
         /*
          * System.out.println(ingredientIterator + recipe_id + "name: " +
          * ingredient.getName() + " id: " + ingredient.getId() );
@@ -965,7 +1070,7 @@ public class Controller {
    * not.
    *
    * // @param recipeId The id of the recipe to add/delete.
-   * 
+   *
    * @return {@code true} if the recipe was not in the favourite list and was then
    *         added.
    */
@@ -1052,4 +1157,130 @@ public class Controller {
     stage.show();
     this.displayHomeView();
   }
+
+  public ArrayList<User> getUsers() {
+    ArrayList<User> usersArray = new ArrayList<User>();
+    try {
+      String query = "SELECT * FROM User";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      ResultSet rs = stmt.executeQuery();
+
+      int id = 1;
+
+      while (rs.next()) {
+        User user = createUser(rs, id);
+        id++;
+        usersArray.add(user);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return usersArray;
+  }
+
+  public void addNewUser(String username, String password, boolean isAdmin, String imageUrl) {
+    try {
+      String query = "INSERT INTO user (username, password, isAdmin, imageUrl) VALUES (?, ?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, username);
+      stmt.setString(2, password);
+      stmt.setBoolean(3, isAdmin);
+      stmt.setString(4, imageUrl);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void deleteUser(int id) {
+    try {
+      String query = "DELETE FROM user WHERE id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, id);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void changeUser(int id, String username, String password, boolean isAdmin, String imageUrl) {
+    try {
+      String query = "UPDATE user SET username = ?, password = ?, isAdmin = ?, imageUrl = ? WHERE id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, username);
+      stmt.setString(2, password);
+      stmt.setBoolean(3, isAdmin);
+      stmt.setString(4, imageUrl);
+      stmt.setInt(5, id);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public User getUserById(int id) {
+    try {
+      String query = "SELECT * FROM User WHERE id = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setInt(1, id);
+      ResultSet rs = stmt.executeQuery();
+      if (rs.next()) {
+        User user = createUser(rs, id);
+        return user;
+      } else {
+        return null;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  public boolean sendMessage(int recipeId, String text, int senderId, int receiverId) {
+    try {
+      String query = "INSERT INTO message (text, isRead, senderId, receiverId, recipeId) VALUES (?, ?, ?, ?, ?)";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, text);
+      stmt.setInt(2, 0);
+      stmt.setInt(3, senderId);
+      stmt.setInt(4, receiverId);
+      stmt.setInt(5, recipeId);
+      stmt.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return false;
+    }
+  }
+
+  public ArrayList<String> usersList() {
+    ArrayList<String> usersList = new ArrayList<>();
+    try {
+      String query = "SELECT * FROM user";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        usersList.add(rs.getString(2));
+      }
+      return usersList;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return null;
+    }
+  }
+
+  public int getUserIdFromUsername(String username) {
+    try {
+      String query = "SELECT id FROM user WHERE username = ?";
+      PreparedStatement stmt = this.db.prepareStatement(query);
+      stmt.setString(1, username);
+      ResultSet rs = stmt.executeQuery();
+      rs.next();
+      return rs.getInt(1);
+    } catch (SQLException e) {
+      System.out.println(e);
+      return 0;
+    }
+  }
+
 }

@@ -11,12 +11,17 @@ public class HomeView {
 
   public HomeView() throws IOException {
     // setting the scene
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeWindow.fxml"));
-    this.root = (Parent) loader.load();
-    HomeViewController homeViewController = loader.getController();
-    homeViewController.showFavourites();
-    homeViewController.showRecommondations();
-
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeWindow.fxml"));
+      root = (Parent) loader.load();
+      HomeViewController homeViewController = loader.getController();
+      homeViewController.showFavourites();
+      homeViewController.showRecommondations();
+      homeViewController.showAdminPanel();
+      homeViewController.showActiveUser();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public Parent getRoot() {

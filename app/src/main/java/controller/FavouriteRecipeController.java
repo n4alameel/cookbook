@@ -35,6 +35,10 @@ public class FavouriteRecipeController {
     controller.displayFavouriteView();
   }
 
+  public void goToMealPlansView() throws IOException {
+    controller.displayWeeklyPlanListView();
+  }
+
   /**
    * Initialize the pagination system
    */
