@@ -604,12 +604,9 @@ public class Controller {
   /**
    * Creates and displays the message scene.
    */
-  public void displayMessageView() {
+  public void displayMessageView() throws IOException {
     MessageView messageView = new MessageView();
-    Scene messageViewScene = new Scene(messageView.getRoot());
-    Stage secondaryStage = new Stage();
-    secondaryStage.setScene(messageViewScene);
-    secondaryStage.show();
+    this.mainView.LoadContent(messageView.getRoot());
   }
 
   /**

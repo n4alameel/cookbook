@@ -115,7 +115,8 @@ public class MainLayoutController {
 
   }
 
-  public void openChatView(ActionEvent actionEvent) {
+  public void openChatView(ActionEvent actionEvent) throws IOException {
+    this.controller.displayMessageView();
   }
 
   public void openHomeView(MouseEvent mouseEvent) throws IOException {
