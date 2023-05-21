@@ -1,104 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Pagination?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" prefHeight="800.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllRecipeWindowController">
-    <content>
-        <AnchorPane fx:id="homePane" stylesheets="@HomeWindow.css">
-            <children>
-                <TextField fx:id="search" layoutX="332.0" layoutY="116.0" prefHeight="55.0" prefWidth="591.0" promptText="Search here..." onKeyPressed="#openSearchPage" />
-                <Button fx:id="searchBtn" layoutX="843.0" layoutY="122.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="73.0" text="Search" textFill="#171717" onAction="#openSearchPage">
-                <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-                <MenuBar fx:id="menuBar" layoutX="-4.0" layoutY="-5.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="1222.0" style="-fx-background-color: #618C03;" stylesheets="@HomeWindow.css">
-                    <menus>
-                        <Menu fx:id="shoppingList" mnemonicParsing="false" text="Shopping List" />
-                        <Menu fx:id="mealPlans" mnemonicParsing="false" text="Meal Plans" />
-                        <Menu fx:id="Chatroom" mnemonicParsing="false" text="Chat room" />
-                    </menus>
-                    <padding>
-                        <Insets left="970.0" top="8.0" />
-                    </padding>
-                </MenuBar>
-                <Label alignment="CENTER" contentDisplay="TOP" layoutX="12.0" layoutY="203.0" prefHeight="39.0" prefWidth="1200.0" stylesheets="@HomeWindow.css" text="All Recipes" textAlignment="CENTER">
-                    <font>
-                        <Font name="System Bold" size="24.0" />
-                    </font>
-                </Label>
-                <ImageView fitHeight="72.0" fitWidth="128.0" layoutX="1.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
-                <Hyperlink fx:id="recipes" layoutX="916.0" layoutY="57.0" text="Recipes" />
-                <Hyperlink fx:id="favorites" layoutX="1034.0" layoutY="56.0" text="Favorites" onAction="#seeFavourites" />
-                <Hyperlink fx:id="user" layoutX="1147.0" layoutY="56.0" text="User" />
-                <ImageView fx:id="recipe_image" fitHeight="37.0" fitWidth="34.0" layoutX="863.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@img/whisk.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="995.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@img/Heart.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="1014.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
-                <Pane fx:id="footer" layoutY="1794.0">
-                    <children>
-                        <ImageView fitHeight="72.0" fitWidth="252.0" layoutX="66.0" layoutY="6.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@img/logo.png" />
-                            </image>
-                        </ImageView>
-                        <Label layoutX="74.0" layoutY="94.0" prefHeight="73.0" prefWidth="208.0" text="This Cookbook is made by&#10;the students of the Project Course in Computer  Science, &#10;Cobol group" wrapText="true" />
-                        <Pane fx:id="copyright" layoutX="-1.0" layoutY="192.0" prefHeight="39.0" prefWidth="1220.0">
-                            <children>
-                                <Label layoutX="582.0" layoutY="5.0" prefHeight="23.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
-                            </children>
-                        </Pane>
-                        <Label layoutX="555.0" layoutY="29.0" text="Quick Access">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="957.0" layoutY="29.0" text="Need help?">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                        <Button fx:id="help" layoutX="903.0" layoutY="73.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="193.0" text="Go to our help page" />
-                    </children>
-                </Pane>
-                <Button fx:id="newRecipeBtn" layoutX="805.0" layoutY="57.0" mnemonicParsing="false" onAction="#openNewRecipe" text="New Recipe" />
-                <Pagination fx:id="recipePages" layoutX="64.0" layoutY="270.0" maxPageIndicatorCount="5" pageCount="10" prefHeight="1461.0" prefWidth="1095.0"/>
-                <GridPane fx:id="recipeGrid" hgap="80.0" layoutX="86.0" layoutY="287.0" vgap="80.0">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                </GridPane>
-            </children>
-        </AnchorPane>
-    </content>
-</ScrollPane>
+
+<VBox alignment="CENTER" stylesheets="@HomeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllRecipeWindowController">
+   <children>
+          <Label alignment="CENTER" contentDisplay="TOP" prefHeight="39.0" prefWidth="1200.0" stylesheets="@HomeWindow.css" text="All Recipes" textAlignment="CENTER">
+              <font>
+                  <Font name="System Bold" size="24.0" />
+              </font>
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+          </Label>
+          <GridPane fx:id="recipeGrid" hgap="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1300.0" prefWidth="1060.0" vgap="80.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+          </GridPane>
+          <Pagination fx:id="recipePages" maxPageIndicatorCount="5" pageCount="10">
+         <VBox.margin>
+            <Insets bottom="10.0" top="20.0" />
+         </VBox.margin>
+      </Pagination>
+   </children>
+</VBox>

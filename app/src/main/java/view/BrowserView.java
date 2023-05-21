@@ -1,31 +1,24 @@
 package view;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import controller.AllRecipeWindowController;
-import controller.Controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import model.Recipe;
+import javafx.scene.control.ScrollPane;
 
 public class BrowserView {
-  private Parent root;
+  public Parent root;
 
-  public BrowserView() {
+  public BrowserView() throws IOException {
     // setting the scene
-    try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/AllRecipesWindow.fxml"));
-      root = (Parent) loader.load();
-      // Get the controller as an object to be able to call the method
-      // initPagination()
-      AllRecipeWindowController browserController = (AllRecipeWindowController) loader.getController();
-      browserController.initPagination();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/AllRecipesWindow.fxml"));
+    this.root = (Parent) loader.load();
+    // Get the controller as an object to be able to call the method
+    // initPagination()
+    AllRecipeWindowController browserController = (AllRecipeWindowController) loader.getController();
+    browserController.initPagination();
 
-    } catch (IOException e) {
-      e.printStackTrace(System.out);
-      throw new RuntimeException(e);
-    }
   }
 
   public Parent getRoot() {

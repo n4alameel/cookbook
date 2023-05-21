@@ -38,7 +38,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -48,6 +48,8 @@ public class Controller {
   private ArrayList<Recipe> recipeList;
   private Stage stage;
   private model.Recipe recipe;
+
+  public MainLayoutView mainView;
 
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
@@ -94,11 +96,9 @@ public class Controller {
     return time;
   }
 
-  public void displaySearchView() {
+  public void displaySearchView() throws IOException {
     SearchView searchView = new SearchView();
-    Scene searchScene = new Scene(searchView.getRoot());
-    stage.setScene(searchScene);
-    stage.show();
+    this.mainView.LoadContent(searchView.getRoot());
   }
 
   /**
@@ -170,10 +170,11 @@ public class Controller {
    */
   private User createUser(ResultSet rs, int id) {
     try {
-      Boolean b;
-      if(rs.getInt("isAdmin")==1) b=true;
-      else b=false;
-      return new User(Integer.valueOf(rs.getString("id")), rs.getString("username"), rs.getString("password"), b, rs.getString("imageUrl"));
+      boolean isAdmin = false;
+      if (rs.getInt(4) == 1) {
+        isAdmin = true;
+      }
+      return new User(id, rs.getString(2), rs.getString(3), isAdmin, rs.getString(5));
     } catch (SQLException e) {
       return null;
     }
@@ -397,12 +398,13 @@ public class Controller {
   private Comment createComment(ResultSet comRs) {
     try {
       Comment c = new Comment(Integer.parseInt(comRs.getString(1)), Integer.parseInt(comRs.getString(2)),
-          Integer.parseInt(comRs.getString(3)), comRs.getString(4), comRs.getString(5));
+          Integer.parseInt(comRs.getString(3)), comRs.getString(4), comRs.getString(5), comRs.getString(6));
       return c;
     } catch (SQLException e) {
       return null;
     }
   }
+
   private Tag createTag(ResultSet tagRs) {
     try {
       Tag t = new Tag(Integer.parseInt(tagRs.getString(1)), tagRs.getString(2), Integer.parseInt(tagRs.getString(3)));
@@ -411,9 +413,10 @@ public class Controller {
       return null;
     }
   }
+
   public ArrayList<Comment> getCommentListByRecipeID(int recipeId) {
     try {
-      String query = "select C.id, C.user_id, C.recipe_id, C.text, U.username from comment C join user U on C.user_id = U.id where C.recipe_id = ?";
+      String query = "select C.id, C.user_id, C.recipe_id, C.text, U.username, U.imageUrl from comment C join user U on C.user_id = U.id where C.recipe_id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setInt(1, recipeId);
       ResultSet rs = stmt.executeQuery();
@@ -440,7 +443,6 @@ public class Controller {
 
       ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
 
-
       while (rs.next()) {
         Ingredient ingredient = createIngredient(rs);
         ingredientList.add(ingredient);
@@ -451,6 +453,7 @@ public class Controller {
       return null;
     }
   }
+
   public ArrayList<Tag> getTagListByRecipeID(int recipeId) {
     try {
       String query = "select T.id, T.name, T.user_id from recipe R join recipe_has_tag RT on R.id = RT.recipe_id join tag T on T.id = RT.tag_id where R.id = ?";
@@ -459,7 +462,6 @@ public class Controller {
       ResultSet rs = stmt.executeQuery();
 
       ArrayList<Tag> tagList = new ArrayList<Tag>();
-
 
       while (rs.next()) {
         Tag tag = createTag(rs);
@@ -487,8 +489,8 @@ public class Controller {
       ArrayList<Comment> commentList = getCommentListByRecipeID(recipeId);
       ArrayList<Tag> tagList = getTagListByRecipeID(recipeId);
 
-      Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
-          commentList, tagList);
+      Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+          ingredientList, commentList, tagList);
       return recipe;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -509,41 +511,34 @@ public class Controller {
   /**
    * Creates and displays the recipe browser scene.
    */
-  public void displayBrowserView() {
+  public void displayBrowserView() throws IOException {
     BrowserView browserView = new BrowserView();
-    Scene browserScene = new Scene(browserView.getRoot());
-    stage.setScene(browserScene);
-    stage.show();
+    this.mainView.LoadContent(browserView.getRoot());
   }
 
   /**
    * Creates and display the recipe details scene.
    */
-  public void displayRecipeView(int recipeId) {
+  public void displayRecipeView(int recipeId) throws IOException {
     RecipeView recipeView = new RecipeView(recipeId);
-    Scene recipeScene = new Scene(recipeView.getRoot());
-    stage.setScene(recipeScene);
-    stage.show();
+    this.mainView.LoadContent(recipeView.getRoot());
   }
 
   /**
    * Creates and displays the home scene.
    */
-  public void displayHomeView() {
+  // private Scene mainScene;
+  public void displayHomeView() throws IOException {
     HomeView homeView = new HomeView();
-    Scene mainScene = new Scene(homeView.getRoot());
-    stage.setScene(mainScene);
-    stage.show();
+    this.mainView.LoadContent(homeView.getRoot());
   }
 
   /**
    * Creates and display the favourite scene.
    */
-  public void displayFavouriteView() {
+  public void displayFavouriteView() throws IOException {
     FavouriteView favouriteView = new FavouriteView();
-    Scene favouriteScene = new Scene(favouriteView.getRoot());
-    stage.setScene(favouriteScene);
-    stage.show();
+    this.mainView.LoadContent(favouriteView.getRoot());
   }
 
   /**
@@ -551,47 +546,40 @@ public class Controller {
    */
   public void displayHelpPage() {
     HelpView helpView = new HelpView();
-    Scene helpScene = new Scene(helpView.getRoot());
-    stage.setScene(helpScene);
-    stage.show();
+    Scene helpScene = new Scene(helpView.getRoot(), 1250, 750);
+    Stage helpStage = new Stage();
+    helpStage.setTitle("Help Page");
+    helpStage.setScene(helpScene);
+    helpStage.show();
   }
-
 
   /**
    * Creates and displays the new recipe prompt scene.
    */
-  public void displayNewRecipeView() {
+  public void displayNewRecipeView() throws IOException {
     NewRecipeView newRecipeView = new NewRecipeView();
-    Scene newRecipeScene = new Scene(newRecipeView.getRoot());
-    Stage secondaryStage = new Stage();
-    secondaryStage.setScene(newRecipeScene);
-    secondaryStage.show();
+    this.mainView.LoadContent(newRecipeView.getRoot());
   }
 
-  public void displayWeeklyPlanListView() {
+  public void displayWeeklyPlanListView() throws IOException {
     WeeklyPlanListView weeklyPlanListView = new WeeklyPlanListView();
-    Scene weeklyPlanListScene = new Scene(weeklyPlanListView.getRoot());
-    stage.setScene(weeklyPlanListScene);
-    stage.show();
+    this.mainView.LoadContent(weeklyPlanListView.getRoot());
   }
 
-  public void displayWeeklyPlanView(WeeklyList weeklyList) {
+  public void displayWeeklyPlanView(WeeklyList weeklyList) throws IOException {
     WeeklyPlanView weeklyPlanView = new WeeklyPlanView(weeklyList);
-    Scene weeklyScene = new Scene(weeklyPlanView.getRoot());
-    stage.setScene(weeklyScene);
-    stage.show();
+    this.mainView.LoadContent((weeklyPlanView.getRoot()));
   }
 
   /**
    * Creates and displays administrative panel
    */
 
-  public void displayUsersView() {
+  public void displayUsersView() throws IOException {
     UsersView usersView = new UsersView();
-    Scene usersScene = new Scene(usersView.getRoot());
-    stage.setScene(usersScene);
-    stage.show();
+    this.mainView.LoadContent(usersView.getRoot());
   }
+
   /**
    * Displays a window for adding new users.
    */
@@ -616,12 +604,9 @@ public class Controller {
   /**
    * Creates and displays the message scene.
    */
-  public void displayMessageView() {
+  public void displayMessageView() throws IOException {
     MessageView messageView = new MessageView();
-    Scene messageViewScene = new Scene(messageView.getRoot());
-    Stage secondaryStage = new Stage();
-    secondaryStage.setScene(messageViewScene);
-    secondaryStage.show();
+    this.mainView.LoadContent(messageView.getRoot());
   }
 
   /**
@@ -892,14 +877,15 @@ public class Controller {
       ObservableList<Ingredient> ingredientsDB = generateIngredient();
       for (Ingredient ingredient : ingredientObservableList) {
         for (Ingredient ingredient1 : ingredientsDB)
-        if (ingredient.getName().equals(ingredient1.getName())) {
-          query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
-          stmt = this.db.prepareStatement(query);
-          stmt.setInt(1, recipe_id);
-          stmt.setInt(2, ingredient1.getId());
-          stmt.executeUpdate();
-          //System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
-        }
+          if (ingredient.getName().equals(ingredient1.getName())) {
+            query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
+            stmt = this.db.prepareStatement(query);
+            stmt.setInt(1, recipe_id);
+            stmt.setInt(2, ingredient1.getId());
+            stmt.executeUpdate();
+            // System.out.println(ingredientIterator + recipe_id + ingredient.getName() +
+            // ingredient.getId());
+          }
         /*
          * System.out.println(ingredientIterator + recipe_id + "name: " +
          * ingredient.getName() + " id: " + ingredient.getId() );
@@ -1139,6 +1125,8 @@ public class Controller {
       this.displayRecipeView(changedComment.getRecipeId());
     } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
   }
 
@@ -1161,6 +1149,14 @@ public class Controller {
     } catch (Exception e) {
       return false;
     }
+  }
+
+  public void displayMainLayout() throws IOException {
+    this.mainView = new MainLayoutView();
+    Scene mainScene = new Scene(this.mainView.getRoot(), 1250, 750);
+    stage.setScene(mainScene);
+    stage.show();
+    this.displayHomeView();
   }
 
   public ArrayList<User> getUsers() {

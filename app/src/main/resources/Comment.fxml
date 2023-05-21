@@ -13,9 +13,9 @@
 <VBox fx:id="processingComment" spacing="10.0" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CommentController">
     <FlowPane alignment="CENTER_LEFT" columnHalignment="RIGHT" hgap="10.0" prefHeight="39.0" prefWidth="522.0">
         <children>
-            <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="commentatorAva"  fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image fx:id="commentatorAva" url="@img/ava.jpg" />
+                    <Image url="@img/ava.jpg" />
                 </image>
             </ImageView>
             <Text fx:id="commentatorName" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />

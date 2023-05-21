@@ -26,7 +26,7 @@ public class LoginViewController {
       usernameField.setText("error");
     }
     if (controller.login(username, password)) {
-      controller.displayHomeView();
+      controller.displayMainLayout();
     } else {
       System.out.println("Error");
     }

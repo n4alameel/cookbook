@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import model.Recipe;
 
+import java.io.IOException;
+
 public class RecipeCardController {
   private Controller controller = Controller.getInstance();
   private Recipe recipe;
@@ -39,18 +41,19 @@ public class RecipeCardController {
    * @param recipe The recipe to display on this card
    */
 
-  public void setRecipe(int selectedRecipeId){
+  public void setRecipe(int selectedRecipeId) {
     Recipe updatedRecipe = this.controller.getRecipeById(selectedRecipeId);
     this.recipe = updatedRecipe;
   }
 
-    public void updateCard() {
-      recipeName.setText(this.recipe.getName());
-      if (controller.getActiveUser().isFavourite(this.recipe)) {
-        favBtn.setImage(new Image("img/HeartFull.png"));
-      }
-      shortDesc.setText(this.recipe.getDescription());
+  public void updateCard() {
+    recipeName.setText(this.recipe.getName());
+    if (controller.getActiveUser().isFavourite(this.recipe)) {
+      favBtn.setImage(new Image("img/HeartFull.png"));
     }
+    shortDesc.setText(this.recipe.getDescription());
+    // recipePic.setImage(new Image(this.recipe.getImageUrl()));
+  }
 
   @FXML
   private void sendRecipeEvent() {
@@ -72,8 +75,8 @@ public class RecipeCardController {
   }
 
   @FXML
-  private void seeRecipe() {
-    controller.displayRecipeView(this.recipe.getId());
+  private void seeRecipe() throws IOException {
+    this.controller.displayRecipeView(this.recipe.getId());
   }
 
   /**

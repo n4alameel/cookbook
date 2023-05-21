@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MessageViewController">
-    <center>
-        <TableView fx:id="messageTable" prefHeight="364.0" prefWidth="600.0">
-            <columns>
-                <TableColumn fx:id="senderColumn" prefWidth="100.0" text="Sender" />
-                <TableColumn fx:id="textColumn" prefWidth="200.0" text="Text" />
-                <TableColumn fx:id="recipeColumn" prefWidth="100.0" text="Recipe" />
-            </columns>
-        </TableView>
-    </center>
-</BorderPane>
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MessageViewController">
+   <children>
+      <Label text="Messages recieved">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+      </Label>
+      <BorderPane prefHeight="400.0" prefWidth="600.0">
+          <center>
+              <TableView fx:id="messageTable" prefHeight="364.0" prefWidth="600.0">
+                  <columns>
+                      <TableColumn fx:id="senderColumn" maxWidth="300.0" minWidth="100.0" prefWidth="-1.0" text="Sender" />
+                      <TableColumn fx:id="textColumn" maxWidth="1000.0" minWidth="200.0" prefWidth="-1.0" text="Text" />
+                      <TableColumn fx:id="recipeColumn" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Recipe" />
+                  </columns>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </BorderPane.margin>
+              </TableView>
+          </center>
+      </BorderPane>
+   </children>
+</VBox>
