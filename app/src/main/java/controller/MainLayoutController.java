@@ -21,11 +21,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xml.sax.InputSource;
+
 public class MainLayoutController {
+
+  Controller controller = Controller.getInstance();
   @FXML
   private Button activeUserName;
   @FXML
   private ImageView activeUserPhoto;
+  @FXML
+  private Button adminPanel;
 
   public MainLayoutController() {
   }
@@ -34,6 +40,9 @@ public class MainLayoutController {
     activeUserName.setText(this.controller.getActiveUser().getUsername());
     Image imageObject = new Image(this.controller.getActiveUser().getImageURL());
     activeUserPhoto.setImage(imageObject);
+    if (this.controller.getActiveUser().isAdmin()) {
+      adminPanel.setVisible(true);
+    }
     // Calculate the aspect ratio of the image
     // double imageAspectRatio = activeUserPhoto.getImage().getWidth() /
     // activeUserPhoto.getImage().getHeight();
@@ -94,8 +103,6 @@ public class MainLayoutController {
   @FXML
   private ScrollPane content;
 
-  Controller controller = Controller.getInstance();
-
   public void openAllRecipesView(ActionEvent actionEvent) throws IOException {
     this.controller.displayBrowserView();
   }
@@ -123,6 +130,14 @@ public class MainLayoutController {
     this.controller.displayNewRecipeView();
   }
 
+  public void goToUsersView() throws IOException {
+    this.controller.displayUsersView();
+  }
+
+  public void logoutEvent() {
+    controller.displayLoginScene();
+  }
+
   public void loadPage2(ActionEvent actionEvent) {
 
   }
@@ -139,4 +154,5 @@ public class MainLayoutController {
 
   public void searchEnter(KeyEvent keyEvent) throws IOException {
   }
+
 }

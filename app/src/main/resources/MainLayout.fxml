@@ -23,11 +23,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="1184.0" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainLayoutController">
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainLayoutController">
    <children>
       <VBox>
          <children>
-            <HBox alignment="CENTER_RIGHT" spacing="50.0">
+            <HBox alignment="CENTER_LEFT" spacing="50.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -39,7 +39,16 @@
                   <String fx:value="header" />
                </styleClass>
                <children>
-                  <ButtonBar buttonMinWidth="0.0" buttonOrder="">
+                  <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="26.0" prefWidth="167.0" spacing="50.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#logoutEvent" styleClass="header-link" text="Logout" />
+                        <Button fx:id="adminPanel" mnemonicParsing="false" onAction="#goToUsersView" styleClass="header-link" text="Admin" visible="false" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <ButtonBar buttonMinWidth="0.0" buttonOrder="" prefHeight="26.0" prefWidth="931.0" HBox.hgrow="SOMETIMES">
                      <buttons>
                         <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openWeeklyPlanListView" styleClass="header-link" text="Meal Plans" />
                         <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openShoppingListView" styleClass="header-link" text="Shopping List" />

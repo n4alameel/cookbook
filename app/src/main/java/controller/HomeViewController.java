@@ -10,6 +10,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import model.Recipe;
+
+import java.awt.Button;
 import java.io.IOException;
 import java.util.ArrayList;
 import model.User;
@@ -21,12 +23,6 @@ public class HomeViewController {
   @FXML
   private GridPane recommendationsHome;
   Controller controller = Controller.getInstance();
-  @FXML
-  private Hyperlink adminPanel;
-  @FXML
-  private Hyperlink activeUser;
-  @FXML
-  private ImageView activeUserPicture;
 
   public void openAllRecipes() throws IOException {
     controller.displayBrowserView();
@@ -52,15 +48,7 @@ public class HomeViewController {
     controller.displaySearchView();
   }
 
-  public void goToUsersView() throws IOException {
-    controller.displayUsersView();
-  }
-
-  public void logoutEvent() {
-    controller.displayLoginScene();
-  }
-
-  public void openHelpPage() throws  IOException{
+  public void openHelpPage() throws IOException {
     controller.displayHelpPage();
   }
 
@@ -106,7 +94,7 @@ public class HomeViewController {
     int index = 0;
 
     while (index < recipeList.size()) {
-      if (controller.getActiveUser().isFavourite(recipeList.get(index)) == false){
+      if (controller.getActiveUser().isFavourite(recipeList.get(index)) == false) {
         recommendationList.add(recipeList.get(index));
       }
       index++;
@@ -122,34 +110,21 @@ public class HomeViewController {
     int col = 0;
     int row = 0;
     // While the recipe list is not empty or we have not added 3 cards
-    while (currentIndex < recipeNum && currentIndex < maxNum ) {
-        try {
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
-          Pane root = loader.load();
-          RecipeCardController cardController = loader.getController();
-            cardController.setRecipe(recommendationList.get(currentIndex).getId());
-            cardController.updateCard();
-            recommendationsHome.add(root, col % 3, row);
-            col++;
-            currentIndex++;
-        } catch (IOException e) {
-          e.printStackTrace(System.out);
-        }
+    while (currentIndex < recipeNum && currentIndex < maxNum) {
+      try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
+        Pane root = loader.load();
+        RecipeCardController cardController = loader.getController();
+        cardController.setRecipe(recommendationList.get(currentIndex).getId());
+        cardController.updateCard();
+        recommendationsHome.add(root, col % 3, row);
+        col++;
+        currentIndex++;
+      } catch (IOException e) {
+        e.printStackTrace(System.out);
+      }
 
     }
-  }
-
-  public void showAdminPanel() {
-    User user = controller.getActiveUser();
-    if(user.isAdmin()==true) adminPanel.setVisible(true);
-  }
-
-  public void showActiveUser() {
-    User user = controller.getActiveUser();
-    activeUser.setText(user.getUsername());
-    activeUserPicture.setImage(new Image(user.getImageUrl()));
-    Circle circle = new Circle(25, 25, 25);
-    activeUserPicture.setClip(circle);
   }
 
   public void openMessage() throws IOException {
@@ -157,4 +132,3 @@ public class HomeViewController {
   }
 
 }
-

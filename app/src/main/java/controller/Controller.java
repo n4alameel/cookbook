@@ -170,7 +170,11 @@ public class Controller {
    */
   private User createUser(ResultSet rs, int id) {
     try {
-      return new User(id, rs.getString(2), rs.getString(3), Boolean.parseBoolean(rs.getString(4)), rs.getString(5));
+      boolean isAdmin = false;
+      if (rs.getInt(4) == 1) {
+        isAdmin = true;
+      }
+      return new User(id, rs.getString(2), rs.getString(3), isAdmin, rs.getString(5));
     } catch (SQLException e) {
       return null;
     }
@@ -569,11 +573,9 @@ public class Controller {
    * Creates and displays administrative panel
    */
 
-  public void displayUsersView() {
+  public void displayUsersView() throws IOException {
     UsersView usersView = new UsersView();
-    Scene usersScene = new Scene(usersView.getRoot());
-    stage.setScene(usersScene);
-    stage.show();
+    this.mainView.LoadContent(usersView.getRoot());
   }
 
   /**

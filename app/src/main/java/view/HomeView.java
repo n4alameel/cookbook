@@ -3,7 +3,6 @@ package view;
 import controller.HomeViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.ScrollPane;
 import java.io.IOException;
 
 public class HomeView {
@@ -17,8 +16,6 @@ public class HomeView {
       HomeViewController homeViewController = loader.getController();
       homeViewController.showFavourites();
       homeViewController.showRecommondations();
-      homeViewController.showAdminPanel();
-      homeViewController.showActiveUser();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
