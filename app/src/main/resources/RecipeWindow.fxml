@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
@@ -17,32 +18,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<VBox alignment="CENTER" prefHeight="977.0" prefWidth="1018.0" styleClass="window" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RecipeController">
+<VBox alignment="CENTER" styleClass="window" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RecipeController">
    <children>
-      <VBox alignment="CENTER" prefHeight="253.0" prefWidth="1200.0" spacing="10.0" style="-fx-background-color: #FFFF; ">
+      <VBox alignment="CENTER" prefHeight="230.0" prefWidth="1200.0" spacing="30.0" style="-fx-background-color: #FFFF; ">
          <children>
             <Text fx:id="recipeName" strokeType="OUTSIDE" strokeWidth="0.0" text="">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
-            <HBox alignment="CENTER" spacing="50.0">
+            <HBox alignment="CENTER">
                <children>
-                  <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
+                  <FlowPane alignment="TOP_RIGHT" columnHalignment="RIGHT" rowValignment="TOP">
                      <children>
-                        <Button mnemonicParsing="false" styleClass="action-btn" text="Favourite">
+                        <Button mnemonicParsing="false" onAction="#toggleFavourite" styleClass="action-btn" text="Favourite">
                            <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="favBtn" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@img/Heart.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                            </graphic>
                         </Button>
                      </children>
                   </FlowPane>
-                  <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="56.0" prefWidth="163.0">
+                  <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" rowValignment="TOP">
                      <children>
                         <Button mnemonicParsing="false" styleClass="action-btn" text="Send Recipe">
                            <graphic>
@@ -55,31 +58,39 @@
                         </Button>
                      </children>
                   </FlowPane>
+                  <FlowPane rowValignment="TOP">
+                     <children>
+                        <HBox alignment="TOP_CENTER" spacing="40.0">
+                           <children>
+                              <Label text="Add to weekly list :">
+                                 <graphic>
+                                    <ImageView fitHeight="36.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/whisk.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                              <VBox spacing="15.0">
+                                 <children>
+                                    <ComboBox fx:id="weekSelector" prefWidth="150.0" promptText="Select a week" />
+                                    <ComboBox fx:id="daySelector" prefWidth="150.0" promptText="Select a day" />
+                                    <Button mnemonicParsing="false" onAction="#eventAddRecipeToPlan" text="Add" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </FlowPane>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="965.0" spacing="40.0">
                <VBox.margin>
-                  <Insets />
+                  <Insets left="60.0" right="60.0" />
                </VBox.margin>
-               <children>
-                  <Label text="Add to weekly list :">
-                     <graphic>
-                        <ImageView fitHeight="36.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/whisk.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Label>
-                  <ComboBox fx:id="weekSelector" prefWidth="150.0" promptText="Select a week" />
-                  <ComboBox fx:id="daySelector" prefWidth="150.0" promptText="Select a day" />
-                  <Button mnemonicParsing="false" onAction="#eventAddRecipeToPlan" text="Add" />
-               </children>
             </HBox>
-            <Label fx:id="addMessage" maxHeight="1.7976931348623157E308" text="Recipe successfully added" visible="false" wrapText="true" />
+            <Label fx:id="addMessage" maxHeight="1.7976931348623157E308" text="Recipe successfully added!" visible="false" wrapText="true" />
          </children>
          <padding>
-            <Insets left="60.0" right="60.0" />
+            <Insets left="60.0" right="60.0" top="20.0" />
          </padding>
       </VBox>
       <HBox alignment="CENTER" prefWidth="1200.0" spacing="50.0" style="-fx-background-color: #FFFF;">
@@ -103,7 +114,7 @@
                   <Insets right="5.0" top="5.0" />
                </HBox.margin>
             </FlowPane>
-            <FlowPane prefWidth="325.0" prefWrapLength="380.0">
+            <FlowPane prefWrapLength="380.0">
                <children>
                   <VBox id="ingr-list" spacing="20.0">
                      <children>
