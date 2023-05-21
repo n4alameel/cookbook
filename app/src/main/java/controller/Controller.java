@@ -498,12 +498,9 @@ public class Controller {
   /**
    * Creates and displays the new recipe prompt scene.
    */
-  public void displayNewRecipeView() {
+  public void displayNewRecipeView() throws IOException {
     NewRecipeView newRecipeView = new NewRecipeView();
-    Scene newRecipeScene = new Scene(newRecipeView.getRoot());
-    Stage secondaryStage = new Stage();
-    secondaryStage.setScene(newRecipeScene);
-    secondaryStage.show();
+    this.mainView.LoadContent(newRecipeView.getRoot());
   }
 
   public void displayWeeklyPlanListView() throws IOException {

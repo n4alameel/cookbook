@@ -119,7 +119,7 @@ public class MainLayoutController {
     this.controller.displayFavouriteView();
   }
 
-  public void openNewRecipeView(ActionEvent actionEvent) {
+  public void openNewRecipeView(ActionEvent actionEvent) throws IOException {
     this.controller.displayNewRecipeView();
   }
 
