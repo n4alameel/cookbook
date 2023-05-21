@@ -134,6 +134,10 @@ public class MainLayoutController {
     this.controller.displayUsersView();
   }
 
+  public void showHelpEvent() throws IOException {
+    this.controller.displayHelpPage();
+  }
+
   public void logoutEvent() {
     controller.displayLoginScene();
   }

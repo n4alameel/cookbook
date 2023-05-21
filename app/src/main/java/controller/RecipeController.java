@@ -38,150 +38,152 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RecipeController{
-    private Controller controller = Controller.getInstance();
-    @FXML
-    private Text recipeName;
-    @FXML
-    private Text recipeShortDescription;
-    @FXML
-    private Text recipeDescription;
-    @FXML
-    private VBox commentBox;
-    @FXML
-    private Text activeCommentatorName;
+public class RecipeController {
+  private Controller controller = Controller.getInstance();
+  @FXML
+  private Text recipeName;
+  @FXML
+  private Text recipeShortDescription;
+  @FXML
+  private Text recipeDescription;
+  @FXML
+  private VBox commentBox;
+  @FXML
+  private Text activeCommentatorName;
 
-    @FXML
-    private ImageView favBtn;
-    @FXML
-    private void toggleFavourite() {
-        if (this.controller.toggleFavourite(this.recipe)) {
-            favBtn.setImage(new Image("img/HeartFull.png"));
-            System.out.println("favourited");
-        } else {
-            favBtn.setImage(new Image("img/Heart.png"));
-            System.out.println("UNfavourited");
-        }
+  @FXML
+  private ImageView favBtn;
+
+  @FXML
+  private void toggleFavourite() {
+    if (this.controller.toggleFavourite(this.recipe)) {
+      favBtn.setImage(new Image("img/HeartFull.png"));
+      System.out.println("favourited");
+    } else {
+      favBtn.setImage(new Image("img/Heart.png"));
+      System.out.println("UNfavourited");
     }
-    private List<Tag> tags = new ArrayList<Tag>();
-    private Recipe recipe;
-    private ArrayList<Comment> comments = new ArrayList<Comment>();
-    private String commentContext;
-    private int requestedPortions;
-    private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
-    @FXML
-    private Spinner<Integer> portions;
-    @FXML
-    private VBox ingredientBox;
-    @FXML
-    private HBox tagBox;
-    @FXML
-    private javafx.scene.control.TextArea commentTextArea;
-    @FXML
-    private ImageView commentatorAva;
-    @FXML
-    private ComboBox<String> weekSelector;
-    @FXML
-    private ComboBox<WeekDay> daySelector;
-    @FXML
-    private Label addMessage;
+  }
 
-    public void setRecipe(int currentRecipeId) {
-        Recipe updatedRecipe = this.controller.getRecipeById(currentRecipeId);
-        this.recipe = updatedRecipe;
+  private List<Tag> tags = new ArrayList<Tag>();
+  private Recipe recipe;
+  private ArrayList<Comment> comments = new ArrayList<Comment>();
+  private String commentContext;
+  private int requestedPortions;
+  private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+  @FXML
+  private Spinner<Integer> portions;
+  @FXML
+  private VBox ingredientBox;
+  @FXML
+  private HBox tagBox;
+  @FXML
+  private javafx.scene.control.TextArea commentTextArea;
+  @FXML
+  private ImageView commentatorAva;
+  @FXML
+  private ComboBox<String> weekSelector;
+  @FXML
+  private ComboBox<WeekDay> daySelector;
+  @FXML
+  private Label addMessage;
+
+  public void setRecipe(int currentRecipeId) {
+    Recipe updatedRecipe = this.controller.getRecipeById(currentRecipeId);
+    this.recipe = updatedRecipe;
+  }
+
+  public void updatePage() {
+    recipeName.setText(this.recipe.getName());
+    if (this.controller.getActiveUser().isFavourite(this.recipe)) {
+      favBtn.setImage(new Image("img/HeartFull.png"));
     }
+    recipeShortDescription.setText(this.recipe.getShortDescription());
+    recipeDescription.setText(this.recipe.getDescription());
+    this.tags = this.recipe.getTagList();
+    this.tags.forEach(tag -> {
+      Label labelNode = new Label();
+      labelNode.setText("#" + tag.getName());
+      labelNode.setStyle("-fx-opaque-insets: 0; -fx-padding: 5 10;");
+      tagBox.getChildren().add(labelNode);
+    });
+    this.ingredients = this.recipe.getIngredientList();
+    this.requestedPortions = 2;
+    this.setIngredients();
+    portions.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(2,
+        100 * 2, 2, 2));
+    portions.valueProperty().addListener((obs, oldValue, newValue) -> {
+      System.out.println("New value: " + newValue);
+      this.requestedPortions = newValue;
+      this.setIngredients();
+    });
+    activeCommentatorName.setFont(Font.font("System", FontWeight.BOLD, 14));
+    activeCommentatorName.setText(this.controller.getActiveUser().getUsername());
+    Image imageObject = new Image(this.controller.getActiveUser().getImageURL());
+    commentatorAva.setImage(imageObject);
+    commentBox.getChildren().clear();
+    this.comments = this.recipe.getCommentList();
+    Collections.reverse(this.comments);
+    this.comments.forEach(comment -> {
+      try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Comment.fxml"));
+        Pane root = loader.load();
+        CommentController commentController = loader.getController();
+        commentController.setComments(comment);
+        commentController.updateComments();
+        commentBox.getChildren().add(root);
+      } catch (IOException e) {
+      }
+    });
 
-    public void updatePage() {
-        recipeName.setText(this.recipe.getName());
-        if (this.controller.getActiveUser().isFavourite(this.recipe)) {
-            favBtn.setImage(new Image("img/HeartFull.png"));
-        }
-        recipeShortDescription.setText(this.recipe.getShortDescription());
-        recipeDescription.setText(this.recipe.getDescription());
-        this.tags = this.recipe.getTagList();
-        this.tags.forEach(tag -> {
-            Label labelNode = new Label();
-            labelNode.setText("#"+tag.getName());
-            labelNode.setStyle("-fx-opaque-insets: 0; -fx-padding: 5 10;");
-            tagBox.getChildren().add(labelNode);
-        });
-        this.ingredients = this.recipe.getIngredientList();
-        this.requestedPortions = this.recipe.getPortions();
-        this.setIngredients();
-        portions.setValueFactory(new  SpinnerValueFactory.IntegerSpinnerValueFactory(this.recipe.getPortions(), 100*this.recipe.getPortions(), this.recipe.getPortions(), this.recipe.getPortions()));
-        portions.valueProperty().addListener((obs, oldValue, newValue) ->
-        {
-            System.out.println("New value: " + newValue);
-            this.requestedPortions = newValue;
-            this.setIngredients();
-        });
-        activeCommentatorName.setFont(Font.font("System", FontWeight.BOLD, 14));
-        activeCommentatorName.setText(this.controller.getActiveUser().getUsername());
-        Image imageObject = new Image(this.controller.getActiveUser().getImageURL());
-        commentatorAva.setImage(imageObject);
-        commentBox.getChildren().clear();
-        this.comments = this.recipe.getCommentList();
-        Collections.reverse(this.comments);
-        this.comments.forEach(comment -> {
-            try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Comment.fxml"));
-            Pane root = loader.load();
-            CommentController commentController = loader.getController();
-            commentController.setComments(comment);
-            commentController.updateComments();
-            commentBox.getChildren().add(root);
-            }
-            catch(IOException e){}
-        });
-
-        ArrayList<WeeklyList> weeklies = controller.getActiveUser().getWeeklyPlanList();
-        ArrayList<String> weeks = new ArrayList<String>();
-        for (WeeklyList w : weeklies) {
-          weeks.add(Integer.toString(w.getYear()) + " w" + Integer.toString(w.getWeekNumber()));
-        }
-        weekSelector.setItems(FXCollections.observableArrayList(weeks));
-        daySelector.setItems(FXCollections.observableArrayList(WeekDay.values()));
+    ArrayList<WeeklyList> weeklies = controller.getActiveUser().getWeeklyPlanList();
+    ArrayList<String> weeks = new ArrayList<String>();
+    for (WeeklyList w : weeklies) {
+      weeks.add(Integer.toString(w.getYear()) + " w" + Integer.toString(w.getWeekNumber()));
     }
+    weekSelector.setItems(FXCollections.observableArrayList(weeks));
+    daySelector.setItems(FXCollections.observableArrayList(WeekDay.values()));
+  }
 
-    private void setIngredients(){
-        ingredientBox.getChildren().clear();
-        this.ingredients.forEach(ingredient -> {
-            Text textNode = new Text(ingredient.getQuantity() * ( this.requestedPortions/this.recipe.getPortions()) + " " + ingredient.getUnitName() + " of " + ingredient.getName());
-            ingredientBox.getChildren().add(textNode);
-        });
-    }
+  private void setIngredients() {
+    ingredientBox.getChildren().clear();
+    this.ingredients.forEach(ingredient -> {
+      Text textNode = new Text(ingredient.getQuantity() * (this.requestedPortions / 2) + " " + ingredient.getUnitName()
+          + " of " + ingredient.getName());
+      ingredientBox.getChildren().add(textNode);
+    });
+  }
 
-    public void addComment(ActionEvent event) {
-        try {
-            this.commentContext = commentTextArea.getText();
-            System.out.println(commentContext);
-            if (this.commentContext.trim() != ""){
-                this.controller.postComment(this.commentContext, this.recipe.getId());
-                commentTextArea.setText("");
-                this.setRecipe(this.recipe.getId());
-                this.updatePage();
-            } else {
-                System.out.println("Comment can not be empty");
-            }
-        } catch (Exception e) {
-          System.out.println("mehr eingeben");
-        }
+  public void addComment(ActionEvent event) {
+    try {
+      this.commentContext = commentTextArea.getText();
+      System.out.println(commentContext);
+      if (this.commentContext.trim() != "") {
+        this.controller.postComment(this.commentContext, this.recipe.getId());
+        commentTextArea.setText("");
+        this.setRecipe(this.recipe.getId());
+        this.updatePage();
+      } else {
+        System.out.println("Comment can not be empty");
+      }
+    } catch (Exception e) {
+      System.out.println("mehr eingeben");
     }
+  }
 
-    @FXML
-    private void eventAddRecipeToPlan() throws IOException {
-        ArrayList<WeeklyList> weeklies = controller.getActiveUser().getWeeklyPlanList();
-        String[] week = weekSelector.getValue().split(" w");
-        int weekId = 0;
-        for (WeeklyList w : weeklies) {
-            if (w.getYear() == Integer.parseInt(week[0]) && w.getWeekNumber() == Integer.parseInt(week[1])) {
-                weekId = w.getId();
-                break;
-            }
-        }
-        controller.addRecipeToWeeklyList(weekId, daySelector.getValue(), this.recipe);
-        addMessage.setVisible(true);
+  @FXML
+  private void eventAddRecipeToPlan() throws IOException {
+    ArrayList<WeeklyList> weeklies = controller.getActiveUser().getWeeklyPlanList();
+    String[] week = weekSelector.getValue().split(" w");
+    int weekId = 0;
+    for (WeeklyList w : weeklies) {
+      if (w.getYear() == Integer.parseInt(week[0]) && w.getWeekNumber() == Integer.parseInt(week[1])) {
+        weekId = w.getId();
+        break;
+      }
     }
+    controller.addRecipeToWeeklyList(weekId, daySelector.getValue(), this.recipe);
+    addMessage.setVisible(true);
+  }
 
 }
-

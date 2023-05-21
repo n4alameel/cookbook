@@ -209,7 +209,7 @@
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Text>
-                                          <Hyperlink alignment="CENTER" contentDisplay="CENTER" opacity="0.87" prefHeight="30.0" prefWidth="200.0" text="Go to our help page &gt;" textAlignment="CENTER">
+                                          <Hyperlink alignment="CENTER" contentDisplay="CENTER" onAction="#showHelpEvent" opacity="0.87" prefHeight="30.0" prefWidth="200.0" text="Go to our help page &gt;" textAlignment="CENTER">
                                              <font>
                                                 <Font name="System Bold" size="10.0" />
                                              </font>

@@ -489,8 +489,8 @@ public class Controller {
       ArrayList<Comment> commentList = getCommentListByRecipeID(recipeId);
       ArrayList<Tag> tagList = getTagListByRecipeID(recipeId);
 
-      Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
-          commentList, tagList);
+      Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+          ingredientList, commentList, tagList);
       return recipe;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -546,9 +546,11 @@ public class Controller {
    */
   public void displayHelpPage() {
     HelpView helpView = new HelpView();
-    Scene helpScene = new Scene(helpView.getRoot());
-    stage.setScene(helpScene);
-    stage.show();
+    Scene helpScene = new Scene(helpView.getRoot(), 1250, 750);
+    Stage helpStage = new Stage();
+    helpStage.setTitle("Help Page");
+    helpStage.setScene(helpScene);
+    helpStage.show();
   }
 
   /**
@@ -1154,7 +1156,7 @@ public class Controller {
 
   public void displayMainLayout() throws IOException {
     this.mainView = new MainLayoutView();
-    Scene mainScene = new Scene(this.mainView.getRoot());
+    Scene mainScene = new Scene(this.mainView.getRoot(), 1250, 750);
     stage.setScene(mainScene);
     stage.show();
     this.displayHomeView();
