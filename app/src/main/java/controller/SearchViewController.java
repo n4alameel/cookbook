@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import model.Ingredient;
 import model.Query;
 import model.Recipe;
+import model.Tag;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,25 +16,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SearchViewController {
-
-  Query searchQuery;
-
   Controller controller = Controller.getInstance();
-
   private int pageNumber = -1;
   @FXML
   private Pagination recipePages;
   @FXML
   private GridPane searchGrid;
-
-  /*
-   * TO DO
-   * - When textField is empty "show no results" or give smth like a tag line
-   * "Enter something"....
-   * - Extend for US-07/08 to search ingredients/tags
-   * - Fix other Windows
-   * - Give CSS.
-   */
 
   public void searchRecipe(Query queryModel) throws IOException {
     String query = queryModel.getQuery();
@@ -89,6 +77,53 @@ public class SearchViewController {
               continue;
             }
             if (recipeId == ingredientId) {
+              currentRecipes.add(recipeId);
+              try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
+                Pane root = loader.load();
+                RecipeCardController cardController = loader.getController();
+                cardController.setRecipe(recipe.getId());
+                cardController.updateCard();
+                searchGrid.add(root, col % 3, row);
+                col++;
+                if (col % 3 == 0) {
+                  row++;
+                }
+              } catch (IOException e) {
+                e.printStackTrace(System.out);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  public void searchTags(Query queryModel) throws IOException {
+    String query = queryModel.getQuery();
+    ArrayList<Tag> data = controller.selectTagsFromDatabase();
+    ArrayList<Recipe> recipeList = controller.getRecipeList();
+
+    searchGrid.getChildren().clear();
+    int col = 0;
+    int row = 0;
+
+    List<String> tagList = Arrays.asList(query.split(","));
+    ArrayList<Integer> currentRecipes = new ArrayList<Integer>();
+
+    for (String searchTag : tagList) {
+      searchTag = searchTag.trim();
+      for (Tag tag : data) {
+        if (tag.getName().contains(searchTag)
+                || tag.getName().toLowerCase().contains(searchTag.toLowerCase())) {
+          for (Recipe recipe : recipeList) {
+            int recipeId = recipe.getId();
+            int tagId = tag.getUser_id();
+
+            if (currentRecipes.contains(recipeId)) {
+              continue;
+            }
+            if (recipeId == tagId) {
               currentRecipes.add(recipeId);
               try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));

@@ -1,0 +1,118 @@
+#ingr-list{
+    -fx-background-color: rgba(229, 226, 226, 0.7);
+    -fx-background-radius: 20;
+}
+.tag{
+    -fx-background-radius: 20;
+}
+#recipeName{
+    -fx-fill: black;
+}
+
+#vegeterian{
+    -fx-background-color: #72c76b;
+}
+
+#main-course{
+    -fx-background-color: #d59aa4;
+}
+
+#add-more{
+    -fx-background-color: #f6e599;
+}
+
+.green-fill{
+    -fx-background-color: #618C03;
+}
+
+.header-link, .footer-text{
+    -fx-text-fill: white;
+    -fx-font-size: 12;
+    -fx-background-color: transperent;
+    -fx-border-color: transperent;
+}
+
+.window{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-size: 12;
+    -fx-pref-width: 1200;
+}
+
+.action-btn{
+    -fx-font-size: 14;
+    -fx-text-fill: black;
+    -fx-background-color: transperent;
+    -fx-border-color: transperent;
+}
+
+.quick-access-btn{
+    -fx-font-size: 10;
+    -fx-text-fill: black;
+    -fx-background-color: transperent;
+    -fx-border-color: transperent;
+}
+
+.bottom{
+    -fx-background-color: rgba(186, 186, 186, 0.19);
+}
+
+.footer, .header{
+    -fx-pref-height: 30;
+}
+
+#ava{
+    -fx-background-image: url("img/ava.jpg");
+    -fx-background-color: transparent;
+}
+
+.com-btn{
+    -fx-text-fill: rgba(187, 187, 187, 0.93);
+    -fx-font-size: 12;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.search-zone{
+    -fx-background-image: url("img/background.jpg");
+    -fx-background-position: center;
+    -fx-opacity: 0.55;
+
+}
+
+.search{
+    -fx-pref-width: 500;
+    -fx-pref-height: 30;
+    -fx-background-radius: 20;
+}
+
+.help-btn{
+    -fx-background-radius: 20;
+    -fx-font-size: 12;
+    -fx-text-fill: white;
+}
+
+.add-btn{
+    -fx-border-radius: 20;
+    -fx-border-color: #618C03;
+    -fx-font-size: 12;
+    -fx-text-fill: #618C03;
+    -fx-background-color: white;
+}
+.com-field{
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(68, 68, 68, 0.71);
+    -fx-background-color: white;
+}
+
+Button{
+    -fx-cursor: hand;
+}
+
+center{-fx-background-color: white;
+-fx-border-color: transperent;}
+
+ScrollPane{
+    -fx-background-color: white;
+}

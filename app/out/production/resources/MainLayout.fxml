@@ -260,8 +260,8 @@
                           <items>
                             <FXCollections fx:factory="observableArrayList">
                                 <String fx:value="Recipe" />
+                                <String fx:value="Tags" />
                                 <String fx:value="Ingredients" />
-                               <String fx:value="Tags" />
                             </FXCollections>
                           </items>
                         </ComboBox>

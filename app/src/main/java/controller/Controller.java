@@ -38,7 +38,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -239,6 +239,27 @@ public class Controller {
       e.printStackTrace();
     }
     return ingredients;
+  }
+
+  public ArrayList<Tag> selectTagsFromDatabase() {
+    ArrayList<Tag> tagArrayList = new ArrayList<>();
+    try (Connection connection = dbconnect();
+         Statement statement = connection.createStatement();
+         ResultSet resultSet = statement.executeQuery("SELECT * FROM cookbook.recipe_has_tag " +
+                 "JOIN cookbook.tag ON " +
+                 "recipe_has_tag.tag_id = " +
+                 "tag.id")) {
+      while (resultSet.next()) {
+        int tagID = resultSet.getInt("tag_id");
+        String tagName = resultSet.getString("name");
+        int recipeID = resultSet.getInt("recipe_id");
+        Tag tag = new Tag(tagID, tagName, recipeID);
+        tagArrayList.add(tag);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return tagArrayList;
   }
 
   private ArrayList<Comment> generateCommentListFromDb(int recipeId) {
