@@ -19,14 +19,14 @@ public class LoaderView extends Preloader {
 
         bar.setPrefWidth(400);
 
-        p.setStyle("-fx-background-color: grey;"); // Set background color to grey
-        bar.setStyle("-fx-accent: black;"); // Set progress bar color to black
+        p.setStyle("-fx-background-color: grey;");
+        bar.setStyle("-fx-accent: black;");
 
         Image lightsaberImage = new Image("img/lightsaber.jpg");
         ImageView lightsaberImageView = new ImageView(lightsaberImage);
 
-        lightsaberImageView.setPreserveRatio(true); // Preserve image aspect ratio
-        lightsaberImageView.fitWidthProperty().bind(p.widthProperty()); // Fit image width to the container width
+        lightsaberImageView.setPreserveRatio(true);
+        lightsaberImageView.fitWidthProperty().bind(p.widthProperty());
 
         p.setCenter(lightsaberImageView);
         p.setTop(bar);
@@ -34,7 +34,6 @@ public class LoaderView extends Preloader {
         bar.toFront();
         lightsaberImageView.toBack();
 
-        // Set the scene with the container
         return new Scene(p, 400, 400);
     }
 
