@@ -96,11 +96,6 @@ public class Controller {
     return time;
   }
 
-  public void displaySearchView() throws IOException {
-    SearchView searchView = new SearchView();
-    this.mainView.LoadContent(searchView.getRoot());
-  }
-
   /**
    * Try to connect to the database.
    *
@@ -578,6 +573,11 @@ public class Controller {
   public void displayFavouriteView() throws IOException {
     FavouriteView favouriteView = new FavouriteView();
     this.mainView.LoadContent(favouriteView.getRoot());
+  }
+
+  public void displaySearchView(Query search, String selectedOption) throws IOException {
+    SearchView searchView = new SearchView(search, selectedOption);
+    this.mainView.LoadContent(searchView.getRoot());
   }
 
   /**

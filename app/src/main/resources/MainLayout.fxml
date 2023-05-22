@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -248,12 +250,21 @@
                <top>
                   <AnchorPane maxWidth="-Infinity" stylesheets="@HomeWindow.css" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField fx:id="search" onKeyPressed="#searchEnter" prefHeight="55.0" prefWidth="591.0" promptText="Search here..." />
-                        <Button fx:id="searchBtn" layoutX="510.0" layoutY="7.0" mnemonicParsing="false" onAction="#searchBtnClicked" prefHeight="40.0" prefWidth="74.0" text="Search" textFill="#171717">
+                        <TextField fx:id="searchField" onKeyPressed="#onSearchEnter" prefHeight="55.0" prefWidth="591.0" promptText="Search here..." />
+                        <Button fx:id="searchBtn" layoutX="510.0" layoutY="7.0" mnemonicParsing="false" onAction="#openSearchPage" prefHeight="40.0" prefWidth="74.0" text="Search" textFill="#171717">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </Button>
+                        <ComboBox fx:id="categoryComboBox" layoutX="354.0" layoutY="15.0" prefWidth="150.0" promptText="Choose category">
+                          <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Recipe" />
+                                <String fx:value="Tags" />
+                                <String fx:value="Ingredients" />
+                            </FXCollections>
+                          </items>
+                        </ComboBox>
                      </children>
                      <BorderPane.margin>
                         <Insets bottom="20.0" />

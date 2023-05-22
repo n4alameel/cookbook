@@ -5,14 +5,17 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import model.Query;
 import model.Recipe;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -32,6 +35,11 @@ public class MainLayoutController {
   private ImageView activeUserPhoto;
   @FXML
   private Button adminPanel;
+  @FXML
+  private TextField searchField;
+
+  @FXML
+  private ComboBox<String> categoryComboBox;
 
   public MainLayoutController() {
   }
@@ -151,13 +159,18 @@ public class MainLayoutController {
 
   }
 
-  @FXML
-  private TextField search;
+  public void openSearchPage() throws IOException {
 
-  public void searchBtnClicked() throws IOException {
+    Query search = new Query();
+    search.setQuery(searchField.getText());
+    String selectedOption = (String) categoryComboBox.getValue();
+    this.controller.displaySearchView(search, selectedOption);
   }
 
-  public void searchEnter(KeyEvent keyEvent) throws IOException {
+  public void onSearchEnter(KeyEvent keyEvent) throws IOException {
+    if (keyEvent.getCode() == KeyCode.ENTER) {
+      openSearchPage();
+    }
   }
 
 }

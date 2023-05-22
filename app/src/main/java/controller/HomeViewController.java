@@ -9,16 +9,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 import model.Recipe;
-import javafx.scene.input.KeyEvent;
 
 import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.ArrayList;
-import model.User;
-
-import model.Query;
 
 public class HomeViewController {
 
@@ -27,23 +22,6 @@ public class HomeViewController {
   @FXML
   private GridPane recommendationsHome;
   Controller controller = Controller.getInstance();
-
-  @FXML
-  private GridPane searchGrid;
-
-  @FXML
-  private Pane homeContentPane;
-
-  @FXML
-  private Pane searchPane;
-
-  @FXML
-  private TextField searchField;
-
-  @FXML
-  private ComboBox categoryComboBox;
-
-  private SearchViewController searchController = new SearchViewController();
 
   public void openAllRecipes() throws IOException {
     controller.displayBrowserView();
@@ -63,10 +41,6 @@ public class HomeViewController {
 
   public void goToMealPlansView() throws IOException {
     controller.displayWeeklyPlanListView();
-  }
-
-  public void openSearchPage() throws IOException {
-    controller.displaySearchView();
   }
 
   public void openHelpPage() throws IOException {
@@ -147,38 +121,4 @@ public class HomeViewController {
     controller.displayMessageView();
   }
 
-  public void openSearchPage() throws IOException {
-    Query search = new Query();
-    search.setQuery(searchField.getText());
-
-    homeContentPane.setVisible(false);
-    searchPane.setVisible(true);
-
-    String selectedOption = (String) categoryComboBox.getValue();
-
-    if (selectedOption == null) {
-      selectedOption = "Recipe";
-    }
-
-    switch (selectedOption) {
-      case "Ingredients": {
-        searchController.searchIngredients(search, searchGrid);
-        break;
-      }
-      case "Tags": {
-        System.out.println("Tags selected");
-        break;
-      }
-      case "Recipe": {
-        searchController.searchRecipe(search, searchGrid);
-        break;
-      }
-    }
-  }
-
-  public void onSearchEnter(KeyEvent keyEvent) throws IOException {
-    if (keyEvent.getCode() == KeyCode.ENTER) {
-      openSearchPage();
-    }
-  }
 }
