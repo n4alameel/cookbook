@@ -35,6 +35,5 @@ public class MainLayoutView {
     }
     mainLayoutController.getRootLayout().setCenter(mainPageCenterContent);
     mainLayoutController.updateArrows();
-
   }
 }

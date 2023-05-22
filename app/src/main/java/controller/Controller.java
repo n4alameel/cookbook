@@ -1292,32 +1292,56 @@ public class Controller {
 
   /***************** History system *****************/
 
+  /**
+   * Adds a node to the history stack. Also resets the forward-history stack.
+   * 
+   * @param root The node that will be added to the stack
+   */
   public void addRootToHistory(Node root) {
     this.forwardHistoryStack.clear();
     this.historyStack.push(root);
   }
 
+  /**
+   * Retrieves the first node in the history and add another one to the
+   * forward-history to be able to go forward.
+   * 
+   * @param currentPage The page to be added to the forward-history stack
+   * @return The first Node in the history stack.
+   */
   public Node goBackOnePage(Node currentPage) {
     this.forwardHistoryStack.push(currentPage);
     return this.historyStack.pop();
   }
 
+  /**
+   * Retrieves the first node in the forward-history and add another one to the
+   * history to be able to go back.
+   * 
+   * @param currentPage The page to be added to the history stack
+   * @return The first Node in the forward-history stack.
+   */
   public Node goForwardOnePage(Node currentPage) {
     this.historyStack.push(currentPage);
     return this.forwardHistoryStack.pop();
   }
 
+  /**
+   * Tells whether it's possible to go back one page.
+   * 
+   * @return {@code true} is the history stack is not empty
+   */
   public boolean canGoBack() {
     return !this.historyStack.empty();
   }
 
+  /**
+   * Tells whether it's possible to go back forward page.
+   * 
+   * @return {@code true} is the forward-history stack is not empty
+   */
   public boolean canGoForward() {
     return !this.forwardHistoryStack.empty();
-  }
-
-  public void flushHistory() {
-    this.historyStack.clear();
-    this.forwardHistoryStack.clear();
   }
 
 }

@@ -194,6 +194,11 @@ public class MainLayoutController {
     toggleArrowR(!this.controller.canGoForward());
   }
 
+  /**
+   * Enables or diables the right arrow representing the forward button.
+   * 
+   * @param disable if {@code true}, disables the arrow, else enables it.
+   */
   public void toggleArrowR(boolean disable) {
     if (disable) {
       arrowR.setOpacity(0.5);
