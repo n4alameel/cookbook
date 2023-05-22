@@ -17,7 +17,7 @@ public class NewRecipeController implements Initializable {
   @FXML
   private TextField shortDiscriptionField;
   @FXML
-  private TextArea longDescriptionArea;
+  private TextArea longDescriptionField;
   @FXML
   private TextArea tags;
   @FXML
@@ -41,7 +41,7 @@ public class NewRecipeController implements Initializable {
     try {
       name = nameField.getText();
       shortDiscription = shortDiscriptionField.getText();
-      longDescription = longDescriptionArea.getText();
+      longDescription = longDescriptionField.getText();
       getAddedtags = tags.getText();
       System.out.println(name + shortDiscription + longDescription + getAddedtags);
     } catch (Exception e) {

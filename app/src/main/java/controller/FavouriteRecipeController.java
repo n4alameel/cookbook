@@ -1,9 +1,7 @@
 package controller;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -35,6 +33,10 @@ public class FavouriteRecipeController {
 
   public void seeFavourites() throws IOException {
     controller.displayFavouriteView();
+  }
+
+  public void goToMealPlansView() throws IOException {
+    controller.displayWeeklyPlanListView();
   }
 
   /**
@@ -78,7 +80,7 @@ public class FavouriteRecipeController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
         Pane root = loader.load();
         RecipeCardController cardController = loader.getController();
-        cardController.setRecipe(favouriteList.get(currentIndex));
+        cardController.setRecipe(favouriteList.get(currentIndex).getId());
         cardController.updateCard();
         favouriteGrid.add(root, col % 3, row);
         // Send the card to back so that the short description panel will always show up

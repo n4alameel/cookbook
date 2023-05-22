@@ -11,12 +11,13 @@ public class RecipeView {
 
   private Parent root;
 
-  public RecipeView(Recipe selectedRecipe) {
+  public RecipeView(int selectedRecipeId) {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeWindow.fxml"));
       root = loader.load();
       RecipeController recipeController = loader.getController();
-      recipeController.updatePage(selectedRecipe);
+      recipeController.setRecipe(selectedRecipeId);
+      recipeController.updatePage();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

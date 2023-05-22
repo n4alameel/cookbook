@@ -1,19 +1,28 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import model.WeeklyList.WeekDay;
 
 public class User {
   private int id;
   private String username;
   private String password;
+  private String imageUrl;
   private boolean isAdmin = false;
   private ArrayList<Recipe> favouriteList = new ArrayList<Recipe>();
+  private ArrayList<WeeklyList> weeklyPlanList = new ArrayList<WeeklyList>();
+  private ArrayList<Message> messageList = new ArrayList<Message>();
 
-  public User(int id, String username, String password, boolean isAdmin) {
+  public User(int id, String username, String password, boolean isAdmin, String imageUrl) {
     this.id = id;
     this.username = username;
     this.password = password;
     this.isAdmin = isAdmin;
+    this.imageUrl = imageUrl;
   }
 
   public int getId() {
@@ -56,6 +65,33 @@ public class User {
     this.favouriteList = favouriteList;
   }
 
+  public ArrayList<Message> getMessageList() {
+    return messageList;
+  }
+
+  public void setMessageList(ArrayList<Message> messageList) {
+    this.messageList = messageList;
+  }
+  public ArrayList<WeeklyList> getWeeklyPlanList() {
+    return weeklyPlanList;
+  }
+
+  public void setWeeklyPlanList(ArrayList<WeeklyList> weeklyPlanList) {
+    this.weeklyPlanList = weeklyPlanList;
+  }
+
+  /*************************************************************************/
+
+  public void createEmptyWeeklyList(int weekNumber, int year, int id) {
+    WeeklyList weekly = new WeeklyList(weekNumber, year, id, LocalDate.now());
+    this.weeklyPlanList.add(weekly);
+    Comparator<WeeklyList> comp = Comparator.comparing(WeeklyList::getWeekNumber);
+    Collections.sort(this.weeklyPlanList, comp);
+  }
+  public String getImageUrl() { return imageUrl;}
+
+  public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
   /*
    * public boolean newRecipe(String name, String description, String detail, int
    * portion,
@@ -86,13 +122,34 @@ public class User {
    * }
    */
 
-  public boolean createEmptyWeeklyList(int weeklyNumber, int isVisible) {
-    WeeklyList weekly = new WeeklyList(weeklyNumber, isVisible);
-    return true;
+  public boolean removeWeeklyList(int listId) {
+    for (WeeklyList list : this.weeklyPlanList) {
+      if (list.getId() == listId) {
+        this.weeklyPlanList.remove(list);
+        return true;
+      }
+    }
+    return false;
   }
 
-  public boolean addRecipeToWeeklyList(int recipe) {
-    return true;
+  public boolean addRecipeToWeeklyList(Recipe recipe, int weekId, WeekDay day) {
+    for (WeeklyList list : this.weeklyPlanList) {
+      if (list.getId() == weekId) {
+        list.addRecipeToDay(recipe, day);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean deleteRecipefromWeeklyList(Recipe recipe, int weekId, WeekDay day) {
+    for (WeeklyList list : this.weeklyPlanList) {
+      if (list.getId() == weekId) {
+        list.getList().get(day).remove(recipe);
+        return true;
+      }
+    }
+    return false;
   }
 
   public void addFavourite(Recipe recipe) {
@@ -130,6 +187,12 @@ public class User {
 
   public boolean eraseShoppingList(int weekNumber) {
     return true;
+  }
+
+  @Override
+  public String toString() {
+    return "User [id=" + id + ", username=" + username + ", password=" + password + ", isAdmin=" + isAdmin
+        + "]";
   }
 
   /*

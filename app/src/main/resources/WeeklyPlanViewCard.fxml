@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="131.0" prefWidth="146.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WeeklyPlanViewCardController">
+   <children>
+      <Label fx:id="recipeName" layoutX="5.0" layoutY="-1.0" prefHeight="41.0" prefWidth="136.0" text="recipe name" textAlignment="CENTER" wrapText="true" />
+      <Spinner fx:id="portions" layoutX="76.0" layoutY="41.0" maxHeight="-Infinity" prefHeight="26.0" prefWidth="61.0" />
+      <Label layoutX="12.0" layoutY="45.0" text="Portions :" />
+      <Button layoutX="13.0" layoutY="88.0" mnemonicParsing="false" onAction="#viewRecipe" prefHeight="28.0" prefWidth="36.0">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true">
+               <image>
+                  <Image url="@img/eye.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="84.0" layoutY="88.0" mnemonicParsing="false" onAction="#toggleErasePane">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/bin.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane fx:id="erasePane" layoutX="5.0" layoutY="8.0" prefHeight="74.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-border-color: #618C03; -fx-border-width: 2;" visible="false">
+         <children>
+            <Label layoutX="31.0" layoutY="14.0" text="Are you sure ?" />
+            <Button layoutX="20.0" layoutY="39.0" mnemonicParsing="false" onAction="#confirmErase" text="Yes" />
+            <Button layoutX="81.0" layoutY="39.0" mnemonicParsing="false" onAction="#cancelErase" text="no" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

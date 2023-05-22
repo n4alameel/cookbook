@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import model.Ingredient;
 import model.Query;
 import model.Recipe;
+import org.checkerframework.checker.units.qual.A;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,12 +47,12 @@ public class SearchViewController {
         int col = 0;
         int row = 0;
         for (String value : data) {
-            if (value.contains(query) || value.toLowerCase().contains(query)) {
+            if (value.contains(query) || value.toLowerCase().contains(query.toLowerCase())) {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
                     Pane root = loader.load();
                     RecipeCardController cardController = loader.getController();
-                    cardController.setRecipe(recipeList.get(i));
+                    cardController.setRecipeCard(recipeList.get(i));
                     cardController.updateCard();
                     searchGrid.add(root, col % 3, row);
                     col++;
@@ -75,41 +76,41 @@ public class SearchViewController {
         int col = 0;
         int row = 0;
 
-        if (!query.contains(",")){
-            for (Ingredient ingredient : data) {
-                if (ingredient.getName().contains(query) || ingredient.getName().toLowerCase().contains(query)) {
-                    for (Recipe recipe : recipeList){
-                        int recipeId = recipe.getId();
-                        int ingredientId = ingredient.getId();
-                        if (recipeId == ingredientId){
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
-                                Pane root = loader.load();
-                                RecipeCardController cardController = loader.getController();
-                                cardController.setRecipe(recipe);
-                                cardController.updateCard();
-                                searchGrid.add(root, col % 3, row);
-                                col++;
-                                if (col % 3 == 0) {
-                                    row++;
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace(System.out);
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            System.out.println("contains ',");
-            List<String> ingredientList = Arrays.asList(query.split(","));
+        List<String> ingredientList = Arrays.asList(query.split(","));
+        ArrayList<Integer> currentRecipes = new ArrayList<Integer>();
 
-            for (String queryIngredient : ingredientList){
-                for (Ingredient ingredient : data){
-                    if (queryIngredient.toLowerCase().equals(ingredient)){
+        for (String searchIngredient : ingredientList){
+            searchIngredient = searchIngredient.trim();
+            for (Ingredient ingredient : data) {
+                if (ingredient.getIngredientName().contains(searchIngredient) || ingredient.getIngredientName().toLowerCase().contains(searchIngredient.toLowerCase())) {
+                    for (Recipe recipe : recipeList) {
+                        int recipeId = recipe.getId();
+                        int ingredientId = ingredient.getRecipeID();
+
+                        if (currentRecipes.contains(recipeId)) {
+                            continue;
+                        }
+                            if (recipeId == ingredientId) {
+                                currentRecipes.add(recipeId);
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
+                                    Pane root = loader.load();
+                                    RecipeCardController cardController = loader.getController();
+                                    cardController.setRecipeCard(recipe);
+                                    cardController.updateCard();
+                                    searchGrid.add(root, col % 3, row);
+                                    col++;
+                                    if (col % 3 == 0) {
+                                        row++;
+                                    }
+                                } catch (IOException e) {
+                                    e.printStackTrace(System.out);
+                                }
+                            }
                     }
                 }
             }
+
 
             /*
                 Split query
@@ -124,4 +125,5 @@ public class SearchViewController {
         }
 
     }
+
 }
