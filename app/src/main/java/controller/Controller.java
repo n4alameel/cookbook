@@ -96,11 +96,6 @@ public class Controller {
     return time;
   }
 
-  public void displaySearchView() throws IOException {
-    SearchView searchView = new SearchView();
-    this.mainView.LoadContent(searchView.getRoot());
-  }
-
   /**
    * Try to connect to the database.
    *
@@ -128,7 +123,7 @@ public class Controller {
   /**
    * Try to log in a user depending of given credentials. It also loads all the
    * necessary data from the database that are linked to that user.
-   * 
+   *
    * @param username The user's username
    * @param password The user's password
    * @return true if the connection is done, false if the user doesn't exist in
@@ -205,6 +200,45 @@ public class Controller {
     } catch (SQLException e) {
       return null;
     }
+  }
+
+  public List<String> selectRecipeFromDatabase() {
+    List<String> data = new ArrayList<>();
+
+    try (Connection connection = dbconnect();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT name FROM cookbook.recipe")) {
+
+      while (resultSet.next()) {
+        String value = resultSet.getString("name");
+        data.add(value);
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return data;
+  }
+
+  public ArrayList<Ingredient> selectIngredientsFromDatabase() {
+    ArrayList<Ingredient> ingredients = new ArrayList<>();
+    try (Connection connection = dbconnect();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM cookbook.recipe_has_ingredient " +
+            "JOIN cookbook.ingredient ON " +
+            "recipe_has_ingredient.ingredient_id = " +
+            "ingredient.id")) {
+      while (resultSet.next()) {
+        int recipeID = resultSet.getInt("recipe_id");
+        String ingredientName = resultSet.getString("name");
+        int ingredientID = resultSet.getInt("ingredient_id");
+        Ingredient ingredient = new Ingredient(ingredientID, ingredientName, recipeID);
+        ingredients.add(ingredient);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return ingredients;
   }
 
   private ArrayList<Comment> generateCommentListFromDb(int recipeId) {
@@ -381,7 +415,7 @@ public class Controller {
 
   /**
    * Create an Ingredient object from a MySQL query result.
-   * 
+   *
    * @param ingRs a query result
    * @return An Ingredient object
    */
@@ -476,7 +510,7 @@ public class Controller {
 
   /**
    * Create a Recipe object from a MySQL query result.
-   * 
+   *
    * @recipeId The recipe ID
    * @param rs The query result
    * @ingredientList The list of all ingredients used in the recipe
@@ -539,6 +573,11 @@ public class Controller {
   public void displayFavouriteView() throws IOException {
     FavouriteView favouriteView = new FavouriteView();
     this.mainView.LoadContent(favouriteView.getRoot());
+  }
+
+  public void displaySearchView(Query search, String selectedOption) throws IOException {
+    SearchView searchView = new SearchView(search, selectedOption);
+    this.mainView.LoadContent(searchView.getRoot());
   }
 
   /**

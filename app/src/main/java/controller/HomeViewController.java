@@ -1,20 +1,19 @@
 package controller;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 import model.Recipe;
 
-import java.awt.Button;
+import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.ArrayList;
-import model.User;
 
 public class HomeViewController {
 
@@ -44,30 +43,21 @@ public class HomeViewController {
     controller.displayWeeklyPlanListView();
   }
 
-  public void openSearchPage() throws IOException {
-    controller.displaySearchView();
-  }
-
   public void openHelpPage() throws IOException {
     controller.displayHelpPage();
   }
 
-  /**
-   * Shows a part of the favourite recipes on the main page
-   */
   public void showFavourites() {
-
     ArrayList<Recipe> favouriteList = controller.getActiveUser().getFavouriteList();
     int favNum = favouriteList.size();
 
-    // Clear the actual grid
     favouriteHome.getChildren().clear();
 
     int currentIndex = 0;
     int maxNum = 3;
     int col = 0;
     int row = 0;
-    // While the recipe list is not empty or we have not added 3 cards
+
     while (currentIndex < favNum && currentIndex < maxNum) {
       try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
