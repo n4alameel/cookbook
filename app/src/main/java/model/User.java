@@ -49,6 +49,14 @@ public class User {
     this.password = password;
   }
 
+  public String getImageURL() {
+    return imageUrl;
+  }
+
+  public void setImageURL(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
   public boolean isAdmin() {
     return isAdmin;
   }
@@ -72,6 +80,7 @@ public class User {
   public void setMessageList(ArrayList<Message> messageList) {
     this.messageList = messageList;
   }
+
   public ArrayList<WeeklyList> getWeeklyPlanList() {
     return weeklyPlanList;
   }
@@ -88,9 +97,14 @@ public class User {
     Comparator<WeeklyList> comp = Comparator.comparing(WeeklyList::getWeekNumber);
     Collections.sort(this.weeklyPlanList, comp);
   }
-  public String getImageUrl() { return imageUrl;}
 
-  public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
 
   /*
    * public boolean newRecipe(String name, String description, String detail, int

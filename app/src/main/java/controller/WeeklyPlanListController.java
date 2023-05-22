@@ -79,16 +79,11 @@ public class WeeklyPlanListController {
     dayRange.setText("From " + startDay.toString() + " to " + endDay.toString());
   }
 
-  @FXML
-  private void goToMainMenu() throws IOException {
-    controller.displayHomeView();
-  }
-
   public void updateWindow() {
     listBox.getChildren().clear();
     Line firstSeparator = new Line();
-    firstSeparator.setStartX(-100);
-    firstSeparator.setEndX(940);
+    firstSeparator.setStartX(listBox.getLayoutX());
+    firstSeparator.setEndX(listBox.getLayoutX() + 1060);
     listBox.getChildren().add(firstSeparator);
     ArrayList<WeeklyList> planslist = controller.getActiveUser().getWeeklyPlanList();
     for (WeeklyList list : planslist) {
@@ -99,8 +94,8 @@ public class WeeklyPlanListController {
         weeklyPlanRowController.setWeeklyList(list);
         weeklyPlanRowController.updateRow();
         Line newSeparator = new Line();
-        newSeparator.setStartX(-100);
-        newSeparator.setEndX(940);
+        newSeparator.setStartX(listBox.getLayoutX());
+        newSeparator.setEndX(listBox.getLayoutX() + 1060);
         listBox.getChildren().addAll(root, newSeparator);
       } catch (IOException e) {
         e.printStackTrace(System.out);

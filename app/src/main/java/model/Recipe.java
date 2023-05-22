@@ -7,32 +7,26 @@ public class Recipe {
   private String name;
   private String description;
   private String shortDescription;
-  private int portions = 2;
+  private String imageUrl;
   private ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
   private ArrayList<Comment> commentList = new ArrayList<Comment>();
   private ArrayList<Tag> tagList = new ArrayList<Tag>();
 
-  public Recipe(int id, String name, String description, String shortDescription,
+  public Recipe(int id, String name, String description, String shortDescription, String imageUrl,
       ArrayList<Ingredient> ingredientList, ArrayList<Comment> commentList, ArrayList<Tag> tagList) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.shortDescription = shortDescription;
+    this.imageUrl = imageUrl;
     this.ingredientList = ingredientList;
     this.commentList = commentList;
     this.tagList = tagList;
   }
-  //mocking for loading of a new recipe
+
+  // mocking for loading of a new recipe
   public Recipe(String name) {
     this.name = name;
-  }
-
-  public int getPortions() {
-    return portions;
-  }
-
-  public void setPortions(int portions) {
-    this.portions = portions;
   }
 
   public Recipe(String name, String description) {
@@ -46,6 +40,14 @@ public class Recipe {
 
   public void setId(int id) {
     this.id = id;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 
   public String getName() {

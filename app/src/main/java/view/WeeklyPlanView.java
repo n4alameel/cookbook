@@ -5,6 +5,7 @@ import java.io.IOException;
 import controller.WeeklyPlanViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ScrollPane;
 import model.WeeklyList;
 
 public class WeeklyPlanView {

@@ -39,11 +39,6 @@ public class WeeklyPlanViewController {
   private VBox sunCol;
 
   @FXML
-  private void goToMainMenu() throws IOException {
-    controller.displayHomeView();
-  }
-
-  @FXML
   private void eventShoppingList() throws IOException {
 
   }
