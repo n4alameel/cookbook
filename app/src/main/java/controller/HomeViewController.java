@@ -197,10 +197,6 @@ public class HomeViewController {
         }
     }
 
-    public void selectedOption(){
-
-    }
-
     public void onSearchEnter(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             openSearchPage();
