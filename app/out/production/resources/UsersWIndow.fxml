@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UsersViewController">
+   <children>
+        <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="320.0" stylesheets="@Style.css">
+            <children>
+                <Button fx:id="backHome" layoutX="1050" layoutY="100" onAction="#homeViewEvent" text="Home" />
+                <Button fx:id="addUser" layoutX="50" layoutY="100" onAction="#addNewUserEvent" text="New user" />
+                <Pane fx:id="footer" layoutY="1794.0">
+                    <children>
+                        <ImageView fitHeight="72.0" fitWidth="252.0" layoutX="66.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@img/logo.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="74.0" layoutY="94.0" prefHeight="73.0" prefWidth="208.0" text="This Cookbook is made by&#10;the students of the Project Course in Computer  Science, &#10;Cobol group" wrapText="true" />
+                        <Pane fx:id="copyright" layoutX="-1.0" layoutY="192.0" prefHeight="39.0" prefWidth="1220.0">
+                            <children>
+                                <Label layoutX="582.0" layoutY="5.0" prefHeight="23.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
+                            </children>
+                        </Pane>
+                        <Label layoutX="555.0" layoutY="29.0" text="Quick Access">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="957.0" layoutY="29.0" text="Need help?">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="help" layoutX="903.0" layoutY="73.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="193.0" text="Go to our help page" />
+                    </children>
+                </Pane>
+            </children>
+        </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,58 @@
+.tab-header-area {
+    -fx-orientation: horizontal;
+    -fx-padding: 0;
+}
+
+.tab {
+-fx-rotate: 90;
+-fx-padding: 0 0 0 0;
+-fx-font-family: "Arial";
+-fx-text-alignment: center;
+-fx-background-color: white;
+-fx-border-color: black transparent black black;
+-fx-border-radius: 10 10 10 10;
+-fx-alignment: center-left;
+-fx-graphic-text-gap: 10;
+}
+
+
+
+.tab-pane .tab:selected {
+    -fx-background-color: #618C03
+}
+
+.tab .tab-label {
+    -fx-min-width: 0;
+    -fx-max-width: 1fr;
+    -fx-min-height: 0;
+    -fx-max-height: 1fr;
+
+}
+
+#homePane, #footer{
+-fx-background-color: #618C03
+}
+
+.text-area{
+-fx-background-color: transparent;
+-fx-padding: 0;
+-fx-background-insets: 0;
+-fx-border-width: 0;
+-fx-effect: null;
+-fx-text-fill: black;
+-fx-blend-mode: darken;
+}
+
+
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+    -fx-alignment: center;
+}
+
+.description {
+-fx-border-radius: 8;
+-fx-border-color: #618C03;
+-fx-border-width: 3;
+}
+
+
