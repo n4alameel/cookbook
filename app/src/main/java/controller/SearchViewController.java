@@ -1,18 +1,12 @@
 package controller;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import model.Ingredient;
 import model.Query;
 import model.Recipe;
-import org.checkerframework.checker.units.qual.A;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +17,8 @@ public class SearchViewController {
 
     Query searchQuery;
 
-    SearchViewController(){}
+    SearchViewController() {
+    }
 
     Controller controller = Controller.getInstance();
 
@@ -67,7 +62,7 @@ public class SearchViewController {
         }
     }
 
-    public void searchIngredients(Query queryModel, GridPane searchGrid){
+    public void searchIngredients(Query queryModel, GridPane searchGrid) {
         String query = queryModel.getQuery();
         ArrayList<Ingredient> data = controller.selectIngredientsFromDatabase();
         ArrayList<Recipe> recipeList = controller.getRecipeList();
@@ -79,7 +74,7 @@ public class SearchViewController {
         List<String> ingredientList = Arrays.asList(query.split(","));
         ArrayList<Integer> currentRecipes = new ArrayList<Integer>();
 
-        for (String searchIngredient : ingredientList){
+        for (String searchIngredient : ingredientList) {
             searchIngredient = searchIngredient.trim();
             for (Ingredient ingredient : data) {
                 if (ingredient.getIngredientName().contains(searchIngredient) || ingredient.getIngredientName().toLowerCase().contains(searchIngredient.toLowerCase())) {
@@ -90,40 +85,26 @@ public class SearchViewController {
                         if (currentRecipes.contains(recipeId)) {
                             continue;
                         }
-                            if (recipeId == ingredientId) {
-                                currentRecipes.add(recipeId);
-                                try {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
-                                    Pane root = loader.load();
-                                    RecipeCardController cardController = loader.getController();
-                                    cardController.setRecipeCard(recipe);
-                                    cardController.updateCard();
-                                    searchGrid.add(root, col % 3, row);
-                                    col++;
-                                    if (col % 3 == 0) {
-                                        row++;
-                                    }
-                                } catch (IOException e) {
-                                    e.printStackTrace(System.out);
+                        if (recipeId == ingredientId) {
+                            currentRecipes.add(recipeId);
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
+                                Pane root = loader.load();
+                                RecipeCardController cardController = loader.getController();
+                                cardController.setRecipeCard(recipe);
+                                cardController.updateCard();
+                                searchGrid.add(root, col % 3, row);
+                                col++;
+                                if (col % 3 == 0) {
+                                    row++;
                                 }
+                            } catch (IOException e) {
+                                e.printStackTrace(System.out);
                             }
+                        }
                     }
                 }
             }
-
-
-            /*
-                Split query
-                For every word - search ingredient id       [LIST with regex]
-                Ingredient ID - search recipe id        [for every ingredient id.getRecipeID();]
-
-                    if recipeID contains ingredient IDs [check cookbook.has_ingredient table]
-                                show card
-             */
-
-
         }
-
     }
-
 }

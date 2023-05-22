@@ -179,18 +179,26 @@ public class HomeViewController {
 
         String selectedOption = (String) categoryComboBox.getValue();
 
+        if (selectedOption == null){
+            selectedOption = "Recipe";
+        }
+
         switch (selectedOption) {
-           case "Ingredients": {
+            case "Ingredients": {
                 searchController.searchIngredients(search, searchGrid);
                 break;
             } case "Tags": {
                 System.out.println("Tags selected");
                 break;
-            } default: {
+            } case "Recipe": {
                 searchController.searchRecipe(search, searchGrid);
                 break;
             }
         }
+    }
+
+    public void selectedOption(){
+
     }
 
     public void onSearchEnter(KeyEvent keyEvent) throws IOException {
