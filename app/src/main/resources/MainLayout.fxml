@@ -59,6 +59,29 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="49.0" style="-fx-background-color: #FFFF;">
                <children>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="62.0" spacing="10.0">
+                     <children>
+                        <ImageView fx:id="arrowL" fitHeight="23.0" fitWidth="27.0" onMouseClicked="#backEvent" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/arrow_left.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="arrowR" fitHeight="23.0" fitWidth="27.0" onMouseClicked="#forwardEvent" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/arrow_right.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </HBox>
                   <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="70.0" prefWidth="134.0">
                      <children>
                         <ImageView fitWidth="120.0" onMouseClicked="#openHomeView" pickOnBounds="true" preserveRatio="true">
@@ -135,7 +158,7 @@
                   <Insets />
                </opaqueInsets>
                <padding>
-                  <Insets left="60.0" right="60.0" />
+                  <Insets left="30.0" right="60.0" />
                </padding>
             </HBox>
             <Separator prefWidth="200.0" />

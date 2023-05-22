@@ -19,17 +19,7 @@ public class AllRecipeWindowController {
   @FXML
   private GridPane recipeGrid;
 
-  @FXML
-  public void openHomepage() throws IOException {
-    controller.displayHomeView();
-  }
-
-  @FXML
-  public void goToHomePage() throws IOException {
-    controller.displayHomeView();
-  }
-
-  public void openSearchPage() throws  IOException {
+  public void openSearchPage() throws IOException {
     controller.displaySearchView();
   }
 
@@ -102,4 +92,3 @@ public class AllRecipeWindowController {
     }
   }
 }
-

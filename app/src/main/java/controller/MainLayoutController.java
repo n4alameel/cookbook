@@ -4,6 +4,8 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,6 +36,10 @@ public class MainLayoutController {
   private Button adminPanel;
 
   public MainLayoutController() {
+  }
+
+  public Controller getController() {
+    return controller;
   }
 
   public void updateLayout() {
@@ -120,7 +126,7 @@ public class MainLayoutController {
   }
 
   public void openHomeView(MouseEvent mouseEvent) throws IOException {
-    this.controller.displayHomeView();
+    this.controller.displayHomeView(false);
   }
 
   public void openFavouriteView(ActionEvent actionEvent) throws IOException {
@@ -158,6 +164,52 @@ public class MainLayoutController {
   }
 
   public void searchEnter(KeyEvent keyEvent) throws IOException {
+  }
+
+  public void backEvent() throws IOException {
+    if (this.controller.canGoBack()) {
+      Node currentRoot = this.rootLayout.getCenter();
+      Node newRoot = this.controller.goBackOnePage(currentRoot);
+      this.rootLayout.setCenter(newRoot);
+      this.updateArrows();
+    }
+  }
+
+  public void forwardEvent() throws IOException {
+    if (this.controller.canGoForward()) {
+      Node currentRoot = this.rootLayout.getCenter();
+      Node newRoot = this.controller.goForwardOnePage(currentRoot);
+      this.rootLayout.setCenter(newRoot);
+      this.updateArrows();
+    }
+  }
+
+  @FXML
+  private ImageView arrowR;
+  @FXML
+  private ImageView arrowL;
+
+  public void updateArrows() {
+    toggleArrowL(!this.controller.canGoBack());
+    toggleArrowR(!this.controller.canGoForward());
+  }
+
+  public void toggleArrowR(boolean disable) {
+    if (disable) {
+      arrowR.setOpacity(0.5);
+    } else {
+      arrowR.setOpacity(1);
+    }
+    arrowR.setDisable(disable);
+  }
+
+  public void toggleArrowL(boolean disable) {
+    if (disable) {
+      arrowL.setOpacity(0.5);
+    } else {
+      arrowL.setOpacity(1);
+    }
+    arrowL.setDisable(disable);
   }
 
 }

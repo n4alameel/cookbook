@@ -15,10 +15,13 @@ import java.util.Comparator;
 import java.util.EnumMap;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.Stack;
 
 import com.sun.javafx.binding.StringFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -50,6 +53,9 @@ public class Controller {
   private model.Recipe recipe;
 
   public MainLayoutView mainView;
+
+  private Stack<Node> historyStack = new Stack<>();
+  private Stack<Node> forwardHistoryStack = new Stack<>();
 
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
@@ -98,7 +104,7 @@ public class Controller {
 
   public void displaySearchView() throws IOException {
     SearchView searchView = new SearchView();
-    this.mainView.LoadContent(searchView.getRoot());
+    this.mainView.LoadContent(searchView.getRoot(), false);
   }
 
   /**
@@ -513,7 +519,7 @@ public class Controller {
    */
   public void displayBrowserView() throws IOException {
     BrowserView browserView = new BrowserView();
-    this.mainView.LoadContent(browserView.getRoot());
+    this.mainView.LoadContent(browserView.getRoot(), false);
   }
 
   /**
@@ -521,16 +527,16 @@ public class Controller {
    */
   public void displayRecipeView(int recipeId) throws IOException {
     RecipeView recipeView = new RecipeView(recipeId);
-    this.mainView.LoadContent(recipeView.getRoot());
+    this.mainView.LoadContent(recipeView.getRoot(), false);
   }
 
   /**
    * Creates and displays the home scene.
    */
   // private Scene mainScene;
-  public void displayHomeView() throws IOException {
+  public void displayHomeView(boolean initialLoad) throws IOException {
     HomeView homeView = new HomeView();
-    this.mainView.LoadContent(homeView.getRoot());
+    this.mainView.LoadContent(homeView.getRoot(), initialLoad);
   }
 
   /**
@@ -538,7 +544,7 @@ public class Controller {
    */
   public void displayFavouriteView() throws IOException {
     FavouriteView favouriteView = new FavouriteView();
-    this.mainView.LoadContent(favouriteView.getRoot());
+    this.mainView.LoadContent(favouriteView.getRoot(), false);
   }
 
   /**
@@ -558,17 +564,17 @@ public class Controller {
    */
   public void displayNewRecipeView() throws IOException {
     NewRecipeView newRecipeView = new NewRecipeView();
-    this.mainView.LoadContent(newRecipeView.getRoot());
+    this.mainView.LoadContent(newRecipeView.getRoot(), false);
   }
 
   public void displayWeeklyPlanListView() throws IOException {
     WeeklyPlanListView weeklyPlanListView = new WeeklyPlanListView();
-    this.mainView.LoadContent(weeklyPlanListView.getRoot());
+    this.mainView.LoadContent(weeklyPlanListView.getRoot(), false);
   }
 
   public void displayWeeklyPlanView(WeeklyList weeklyList) throws IOException {
     WeeklyPlanView weeklyPlanView = new WeeklyPlanView(weeklyList);
-    this.mainView.LoadContent((weeklyPlanView.getRoot()));
+    this.mainView.LoadContent((weeklyPlanView.getRoot()), false);
   }
 
   /**
@@ -577,7 +583,7 @@ public class Controller {
 
   public void displayUsersView() throws IOException {
     UsersView usersView = new UsersView();
-    this.mainView.LoadContent(usersView.getRoot());
+    this.mainView.LoadContent(usersView.getRoot(), false);
   }
 
   /**
@@ -606,7 +612,7 @@ public class Controller {
    */
   public void displayMessageView() throws IOException {
     MessageView messageView = new MessageView();
-    this.mainView.LoadContent(messageView.getRoot());
+    this.mainView.LoadContent(messageView.getRoot(), false);
   }
 
   /**
@@ -1156,7 +1162,7 @@ public class Controller {
     Scene mainScene = new Scene(this.mainView.getRoot(), 1250, 750);
     stage.setScene(mainScene);
     stage.show();
-    this.displayHomeView();
+    this.displayHomeView(true);
   }
 
   public ArrayList<User> getUsers() {
@@ -1282,6 +1288,36 @@ public class Controller {
       System.out.println(e);
       return 0;
     }
+  }
+
+  /***************** History system *****************/
+
+  public void addRootToHistory(Node root) {
+    this.forwardHistoryStack.clear();
+    this.historyStack.push(root);
+  }
+
+  public Node goBackOnePage(Node currentPage) {
+    this.forwardHistoryStack.push(currentPage);
+    return this.historyStack.pop();
+  }
+
+  public Node goForwardOnePage(Node currentPage) {
+    this.historyStack.push(currentPage);
+    return this.forwardHistoryStack.pop();
+  }
+
+  public boolean canGoBack() {
+    return !this.historyStack.empty();
+  }
+
+  public boolean canGoForward() {
+    return !this.forwardHistoryStack.empty();
+  }
+
+  public void flushHistory() {
+    this.historyStack.clear();
+    this.forwardHistoryStack.clear();
   }
 
 }

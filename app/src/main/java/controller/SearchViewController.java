@@ -71,7 +71,7 @@ public class SearchViewController {
   }
 
   public void goToHomePage() throws IOException {
-    controller.displayHomeView();
+    controller.displayHomeView(false);
   }
 
   public void openNewRecipe() throws IOException {
