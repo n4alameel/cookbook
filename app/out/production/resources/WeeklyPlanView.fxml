@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WeeklyPlanViewController">
+   <children>
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308">
+         <children>
+            <HBox maxWidth="-Infinity">
+               <children>
+                  <Label prefHeight="18.0" prefWidth="47.0" text="Week n°">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="weekNum" prefHeight="18.0" prefWidth="262.0" text="XX">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="18.0" prefWidth="34.0" text="Year">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="year" text="XXXX">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="600.0">
+               <children>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
+                     <children>
+                        <Label text="Monday" />
+                        <Separator />
+                        <VBox fx:id="monCol" maxHeight="1.7976931348623157E308" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
+                     <children>
+                        <Label prefHeight="18.0" text="Tuesday">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Separator />
+                        <VBox fx:id="tueCol" maxHeight="1.7976931348623157E308">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
+                     <children>
+                        <Label prefHeight="18.0" text="Wednesday">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Separator />
+                        <VBox fx:id="wedCol" maxHeight="1.7976931348623157E308" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
+                     <children>
+                        <Label prefHeight="18.0" text="Thursday">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Separator />
+                        <VBox fx:id="thuCol" maxHeight="1.7976931348623157E308" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
+                     <children>
+                        <Label prefHeight="18.0" text="Friday">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Separator />
+                        <VBox fx:id="friCol" maxHeight="1.7976931348623157E308" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
+                     <children>
+                        <Label prefHeight="18.0" text="Saturday">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Separator />
+                        <VBox fx:id="satCol" maxHeight="1.7976931348623157E308" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minWidth="150.0">
+                     <children>
+                        <Label prefHeight="18.0" text="Sunday">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Separator />
+                        <VBox fx:id="sunCol" maxHeight="1.7976931348623157E308" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="TOP_RIGHT">
+         <children>
+            <Button mnemonicParsing="false" onAction="#eventShoppingList" text="Generate a shopping list" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" right="30.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

@@ -26,13 +26,14 @@ public class SearchView {
       if (selectedOption == null) {
         selectedOption = "Recipe";
       }
+
       switch (selectedOption) {
         case "Ingredients": {
           searchController.searchIngredients(search);
           break;
         }
         case "Tags": {
-          System.out.println("Tags selected");
+          searchController.searchTags(search);
           break;
         }
         case "Recipe": {

@@ -1,0 +1,27 @@
+.anchor-pane {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+.label{
+    -fx-alignment: center;
+}
+
+.choice-box {
+
+}
+
+.button {
+  -fx-background-color: #4CAF50; /* Green */
+  -fx-background-radius: 5px;
+  -fx-text-fill: white;
+  -fx-font-size: 16px;
+  -fx-padding: 15px 32px;
+}
+
+.button:hover {
+  -fx-background-color: #3e8e41; /* Darker green */
+}
