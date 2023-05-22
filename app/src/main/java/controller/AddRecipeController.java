@@ -143,7 +143,8 @@ public class AddRecipeController implements Initializable {
                 controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList, imageURL);
                 alert("Recipe has been saved");
                 recipes.add(new Recipe(name));
-                Controller.getInstance().getStage().close();
+                //TODO: go back to the main page
+                //Controller.getInstance().getStage().close();
 
         } catch (Exception e) {
             System.out.println(e);

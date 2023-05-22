@@ -892,12 +892,14 @@ public class Controller {
       ObservableList<Ingredient> ingredientsDB = generateIngredient();
       for (Ingredient ingredient : ingredientObservableList) {
         for (Ingredient ingredient1 : ingredientsDB)
-        if (ingredient.getName().equals(ingredient1.getName())) {
+        if (ingredient.getName().equals(ingredient1.getName()) && ingredient.getUnit_id() == ingredient1.getUnit_id()) {
+          //TODO: it takes the first ingredient with the right name, i need to check the unit_id
           query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
           stmt = this.db.prepareStatement(query);
           stmt.setInt(1, recipe_id);
           stmt.setInt(2, ingredient1.getId());
           stmt.executeUpdate();
+          break;
           //System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
         }
         /*
