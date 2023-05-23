@@ -40,6 +40,7 @@ public class SearchViewController {
           cardController.setRecipe(recipeList.get(i).getId());
           cardController.updateCard();
           searchGrid.add(root, col % 3, row);
+          searchGrid.getChildren().get(searchGrid.getChildren().size() - 1).toBack();
           col++;
           if (col % 3 == 0) {
             row++;
@@ -85,6 +86,7 @@ public class SearchViewController {
                 cardController.setRecipe(recipe.getId());
                 cardController.updateCard();
                 searchGrid.add(root, col % 3, row);
+                searchGrid.getChildren().get(searchGrid.getChildren().size() - 1).toBack();
                 col++;
                 if (col % 3 == 0) {
                   row++;
@@ -115,7 +117,7 @@ public class SearchViewController {
       searchTag = searchTag.trim();
       for (Tag tag : data) {
         if (tag.getName().contains(searchTag)
-                || tag.getName().toLowerCase().contains(searchTag.toLowerCase())) {
+            || tag.getName().toLowerCase().contains(searchTag.toLowerCase())) {
           for (Recipe recipe : recipeList) {
             int recipeId = recipe.getId();
             int tagId = tag.getUser_id();
@@ -132,6 +134,7 @@ public class SearchViewController {
                 cardController.setRecipe(recipe.getId());
                 cardController.updateCard();
                 searchGrid.add(root, col % 3, row);
+                searchGrid.getChildren().get(searchGrid.getChildren().size() - 1).toBack();
                 col++;
                 if (col % 3 == 0) {
                   row++;

@@ -28,9 +28,12 @@ public class MainLayoutView {
     return this.root;
   }
 
-  public void LoadContent(Parent mainPageCenterContent) throws IOException {
+  public void LoadContent(Parent mainPageCenterContent, boolean initialLoad) throws IOException {
     MainLayoutController mainLayoutController = this.loader.getController();
+    if (!initialLoad) {
+      mainLayoutController.getController().addRootToHistory(mainLayoutController.getRootLayout().getCenter());
+    }
     mainLayoutController.getRootLayout().setCenter(mainPageCenterContent);
-    System.out.println("Loaded page");
+    mainLayoutController.updateArrows();
   }
 }

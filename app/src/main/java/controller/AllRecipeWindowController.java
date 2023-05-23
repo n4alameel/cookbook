@@ -19,25 +19,6 @@ public class AllRecipeWindowController {
   @FXML
   private GridPane recipeGrid;
 
-  @FXML
-  public void openHomepage() throws IOException {
-    controller.displayHomeView();
-  }
-
-  @FXML
-  public void goToHomePage() throws IOException {
-    controller.displayHomeView();
-  }
-
-  public void seeFavourites() throws IOException {
-    controller.displayFavouriteView();
-  }
-
-  @FXML
-  public void openNewRecipe() throws IOException {
-    controller.displayNewRecipeView();
-  }
-
   /**
    * Initialize the pagination system
    */
@@ -98,4 +79,3 @@ public class AllRecipeWindowController {
     }
   }
 }
-

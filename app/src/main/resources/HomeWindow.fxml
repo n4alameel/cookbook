@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="1038.0" prefWidth="1113.0" stylesheets="@HomeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeViewController">
+<VBox alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="1038.0" prefWidth="1113.0" stylesheets="@HomeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeViewController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="1200.0" text="Our Recommendations">
          <font>
