@@ -1,5 +1,6 @@
 package view;
 
+import controller.HelpController;
 import controller.HomeViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +11,10 @@ import java.io.IOException;
 
         public HelpView() {
             try {
-                root = FXMLLoader.load(getClass().getResource("/HelpWindow.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/HelpWindow.fxml"));
+                root = (Parent) loader.load();
+                HelpController helpController = loader.getController();
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
