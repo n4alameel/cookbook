@@ -43,6 +43,7 @@ public class Controller {
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
   private Stage stage;
+  private Recipe recipe;
 
   public MainLayoutView mainView;
 

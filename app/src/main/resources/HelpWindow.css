@@ -23,9 +23,9 @@
 
 .tab .tab-label {
     -fx-min-width: 0;
-    -fx-max-width: 1fr;
+    -fx-max-width: 1;
     -fx-min-height: 0;
-    -fx-max-height: 1fr;
+    -fx-max-height: 1;
 
 }
 
@@ -41,6 +41,10 @@
 -fx-effect: null;
 -fx-text-fill: black;
 -fx-blend-mode: darken;
+}
+
+.mark-tabs{
+-fx-background-color: orange;
 }
 
 

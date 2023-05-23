@@ -15,13 +15,13 @@
 }
 
 .button {
-  -fx-background-color: #4CAF50; /* Green */
+  -fx-background-color: #618C03; /* Green */
   -fx-background-radius: 5px;
   -fx-text-fill: white;
-  -fx-font-size: 16px;
-  -fx-padding: 15px 32px;
+  -fx-font-size: 12px;
+  -fx-padding: 10px 32px;
 }
 
 .button:hover {
-  -fx-background-color: #3e8e41; /* Darker green */
+  -fx-background-color: rgba(73, 101, 3, 0.79); /* Darker green */
 }
