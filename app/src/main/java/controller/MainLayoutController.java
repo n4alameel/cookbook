@@ -178,6 +178,12 @@ public class MainLayoutController {
     }
   }
 
+  /**
+   * If possible, go back one page by loading a previously stored root in the
+   * scene
+   * 
+   * @throws IOException
+   */
   public void backEvent() throws IOException {
     if (this.controller.canGoBack()) {
       Node currentRoot = this.rootLayout.getCenter();
@@ -187,6 +193,12 @@ public class MainLayoutController {
     }
   }
 
+  /**
+   * If possible, go forward one page by loading a previously stored root in the
+   * scene
+   * 
+   * @throws IOException
+   */
   public void forwardEvent() throws IOException {
     if (this.controller.canGoForward()) {
       Node currentRoot = this.rootLayout.getCenter();
@@ -201,6 +213,10 @@ public class MainLayoutController {
   @FXML
   private ImageView arrowL;
 
+  /**
+   * Updates the status and representation of the back and forward arrows
+   * depending if the action is possible.
+   */
   public void updateArrows() {
     toggleArrowL(!this.controller.canGoBack());
     toggleArrowR(!this.controller.canGoForward());
@@ -220,6 +236,11 @@ public class MainLayoutController {
     arrowR.setDisable(disable);
   }
 
+  /**
+   * Enables or diables the left arrow representing the back button.
+   * 
+   * @param disable if {@code true}, disables the arrow, else enables it.
+   */
   public void toggleArrowL(boolean disable) {
     if (disable) {
       arrowL.setOpacity(0.5);

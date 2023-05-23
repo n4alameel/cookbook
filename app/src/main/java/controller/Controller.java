@@ -43,7 +43,6 @@ public class Controller {
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
   private Stage stage;
-  private model.Recipe recipe;
 
   public MainLayoutView mainView;
 
@@ -915,7 +914,6 @@ public class Controller {
     }
   }
 
-  // TODO: need to add an Tag as well
   public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList,
       ObservableList<Ingredient> ingredientObservableList, String imageURL) {
     try {
