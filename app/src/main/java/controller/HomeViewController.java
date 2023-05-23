@@ -27,10 +27,6 @@ public class HomeViewController {
     controller.displayBrowserView();
   }
 
-  public void goToHomePage() throws IOException {
-    controller.displayHomeView();
-  }
-
   public void openNewRecipe() throws IOException {
     controller.displayNewRecipeView();
   }
@@ -66,6 +62,7 @@ public class HomeViewController {
         cardController.setRecipe(favouriteList.get(currentIndex).getId());
         cardController.updateCard();
         favouriteHome.add(root, col % 3, row);
+        favouriteHome.getChildren().get(favouriteHome.getChildren().size() - 1).toBack();
         col++;
         currentIndex++;
       } catch (IOException e) {
@@ -108,6 +105,7 @@ public class HomeViewController {
         cardController.setRecipe(recommendationList.get(currentIndex).getId());
         cardController.updateCard();
         recommendationsHome.add(root, col % 3, row);
+        recommendationsHome.getChildren().get(recommendationsHome.getChildren().size() - 1).toBack();
         col++;
         currentIndex++;
       } catch (IOException e) {

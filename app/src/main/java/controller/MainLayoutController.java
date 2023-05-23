@@ -4,6 +4,8 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
@@ -42,6 +44,10 @@ public class MainLayoutController {
   private ComboBox<String> categoryComboBox;
 
   public MainLayoutController() {
+  }
+
+  public Controller getController() {
+    return controller;
   }
 
   public void updateLayout() {
@@ -128,7 +134,7 @@ public class MainLayoutController {
   }
 
   public void openHomeView(MouseEvent mouseEvent) throws IOException {
-    this.controller.displayHomeView();
+    this.controller.displayHomeView(false);
   }
 
   public void openFavouriteView(ActionEvent actionEvent) throws IOException {
@@ -160,7 +166,6 @@ public class MainLayoutController {
   }
 
   public void openSearchPage() throws IOException {
-
     Query search = new Query();
     search.setQuery(searchField.getText());
     String selectedOption = (String) categoryComboBox.getValue();
@@ -171,6 +176,78 @@ public class MainLayoutController {
     if (keyEvent.getCode() == KeyCode.ENTER) {
       openSearchPage();
     }
+  }
+
+  /**
+   * If possible, go back one page by loading a previously stored root in the
+   * scene
+   * 
+   * @throws IOException
+   */
+  public void backEvent() throws IOException {
+    if (this.controller.canGoBack()) {
+      Node currentRoot = this.rootLayout.getCenter();
+      Node newRoot = this.controller.goBackOnePage(currentRoot);
+      this.rootLayout.setCenter(newRoot);
+      this.updateArrows();
+    }
+  }
+
+  /**
+   * If possible, go forward one page by loading a previously stored root in the
+   * scene
+   * 
+   * @throws IOException
+   */
+  public void forwardEvent() throws IOException {
+    if (this.controller.canGoForward()) {
+      Node currentRoot = this.rootLayout.getCenter();
+      Node newRoot = this.controller.goForwardOnePage(currentRoot);
+      this.rootLayout.setCenter(newRoot);
+      this.updateArrows();
+    }
+  }
+
+  @FXML
+  private ImageView arrowR;
+  @FXML
+  private ImageView arrowL;
+
+  /**
+   * Updates the status and representation of the back and forward arrows
+   * depending if the action is possible.
+   */
+  public void updateArrows() {
+    toggleArrowL(!this.controller.canGoBack());
+    toggleArrowR(!this.controller.canGoForward());
+  }
+
+  /**
+   * Enables or diables the right arrow representing the forward button.
+   * 
+   * @param disable if {@code true}, disables the arrow, else enables it.
+   */
+  public void toggleArrowR(boolean disable) {
+    if (disable) {
+      arrowR.setOpacity(0.5);
+    } else {
+      arrowR.setOpacity(1);
+    }
+    arrowR.setDisable(disable);
+  }
+
+  /**
+   * Enables or diables the left arrow representing the back button.
+   * 
+   * @param disable if {@code true}, disables the arrow, else enables it.
+   */
+  public void toggleArrowL(boolean disable) {
+    if (disable) {
+      arrowL.setOpacity(0.5);
+    } else {
+      arrowL.setOpacity(1);
+    }
+    arrowL.setDisable(disable);
   }
 
 }

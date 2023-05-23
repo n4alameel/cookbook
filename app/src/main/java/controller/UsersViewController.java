@@ -103,6 +103,6 @@ public class UsersViewController {
   }
 
   public void homeViewEvent() throws IOException {
-    controller.displayHomeView();
+    controller.displayHomeView(false);
   }
 }

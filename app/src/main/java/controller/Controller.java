@@ -1,9 +1,7 @@
 package controller;
 
-import java.awt.*;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -15,21 +13,19 @@ import java.util.Comparator;
 import java.util.EnumMap;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.Stack;
 
-import com.sun.javafx.binding.StringFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
 import model.WeeklyList.WeekDay;
 
-import java.util.ArrayList;
 import javafx.util.Pair;
 import model.*;
-import org.w3c.dom.Text;
 import view.*;
 
 public class Controller {
@@ -38,7 +34,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -47,9 +43,11 @@ public class Controller {
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
   private Stage stage;
-  private model.Recipe recipe;
 
   public MainLayoutView mainView;
+
+  private Stack<Node> historyStack = new Stack<>();
+  private Stack<Node> forwardHistoryStack = new Stack<>();
 
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
@@ -244,11 +242,11 @@ public class Controller {
   public ArrayList<Tag> selectTagsFromDatabase() {
     ArrayList<Tag> tagArrayList = new ArrayList<>();
     try (Connection connection = dbconnect();
-         Statement statement = connection.createStatement();
-         ResultSet resultSet = statement.executeQuery("SELECT * FROM cookbook.recipe_has_tag " +
-                 "JOIN cookbook.tag ON " +
-                 "recipe_has_tag.tag_id = " +
-                 "tag.id")) {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM cookbook.recipe_has_tag " +
+            "JOIN cookbook.tag ON " +
+            "recipe_has_tag.tag_id = " +
+            "tag.id")) {
       while (resultSet.next()) {
         int tagID = resultSet.getInt("tag_id");
         String tagName = resultSet.getString("name");
@@ -568,7 +566,7 @@ public class Controller {
    */
   public void displayBrowserView() throws IOException {
     BrowserView browserView = new BrowserView();
-    this.mainView.LoadContent(browserView.getRoot());
+    this.mainView.LoadContent(browserView.getRoot(), false);
   }
 
   /**
@@ -576,16 +574,16 @@ public class Controller {
    */
   public void displayRecipeView(int recipeId) throws IOException {
     RecipeView recipeView = new RecipeView(recipeId);
-    this.mainView.LoadContent(recipeView.getRoot());
+    this.mainView.LoadContent(recipeView.getRoot(), false);
   }
 
   /**
    * Creates and displays the home scene.
    */
   // private Scene mainScene;
-  public void displayHomeView() throws IOException {
+  public void displayHomeView(boolean initialLoad) throws IOException {
     HomeView homeView = new HomeView();
-    this.mainView.LoadContent(homeView.getRoot());
+    this.mainView.LoadContent(homeView.getRoot(), initialLoad);
   }
 
   /**
@@ -593,12 +591,12 @@ public class Controller {
    */
   public void displayFavouriteView() throws IOException {
     FavouriteView favouriteView = new FavouriteView();
-    this.mainView.LoadContent(favouriteView.getRoot());
+    this.mainView.LoadContent(favouriteView.getRoot(), false);
   }
 
   public void displaySearchView(Query search, String selectedOption) throws IOException {
     SearchView searchView = new SearchView(search, selectedOption);
-    this.mainView.LoadContent(searchView.getRoot());
+    this.mainView.LoadContent(searchView.getRoot(), false);
   }
 
   /**
@@ -618,17 +616,17 @@ public class Controller {
    */
   public void displayNewRecipeView() throws IOException {
     NewRecipeView newRecipeView = new NewRecipeView();
-    this.mainView.LoadContent(newRecipeView.getRoot());
+    this.mainView.LoadContent(newRecipeView.getRoot(), false);
   }
 
   public void displayWeeklyPlanListView() throws IOException {
     WeeklyPlanListView weeklyPlanListView = new WeeklyPlanListView();
-    this.mainView.LoadContent(weeklyPlanListView.getRoot());
+    this.mainView.LoadContent(weeklyPlanListView.getRoot(), false);
   }
 
   public void displayWeeklyPlanView(WeeklyList weeklyList) throws IOException {
     WeeklyPlanView weeklyPlanView = new WeeklyPlanView(weeklyList);
-    this.mainView.LoadContent((weeklyPlanView.getRoot()));
+    this.mainView.LoadContent((weeklyPlanView.getRoot()), false);
   }
 
   /**
@@ -637,7 +635,7 @@ public class Controller {
 
   public void displayUsersView() throws IOException {
     UsersView usersView = new UsersView();
-    this.mainView.LoadContent(usersView.getRoot());
+    this.mainView.LoadContent(usersView.getRoot(), false);
   }
 
   /**
@@ -666,7 +664,7 @@ public class Controller {
    */
   public void displayMessageView() throws IOException {
     MessageView messageView = new MessageView();
-    this.mainView.LoadContent(messageView.getRoot());
+    this.mainView.LoadContent(messageView.getRoot(), false);
   }
 
   /**
@@ -916,7 +914,6 @@ public class Controller {
     }
   }
 
-  // TODO: need to add an Tag as well
   public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList,
       ObservableList<Ingredient> ingredientObservableList, String imageURL) {
     try {
@@ -1216,7 +1213,7 @@ public class Controller {
     Scene mainScene = new Scene(this.mainView.getRoot(), 1250, 750);
     stage.setScene(mainScene);
     stage.show();
-    this.displayHomeView();
+    this.displayHomeView(true);
   }
 
   public ArrayList<User> getUsers() {
@@ -1342,6 +1339,60 @@ public class Controller {
       System.out.println(e);
       return 0;
     }
+  }
+
+  /***************** History system *****************/
+
+  /**
+   * Adds a node to the history stack. Also resets the forward-history stack.
+   * 
+   * @param root The node that will be added to the stack
+   */
+  public void addRootToHistory(Node root) {
+    this.forwardHistoryStack.clear();
+    this.historyStack.push(root);
+  }
+
+  /**
+   * Retrieves the first node in the history and add another one to the
+   * forward-history to be able to go forward.
+   * 
+   * @param currentPage The page to be added to the forward-history stack
+   * @return The first Node in the history stack.
+   */
+  public Node goBackOnePage(Node currentPage) {
+    this.forwardHistoryStack.push(currentPage);
+    return this.historyStack.pop();
+  }
+
+  /**
+   * Retrieves the first node in the forward-history and add another one to the
+   * history to be able to go back.
+   * 
+   * @param currentPage The page to be added to the history stack
+   * @return The first Node in the forward-history stack.
+   */
+  public Node goForwardOnePage(Node currentPage) {
+    this.historyStack.push(currentPage);
+    return this.forwardHistoryStack.pop();
+  }
+
+  /**
+   * Tells whether it's possible to go back one page.
+   * 
+   * @return {@code true} is the history stack is not empty
+   */
+  public boolean canGoBack() {
+    return !this.historyStack.empty();
+  }
+
+  /**
+   * Tells whether it's possible to go back forward page.
+   * 
+   * @return {@code true} is the forward-history stack is not empty
+   */
+  public boolean canGoForward() {
+    return !this.forwardHistoryStack.empty();
   }
 
 }
