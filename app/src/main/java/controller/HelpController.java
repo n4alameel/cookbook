@@ -47,9 +47,6 @@ public class HelpController {
 
 
     }
-    public void backToHome() throws IOException {
-        controller.displayHomeView();
-    }
 
 
 }
