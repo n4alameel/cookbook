@@ -93,4 +93,6 @@ public class Ingredient {
   public void setUnitName(String unitName) {
     this.unitName.set(unitName);
   }
+
+  public void setQuantity(int quantity) { this.quantity.set(quantity); }
 }
