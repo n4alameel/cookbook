@@ -39,7 +39,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -684,8 +684,8 @@ public class Controller {
     secondaryStage.show();
   }
 
-  public void displayModifyShoppingListWindow(ShoppingList shoppingList) throws IOException {
-    ModifyShoppingListView modifyShoppingListView = new ModifyShoppingListView(shoppingList);
+  public void displayModifyShoppingListWindow() throws IOException {
+    ModifyShoppingListView modifyShoppingListView = new ModifyShoppingListView(this.activeUser.getShoppingList());
     this.mainView.LoadContent(modifyShoppingListView.getRoot(), false);
   }
 
@@ -874,10 +874,10 @@ public class Controller {
    * to a list.
    */
   public void generateShoppingList(ShoppingList shoppingList, VBox[] vBox) {
-    for(VBox col : vBox) {
-      int i=0;
-      for(Node node : col.getChildren()) {
-        if(i%2==0) {
+    for (VBox col : vBox) {
+      int i = 0;
+      for (Node node : col.getChildren()) {
+        if (i % 2 == 0) {
           AnchorPane root = (AnchorPane) col.getChildren().get(i);
           Spinner s = (Spinner) root.getChildren().get(1);
           shoppingList.addPortions(Integer.valueOf(s.getValueFactory().getValue().toString()));
@@ -887,22 +887,25 @@ public class Controller {
     }
     boolean f = false;
     ArrayList<Recipe> recipes = shoppingList.getRecipeFromShoppingList();
-    for(Recipe recipe : recipes) {
+    for (Recipe recipe : recipes) {
       ArrayList<Ingredient> ingredients = recipe.getIngredientList();
-      for(Ingredient ingredient : ingredients) {
+      for (Ingredient ingredient : ingredients) {
         ArrayList<Ingredient> ingredientsFromShoppingList = shoppingList.getIngredientsList();
         f = false;
-        for(Ingredient ingredientFromSL : ingredientsFromShoppingList) {
+        for (Ingredient ingredientFromSL : ingredientsFromShoppingList) {
           if (ingredientFromSL.getName().equals(ingredient.getName())) {
-            shoppingList.editIngredientsList(ingredientsFromShoppingList.indexOf(ingredientFromSL), ingredient.getQuantity());
+            shoppingList.editIngredientsList(ingredientsFromShoppingList.indexOf(ingredientFromSL),
+                ingredient.getQuantity());
             f = true;
           }
         }
-        if(!f) shoppingList.addIngredients(ingredient);
+        if (!f)
+          shoppingList.addIngredients(ingredient);
       }
     }
+    this.activeUser.setShoppingList(shoppingList);
     try {
-      displayModifyShoppingListWindow(shoppingList);
+      displayModifyShoppingListWindow();
     } catch (IOException e) {
       e.printStackTrace();
     }

@@ -271,15 +271,15 @@
                   </VBox>
                </bottom>
                <top>
-                  <AnchorPane maxWidth="-Infinity" stylesheets="@HomeWindow.css" BorderPane.alignment="CENTER">
+                  <AnchorPane maxWidth="-Infinity" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField fx:id="searchField" onKeyPressed="#onSearchEnter" prefHeight="55.0" prefWidth="591.0" promptText="Search here..." />
-                        <Button fx:id="searchBtn" layoutX="510.0" layoutY="7.0" mnemonicParsing="false" onAction="#openSearchPage" prefHeight="40.0" prefWidth="74.0" text="Search" textFill="#171717">
+                        <TextField fx:id="searchField" onKeyPressed="#onSearchEnter" prefHeight="48.0" prefWidth="565.0" promptText="Search here..." styleClass="search" />
+                        <Button fx:id="searchBtn" layoutX="518.0" layoutY="7.0" mnemonicParsing="false" onAction="#openSearchPage" prefHeight="40.0" prefWidth="74.0" styleClass="searchBtn" text="Search" textFill="#171717">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </Button>
-                        <ComboBox fx:id="categoryComboBox" layoutX="354.0" layoutY="15.0" prefWidth="150.0" promptText="Choose category">
+                        <ComboBox fx:id="categoryComboBox" layoutX="367.0" layoutY="7.0" prefHeight="10.0" prefWidth="150.0" promptText="Choose category" styleClass="searchDropBox">
                           <items>
                             <FXCollections fx:factory="observableArrayList">
                                 <String fx:value="Recipe" />
