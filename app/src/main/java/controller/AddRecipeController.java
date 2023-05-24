@@ -7,13 +7,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.scene.image.Image;
 import model.*;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -63,12 +69,17 @@ public class AddRecipeController implements Initializable {
     private Label amountError;
     @FXML
     private Label ingredientNameError;
+    @FXML
+    private Button addImage;
+    @FXML
+    private ImageView imageView;
 
     private ObservableList<Tag> tagsArray = controller.generateTag();
     private ObservableList<Unit> unitArray = controller.generateUnit();
     private String addUnit;
     private ArrayList<Recipe> recipes = controller.getRecipeList();
     private ObservableList<Ingredient> ingredients = controller.generateIngredient();
+    private Image image;
     //listener for changes in the name
     ChangeListener<String> changeListener = (observable, oldValue, newValue) -> {
         for (Recipe recipe : recipes) {
@@ -110,7 +121,6 @@ public class AddRecipeController implements Initializable {
 
                 String shortDescription = shortDescriptionField.getText();
             String longDescription = longDescriptionField.getText();
-            String imageURL = imageField.getText();
             //if there are no ingredients stop.
             if (ingredientTable.getItems().isEmpty()) {
                 ingredientError.setText("Please add at least on ingredient to the Table!");
@@ -140,7 +150,7 @@ public class AddRecipeController implements Initializable {
             }
                 //selectBoxTagInts for loop for reading the elements out of the List
                 controller.newIngredient(ingredientList);
-                controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList, imageURL);
+                controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList, image);
                 alert("Recipe has been saved");
                 recipes.add(new Recipe(name));
                 //TODO: go back to the main page
@@ -307,5 +317,13 @@ public class AddRecipeController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(information);
         alert.show();
+    }
+
+    public void showBrowse(MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+         File file = fileChooser.showOpenDialog(controller.getStage());
+         image = new Image(file.toURI().toString());
+         imageView.setImage(image);
+
     }
 }

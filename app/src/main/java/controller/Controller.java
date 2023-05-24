@@ -873,7 +873,7 @@ public class Controller {
 
   // TODO: need to add an Tag as well
   public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList,
-      ObservableList<Ingredient> ingredientObservableList, String imageURL) {
+      ObservableList<Ingredient> ingredientObservableList, Image image) {
     try {
       int recipe_id;
       String query = "INSERT INTO recipe (name, shortDescription, description, imageURL) VALUES (?, ?, ?, ?)";
@@ -881,7 +881,7 @@ public class Controller {
       stmt.setString(1, name);
       stmt.setString(2, shortDescription);
       stmt.setString(3, description);
-      stmt.setString(4, imageURL);
+      stmt.setString(4, image.getUrl().toString());
       stmt.executeUpdate();
       query = "SELECT id FROM recipe WHERE name = ?";
       stmt = this.db.prepareStatement(query);

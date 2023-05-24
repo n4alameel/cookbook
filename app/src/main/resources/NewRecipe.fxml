@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -89,7 +90,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Button fx:id="addImage" layoutX="838.0" layoutY="350.0" mnemonicParsing="false" text="Add Image" />
+            <Button fx:id="addImage" layoutX="838.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#showBrowse" text="Add Image" />
             <TextField fx:id="longDescriptionField" alignment="TOP_LEFT" layoutX="32.0" layoutY="365.0" prefHeight="142.0" prefWidth="511.0" promptText="Add the full description of the recipe..." styleClass="text-field" stylesheets="@AddRecipe.css" />
             <ListView fx:id="tagView" layoutX="33.0" layoutY="566.0" onKeyPressed="#enterPressed" onMouseClicked="#deleteClickedRowTags" prefHeight="142.0" prefWidth="511.0" />
             <TextField fx:id="newTag" layoutX="606.0" layoutY="683.0" onKeyPressed="#enterPressed" promptText="Press Enter to confirm" />
@@ -98,7 +99,6 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="imageField" alignment="TOP_LEFT" layoutX="689.0" layoutY="144.0" prefHeight="168.0" prefWidth="373.0" promptText="Insert Image URL" styleClass="text-field" stylesheets="@AddRecipe.css" />
             <Label fx:id="nameError" layoutX="32.0" layoutY="208.0" prefHeight="17.0" prefWidth="501.0" textAlignment="CENTER" textFill="RED">
                <font>
                   <Font name="System Bold" size="24.0" />
@@ -126,6 +126,7 @@
             </Label>
             <Label fx:id="amountError" layoutX="296.0" layoutY="921.0" prefHeight="27.0" prefWidth="330.0" textAlignment="CENTER" textFill="RED" />
             <Label fx:id="ingredientNameError" layoutX="616.0" layoutY="921.0" prefHeight="27.0" prefWidth="331.0" textAlignment="CENTER" textFill="RED" />
+            <ImageView fx:id="imageView" fitHeight="166.0" fitWidth="380.0" layoutX="686.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </content>
