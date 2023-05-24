@@ -19,7 +19,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Spinner;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.Node;
 import model.Ingredient;
 import model.Recipe;
 import model.WeeklyList.WeekDay;
@@ -34,7 +39,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -679,6 +684,11 @@ public class Controller {
     secondaryStage.show();
   }
 
+  public void displayModifyShoppingListWindow(ShoppingList shoppingList) throws IOException {
+    ModifyShoppingListView modifyShoppingListView = new ModifyShoppingListView(shoppingList);
+    this.mainView.LoadContent(modifyShoppingListView.getRoot(), false);
+  }
+
   /**
    * Closes the app.
    */
@@ -863,55 +873,38 @@ public class Controller {
    * list. Then we recover every ingredient from every meal of a week and add them
    * to a list.
    */
-  public ShoppingList generateShoppingList(int weekNumber, int user_id) {
-    try {
-      ShoppingList shoppingList = new ShoppingList(weekNumber, user_id);
-      String query = "SELECT dlr.* FROM day_list_has_recipe dlr INNER JOIN day_list dl ON dlr.day_list_id = dl.id INNER JOIN week_list wl ON dl.week_list_id = wl.id WHERE wl.weekNumber = ? AND wl.user_id = ?";
-      PreparedStatement stmt = this.db.prepareStatement(query);
-      stmt.setInt(1, weekNumber);
-      stmt.setInt(2, user_id);
-      ResultSet rs = stmt.executeQuery();
-      while (rs.next()) {
-        query = "SELECT i.* FROM ingredient i INNER JOIN recipe_has_ingredient rhi ON i.id = rhi.ingredient_id INNER JOIN unit u ON i.unit_id = u.id WHERE rhi.recipe_id = ?";
-        stmt = this.db.prepareStatement(query);
-        stmt.setInt(1, rs.getInt(1));
-        ResultSet rs2 = stmt.executeQuery();
-        while (rs2.next()) {
-          int ingredientId = rs2.getInt(1);
-          String ingredientName = rs2.getString(2);
-          int ingredientQuantity = rs2.getInt(3);
-          int ingredientUnit = rs2.getInt(4);
-
-          boolean ingredientFound = false;
-
-          // Check if the ingredient is already in the shopping list
-          for (Pair<Ingredient, Integer> shoppingListItem : shoppingList.list) {
-
-            Ingredient shoppingListIngredient = shoppingListItem.getKey();
-            int shoppingListQuantity = shoppingListItem.getValue();
-
-            if (shoppingListIngredient.getId() == rs2.getInt("id")) {
-              shoppingList.list.remove(new Pair<Ingredient, Integer>(shoppingListIngredient, shoppingListQuantity));
-              shoppingListQuantity += ingredientQuantity;
-              Pair<Ingredient, Integer> updatedShoppingListItem = new Pair<>(shoppingListIngredient,
-                  shoppingListQuantity);
-              shoppingList.list.add(updatedShoppingListItem);
-              ingredientFound = true;
-              break;
-            }
-          }
-
-          // If the ingredient is not in the shopping list yet, add it
-          if (!ingredientFound) {
-            Ingredient ingredient = new Ingredient(ingredientId, ingredientName, ingredientQuantity, ingredientUnit);
-            Pair<Ingredient, Integer> shoppingListItem = new Pair<>(ingredient, ingredientQuantity);
-            shoppingList.list.add(shoppingListItem);
+  public void generateShoppingList(ShoppingList shoppingList, VBox[] vBox) {
+    for(VBox col : vBox) {
+      int i=0;
+      for(Node node : col.getChildren()) {
+        if(i%2==0) {
+          AnchorPane root = (AnchorPane) col.getChildren().get(i);
+          Spinner s = (Spinner) root.getChildren().get(1);
+          shoppingList.addPortions(Integer.valueOf(s.getValueFactory().getValue().toString()));
+        }
+        i++;
+      }
+    }
+    boolean f = false;
+    ArrayList<Recipe> recipes = shoppingList.getRecipeFromShoppingList();
+    for(Recipe recipe : recipes) {
+      ArrayList<Ingredient> ingredients = recipe.getIngredientList();
+      for(Ingredient ingredient : ingredients) {
+        ArrayList<Ingredient> ingredientsFromShoppingList = shoppingList.getIngredientsList();
+        f = false;
+        for(Ingredient ingredientFromSL : ingredientsFromShoppingList) {
+          if (ingredientFromSL.getName().equals(ingredient.getName())) {
+            shoppingList.editIngredientsList(ingredientsFromShoppingList.indexOf(ingredientFromSL), ingredient.getQuantity());
+            f = true;
           }
         }
+        if(!f) shoppingList.addIngredients(ingredient);
       }
-      return shoppingList;
-    } catch (SQLException e) {
-      return null;
+    }
+    try {
+      displayModifyShoppingListWindow(shoppingList);
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 
@@ -1346,7 +1339,7 @@ public class Controller {
 
   /**
    * Adds a node to the history stack. Also resets the forward-history stack.
-   * 
+   *
    * @param root The node that will be added to the stack
    */
   public void addRootToHistory(Node root) {
@@ -1357,7 +1350,7 @@ public class Controller {
   /**
    * Retrieves the first node in the history and add another one to the
    * forward-history to be able to go forward.
-   * 
+   *
    * @param currentPage The page to be added to the forward-history stack
    * @return The first Node in the history stack.
    */
@@ -1369,7 +1362,7 @@ public class Controller {
   /**
    * Retrieves the first node in the forward-history and add another one to the
    * history to be able to go back.
-   * 
+   *
    * @param currentPage The page to be added to the history stack
    * @return The first Node in the forward-history stack.
    */
@@ -1380,7 +1373,7 @@ public class Controller {
 
   /**
    * Tells whether it's possible to go back one page.
-   * 
+   *
    * @return {@code true} is the history stack is not empty
    */
   public boolean canGoBack() {
@@ -1389,7 +1382,7 @@ public class Controller {
 
   /**
    * Tells whether it's possible to go back forward page.
-   * 
+   *
    * @return {@code true} is the forward-history stack is not empty
    */
   public boolean canGoForward() {
