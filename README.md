@@ -95,9 +95,9 @@ of favourites
 so that I can display them later
 - [X] 23. As a user I want to add dishes to created weekly dinner lists (one, two
 or more dishes per day)
-- [ ] 24. As a user I want to be able to generate a shopping list with what I need
+- [X] 24. As a user I want to be able to generate a shopping list with what I need
 to by for a week
-- [ ] 25. As a user I want to be able to modify the shopping list so that it does
+- [X] 25. As a user I want to be able to modify the shopping list so that it does
 not contain things I already have at home
 - [X] 26. As a user I want to be able to send a recipe to another user so that he/she
 can cook it
