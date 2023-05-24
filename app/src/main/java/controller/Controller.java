@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.*;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -873,15 +874,15 @@ public class Controller {
 
   // TODO: need to add an Tag as well
   public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList,
-      ObservableList<Ingredient> ingredientObservableList, Image image) {
+                           ObservableList<Ingredient> ingredientObservableList, FileInputStream fileInputStream) {
     try {
       int recipe_id;
-      String query = "INSERT INTO recipe (name, shortDescription, description, imageURL) VALUES (?, ?, ?, ?)";
+      String query = "INSERT INTO recipe (name, shortDescription, description, image) VALUES (?, ?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, name);
       stmt.setString(2, shortDescription);
       stmt.setString(3, description);
-      stmt.setString(4, image.getUrl().toString());
+      stmt.setBinaryStream(4, fileInputStream);
       stmt.executeUpdate();
       query = "SELECT id FROM recipe WHERE name = ?";
       stmt = this.db.prepareStatement(query);

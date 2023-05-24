@@ -17,9 +17,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.scene.image.Image;
+import javafx.stage.Window;
 import model.*;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -80,6 +83,7 @@ public class AddRecipeController implements Initializable {
     private ArrayList<Recipe> recipes = controller.getRecipeList();
     private ObservableList<Ingredient> ingredients = controller.generateIngredient();
     private Image image;
+    private FileInputStream fileInputStream;
     //listener for changes in the name
     ChangeListener<String> changeListener = (observable, oldValue, newValue) -> {
         for (Recipe recipe : recipes) {
@@ -150,7 +154,7 @@ public class AddRecipeController implements Initializable {
             }
                 //selectBoxTagInts for loop for reading the elements out of the List
                 controller.newIngredient(ingredientList);
-                controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList, image);
+                controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList, fileInputStream);
                 alert("Recipe has been saved");
                 recipes.add(new Recipe(name));
                 //TODO: go back to the main page
@@ -319,11 +323,11 @@ public class AddRecipeController implements Initializable {
         alert.show();
     }
 
-    public void showBrowse(MouseEvent mouseEvent) {
+    public void showBrowse(MouseEvent mouseEvent) throws FileNotFoundException {
         FileChooser fileChooser = new FileChooser();
-         File file = fileChooser.showOpenDialog(controller.getStage());
+         File file = fileChooser.showOpenDialog(Controller.getInstance().getStage());
          image = new Image(file.toURI().toString());
          imageView.setImage(image);
-
+         fileInputStream = new FileInputStream(file);
     }
 }
