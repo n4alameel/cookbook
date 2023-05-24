@@ -39,7 +39,7 @@ public class ModifyShoppingListViewController {
     private VBox vBox = new VBox();
 
     public void loadShoppingList(ShoppingList shoppingList) {
-        vBox.setLayoutY(200);
+        vBox.setLayoutY(100);
         ingredientsList = shoppingList.getIngredientsList();
         for(Ingredient ingredient : ingredientsList) {
             Label name = new Label(ingredient.getName());

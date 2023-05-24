@@ -39,7 +39,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -684,11 +684,9 @@ public class Controller {
     secondaryStage.show();
   }
 
-  public void displayModifyShoppingListWindow(ShoppingList shoppingList) {
+  public void displayModifyShoppingListWindow(ShoppingList shoppingList) throws IOException {
     ModifyShoppingListView modifyShoppingListView = new ModifyShoppingListView(shoppingList);
-    Scene shoppingScene = new Scene(modifyShoppingListView.getRoot());
-    stage.setScene(shoppingScene);
-    stage.show();
+    this.mainView.LoadContent(modifyShoppingListView.getRoot(), false);
   }
 
   /**
@@ -903,7 +901,11 @@ public class Controller {
         if(!f) shoppingList.addIngredients(ingredient);
       }
     }
-    displayModifyShoppingListWindow(shoppingList);
+    try {
+      displayModifyShoppingListWindow(shoppingList);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList,
