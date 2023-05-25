@@ -14,6 +14,7 @@ import model.Comment;
 import model.User;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class UserInfoController {
@@ -27,7 +28,7 @@ public class UserInfoController {
     @FXML
     public Label ia;
     @FXML
-    public ImageView img;
+    public Pane imgBox;
     @FXML
     private AnchorPane userAnchorPane;
     @FXML
@@ -47,10 +48,13 @@ public class UserInfoController {
         ia.setText(isAdmin);
         Circle circle = new Circle(25, 25, 25);
         Image image = new Image(user.getImageUrl());
-        img.setImage(image);
+
+        // Create the ImageView
+        ImageView img = new ImageView(image);
         img.setFitWidth(60);
         img.setClip(circle);
         img.setFitHeight(50);
+        imgBox.getChildren().add(img);
         img.setLayoutY(img.getLayoutY() + 5);
         un.setLayoutY(img.getLayoutY() + 5);
         pd.setLayoutY(img.getLayoutY() + 5);

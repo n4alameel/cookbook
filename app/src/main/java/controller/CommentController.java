@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -33,7 +34,7 @@ public class CommentController {
     @FXML
     private VBox processingComment;
     @FXML
-    private ImageView commentatorAva;
+    private Pane commentatorAva;
     private int currentUserId;
     public void setComments(Comment commentByRecipe){
         this.comment = commentByRecipe;
@@ -45,7 +46,13 @@ public class CommentController {
         commentatorName.setFont(Font.font("System", FontWeight.BOLD, 14));
         commentatorName.setText(this.comment.getCommentatorName());
         Image imageObject = new Image(this.comment.getImgUrl());
-        commentatorAva.setImage(imageObject);
+        Circle circle = new Circle(25, 25, 25);
+        // Create the ImageView
+        ImageView img = new ImageView(imageObject);
+        img.setFitWidth(60);
+        img.setClip(circle);
+        img.setFitHeight(50);
+        commentatorAva.getChildren().add(img);
         if (this.currentUserId == this.comment.getUserId()){
             editBtn.setStyle("visibility: true");
             removeBtn.setStyle("visibility: true");
