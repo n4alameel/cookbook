@@ -486,7 +486,6 @@ public class Controller {
       Blob imageBlob = rs.getBlob(5);
       Recipe recipe;
       if (imageBlob != null) {
-        System.out.println("worked");
         InputStream binaryStream = imageBlob.getBinaryStream(1, imageBlob.length());
         recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
                 commentList, tagList, binaryStream);
