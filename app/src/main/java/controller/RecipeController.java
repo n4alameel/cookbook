@@ -88,6 +88,10 @@ public class RecipeController {
   private ComboBox<WeekDay> daySelector;
   @FXML
   private Label addMessage;
+  @FXML
+  private void sendRecipeEvent() {
+    controller.displaySendMessageView(this.recipe);
+  }
 
   public void setRecipe(int currentRecipeId) {
     Recipe updatedRecipe = this.controller.getRecipeById(currentRecipeId);

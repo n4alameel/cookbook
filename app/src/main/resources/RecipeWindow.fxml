@@ -48,7 +48,7 @@
                   </FlowPane>
                   <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" rowValignment="TOP">
                      <children>
-                        <Button mnemonicParsing="false" styleClass="action-btn" text="Send Recipe">
+                        <Button mnemonicParsing="false" styleClass="action-btn" text="Send Recipe" onAction="#sendRecipeEvent">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
