@@ -161,6 +161,7 @@ public class MainLayoutController {
 
   }
 
+
   public void openSearchPage() throws IOException {
     Query search = new Query();
     search.setQuery(searchField.getText());

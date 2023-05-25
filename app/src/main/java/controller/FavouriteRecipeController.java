@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import model.Recipe;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class FavouriteRecipeController {
@@ -89,6 +90,8 @@ public class FavouriteRecipeController {
         currentIndex++;
       } catch (IOException e) {
         e.printStackTrace(System.out);
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
       }
 
     }

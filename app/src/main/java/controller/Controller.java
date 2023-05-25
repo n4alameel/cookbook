@@ -1,6 +1,9 @@
 package controller;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Stack;
 
@@ -27,6 +29,7 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import model.Ingredient;
 import model.Recipe;
+import model.Time;
 import model.WeeklyList.WeekDay;
 
 import javafx.util.Pair;
@@ -39,7 +42,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=Grogu&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -547,9 +550,17 @@ public class Controller {
       ArrayList<Ingredient> ingredientList = getIngListByRecipeID(recipeId);
       ArrayList<Comment> commentList = getCommentListByRecipeID(recipeId);
       ArrayList<Tag> tagList = getTagListByRecipeID(recipeId);
-
-      Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-          ingredientList, commentList, tagList);
+      Blob imageBlob = rs.getBlob(5);
+      Recipe recipe;
+      if (imageBlob != null) {
+        InputStream binaryStream = imageBlob.getBinaryStream(1, imageBlob.length());
+        recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
+                commentList, tagList, binaryStream);
+      }
+      else {
+        recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
+                commentList, tagList);
+      }
       return recipe;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -912,15 +923,15 @@ public class Controller {
   }
 
   public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList,
-      ObservableList<Ingredient> ingredientObservableList, String imageURL) {
+                           ObservableList<Ingredient> ingredientObservableList, FileInputStream fileInputStream) {
     try {
       int recipe_id;
-      String query = "INSERT INTO recipe (name, shortDescription, description, imageURL) VALUES (?, ?, ?, ?)";
+      String query = "INSERT INTO recipe (name, shortDescription, description, image) VALUES (?, ?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, name);
       stmt.setString(2, shortDescription);
       stmt.setString(3, description);
-      stmt.setString(4, imageURL);
+      stmt.setBinaryStream(4, fileInputStream);
       stmt.executeUpdate();
       query = "SELECT id FROM recipe WHERE name = ?";
       stmt = this.db.prepareStatement(query);
@@ -931,15 +942,16 @@ public class Controller {
       ObservableList<Ingredient> ingredientsDB = generateIngredient();
       for (Ingredient ingredient : ingredientObservableList) {
         for (Ingredient ingredient1 : ingredientsDB)
-          if (ingredient.getName().equals(ingredient1.getName())) {
-            query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
-            stmt = this.db.prepareStatement(query);
-            stmt.setInt(1, recipe_id);
-            stmt.setInt(2, ingredient1.getId());
-            stmt.executeUpdate();
-            // System.out.println(ingredientIterator + recipe_id + ingredient.getName() +
-            // ingredient.getId());
-          }
+        if (ingredient.getName().equals(ingredient1.getName()) && ingredient.getUnit_id() == ingredient1.getUnit_id()) {
+          //TODO: it takes the first ingredient with the right name, i need to check the unit_id
+          query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
+          stmt = this.db.prepareStatement(query);
+          stmt.setInt(1, recipe_id);
+          stmt.setInt(2, ingredient1.getId());
+          stmt.executeUpdate();
+          break;
+          //System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
+        }
         /*
          * System.out.println(ingredientIterator + recipe_id + "name: " +
          * ingredient.getName() + " id: " + ingredient.getId() );

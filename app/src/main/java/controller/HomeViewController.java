@@ -13,6 +13,7 @@ import model.Recipe;
 
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class HomeViewController {
@@ -65,7 +66,7 @@ public class HomeViewController {
         favouriteHome.getChildren().get(favouriteHome.getChildren().size() - 1).toBack();
         col++;
         currentIndex++;
-      } catch (IOException e) {
+      } catch (IOException | SQLException e) {
         e.printStackTrace(System.out);
       }
     }
@@ -97,20 +98,22 @@ public class HomeViewController {
     int col = 0;
     int row = 0;
     // While the recipe list is not empty or we have not added 3 cards
-    while (currentIndex < recipeNum && currentIndex < maxNum) {
-      try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
-        Pane root = loader.load();
-        RecipeCardController cardController = loader.getController();
-        cardController.setRecipe(recommendationList.get(currentIndex).getId());
-        cardController.updateCard();
-        recommendationsHome.add(root, col % 3, row);
-        recommendationsHome.getChildren().get(recommendationsHome.getChildren().size() - 1).toBack();
-        col++;
-        currentIndex++;
-      } catch (IOException e) {
-        e.printStackTrace(System.out);
-      }
+    while (currentIndex < recipeNum && currentIndex < maxNum ) {
+        try {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecipeCard.fxml"));
+          Pane root = loader.load();
+          RecipeCardController cardController = loader.getController();
+            cardController.setRecipe(recommendationList.get(currentIndex).getId());
+            cardController.updateCard();
+            recommendationsHome.add(root, col % 3, row);
+          recommendationsHome.getChildren().get(recommendationsHome.getChildren().size() - 1).toBack();
+          col++;
+            currentIndex++;
+        } catch (IOException e) {
+          e.printStackTrace(System.out);
+        } catch (SQLException e) {
+          throw new RuntimeException(e);
+        }
 
     }
   }

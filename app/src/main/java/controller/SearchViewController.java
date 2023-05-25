@@ -11,6 +11,7 @@ import model.Recipe;
 import model.Tag;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,6 +48,8 @@ public class SearchViewController {
           }
         } catch (IOException e) {
           e.printStackTrace(System.out);
+        } catch (SQLException e) {
+          throw new RuntimeException(e);
         }
       }
       i++;
@@ -93,6 +96,8 @@ public class SearchViewController {
                 }
               } catch (IOException e) {
                 e.printStackTrace(System.out);
+              } catch (SQLException e) {
+                throw new RuntimeException(e);
               }
             }
           }
@@ -139,7 +144,7 @@ public class SearchViewController {
                 if (col % 3 == 0) {
                   row++;
                 }
-              } catch (IOException e) {
+              } catch (IOException | SQLException e) {
                 e.printStackTrace(System.out);
               }
             }
