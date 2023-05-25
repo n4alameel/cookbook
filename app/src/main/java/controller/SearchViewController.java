@@ -96,6 +96,8 @@ public class SearchViewController {
                 }
               } catch (IOException e) {
                 e.printStackTrace(System.out);
+              } catch (SQLException e) {
+                throw new RuntimeException(e);
               }
             }
           }
@@ -142,7 +144,7 @@ public class SearchViewController {
                 if (col % 3 == 0) {
                   row++;
                 }
-              } catch (IOException e) {
+              } catch (IOException | SQLException e) {
                 e.printStackTrace(System.out);
               }
             }
