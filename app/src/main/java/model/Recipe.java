@@ -1,5 +1,8 @@
 package model;
 
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Recipe {
@@ -11,6 +14,7 @@ public class Recipe {
   private ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
   private ArrayList<Comment> commentList = new ArrayList<Comment>();
   private ArrayList<Tag> tagList = new ArrayList<Tag>();
+  private InputStream inputStream;
 
   public Recipe(int id, String name, String description, String shortDescription,
       ArrayList<Ingredient> ingredientList, ArrayList<Comment> commentList, ArrayList<Tag> tagList) {
@@ -22,10 +26,22 @@ public class Recipe {
     this.commentList = commentList;
     this.tagList = tagList;
   }
+  public Recipe(int id, String name, String description, String shortDescription,
+                ArrayList<Ingredient> ingredientList, ArrayList<Comment> commentList, ArrayList<Tag> tagList, InputStream inputStream) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.shortDescription = shortDescription;
+    this.ingredientList = ingredientList;
+    this.commentList = commentList;
+    this.tagList = tagList;
+    this.inputStream = inputStream;
+  }
   //mocking for loading of a new recipe
   public Recipe(String name) {
     this.name = name;
   }
+
 
   public int getPortions() {
     return portions;
@@ -98,4 +114,7 @@ public class Recipe {
         + shortDescription + "]";
   }
 
+  public InputStream getBlob() throws SQLException {
+    return inputStream;
+  }
 }

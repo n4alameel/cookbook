@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import model.Recipe;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import model.User;
 
@@ -87,11 +88,14 @@ public class HomeViewController {
         RecipeCardController cardController = loader.getController();
         cardController.setRecipe(favouriteList.get(currentIndex).getId());
         cardController.updateCard();
+        cardController.showBlob();
         favouriteHome.add(root, col % 3, row);
         col++;
         currentIndex++;
       } catch (IOException e) {
         e.printStackTrace(System.out);
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
       }
     }
   }
@@ -129,11 +133,14 @@ public class HomeViewController {
           RecipeCardController cardController = loader.getController();
             cardController.setRecipe(recommendationList.get(currentIndex).getId());
             cardController.updateCard();
+            cardController.showBlob();
             recommendationsHome.add(root, col % 3, row);
             col++;
             currentIndex++;
         } catch (IOException e) {
           e.printStackTrace(System.out);
+        } catch (SQLException e) {
+          throw new RuntimeException(e);
         }
 
     }

@@ -3,18 +3,13 @@ package controller;
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.InputStream;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
-import java.sql.ResultSet;
 import java.util.List;
 
 import com.sun.javafx.binding.StringFormatter;
@@ -25,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Ingredient;
 import model.Recipe;
+import model.Time;
 import model.WeeklyList.WeekDay;
 
 import java.util.ArrayList;
@@ -487,9 +483,18 @@ public class Controller {
       ArrayList<Ingredient> ingredientList = getIngListByRecipeID(recipeId);
       ArrayList<Comment> commentList = getCommentListByRecipeID(recipeId);
       ArrayList<Tag> tagList = getTagListByRecipeID(recipeId);
-
-      Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
-          commentList, tagList);
+      Blob imageBlob = rs.getBlob(5);
+      Recipe recipe;
+      if (imageBlob != null) {
+        System.out.println("worked");
+        InputStream binaryStream = imageBlob.getBinaryStream(1, imageBlob.length());
+        recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
+                commentList, tagList, binaryStream);
+      }
+      else {
+        recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
+                commentList, tagList);
+      }
       return recipe;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -1290,5 +1295,4 @@ public class Controller {
       return 0;
     }
   }
-
 }
