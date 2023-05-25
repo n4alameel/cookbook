@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javafx.fxml.FXML;
@@ -86,6 +87,7 @@ public class AllRecipeWindowController {
         RecipeCardController cardController = loader.getController();
         cardController.setRecipe(recipeList.get(currentIndex).getId());
         cardController.updateCard();
+        cardController.showBlob();
         recipeGrid.add(root, col % 3, row);
         // Send the card to back so that the short description panel will always show up
         // on top of the other cards and not behind
@@ -97,6 +99,8 @@ public class AllRecipeWindowController {
         currentIndex++;
       } catch (IOException e) {
         e.printStackTrace(System.out);
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
       }
 
     }

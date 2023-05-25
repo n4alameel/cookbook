@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import model.Recipe;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class SearchViewController {
           RecipeCardController cardController = loader.getController();
           cardController.setRecipe(recipeList.get(i).getId());
           cardController.updateCard();
+          cardController.showBlob();
           searchGrid.add(root, col % 3, row);
           searchGrid.getChildren().get(searchGrid.getChildren().size() - 1).toBack();
           col++;
@@ -54,6 +56,8 @@ public class SearchViewController {
           }
         } catch (IOException e) {
           e.printStackTrace(System.out);
+        } catch (SQLException e) {
+          throw new RuntimeException(e);
         }
       }
       i++;

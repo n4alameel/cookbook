@@ -103,7 +103,25 @@ public class RecipeCardController {
     }
 
     public void showBlob() throws SQLException {
-      Image image = (new Image("img/HeartFull.png"));
+      Image image = (new Image("img/Default.png"));
+            double w = 0;
+            double h = 0;
+
+            double ratioX = recipePic.getFitWidth() / image.getWidth();
+            double ratioY = recipePic.getFitHeight() / image.getHeight();
+
+            double reducCoeff = 0;
+            if(ratioX >= ratioY) {
+                reducCoeff = ratioY;
+            } else {
+                reducCoeff = ratioX;
+            }
+
+            w = image.getWidth() * reducCoeff;
+            h = image.getHeight() * reducCoeff;
+
+            recipePic.setX((recipePic.getFitWidth() - w) / 2);
+            recipePic.setY((recipePic.getFitHeight() - h) / 2);
         try {
             if(recipe.getBlob() != null)
                 image = new Image(recipe.getBlob());

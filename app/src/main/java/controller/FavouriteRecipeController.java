@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import model.Recipe;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class FavouriteRecipeController {
@@ -82,6 +83,7 @@ public class FavouriteRecipeController {
         RecipeCardController cardController = loader.getController();
         cardController.setRecipe(favouriteList.get(currentIndex).getId());
         cardController.updateCard();
+        cardController.showBlob();
         favouriteGrid.add(root, col % 3, row);
         // Send the card to back so that the short description panel will always show up
         // on top of the other cards and not behind
@@ -93,6 +95,8 @@ public class FavouriteRecipeController {
         currentIndex++;
       } catch (IOException e) {
         e.printStackTrace(System.out);
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
       }
 
     }

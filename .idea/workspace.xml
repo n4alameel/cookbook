@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Bug fixed regarding wrong ingredient(unit)">
+    <list default="true" id="6d3b0a6b-8cd2-4ff8-acc6-fa1023590568" name="Changes" comment="Pictures working now &#10;just need to find a default to show and to look in which way to upload the pictures">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/HomeViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/HomeViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/AllRecipeWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/AllRecipeWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/FavouriteRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/FavouriteRecipeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/RecipeCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/RecipeCardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/controller/SearchViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/controller/SearchViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +97,7 @@
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zen\cookbook\app\src\main\resources\img" />
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\resources" />
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\resources\view" />
       <recent name="C:\Users\vanes\IdeaProjects\cookbook\app\src\main\java" />
@@ -451,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684761753952</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Pictures working now &#10;just need to find a default to show and to look in which way to upload the pictures">
+      <created>1685015088378</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1685015088378</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +474,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="running window." />
     <MESSAGE value="working login Page with FXML" />
     <MESSAGE value="deleted old login method" />
     <MESSAGE value="login home and add recipe(wrong button tho)" />
@@ -491,7 +498,8 @@
     <MESSAGE value="Error handling with alerts and some error handling" />
     <MESSAGE value="some css and design changes" />
     <MESSAGE value="Bug fixed regarding wrong ingredient(unit)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixed regarding wrong ingredient(unit)" />
+    <MESSAGE value="Pictures working now &#10;just need to find a default to show and to look in which way to upload the pictures" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pictures working now &#10;just need to find a default to show and to look in which way to upload the pictures" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
