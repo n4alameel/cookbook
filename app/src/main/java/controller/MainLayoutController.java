@@ -161,9 +161,6 @@ public class MainLayoutController {
 
   }
 
-  public void openHomeView(ActionEvent actionEvent) {
-
-  }
 
   public void openSearchPage() throws IOException {
     Query search = new Query();
