@@ -37,7 +37,8 @@ public class Recipe {
     this.tagList = tagList;
     this.inputStream = inputStream;
   }
-  //mocking for loading of a new recipe
+
+  // mocking for loading of a new recipe
   public Recipe(String name) {
     this.name = name;
   }

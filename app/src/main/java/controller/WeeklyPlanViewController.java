@@ -9,15 +9,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.Spinner;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.Recipe;
+import model.ShoppingList;
 import model.WeeklyList;
 import model.WeeklyList.WeekDay;
+import javafx.scene.text.Text;
+
+import javax.swing.*;
 
 public class WeeklyPlanViewController {
   private Controller controller = Controller.getInstance();
   private WeeklyList weeklyList;
+  private ShoppingList shoppingList = new ShoppingList();
 
   @FXML
   private Label weekNum;
@@ -39,13 +45,9 @@ public class WeeklyPlanViewController {
   private VBox sunCol;
 
   @FXML
-  private void goToMainMenu() throws IOException {
-    controller.displayHomeView();
-  }
-
-  @FXML
   private void eventShoppingList() throws IOException {
-
+    VBox[] columns = { monCol, tueCol, wedCol, thuCol, friCol, satCol, sunCol };
+    controller.generateShoppingList(shoppingList, columns);
   }
 
   public WeeklyList getWeeklyList() {
@@ -59,8 +61,8 @@ public class WeeklyPlanViewController {
   public void updateWindow() {
     weekNum.setText(Integer.toString(weeklyList.getWeekNumber()));
     year.setText(Integer.toString(weeklyList.getYear()));
-    EnumMap<WeekDay, ArrayList<Recipe>> list = weeklyList.getList();
     VBox[] columns = { monCol, tueCol, wedCol, thuCol, friCol, satCol, sunCol };
+    EnumMap<WeekDay, ArrayList<Recipe>> list = weeklyList.getList();
     WeekDay[] days = WeekDay.values();
     int i = 0;
 
@@ -77,6 +79,7 @@ public class WeeklyPlanViewController {
           weeklyPlanviewCardController.setWeeklyList(weeklyList);
           weeklyPlanviewCardController.setDay(days[i]);
           weeklyPlanviewCardController.updateCard();
+          shoppingList.addRecipeToShoppingList(r);
           Separator sep = new Separator(Orientation.HORIZONTAL);
           sep.setPrefHeight(10);
           col.getChildren().addAll(root, sep);

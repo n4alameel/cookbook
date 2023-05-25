@@ -10,6 +10,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import model.Recipe;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import java.io.InputStream;
 import java.sql.SQLException;
 
@@ -75,10 +78,10 @@ public class RecipeCardController {
         }
     }
 
-    @FXML
-    private void seeRecipe() {
-        controller.displayRecipeView(this.recipe.getId());
-    }
+  @FXML
+  private void seeRecipe() throws IOException {
+    this.controller.displayRecipeView(this.recipe.getId());
+  }
 
     /**
      * Shows the short description panel after a small delay.

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainLayoutController">
+   <children>
+      <VBox>
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="50.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" right="60.0" top="5.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="green-fill" />
+                  <String fx:value="header" />
+               </styleClass>
+               <children>
+                  <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="26.0" prefWidth="167.0" spacing="50.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#logoutEvent" styleClass="header-link" text="Logout" />
+                        <Button fx:id="adminPanel" mnemonicParsing="false" onAction="#goToUsersView" styleClass="header-link" text="Admin" visible="false" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <ButtonBar buttonMinWidth="0.0" buttonOrder="" prefHeight="26.0" prefWidth="931.0" HBox.hgrow="SOMETIMES">
+                     <buttons>
+                        <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openWeeklyPlanListView" styleClass="header-link" text="Meal Plans" />
+                        <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openShoppingListView" styleClass="header-link" text="Shopping List" />
+                        <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openChatView" styleClass="header-link" text="Chat Room" />
+                     </buttons>
+                  </ButtonBar>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="49.0" style="-fx-background-color: #FFFF;">
+               <children>
+                  <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="70.0" prefWidth="134.0">
+                     <children>
+                        <ImageView fitWidth="120.0" onMouseClicked="#openHomeView" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/logo.jpg" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" hgap="50.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefWidth="87.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#openAllRecipesView" styleClass="action-btn" text="Recipes">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/whisk.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefWidth="152.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#openFavouriteView" styleClass="action-btn" text="Favourite Recipes">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/Heart.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefWidth="112.0" prefWrapLength="0.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#openNewRecipeView" styleClass="action-btn" text="Add Recipe">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/add-recipe.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="70.0" prefWidth="52.0">
+                           <children>
+                              <Button fx:id="activeUserName" mnemonicParsing="false" styleClass="action-btn">
+                                 <graphic>
+                                    <ImageView fx:id="activeUserPhoto" fitHeight="43.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/ava.jpg" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </FlowPane>
+                     </children>
+                  </FlowPane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="60.0" right="60.0" />
+               </padding>
+            </HBox>
+            <Separator prefWidth="200.0" />
+         </children>
+      </VBox>
+      <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="700.0">
+         <content>
+            <BorderPane fx:id="rootLayout">
+               <bottom>
+                  <VBox BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="126.0" prefWidth="1182.0" styleClass="bottom">
+                           <children>
+                              <FlowPane columnHalignment="CENTER" prefWidth="343.0">
+                                 <children>
+                                    <VBox prefHeight="60.0" prefWidth="181.0" spacing="10.0">
+                                       <children>
+                                          <ImageView fitHeight="76.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img/logo-removebg.png" />
+                                             </image>
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport>
+                                          </ImageView>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This CookBook is made by students of Project course of Computer Science, COBOL group" wrappingWidth="180.00457763671875">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefWidth="342.0">
+                                 <children>
+                                    <VBox alignment="CENTER_LEFT" prefWidth="263.0" spacing="10.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quick Access" wrappingWidth="175.337890625">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Text>
+                                          <GridPane prefHeight="42.0" prefWidth="263.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+                                                <RowConstraints />
+                                             </rowConstraints>
+                                             <children>
+                                                <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openHomeView" styleClass="quick-access-btn" text="- All Recipes" GridPane.rowIndex="1" />
+                                                <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openWeeklyPlanListView" styleClass="quick-access-btn" text="- Meal Plan" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#openFavouriteView" styleClass="quick-access-btn" text="- Favourite Recipes" GridPane.rowIndex="2" />
+                                                <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="quick-access-btn" text="- Shopping List" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefWidth="302.0">
+                                 <children>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="263.0" spacing="10.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Need help?" wrappingWidth="175.337890625">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Text>
+                                          <Hyperlink alignment="CENTER" contentDisplay="CENTER" onAction="#showHelpEvent" opacity="0.87" prefHeight="30.0" prefWidth="200.0" text="Go to our help page &gt;" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="System Bold" size="10.0" />
+                                             </font>
+                                             <styleClass>
+                                                <String fx:value="help-btn" />
+                                                <String fx:value="green-fill" />
+                                             </styleClass>
+                                          </Hyperlink>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </FlowPane>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="10.0" left="60.0" right="60.0" top="2.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <styleClass>
+                              <String fx:value="green-fill" />
+                              <String fx:value="footer" />
+                           </styleClass>
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="footer-text" text="\@ Group Cobol, 2023" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets top="20.0" />
+                     </BorderPane.margin>
+                  </VBox>
+               </bottom>
+               <top>
+                  <AnchorPane maxWidth="-Infinity" stylesheets="@HomeWindow.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="searchField" onKeyPressed="#onSearchEnter" prefHeight="55.0" prefWidth="591.0" promptText="Search here..." />
+                        <Button fx:id="searchBtn" layoutX="510.0" layoutY="7.0" mnemonicParsing="false" onAction="#openSearchPage" prefHeight="40.0" prefWidth="74.0" text="Search" textFill="#171717">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <ComboBox fx:id="categoryComboBox" layoutX="354.0" layoutY="15.0" prefWidth="150.0" promptText="Choose category">
+                          <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Recipe" />
+                                <String fx:value="Tags" />
+                                <String fx:value="Ingredients" />
+                            </FXCollections>
+                          </items>
+                        </ComboBox>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets bottom="20.0" />
+                     </BorderPane.margin>
+                  </AnchorPane>
+               </top>
+               <center>
+                  <AnchorPane prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>

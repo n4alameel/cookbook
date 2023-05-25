@@ -5,28 +5,36 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Stack;
 
-import com.sun.javafx.binding.StringFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.Node;
 import model.Ingredient;
 import model.Recipe;
 import model.Time;
 import model.WeeklyList.WeekDay;
 
-import java.util.ArrayList;
 import javafx.util.Pair;
 import model.*;
-import org.w3c.dom.Text;
 import view.*;
 
 public class Controller {
@@ -35,7 +43,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -44,7 +52,12 @@ public class Controller {
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
   private Stage stage;
-  private model.Recipe recipe;
+  private Recipe recipe;
+
+  public MainLayoutView mainView;
+
+  private Stack<Node> historyStack = new Stack<>();
+  private Stack<Node> forwardHistoryStack = new Stack<>();
 
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
@@ -91,13 +104,6 @@ public class Controller {
     return time;
   }
 
-  public void displaySearchView() {
-    SearchView searchView = new SearchView();
-    Scene searchScene = new Scene(searchView.getRoot());
-    stage.setScene(searchScene);
-    stage.show();
-  }
-
   /**
    * Try to connect to the database.
    *
@@ -125,7 +131,7 @@ public class Controller {
   /**
    * Try to log in a user depending of given credentials. It also loads all the
    * necessary data from the database that are linked to that user.
-   * 
+   *
    * @param username The user's username
    * @param password The user's password
    * @return true if the connection is done, false if the user doesn't exist in
@@ -167,10 +173,11 @@ public class Controller {
    */
   private User createUser(ResultSet rs, int id) {
     try {
-      Boolean b;
-      if(rs.getInt("isAdmin")==1) b=true;
-      else b=false;
-      return new User(Integer.valueOf(rs.getString("id")), rs.getString("username"), rs.getString("password"), b, rs.getString("imageUrl"));
+      boolean isAdmin = false;
+      if (rs.getInt(4) == 1) {
+        isAdmin = true;
+      }
+      return new User(id, rs.getString(2), rs.getString(3), isAdmin, rs.getString(5));
     } catch (SQLException e) {
       return null;
     }
@@ -201,6 +208,66 @@ public class Controller {
     } catch (SQLException e) {
       return null;
     }
+  }
+
+  public List<String> selectRecipeFromDatabase() {
+    List<String> data = new ArrayList<>();
+
+    try (Connection connection = dbconnect();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT name FROM cookbook.recipe")) {
+
+      while (resultSet.next()) {
+        String value = resultSet.getString("name");
+        data.add(value);
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return data;
+  }
+
+  public ArrayList<Ingredient> selectIngredientsFromDatabase() {
+    ArrayList<Ingredient> ingredients = new ArrayList<>();
+    try (Connection connection = dbconnect();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM cookbook.recipe_has_ingredient " +
+            "JOIN cookbook.ingredient ON " +
+            "recipe_has_ingredient.ingredient_id = " +
+            "ingredient.id")) {
+      while (resultSet.next()) {
+        int recipeID = resultSet.getInt("recipe_id");
+        String ingredientName = resultSet.getString("name");
+        int ingredientID = resultSet.getInt("ingredient_id");
+        Ingredient ingredient = new Ingredient(ingredientID, ingredientName, recipeID);
+        ingredients.add(ingredient);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return ingredients;
+  }
+
+  public ArrayList<Tag> selectTagsFromDatabase() {
+    ArrayList<Tag> tagArrayList = new ArrayList<>();
+    try (Connection connection = dbconnect();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM cookbook.recipe_has_tag " +
+            "JOIN cookbook.tag ON " +
+            "recipe_has_tag.tag_id = " +
+            "tag.id")) {
+      while (resultSet.next()) {
+        int tagID = resultSet.getInt("tag_id");
+        String tagName = resultSet.getString("name");
+        int recipeID = resultSet.getInt("recipe_id");
+        Tag tag = new Tag(tagID, tagName, recipeID);
+        tagArrayList.add(tag);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return tagArrayList;
   }
 
   private ArrayList<Comment> generateCommentListFromDb(int recipeId) {
@@ -377,7 +444,7 @@ public class Controller {
 
   /**
    * Create an Ingredient object from a MySQL query result.
-   * 
+   *
    * @param ingRs a query result
    * @return An Ingredient object
    */
@@ -394,12 +461,13 @@ public class Controller {
   private Comment createComment(ResultSet comRs) {
     try {
       Comment c = new Comment(Integer.parseInt(comRs.getString(1)), Integer.parseInt(comRs.getString(2)),
-          Integer.parseInt(comRs.getString(3)), comRs.getString(4), comRs.getString(5));
+          Integer.parseInt(comRs.getString(3)), comRs.getString(4), comRs.getString(5), comRs.getString(6));
       return c;
     } catch (SQLException e) {
       return null;
     }
   }
+
   private Tag createTag(ResultSet tagRs) {
     try {
       Tag t = new Tag(Integer.parseInt(tagRs.getString(1)), tagRs.getString(2), Integer.parseInt(tagRs.getString(3)));
@@ -408,9 +476,10 @@ public class Controller {
       return null;
     }
   }
+
   public ArrayList<Comment> getCommentListByRecipeID(int recipeId) {
     try {
-      String query = "select C.id, C.user_id, C.recipe_id, C.text, U.username from comment C join user U on C.user_id = U.id where C.recipe_id = ?";
+      String query = "select C.id, C.user_id, C.recipe_id, C.text, U.username, U.imageUrl from comment C join user U on C.user_id = U.id where C.recipe_id = ?";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setInt(1, recipeId);
       ResultSet rs = stmt.executeQuery();
@@ -437,7 +506,6 @@ public class Controller {
 
       ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
 
-
       while (rs.next()) {
         Ingredient ingredient = createIngredient(rs);
         ingredientList.add(ingredient);
@@ -448,6 +516,7 @@ public class Controller {
       return null;
     }
   }
+
   public ArrayList<Tag> getTagListByRecipeID(int recipeId) {
     try {
       String query = "select T.id, T.name, T.user_id from recipe R join recipe_has_tag RT on R.id = RT.recipe_id join tag T on T.id = RT.tag_id where R.id = ?";
@@ -456,7 +525,6 @@ public class Controller {
       ResultSet rs = stmt.executeQuery();
 
       ArrayList<Tag> tagList = new ArrayList<Tag>();
-
 
       while (rs.next()) {
         Tag tag = createTag(rs);
@@ -471,7 +539,7 @@ public class Controller {
 
   /**
    * Create a Recipe object from a MySQL query result.
-   * 
+   *
    * @recipeId The recipe ID
    * @param rs The query result
    * @ingredientList The list of all ingredients used in the recipe
@@ -514,41 +582,39 @@ public class Controller {
   /**
    * Creates and displays the recipe browser scene.
    */
-  public void displayBrowserView() {
+  public void displayBrowserView() throws IOException {
     BrowserView browserView = new BrowserView();
-    Scene browserScene = new Scene(browserView.getRoot());
-    stage.setScene(browserScene);
-    stage.show();
+    this.mainView.LoadContent(browserView.getRoot(), false);
   }
 
   /**
    * Creates and display the recipe details scene.
    */
-  public void displayRecipeView(int recipeId) {
+  public void displayRecipeView(int recipeId) throws IOException {
     RecipeView recipeView = new RecipeView(recipeId);
-    Scene recipeScene = new Scene(recipeView.getRoot());
-    stage.setScene(recipeScene);
-    stage.show();
+    this.mainView.LoadContent(recipeView.getRoot(), false);
   }
 
   /**
    * Creates and displays the home scene.
    */
-  public void displayHomeView() {
+  // private Scene mainScene;
+  public void displayHomeView(boolean initialLoad) throws IOException {
     HomeView homeView = new HomeView();
-    Scene mainScene = new Scene(homeView.getRoot());
-    stage.setScene(mainScene);
-    stage.show();
+    this.mainView.LoadContent(homeView.getRoot(), initialLoad);
   }
 
   /**
    * Creates and display the favourite scene.
    */
-  public void displayFavouriteView() {
+  public void displayFavouriteView() throws IOException {
     FavouriteView favouriteView = new FavouriteView();
-    Scene favouriteScene = new Scene(favouriteView.getRoot());
-    stage.setScene(favouriteScene);
-    stage.show();
+    this.mainView.LoadContent(favouriteView.getRoot(), false);
+  }
+
+  public void displaySearchView(Query search, String selectedOption) throws IOException {
+    SearchView searchView = new SearchView(search, selectedOption);
+    this.mainView.LoadContent(searchView.getRoot(), false);
   }
 
   /**
@@ -556,47 +622,40 @@ public class Controller {
    */
   public void displayHelpPage() {
     HelpView helpView = new HelpView();
-    Scene helpScene = new Scene(helpView.getRoot());
-    stage.setScene(helpScene);
-    stage.show();
+    Scene helpScene = new Scene(helpView.getRoot(), 1250, 750);
+    Stage helpStage = new Stage();
+    helpStage.setTitle("Help Page");
+    helpStage.setScene(helpScene);
+    helpStage.show();
   }
-
 
   /**
    * Creates and displays the new recipe prompt scene.
    */
-  public void displayNewRecipeView() {
+  public void displayNewRecipeView() throws IOException {
     NewRecipeView newRecipeView = new NewRecipeView();
-    Scene newRecipeScene = new Scene(newRecipeView.getRoot());
-    Stage secondaryStage = new Stage();
-    secondaryStage.setScene(newRecipeScene);
-    secondaryStage.show();
+    this.mainView.LoadContent(newRecipeView.getRoot(), false);
   }
 
-  public void displayWeeklyPlanListView() {
+  public void displayWeeklyPlanListView() throws IOException {
     WeeklyPlanListView weeklyPlanListView = new WeeklyPlanListView();
-    Scene weeklyPlanListScene = new Scene(weeklyPlanListView.getRoot());
-    stage.setScene(weeklyPlanListScene);
-    stage.show();
+    this.mainView.LoadContent(weeklyPlanListView.getRoot(), false);
   }
 
-  public void displayWeeklyPlanView(WeeklyList weeklyList) {
+  public void displayWeeklyPlanView(WeeklyList weeklyList) throws IOException {
     WeeklyPlanView weeklyPlanView = new WeeklyPlanView(weeklyList);
-    Scene weeklyScene = new Scene(weeklyPlanView.getRoot());
-    stage.setScene(weeklyScene);
-    stage.show();
+    this.mainView.LoadContent((weeklyPlanView.getRoot()), false);
   }
 
   /**
    * Creates and displays administrative panel
    */
 
-  public void displayUsersView() {
+  public void displayUsersView() throws IOException {
     UsersView usersView = new UsersView();
-    Scene usersScene = new Scene(usersView.getRoot());
-    stage.setScene(usersScene);
-    stage.show();
+    this.mainView.LoadContent(usersView.getRoot(), false);
   }
+
   /**
    * Displays a window for adding new users.
    */
@@ -621,12 +680,9 @@ public class Controller {
   /**
    * Creates and displays the message scene.
    */
-  public void displayMessageView() {
+  public void displayMessageView() throws IOException {
     MessageView messageView = new MessageView();
-    Scene messageViewScene = new Scene(messageView.getRoot());
-    Stage secondaryStage = new Stage();
-    secondaryStage.setScene(messageViewScene);
-    secondaryStage.show();
+    this.mainView.LoadContent(messageView.getRoot(), false);
   }
 
   /**
@@ -638,6 +694,11 @@ public class Controller {
     Stage secondaryStage = new Stage();
     secondaryStage.setScene(sendMessageViewScene);
     secondaryStage.show();
+  }
+
+  public void displayModifyShoppingListWindow(ShoppingList shoppingList) throws IOException {
+    ModifyShoppingListView modifyShoppingListView = new ModifyShoppingListView(shoppingList);
+    this.mainView.LoadContent(modifyShoppingListView.getRoot(), false);
   }
 
   /**
@@ -824,59 +885,41 @@ public class Controller {
    * list. Then we recover every ingredient from every meal of a week and add them
    * to a list.
    */
-  public ShoppingList generateShoppingList(int weekNumber, int user_id) {
-    try {
-      ShoppingList shoppingList = new ShoppingList(weekNumber, user_id);
-      String query = "SELECT dlr.* FROM day_list_has_recipe dlr INNER JOIN day_list dl ON dlr.day_list_id = dl.id INNER JOIN week_list wl ON dl.week_list_id = wl.id WHERE wl.weekNumber = ? AND wl.user_id = ?";
-      PreparedStatement stmt = this.db.prepareStatement(query);
-      stmt.setInt(1, weekNumber);
-      stmt.setInt(2, user_id);
-      ResultSet rs = stmt.executeQuery();
-      while (rs.next()) {
-        query = "SELECT i.* FROM ingredient i INNER JOIN recipe_has_ingredient rhi ON i.id = rhi.ingredient_id INNER JOIN unit u ON i.unit_id = u.id WHERE rhi.recipe_id = ?";
-        stmt = this.db.prepareStatement(query);
-        stmt.setInt(1, rs.getInt(1));
-        ResultSet rs2 = stmt.executeQuery();
-        while (rs2.next()) {
-          int ingredientId = rs2.getInt(1);
-          String ingredientName = rs2.getString(2);
-          int ingredientQuantity = rs2.getInt(3);
-          int ingredientUnit = rs2.getInt(4);
-
-          boolean ingredientFound = false;
-
-          // Check if the ingredient is already in the shopping list
-          for (Pair<Ingredient, Integer> shoppingListItem : shoppingList.list) {
-
-            Ingredient shoppingListIngredient = shoppingListItem.getKey();
-            int shoppingListQuantity = shoppingListItem.getValue();
-
-            if (shoppingListIngredient.getId() == rs2.getInt("id")) {
-              shoppingList.list.remove(new Pair<Ingredient, Integer>(shoppingListIngredient, shoppingListQuantity));
-              shoppingListQuantity += ingredientQuantity;
-              Pair<Ingredient, Integer> updatedShoppingListItem = new Pair<>(shoppingListIngredient,
-                  shoppingListQuantity);
-              shoppingList.list.add(updatedShoppingListItem);
-              ingredientFound = true;
-              break;
-            }
-          }
-
-          // If the ingredient is not in the shopping list yet, add it
-          if (!ingredientFound) {
-            Ingredient ingredient = new Ingredient(ingredientId, ingredientName, ingredientQuantity, ingredientUnit);
-            Pair<Ingredient, Integer> shoppingListItem = new Pair<>(ingredient, ingredientQuantity);
-            shoppingList.list.add(shoppingListItem);
+  public void generateShoppingList(ShoppingList shoppingList, VBox[] vBox) {
+    for(VBox col : vBox) {
+      int i=0;
+      for(Node node : col.getChildren()) {
+        if(i%2==0) {
+          AnchorPane root = (AnchorPane) col.getChildren().get(i);
+          Spinner s = (Spinner) root.getChildren().get(1);
+          shoppingList.addPortions(Integer.valueOf(s.getValueFactory().getValue().toString()));
+        }
+        i++;
+      }
+    }
+    boolean f = false;
+    ArrayList<Recipe> recipes = shoppingList.getRecipeFromShoppingList();
+    for(Recipe recipe : recipes) {
+      ArrayList<Ingredient> ingredients = recipe.getIngredientList();
+      for(Ingredient ingredient : ingredients) {
+        ArrayList<Ingredient> ingredientsFromShoppingList = shoppingList.getIngredientsList();
+        f = false;
+        for(Ingredient ingredientFromSL : ingredientsFromShoppingList) {
+          if (ingredientFromSL.getName().equals(ingredient.getName())) {
+            shoppingList.editIngredientsList(ingredientsFromShoppingList.indexOf(ingredientFromSL), ingredient.getQuantity());
+            f = true;
           }
         }
+        if(!f) shoppingList.addIngredients(ingredient);
       }
-      return shoppingList;
-    } catch (SQLException e) {
-      return null;
+    }
+    try {
+      displayModifyShoppingListWindow(shoppingList);
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 
-  // TODO: need to add an Tag as well
   public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList,
                            ObservableList<Ingredient> ingredientObservableList, FileInputStream fileInputStream) {
     try {
@@ -1146,6 +1189,8 @@ public class Controller {
       this.displayRecipeView(changedComment.getRecipeId());
     } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
   }
 
@@ -1168,6 +1213,14 @@ public class Controller {
     } catch (Exception e) {
       return false;
     }
+  }
+
+  public void displayMainLayout() throws IOException {
+    this.mainView = new MainLayoutView();
+    Scene mainScene = new Scene(this.mainView.getRoot(), 1250, 750);
+    stage.setScene(mainScene);
+    stage.show();
+    this.displayHomeView(true);
   }
 
   public ArrayList<User> getUsers() {
@@ -1294,4 +1347,59 @@ public class Controller {
       return 0;
     }
   }
+
+  /***************** History system *****************/
+
+  /**
+   * Adds a node to the history stack. Also resets the forward-history stack.
+   *
+   * @param root The node that will be added to the stack
+   */
+  public void addRootToHistory(Node root) {
+    this.forwardHistoryStack.clear();
+    this.historyStack.push(root);
+  }
+
+  /**
+   * Retrieves the first node in the history and add another one to the
+   * forward-history to be able to go forward.
+   *
+   * @param currentPage The page to be added to the forward-history stack
+   * @return The first Node in the history stack.
+   */
+  public Node goBackOnePage(Node currentPage) {
+    this.forwardHistoryStack.push(currentPage);
+    return this.historyStack.pop();
+  }
+
+  /**
+   * Retrieves the first node in the forward-history and add another one to the
+   * history to be able to go back.
+   *
+   * @param currentPage The page to be added to the history stack
+   * @return The first Node in the forward-history stack.
+   */
+  public Node goForwardOnePage(Node currentPage) {
+    this.historyStack.push(currentPage);
+    return this.forwardHistoryStack.pop();
+  }
+
+  /**
+   * Tells whether it's possible to go back one page.
+   *
+   * @return {@code true} is the history stack is not empty
+   */
+  public boolean canGoBack() {
+    return !this.historyStack.empty();
+  }
+
+  /**
+   * Tells whether it's possible to go back forward page.
+   *
+   * @return {@code true} is the forward-history stack is not empty
+   */
+  public boolean canGoForward() {
+    return !this.forwardHistoryStack.empty();
+  }
+
 }

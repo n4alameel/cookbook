@@ -24,10 +24,6 @@ public class FavouriteRecipeController {
   public FavouriteRecipeController() {
   }
 
-  public void goToHomePage() throws IOException {
-    controller.displayHomeView();
-  }
-
   public void openNewRecipe() throws IOException {
     controller.displayNewRecipeView();
   }
