@@ -47,7 +47,6 @@ public class SearchViewController {
           RecipeCardController cardController = loader.getController();
           cardController.setRecipe(recipeList.get(i).getId());
           cardController.updateCard();
-          cardController.showBlob();
           searchGrid.add(root, col % 3, row);
           searchGrid.getChildren().get(searchGrid.getChildren().size() - 1).toBack();
           col++;

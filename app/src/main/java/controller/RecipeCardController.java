@@ -47,12 +47,13 @@ public class RecipeCardController {
         this.recipe = updatedRecipe;
     }
 
-    public void updateCard() {
+    public void updateCard() throws SQLException {
         recipeName.setText(this.recipe.getName());
         if (controller.getActiveUser().isFavourite(this.recipe)) {
             favBtn.setImage(new Image("img/HeartFull.png"));
         }
         shortDesc.setText(this.recipe.getDescription());
+        showBlob();
     }
 
     @FXML

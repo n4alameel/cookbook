@@ -83,7 +83,6 @@ public class FavouriteRecipeController {
         RecipeCardController cardController = loader.getController();
         cardController.setRecipe(favouriteList.get(currentIndex).getId());
         cardController.updateCard();
-        cardController.showBlob();
         favouriteGrid.add(root, col % 3, row);
         // Send the card to back so that the short description panel will always show up
         // on top of the other cards and not behind

@@ -88,7 +88,6 @@ public class HomeViewController {
         RecipeCardController cardController = loader.getController();
         cardController.setRecipe(favouriteList.get(currentIndex).getId());
         cardController.updateCard();
-        cardController.showBlob();
         favouriteHome.add(root, col % 3, row);
         col++;
         currentIndex++;
@@ -133,7 +132,6 @@ public class HomeViewController {
           RecipeCardController cardController = loader.getController();
             cardController.setRecipe(recommendationList.get(currentIndex).getId());
             cardController.updateCard();
-            cardController.showBlob();
             recommendationsHome.add(root, col % 3, row);
             col++;
             currentIndex++;
