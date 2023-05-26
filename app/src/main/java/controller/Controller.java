@@ -1,9 +1,10 @@
 package controller;
 
-import java.awt.*;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.*;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,23 +14,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
-import java.sql.ResultSet;
 import java.util.List;
+import java.util.Stack;
 
-import com.sun.javafx.binding.StringFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.Node;
 import model.Ingredient;
 import model.Recipe;
+import model.Time;
 import model.WeeklyList.WeekDay;
 
-import java.util.ArrayList;
 import javafx.util.Pair;
 import model.*;
-import org.w3c.dom.Text;
 import view.*;
 
 public class Controller {
@@ -38,7 +42,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=root&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -47,9 +51,12 @@ public class Controller {
   private model.User activeUser;
   private ArrayList<Recipe> recipeList;
   private Stage stage;
-  private model.Recipe recipe;
+  private Recipe recipe;
 
   public MainLayoutView mainView;
+
+  private Stack<Node> historyStack = new Stack<>();
+  private Stack<Node> forwardHistoryStack = new Stack<>();
 
   public ArrayList<Recipe> getRecipeList() {
     return recipeList;
@@ -244,11 +251,11 @@ public class Controller {
   public ArrayList<Tag> selectTagsFromDatabase() {
     ArrayList<Tag> tagArrayList = new ArrayList<>();
     try (Connection connection = dbconnect();
-         Statement statement = connection.createStatement();
-         ResultSet resultSet = statement.executeQuery("SELECT * FROM cookbook.recipe_has_tag " +
-                 "JOIN cookbook.tag ON " +
-                 "recipe_has_tag.tag_id = " +
-                 "tag.id")) {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM cookbook.recipe_has_tag " +
+            "JOIN cookbook.tag ON " +
+            "recipe_has_tag.tag_id = " +
+            "tag.id")) {
       while (resultSet.next()) {
         int tagID = resultSet.getInt("tag_id");
         String tagName = resultSet.getString("name");
@@ -543,9 +550,17 @@ public class Controller {
       ArrayList<Ingredient> ingredientList = getIngListByRecipeID(recipeId);
       ArrayList<Comment> commentList = getCommentListByRecipeID(recipeId);
       ArrayList<Tag> tagList = getTagListByRecipeID(recipeId);
-
-      Recipe recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-          ingredientList, commentList, tagList);
+      Blob imageBlob = rs.getBlob(5);
+      Recipe recipe;
+      if (imageBlob != null) {
+        InputStream binaryStream = imageBlob.getBinaryStream(1, imageBlob.length());
+        recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
+                commentList, tagList, binaryStream);
+      }
+      else {
+        recipe = new Recipe(recipeId, rs.getString(2), rs.getString(3), rs.getString(4), ingredientList,
+                commentList, tagList);
+      }
       return recipe;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -568,7 +583,7 @@ public class Controller {
    */
   public void displayBrowserView() throws IOException {
     BrowserView browserView = new BrowserView();
-    this.mainView.LoadContent(browserView.getRoot());
+    this.mainView.LoadContent(browserView.getRoot(), false);
   }
 
   /**
@@ -576,16 +591,16 @@ public class Controller {
    */
   public void displayRecipeView(int recipeId) throws IOException {
     RecipeView recipeView = new RecipeView(recipeId);
-    this.mainView.LoadContent(recipeView.getRoot());
+    this.mainView.LoadContent(recipeView.getRoot(), false);
   }
 
   /**
    * Creates and displays the home scene.
    */
   // private Scene mainScene;
-  public void displayHomeView() throws IOException {
+  public void displayHomeView(boolean initialLoad) throws IOException {
     HomeView homeView = new HomeView();
-    this.mainView.LoadContent(homeView.getRoot());
+    this.mainView.LoadContent(homeView.getRoot(), initialLoad);
   }
 
   /**
@@ -593,12 +608,12 @@ public class Controller {
    */
   public void displayFavouriteView() throws IOException {
     FavouriteView favouriteView = new FavouriteView();
-    this.mainView.LoadContent(favouriteView.getRoot());
+    this.mainView.LoadContent(favouriteView.getRoot(), false);
   }
 
   public void displaySearchView(Query search, String selectedOption) throws IOException {
     SearchView searchView = new SearchView(search, selectedOption);
-    this.mainView.LoadContent(searchView.getRoot());
+    this.mainView.LoadContent(searchView.getRoot(), false);
   }
 
   /**
@@ -618,17 +633,17 @@ public class Controller {
    */
   public void displayNewRecipeView() throws IOException {
     NewRecipeView newRecipeView = new NewRecipeView();
-    this.mainView.LoadContent(newRecipeView.getRoot());
+    this.mainView.LoadContent(newRecipeView.getRoot(), false);
   }
 
   public void displayWeeklyPlanListView() throws IOException {
     WeeklyPlanListView weeklyPlanListView = new WeeklyPlanListView();
-    this.mainView.LoadContent(weeklyPlanListView.getRoot());
+    this.mainView.LoadContent(weeklyPlanListView.getRoot(), false);
   }
 
   public void displayWeeklyPlanView(WeeklyList weeklyList) throws IOException {
     WeeklyPlanView weeklyPlanView = new WeeklyPlanView(weeklyList);
-    this.mainView.LoadContent((weeklyPlanView.getRoot()));
+    this.mainView.LoadContent((weeklyPlanView.getRoot()), false);
   }
 
   /**
@@ -637,7 +652,7 @@ public class Controller {
 
   public void displayUsersView() throws IOException {
     UsersView usersView = new UsersView();
-    this.mainView.LoadContent(usersView.getRoot());
+    this.mainView.LoadContent(usersView.getRoot(), false);
   }
 
   /**
@@ -666,7 +681,7 @@ public class Controller {
    */
   public void displayMessageView() throws IOException {
     MessageView messageView = new MessageView();
-    this.mainView.LoadContent(messageView.getRoot());
+    this.mainView.LoadContent(messageView.getRoot(), false);
   }
 
   /**
@@ -678,6 +693,11 @@ public class Controller {
     Stage secondaryStage = new Stage();
     secondaryStage.setScene(sendMessageViewScene);
     secondaryStage.show();
+  }
+
+  public void displayModifyShoppingListWindow() throws IOException {
+    ModifyShoppingListView modifyShoppingListView = new ModifyShoppingListView(this.activeUser.getShoppingList());
+    this.mainView.LoadContent(modifyShoppingListView.getRoot(), false);
   }
 
   /**
@@ -864,69 +884,54 @@ public class Controller {
    * list. Then we recover every ingredient from every meal of a week and add them
    * to a list.
    */
-  public ShoppingList generateShoppingList(int weekNumber, int user_id) {
-    try {
-      ShoppingList shoppingList = new ShoppingList(weekNumber, user_id);
-      String query = "SELECT dlr.* FROM day_list_has_recipe dlr INNER JOIN day_list dl ON dlr.day_list_id = dl.id INNER JOIN week_list wl ON dl.week_list_id = wl.id WHERE wl.weekNumber = ? AND wl.user_id = ?";
-      PreparedStatement stmt = this.db.prepareStatement(query);
-      stmt.setInt(1, weekNumber);
-      stmt.setInt(2, user_id);
-      ResultSet rs = stmt.executeQuery();
-      while (rs.next()) {
-        query = "SELECT i.* FROM ingredient i INNER JOIN recipe_has_ingredient rhi ON i.id = rhi.ingredient_id INNER JOIN unit u ON i.unit_id = u.id WHERE rhi.recipe_id = ?";
-        stmt = this.db.prepareStatement(query);
-        stmt.setInt(1, rs.getInt(1));
-        ResultSet rs2 = stmt.executeQuery();
-        while (rs2.next()) {
-          int ingredientId = rs2.getInt(1);
-          String ingredientName = rs2.getString(2);
-          int ingredientQuantity = rs2.getInt(3);
-          int ingredientUnit = rs2.getInt(4);
-
-          boolean ingredientFound = false;
-
-          // Check if the ingredient is already in the shopping list
-          for (Pair<Ingredient, Integer> shoppingListItem : shoppingList.list) {
-
-            Ingredient shoppingListIngredient = shoppingListItem.getKey();
-            int shoppingListQuantity = shoppingListItem.getValue();
-
-            if (shoppingListIngredient.getId() == rs2.getInt("id")) {
-              shoppingList.list.remove(new Pair<Ingredient, Integer>(shoppingListIngredient, shoppingListQuantity));
-              shoppingListQuantity += ingredientQuantity;
-              Pair<Ingredient, Integer> updatedShoppingListItem = new Pair<>(shoppingListIngredient,
-                  shoppingListQuantity);
-              shoppingList.list.add(updatedShoppingListItem);
-              ingredientFound = true;
-              break;
-            }
-          }
-
-          // If the ingredient is not in the shopping list yet, add it
-          if (!ingredientFound) {
-            Ingredient ingredient = new Ingredient(ingredientId, ingredientName, ingredientQuantity, ingredientUnit);
-            Pair<Ingredient, Integer> shoppingListItem = new Pair<>(ingredient, ingredientQuantity);
-            shoppingList.list.add(shoppingListItem);
+  public void generateShoppingList(ShoppingList shoppingList, VBox[] vBox) {
+    for (VBox col : vBox) {
+      int i = 0;
+      for (Node node : col.getChildren()) {
+        if (i % 2 == 0) {
+          AnchorPane root = (AnchorPane) col.getChildren().get(i);
+          Spinner s = (Spinner) root.getChildren().get(1);
+          shoppingList.addPortions(Integer.valueOf(s.getValueFactory().getValue().toString()));
+        }
+        i++;
+      }
+    }
+    boolean f = false;
+    ArrayList<Recipe> recipes = shoppingList.getRecipeFromShoppingList();
+    for (Recipe recipe : recipes) {
+      ArrayList<Ingredient> ingredients = recipe.getIngredientList();
+      for (Ingredient ingredient : ingredients) {
+        ArrayList<Ingredient> ingredientsFromShoppingList = shoppingList.getIngredientsList();
+        f = false;
+        for (Ingredient ingredientFromSL : ingredientsFromShoppingList) {
+          if (ingredientFromSL.getName().equals(ingredient.getName())) {
+            shoppingList.editIngredientsList(ingredientsFromShoppingList.indexOf(ingredientFromSL),
+                ingredient.getQuantity());
+            f = true;
           }
         }
+        if (!f)
+          shoppingList.addIngredients(ingredient);
       }
-      return shoppingList;
-    } catch (SQLException e) {
-      return null;
+    }
+    this.activeUser.setShoppingList(shoppingList);
+    try {
+      displayModifyShoppingListWindow();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 
-  // TODO: need to add an Tag as well
   public boolean newRecipe(String name, String description, String shortDescription, ObservableList<Integer> tagList,
-      ObservableList<Ingredient> ingredientObservableList, String imageURL) {
+                           ObservableList<Ingredient> ingredientObservableList, FileInputStream fileInputStream) {
     try {
       int recipe_id;
-      String query = "INSERT INTO recipe (name, shortDescription, description, imageURL) VALUES (?, ?, ?, ?)";
+      String query = "INSERT INTO recipe (name, shortDescription, description, image) VALUES (?, ?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, name);
       stmt.setString(2, shortDescription);
       stmt.setString(3, description);
-      stmt.setString(4, imageURL);
+      stmt.setBinaryStream(4, fileInputStream);
       stmt.executeUpdate();
       query = "SELECT id FROM recipe WHERE name = ?";
       stmt = this.db.prepareStatement(query);
@@ -937,15 +942,16 @@ public class Controller {
       ObservableList<Ingredient> ingredientsDB = generateIngredient();
       for (Ingredient ingredient : ingredientObservableList) {
         for (Ingredient ingredient1 : ingredientsDB)
-          if (ingredient.getName().equals(ingredient1.getName())) {
-            query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
-            stmt = this.db.prepareStatement(query);
-            stmt.setInt(1, recipe_id);
-            stmt.setInt(2, ingredient1.getId());
-            stmt.executeUpdate();
-            // System.out.println(ingredientIterator + recipe_id + ingredient.getName() +
-            // ingredient.getId());
-          }
+        if (ingredient.getName().equals(ingredient1.getName()) && ingredient.getUnit_id() == ingredient1.getUnit_id()) {
+          //TODO: it takes the first ingredient with the right name, i need to check the unit_id
+          query = "INSERT INTO recipe_has_ingredient (recipe_id, ingredient_id) VALUES (?, ?)";
+          stmt = this.db.prepareStatement(query);
+          stmt.setInt(1, recipe_id);
+          stmt.setInt(2, ingredient1.getId());
+          stmt.executeUpdate();
+          break;
+          //System.out.println(ingredientIterator + recipe_id + ingredient.getName() + ingredient.getId());
+        }
         /*
          * System.out.println(ingredientIterator + recipe_id + "name: " +
          * ingredient.getName() + " id: " + ingredient.getId() );
@@ -1216,7 +1222,7 @@ public class Controller {
     Scene mainScene = new Scene(this.mainView.getRoot(), 1250, 750);
     stage.setScene(mainScene);
     stage.show();
-    this.displayHomeView();
+    this.displayHomeView(true);
   }
 
   public ArrayList<User> getUsers() {
@@ -1342,6 +1348,60 @@ public class Controller {
       System.out.println(e);
       return 0;
     }
+  }
+
+  /***************** History system *****************/
+
+  /**
+   * Adds a node to the history stack. Also resets the forward-history stack.
+   *
+   * @param root The node that will be added to the stack
+   */
+  public void addRootToHistory(Node root) {
+    this.forwardHistoryStack.clear();
+    this.historyStack.push(root);
+  }
+
+  /**
+   * Retrieves the first node in the history and add another one to the
+   * forward-history to be able to go forward.
+   *
+   * @param currentPage The page to be added to the forward-history stack
+   * @return The first Node in the history stack.
+   */
+  public Node goBackOnePage(Node currentPage) {
+    this.forwardHistoryStack.push(currentPage);
+    return this.historyStack.pop();
+  }
+
+  /**
+   * Retrieves the first node in the forward-history and add another one to the
+   * history to be able to go back.
+   *
+   * @param currentPage The page to be added to the history stack
+   * @return The first Node in the forward-history stack.
+   */
+  public Node goForwardOnePage(Node currentPage) {
+    this.historyStack.push(currentPage);
+    return this.forwardHistoryStack.pop();
+  }
+
+  /**
+   * Tells whether it's possible to go back one page.
+   *
+   * @return {@code true} is the history stack is not empty
+   */
+  public boolean canGoBack() {
+    return !this.historyStack.empty();
+  }
+
+  /**
+   * Tells whether it's possible to go back forward page.
+   *
+   * @return {@code true} is the forward-history stack is not empty
+   */
+  public boolean canGoForward() {
+    return !this.forwardHistoryStack.empty();
   }
 
 }

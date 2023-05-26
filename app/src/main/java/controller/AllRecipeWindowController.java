@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javafx.fxml.FXML;
@@ -18,25 +19,6 @@ public class AllRecipeWindowController {
   private Pagination recipePages;
   @FXML
   private GridPane recipeGrid;
-
-  @FXML
-  public void openHomepage() throws IOException {
-    controller.displayHomeView();
-  }
-
-  @FXML
-  public void goToHomePage() throws IOException {
-    controller.displayHomeView();
-  }
-
-  public void seeFavourites() throws IOException {
-    controller.displayFavouriteView();
-  }
-
-  @FXML
-  public void openNewRecipe() throws IOException {
-    controller.displayNewRecipeView();
-  }
 
   /**
    * Initialize the pagination system
@@ -93,9 +75,10 @@ public class AllRecipeWindowController {
         currentIndex++;
       } catch (IOException e) {
         e.printStackTrace(System.out);
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
       }
 
     }
   }
 }
-

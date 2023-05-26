@@ -10,3 +10,5 @@ app/bin/
 app/.classpath
 app/.project
 app/.settings/
+app/ShoppingList.pdf
+app/out

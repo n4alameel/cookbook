@@ -61,6 +61,29 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="49.0" style="-fx-background-color: #FFFF;">
                <children>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="62.0" spacing="10.0">
+                     <children>
+                        <ImageView fx:id="arrowL" fitHeight="23.0" fitWidth="27.0" onMouseClicked="#backEvent" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/arrow_left.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="arrowR" fitHeight="23.0" fitWidth="27.0" onMouseClicked="#forwardEvent" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/arrow_right.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </HBox>
                   <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="70.0" prefWidth="134.0">
                      <children>
                         <ImageView fitWidth="120.0" onMouseClicked="#openHomeView" pickOnBounds="true" preserveRatio="true">
@@ -137,7 +160,7 @@
                   <Insets />
                </opaqueInsets>
                <padding>
-                  <Insets left="60.0" right="60.0" />
+                  <Insets left="30.0" right="60.0" />
                </padding>
             </HBox>
             <Separator prefWidth="200.0" />
@@ -248,15 +271,15 @@
                   </VBox>
                </bottom>
                <top>
-                  <AnchorPane maxWidth="-Infinity" stylesheets="@HomeWindow.css" BorderPane.alignment="CENTER">
+                  <AnchorPane maxWidth="-Infinity" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField fx:id="searchField" onKeyPressed="#onSearchEnter" prefHeight="55.0" prefWidth="591.0" promptText="Search here..." />
-                        <Button fx:id="searchBtn" layoutX="510.0" layoutY="7.0" mnemonicParsing="false" onAction="#openSearchPage" prefHeight="40.0" prefWidth="74.0" text="Search" textFill="#171717">
+                        <TextField fx:id="searchField" onKeyPressed="#onSearchEnter" prefHeight="48.0" prefWidth="565.0" promptText="Search here..." styleClass="search" />
+                        <Button fx:id="searchBtn" layoutX="518.0" layoutY="7.0" mnemonicParsing="false" onAction="#openSearchPage" prefHeight="40.0" prefWidth="74.0" styleClass="searchBtn" text="Search" textFill="#171717">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </Button>
-                        <ComboBox fx:id="categoryComboBox" layoutX="354.0" layoutY="15.0" prefWidth="150.0" promptText="Choose category">
+                        <ComboBox fx:id="categoryComboBox" layoutX="367.0" layoutY="7.0" prefHeight="10.0" prefWidth="150.0" promptText="Choose category" styleClass="searchDropBox">
                           <items>
                             <FXCollections fx:factory="observableArrayList">
                                 <String fx:value="Recipe" />
