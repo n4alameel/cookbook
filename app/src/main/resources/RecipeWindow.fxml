@@ -74,9 +74,14 @@
                               </Label>
                               <VBox spacing="15.0">
                                  <children>
-                                    <ComboBox fx:id="weekSelector" prefWidth="150.0" promptText="Select a week" />
-                                    <ComboBox fx:id="daySelector" prefWidth="150.0" promptText="Select a day" />
-                                    <Button mnemonicParsing="false" onAction="#eventAddRecipeToPlan" text="Add" />
+                                    <ComboBox fx:id="weekSelector" prefWidth="150.0" promptText="Select a week" styleClass="orangeButton" />
+                                    <ComboBox fx:id="daySelector" prefWidth="150.0" promptText="Select a day" styleClass="orangeButton" />
+                                    <HBox spacing="20.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#eventAddRecipeToPlan" styleClass="orangeButton" text="Add" />
+                                          <Label fx:id="addMessage" maxHeight="1.7976931348623157E308" prefHeight="38.0" prefWidth="106.0" text="Recipe successfully added!" visible="false" wrapText="true" />
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -88,7 +93,6 @@
                   <Insets left="60.0" right="60.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="addMessage" maxHeight="1.7976931348623157E308" text="Recipe successfully added!" visible="false" wrapText="true" />
          </children>
          <padding>
             <Insets left="60.0" right="60.0" top="20.0" />

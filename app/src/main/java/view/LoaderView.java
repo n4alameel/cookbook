@@ -39,6 +39,7 @@ public class LoaderView extends Preloader {
 
     public void start(Stage stage) throws Exception {
         this.stage = stage;
+        stage.getIcons().add(new Image(LoaderView.class.getResourceAsStream("/img/pictogram.png")));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Loader");
         stage.setScene(createPreloaderScene());

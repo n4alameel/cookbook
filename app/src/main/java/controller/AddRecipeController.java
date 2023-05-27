@@ -156,8 +156,8 @@ public class AddRecipeController implements Initializable {
                 controller.newIngredient(ingredientList);
                 controller.newRecipe(name, longDescription, shortDescription, selectBoxTagInts, ingredientList, fileInputStream);
                 alert("Recipe has been saved");
-                recipes.add(new Recipe(name));
-                //TODO: go back to the main page
+                //recipes.add(new Recipe(name));
+                //TODO: we dont check for double names that get created
                 //Controller.getInstance().getStage().close();
 
         } catch (Exception e) {

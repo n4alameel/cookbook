@@ -131,8 +131,8 @@ public class MainLayoutController {
     this.controller.displayWeeklyPlanListView();
   }
 
-  public void openShoppingListView(ActionEvent actionEvent) {
-
+  public void openShoppingListView(ActionEvent actionEvent) throws IOException {
+    this.controller.displayModifyShoppingListWindow();
   }
 
   public void openChatView(ActionEvent actionEvent) throws IOException {

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="1038.0" prefWidth="1113.0" stylesheets="@HomeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeViewController">
+<VBox alignment="CENTER" prefHeight="1038.0" prefWidth="1113.0" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeViewController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="1200.0" text="Our Recommendations">
          <font>
@@ -29,7 +29,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Button fx:id="allRecipesBtn" mnemonicParsing="false" onAction="#openAllRecipes" prefHeight="48.0" prefWidth="155.0" text="View all Recipes">
+      <Button fx:id="allRecipesBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openAllRecipes" prefHeight="48.0" prefWidth="155.0" styleClass="greenButton" text="View all Recipes">
          <VBox.margin>
             <Insets bottom="10.0" top="20.0" />
          </VBox.margin>
@@ -55,7 +55,7 @@
             <Insets bottom="20.0" />
          </VBox.margin>
       </GridPane>
-      <Button fx:id="allRecipesBtn1" mnemonicParsing="false" onAction="#openAllRecipes" prefHeight="48.0" prefWidth="155.0" text="View all Favourites">
+      <Button fx:id="allRecipesBtn1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openAllRecipes" prefHeight="48.0" prefWidth="155.0" styleClass="greenButton" text="View all Favourites">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
