@@ -89,7 +89,7 @@ public class RecipeController {
   @FXML
   private Label addMessage;
   @FXML
-  private void sendRecipeEvent() {
+  private void sendRecipeEvent() throws IOException {
     controller.displaySendMessageView(this.recipe);
   }
 
