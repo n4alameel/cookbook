@@ -18,6 +18,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -80,13 +81,17 @@ public class RecipeController {
   @FXML
   private javafx.scene.control.TextArea commentTextArea;
   @FXML
-  private ImageView commentatorAva;
+  private Pane commentatorAva;
   @FXML
   private ComboBox<String> weekSelector;
   @FXML
   private ComboBox<WeekDay> daySelector;
   @FXML
   private Label addMessage;
+  @FXML
+  private void sendRecipeEvent() {
+    controller.displaySendMessageView(this.recipe);
+  }
 
   public void setRecipe(int currentRecipeId) {
     Recipe updatedRecipe = this.controller.getRecipeById(currentRecipeId);
@@ -120,7 +125,13 @@ public class RecipeController {
     activeCommentatorName.setFont(Font.font("System", FontWeight.BOLD, 14));
     activeCommentatorName.setText(this.controller.getActiveUser().getUsername());
     Image imageObject = new Image(this.controller.getActiveUser().getImageURL());
-    commentatorAva.setImage(imageObject);
+    Circle circle = new Circle(25, 25, 25);
+    // Create the ImageView
+    ImageView img = new ImageView(imageObject);
+    img.setFitWidth(60);
+    img.setClip(circle);
+    img.setFitHeight(50);
+    commentatorAva.getChildren().add(img);
     commentBox.getChildren().clear();
     this.comments = this.recipe.getCommentList();
     Collections.reverse(this.comments);

@@ -3,21 +3,16 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="processingComment" spacing="10.0" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CommentController">
+<VBox fx:id="processingComment" spacing="10.0" stylesheets="@RecipeWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CommentController">
     <FlowPane alignment="CENTER_LEFT" columnHalignment="RIGHT" hgap="10.0" prefHeight="39.0" prefWidth="522.0">
         <children>
-            <ImageView fx:id="commentatorAva"  fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@img/ava.jpg" />
-                </image>
-            </ImageView>
+         <Pane fx:id="commentatorAva" prefHeight="50.0" prefWidth="60.0" />
             <Text fx:id="commentatorName" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
          <ButtonBar buttonMinWidth="0.0" buttonOrder="">
             <buttons>

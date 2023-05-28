@@ -34,7 +34,7 @@ public class MainLayoutController {
   @FXML
   private Button activeUserName;
   @FXML
-  private ImageView activeUserPhoto;
+  private Pane activeUserPhoto;
   @FXML
   private Button adminPanel;
   @FXML
@@ -53,10 +53,16 @@ public class MainLayoutController {
   public void updateLayout() {
     activeUserName.setText(this.controller.getActiveUser().getUsername());
     Image imageObject = new Image(this.controller.getActiveUser().getImageURL());
-    activeUserPhoto.setImage(imageObject);
     if (this.controller.getActiveUser().isAdmin()) {
       adminPanel.setVisible(true);
     }
+    Circle circle = new Circle(25, 25, 25);
+    // Create the ImageView
+    ImageView img = new ImageView(imageObject);
+    img.setFitWidth(60);
+    img.setClip(circle);
+    img.setFitHeight(50);
+    activeUserPhoto.getChildren().add(img);
     // Calculate the aspect ratio of the image
     // double imageAspectRatio = activeUserPhoto.getImage().getWidth() /
     // activeUserPhoto.getImage().getHeight();
