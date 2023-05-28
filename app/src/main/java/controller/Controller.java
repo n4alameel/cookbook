@@ -690,10 +690,6 @@ public class Controller {
   public void displaySendMessageView(Recipe recipe) throws IOException {
     SendMessageView sendMessageView = new SendMessageView(recipe);
     this.mainView.LoadContent((sendMessageView.getRoot()), false);
-    /*Scene sendMessageViewScene = new Scene(sendMessageView.getRoot());
-    Stage secondaryStage = new Stage();
-    secondaryStage.setScene(sendMessageViewScene);
-    secondaryStage.show();*/
   }
 
   public void displayModifyShoppingListWindow() throws IOException {
