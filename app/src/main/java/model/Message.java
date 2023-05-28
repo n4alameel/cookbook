@@ -10,8 +10,8 @@ public class Message {
     private int receiverId;
     private int recipeId;
 
-    private String senderIdString;
-    private String recipeIdString;
+    private String username;
+    private String recipeName;
 
     public Message(int id, String text, int isRead, int senderId, int receiverId, int recipeId){
         this.id = id;
@@ -20,6 +20,14 @@ public class Message {
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.recipeId = recipeId;
+    }
+
+    public void setUsername(String username){
+        this.username = username;
+    }
+
+    public void setRecipeName(String recipeName){
+        this.recipeName = recipeName;
     }
 
     public String getText(){
@@ -38,11 +46,11 @@ public class Message {
         return this.receiverId;
     }
 
-    public String getSenderIdString() {
-        return String.valueOf(senderId);
+    public String getUsername() {
+        return username;
     }
 
-    public String getRecipeIdString() {
-        return String.valueOf(recipeId);
+    public String getRecipeName() {
+        return recipeName;
     }
 }

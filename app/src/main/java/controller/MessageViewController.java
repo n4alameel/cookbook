@@ -34,10 +34,14 @@ public class MessageViewController {
 
     public void initialize() {
         ArrayList<Message> reverseMessages = new ArrayList<>(messages);
+        for (Message i : reverseMessages){
+            i.setUsername(controller.getUserById(i.getSender()).getUsername());
+            i.setRecipeName(controller.getRecipeById(i.getRecipe()).getName());
+        }
         Collections.reverse(reverseMessages);
         textColumn.setCellValueFactory(new PropertyValueFactory<>("text"));
-        senderColumn.setCellValueFactory(new PropertyValueFactory<>("senderIdString"));
-        recipeColumn.setCellValueFactory(new PropertyValueFactory<>("recipeIdString"));
+        senderColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        recipeColumn.setCellValueFactory(new PropertyValueFactory<>("recipeName"));
 
         ObservableList<Message> observableMessages = FXCollections.observableArrayList(reverseMessages);
         messageTable.setItems(observableMessages);
