@@ -65,6 +65,14 @@ public class SendMessageViewController {
         this.recipe = recipe;
         recipeName.setText(recipe.getName());
         ArrayList<String> usernames = controller.usersList();
+        for (String username : usernames){
+            if ((controller.getActiveUser().getUsername()).equals(username)){
+                usernames.remove(username);
+                System.out.println(username);
+                break;
+            }
+        }
+        System.out.println(usernames);
         choiceBox.getItems().addAll(usernames);
         choiceBox.getSelectionModel().selectFirst();
 
