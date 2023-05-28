@@ -15,7 +15,10 @@
 -fx-graphic-text-gap: 10;
 }
 
-
+#tf{
+-fx-border-radius: 20 20 20 20;
+  -fx-background-radius: 20 20 20 20;
+}
 
 .tab-pane .tab:selected {
     -fx-background-color: #618C03

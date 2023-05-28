@@ -21,7 +21,7 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1600.0" prefWidth="1000.0">
                <children>
                   <Pane fx:id="homePane" prefHeight="40.0" prefWidth="1174.0" />
-                  <Pane fx:id="footer" layoutY="760.0" prefHeight="40.0" prefWidth="1174.0">
+                  <Pane fx:id="footer" layoutY="760.0" prefHeight="42.0" prefWidth="1174.0">
                      <children>
                         <Label layoutX="532.0" layoutY="9.0" prefHeight="23.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
                      </children>
@@ -41,12 +41,42 @@
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf" layoutX="475.0" layoutY="309.0" promptText="Search here" />
-                     <TextArea layoutX="243.0" layoutY="370.0" prefHeight="200.0" prefWidth="617.0" text="Here you can find detailed informations about this application in case you have any questions!&#10;In the search you can type in what you are looking for. ">
-                        <font>
-                           <Font size="14.0" />
-                        </font>
-                     </TextArea>
+                  <TextField fx:id="tf" layoutX="415.0" layoutY="440.0" prefHeight="47.0" prefWidth="307.0" promptText="Search here" />
+                     <ImageView fitHeight="95.0" fitWidth="128.0" layoutX="263.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@img/help/chatRoomSign.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fitHeight="90.0" fitWidth="95.0" layoutX="587.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@img/add-recipe.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fitHeight="87.0" fitWidth="86.0" layoutX="508.0" layoutY="310.0">
+                        <image>
+                           <Image url="@img/help/UserSign.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fitHeight="92.0" fitWidth="68.0" layoutX="740.0" layoutY="485.0">
+                        <image>
+                           <Image url="@img/help/shoppingList.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fitHeight="87.0" fitWidth="93.0" layoutX="398.0" layoutY="543.0">
+                        <image>
+                           <Image url="@img/help/calender.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fitHeight="101.0" fitWidth="109.0" layoutX="699.0" layoutY="326.0">
+                        <image>
+                           <Image url="@img/whisk.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fitHeight="87.0" fitWidth="84.0" layoutX="250.0" layoutY="478.0">
+                        <image>
+                           <Image url="@img/Heart.png" />
+                        </image>
+                     </ImageView>
                </children>
             </AnchorPane>
             </ScrollPane>
@@ -56,7 +86,7 @@
          <content>
             <ScrollPane prefHeight="857.0" prefWidth="1090.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1274.0" prefWidth="1035.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1274.0" prefWidth="1090.0">
                      <children>
                         <Pane fx:id="homePane11" prefHeight="40.0" prefWidth="1174.0" style="-fx-background-color: #618C03;" />
                         <Pane fx:id="footer11" layoutY="1234.0" prefHeight="40.0" prefWidth="1174.0" style="-fx-background-color: #618C03;">
@@ -69,7 +99,7 @@
                               <Image url="@img/logo-removebg.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="418.0" layoutY="65.0" text="Recipes">
+                        <Label layoutX="441.0" layoutY="60.0" text="Recipes">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
@@ -78,34 +108,29 @@
                            <font>
                               <Font size="14.0" />
                            </font></TextArea>
-                        <ImageView fitHeight="50.0" fitWidth="97.0" layoutX="410.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/help/pngaaa.com-70754.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="337.0" fitWidth="561.0" layoutX="209.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="331.0" fitWidth="648.0" layoutX="186.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/help/RecipeDetailed.PNG" />
                            </image>
                         </ImageView>
                         <Label layoutX="762.0" layoutY="727.0" styleClass="description" text="See all the ingredients and change the portion if needed" />
-                        <Line endX="52.0" endY="125.0" layoutX="711.0" layoutY="601.0" startX="-22.0" startY="19.0" />
-                        <Line endX="83.0" endY="76.0" layoutX="704.0" layoutY="482.0" startX="-99.0" startY="8.0" />
+                        <Line endX="52.0" endY="125.0" layoutX="711.0" layoutY="601.0" startX="-18.0" startY="23.0" />
+                        <Line endX="83.0" endY="76.0" layoutX="704.0" layoutY="482.0" startX="-2.0" startY="43.0" />
                         <Label layoutX="788.0" layoutY="557.0" styleClass="description" text="Add recipe to a weekly plan" />
-                        <Label layoutX="835.0" layoutY="447.0" styleClass="description" text="Send recipe to another user." />
-                        <Label layoutX="28.0" layoutY="439.0" styleClass="description" text=" Mark this recipe as a favourite " />
+                        <Label layoutX="837.0" layoutY="429.0" styleClass="description" text="Send recipe to another user." />
+                        <Label layoutX="11.0" layoutY="440.0" styleClass="description" text=" Mark this recipe as a favourite " />
                         <Label layoutX="35.0" layoutY="540.0" styleClass="description" text="Instruction of cooking" />
-                        <Label layoutX="13.0" layoutY="717.0" styleClass="description" text="Add your own tags which fit for you" />
-                        <Line endX="236.0" endY="7.0" layoutX="191.0" layoutY="447.0" startX="-2.0" startY="11.0" />
-                        <Line endX="61.0" endY="-0.5" layoutX="168.0" layoutY="550.0" startX="-14.0" startY="-0.5" />
-                        <Line endX="28.0" endY="-45.0" layoutX="209.0" layoutY="717.0" startX="-4.0" />
-                        <Line endX="98.0" endY="8.0" layoutX="737.0" layoutY="458.0" startX="-157.0" startY="-6.0" />
+                        <Label layoutX="13.0" layoutY="717.0" styleClass="description" text="See the tags of the recipe" />
+                        <Line endX="175.0" endY="35.0" layoutX="191.0" layoutY="447.0" startX="-8.0" startY="4.5" />
+                        <Line endX="64.0" endY="13.0" layoutX="168.0" layoutY="550.0" startX="-14.0" startY="-0.5" />
+                        <Line endX="9.0" endY="-27.0" layoutX="209.0" layoutY="717.0" startX="-55.0" startY="11.5" />
+                        <Line endX="100.0" endY="-17.5" layoutX="737.0" layoutY="458.0" startX="-197.0" startY="23.0" />
                         <Label layoutX="452.0" layoutY="286.0" text="Overview">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
-                        <Label layoutX="36.0" layoutY="804.0" text="Comment Section">
+                        <Label layoutX="36.0" layoutY="792.0" prefHeight="39.0" prefWidth="238.0" text="Comment Section">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -119,6 +144,11 @@
                               <Image url="@img/help/Comment.PNG" />
                            </image>
                         </ImageView>
+                        <ImageView fitHeight="58.0" fitWidth="61.0" layoutX="580.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/whisk.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
@@ -129,7 +159,7 @@
          <content>
             <ScrollPane>
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1200.0" prefWidth="1090.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1623.0" prefWidth="1085.0">
                      <children>
                         <Label layoutX="434.0" layoutY="63.0" text="Add a Recipe">
                            <font>
@@ -141,7 +171,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="299.0" fitWidth="526.0" layoutX="55.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="296.0" fitWidth="589.0" layoutX="55.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/help/NewRecipe.PNG" />
                            </image>
@@ -157,7 +187,7 @@
                            </font></TextArea>
                         <ImageView fitHeight="52.0" fitWidth="65.0" layoutX="670.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/whisk.png" />
+                              <Image url="@img/add-recipe.png" />
                            </image>
                         </ImageView>
                         <Pane layoutX="3.0" prefHeight="39.0" prefWidth="1090.0" style="-fx-background-color: #618C03;" />
@@ -171,7 +201,7 @@
                               <Image url="@img/logo-removebg.png" />
                            </image>
                         </ImageView>
-                        <Pane fx:id="footer21" layoutX="-12.0" layoutY="1160.0" prefHeight="40.0" prefWidth="1089.0" style="-fx-background-color: #618C03;">
+                        <Pane fx:id="footer21" layoutX="-1.0" layoutY="1583.0" prefHeight="40.0" prefWidth="1099.0" style="-fx-background-color: #618C03;">
                            <children>
                               <Label layoutX="532.0" layoutY="9.0" prefHeight="23.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
                            </children>
@@ -181,9 +211,10 @@
                               <Font size="14.0" />
                            </font>
                         </TextArea>
-                        <ImageView fitHeight="56.0" fitWidth="101.0" layoutX="670.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+                        <Line endX="90.0" endY="42.0" layoutX="390.0" layoutY="273.0" startX="-140.0" startY="-10.0" />
+                        <ImageView fitHeight="354.0" fitWidth="762.0" layoutX="53.0" layoutY="1153.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/help/pngaaa.com-70754.png" />
+                              <Image url="@img/help/CreateRecipeButton.PNG" />
                            </image>
                         </ImageView>
                      </children>
@@ -194,20 +225,20 @@
       </Tab>
       <Tab text="Favourite Recipe">
          <content>
-            <ScrollPane prefHeight="915.0" prefWidth="1090.0">
+            <ScrollPane prefHeight="915.0" prefWidth="1090.0" vvalue="1.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1032.0" prefWidth="1075.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1040.0" prefWidth="1075.0">
                      <children>
                         <TextArea layoutX="37.0" layoutY="226.0" prefHeight="99.0" prefWidth="637.0" text="If you like a recipe and want to store it you can mark it as your favourite, so you can see it later.&#10;You can either click on the heart in the recipe card or in the detailed view of a recipe." wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font></TextArea>
-                        <ImageView fitHeight="285.0" fitWidth="462.0" layoutX="37.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="313.0" fitWidth="587.0" layoutX="37.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/help/FavouriteDetailed.PNG" />
+                              <Image url="@img/help/RecipeDetailed.PNG" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="285.0" fitWidth="232.0" layoutX="538.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="317.0" fitWidth="275.0" layoutX="715.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/help/FavouriteCard.PNG" />
                            </image>
@@ -228,12 +259,12 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="37.0" layoutY="625.0" text="2.  See all of them by clicking on &quot;Favourites&quot; ">
+                        <Label layoutX="35.0" layoutY="616.0" text="2.  See all of them by clicking on &quot;Favourite Recipe&quot; or &quot;View all Recipes&quot; ">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="271.0" fitWidth="420.0" layoutX="37.0" layoutY="661.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="313.0" fitWidth="565.0" layoutX="35.0" layoutY="652.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/help/FavouriteWindow.PNG" />
                            </image>
@@ -243,9 +274,9 @@
                               <Image url="@img/logo-removebg.png" />
                            </image>
                         </ImageView>
-                        <Pane fx:id="footer2" layoutX="-3.0" layoutY="992.0" prefHeight="40.0" prefWidth="1081.0" style="-fx-background-color: #618C03;">
+                        <Pane fx:id="footer2" layoutY="1000.0" prefHeight="40.0" prefWidth="1093.0" style="-fx-background-color: #618C03;">
                            <children>
-                              <Label layoutX="532.0" layoutY="9.0" prefHeight="23.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
+                              <Label layoutX="533.0" layoutY="9.0" prefHeight="23.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
                            </children>
                         </Pane>
                      </children>
@@ -258,16 +289,16 @@
          <content>
             <ScrollPane>
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1672.0" prefWidth="1073.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1732.0" prefWidth="1073.0">
                      <children>
                         <Pane prefHeight="43.0" prefWidth="1090.0" style="-fx-background-color: #618C03;" />
                         <Pane prefHeight="39.0" prefWidth="1090.0" style="-fx-background-color: #618C03;" />
-                        <Label layoutX="454.0" layoutY="67.0" text="Meal Plans">
+                        <Label layoutX="445.0" layoutY="66.0" text="Meal Plans">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
                         </Label>
-                        <TextArea layoutX="25.0" layoutY="148.0" prefHeight="92.0" prefWidth="634.0" text="With the help of this cookbook you can plan easily your week!&#10;You can find a lot of inspiration here and you just have to add these recipes to your plan.&#10;&#10;For other things less effort and more time!  Yeesssssss.">
+                        <TextArea layoutX="25.0" layoutY="148.0" prefHeight="92.0" prefWidth="634.0" text="With the help of this cookbook you can plan easily your week!&#10;You can find a lot of inspiration here and you just have to add these recipes to your plan.&#10;For other things less effort and more time!  Yeesssssss.">
                            <font>
                               <Font size="14.0" />
                            </font></TextArea>
@@ -285,7 +316,7 @@
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <ImageView fitHeight="330.0" fitWidth="491.0" layoutX="474.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="351.0" fitWidth="535.0" layoutX="466.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/help/CreateWeeklyList.PNG" />
                            </image>
@@ -299,7 +330,7 @@
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label layoutX="52.0" layoutY="360.0" text="2.1 Click on &quot;New Weekly List&quot;">
+                        <Label layoutX="48.0" layoutY="360.0" text="2.1 Click on &quot;New Weekly List&quot;">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
@@ -312,38 +343,38 @@
                               <Image url="@img/help/FavouriteCard.PNG" />
                            </image>
                         </ImageView>
-                        <Label layoutX="53.0" layoutY="1036.0" text="3.3 Choose the week and day you want to cook this recipe and click on &quot;add&quot;">
+                        <TextArea layoutX="53.0" layoutY="1036.0" text="3.3 Choose the week and day you want to cook this recipe and click on &quot;add&quot;">
                            <font>
                               <Font size="14.0" />
-                           </font></Label>
+                           </font></TextArea>
                         <ImageView fitHeight="236.0" fitWidth="438.0" layoutX="53.0" layoutY="1063.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/help/FavouriteDetailed.PNG" />
+                              <Image url="@img/help/RecipeDetailed.PNG" />
                            </image>
                         </ImageView>
-                        <Label layoutX="46.0" layoutY="1321.0" text="4. See the added recipe in your plan">
+                        <TextArea layoutX="46.0" layoutY="1321.0" text="4. See the added recipe in your plan">
                            <font>
                               <Font size="18.0" />
                            </font>
-                        </Label>
-                        <Label layoutX="66.0" layoutY="1361.0" text="4.1 Go back to &quot;Meal Plans&quot;">
+                        </TextArea>
+                        <TextArea layoutX="66.0" layoutY="1361.0" text="4.1 Go back to &quot;Meal Plans&quot;">
                            <font>
                               <Font size="14.0" />
-                           </font></Label>
+                           </font></TextArea>
                         <Label layoutX="66.0" layoutY="1390.0" text="4.2 Click on the week you added the recipe">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <ImageView fitHeight="49.0" fitWidth="514.0" layoutX="66.0" layoutY="1409.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="49.0" fitWidth="514.0" layoutX="66.0" layoutY="1416.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/help/ClickOnWeek.PNG" />
                            </image>
                         </ImageView>
-                        <Label layoutX="66.0" layoutY="1473.0" text="4.3. You can see the recipe you added and go into the detailed view. If you changed your plans you can also delete it.">
+                        <TextArea layoutX="66.0" layoutY="1476.0" text="4.3. You can see the recipe you added and go into the detailed view. If you have changed your plans you can also delete it again.">
                            <font>
                               <Font size="14.0" />
-                           </font></Label>
-                        <ImageView fitHeight="141.0" fitWidth="488.0" layoutX="69.0" layoutY="1496.0" pickOnBounds="true" preserveRatio="true">
+                           </font></TextArea>
+                        <ImageView fitHeight="141.0" fitWidth="488.0" layoutX="69.0" layoutY="1506.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/help/WeekListDetailed.PNG" />
                            </image>
@@ -353,16 +384,21 @@
                               <Image url="@img/logo-removebg.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="54.0" fitWidth="90.0" layoutX="384.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/help/pngaaa.com-70754.png" />
-                           </image>
-                        </ImageView>
-                        <TextArea layoutX="39.0" layoutY="386.0" prefHeight="200.0" prefWidth="491.0" text="2.2 Select the Week which you want to plan&#10;      (any day creates the plan for the whole week)">
+                        <TextArea layoutX="39.0" layoutY="386.0" prefHeight="105.0" prefWidth="491.0" text="2.2 Select the Week which you want to plan&#10;      (any day creates the plan for the whole week)">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextArea>
+                        <ImageView fitHeight="55.0" fitWidth="53.0" layoutX="633.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/help/calender.PNG" />
+                           </image>
+                        </ImageView>
+                        <Pane fx:id="footer22" layoutX="-1.0" layoutY="1692.0" prefHeight="40.0" prefWidth="1093.0" style="-fx-background-color: #618C03;">
+                           <children>
+                              <Label layoutX="533.0" layoutY="9.0" prefHeight="23.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
+                           </children>
+                        </Pane>
                      </children>
                   </AnchorPane>
                </content>
@@ -371,12 +407,12 @@
       </Tab>
       <Tab fx:id="home1" text="Shopping List">
          <content>
-            <ScrollPane>
+            <ScrollPane prefWidth="1102.0" vvalue="1.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="916.0" prefWidth="1079.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1175.0" prefWidth="1079.0">
                      <children>
                         <Pane fx:id="homePane1" prefHeight="40.0" prefWidth="1174.0" style="-fx-background-color: #618C03;" />
-                        <Pane fx:id="footer1" layoutY="879.0" prefHeight="40.0" prefWidth="1174.0" style="-fx-background-color: #618C03;">
+                        <Pane fx:id="footer1" layoutX="3.0" layoutY="1135.0" prefHeight="40.0" prefWidth="1087.0" style="-fx-background-color: #618C03;">
                            <children>
                               <Label layoutX="532.0" layoutY="9.0" prefHeight="23.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
                            </children>
@@ -386,55 +422,65 @@
                               <Image url="@img/logo-removebg.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="402.0" layoutY="65.0" text="Shopping List">
+                        <TextArea layoutX="402.0" layoutY="65.0" text="Shopping List">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
-                        </Label>
+                        </TextArea>
                         <TextArea layoutX="35.0" layoutY="154.0" prefHeight="97.0" prefWidth="613.0" text="You can create with the week plans you have made automatically a shopping list.&#10;It includes all the ingredients you need for all the receipes you want to cook in this week.&#10;To save time and to make shopping easier we help you.  Herh herh herh.">
                            <font>
                               <Font size="14.0" />
                            </font></TextArea>
-                        <ImageView fitHeight="50.0" fitWidth="97.0" layoutX="498.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/help/pngaaa.com-70754.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="35.0" layoutY="308.0" text="1.1 Go to the menu &quot;Meal Plans&quot; and click on the week you want to go shopping for.">
+                        <TextArea layoutX="35.0" layoutY="308.0" text="1.1 Go to the menu &quot;Meal Plans&quot; and click on the week you want to go shopping for.">
                            <font>
                               <Font size="14.0" />
-                           </font></Label>
+                           </font></TextArea>
                         <Label layoutX="35.0" layoutY="337.0" text="1.2 Change the portions if you want to cook more than 2 portions of a meal.">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label layoutX="35.0" layoutY="366.0" text="1.3 Click on &quot;Generate shopping list&quot;">
+                        <TextArea layoutX="35.0" layoutY="366.0" text="1.3 Click on &quot;Generate shopping list&quot;">
                            <font>
                               <Font size="14.0" />
-                           </font></Label>
-                        <Label layoutX="35.0" layoutY="273.0" text="1. Create the shopping list for a week">
+                           </font></TextArea>
+                        <TextArea layoutX="35.0" layoutY="273.0" text="1. Create the shopping list for a week">
                            <font>
                               <Font size="18.0" />
                            </font>
-                        </Label>
-                        <ImageView fitHeight="252.0" fitWidth="476.0" layoutX="32.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true">
+                        </TextArea>
+                        <ImageView fitHeight="263.0" fitWidth="604.0" layoutX="32.0" layoutY="392.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/help/GenerateShoppingList.PNG" />
                            </image>
                         </ImageView>
-                        <Label layoutX="35.0" layoutY="652.0" text="2. View your shopping list  ">
+                        <TextArea layoutX="35.0" layoutY="666.0" text="2. View your shopping list  ">
                            <font>
                               <Font size="18.0" />
                            </font>
+                        </TextArea>
+                        <TextArea layoutX="34.0" layoutY="704.0" text="2.1 Click on the menu on &quot;Shopping List&quot;">
+                           <font>
+                              <Font size="14.0" />
+                           </font></TextArea>
+                        <TextArea layoutX="34.0" layoutY="730.0" text="2.2 You can delete ingredients that you have already or modify them">
+                           <font>
+                              <Font size="14.0" />
+                           </font></TextArea>
+                        <ImageView fitHeight="65.0" fitWidth="83.0" layoutX="648.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/help/shoppingList.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="35.0" layoutY="758.0" text="2.3. Click on print to create a pdf of your shopping list">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
-                        <Label layoutX="34.0" layoutY="687.0" text="2.1 Click on the menu on &quot;Shopping List&quot;">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
-                        <Label layoutX="35.0" layoutY="720.0" text="2.2 You can delete ingredients that you have already at home or you don't want to have in the meal">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
+                        <ImageView fitHeight="344.0" fitWidth="702.0" layoutX="35.0" layoutY="798.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/help/modigyShoppingList.PNG" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
@@ -443,12 +489,12 @@
       </Tab>
       <Tab fx:id="home12" text="User and Admin">
          <content>
-            <ScrollPane vvalue="1.0">
+            <ScrollPane prefHeight="879.0" prefWidth="1102.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="811.0" prefWidth="1035.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1155.0" prefWidth="1088.0">
                      <children>
                         <Pane fx:id="homePane12" prefHeight="40.0" prefWidth="1174.0" style="-fx-background-color: #618C03;" />
-                        <Pane fx:id="footer12" layoutY="771.0" prefHeight="40.0" prefWidth="1077.0" style="-fx-background-color: #618C03;">
+                        <Pane fx:id="footer12" layoutX="1.0" layoutY="1115.0" prefHeight="40.0" prefWidth="1090.0" style="-fx-background-color: #618C03;">
                            <children>
                               <Label layoutX="532.0" layoutY="5.0" prefHeight="27.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
                            </children>
@@ -469,7 +515,7 @@
                            </font>
                         </TextArea>
                         <Label layoutX="35.0" layoutY="227.0" />
-                        <Label layoutX="35.0" layoutY="273.0" text="Admin">
+                        <Label layoutX="35.0" layoutY="321.0" text="Admin">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -479,16 +525,41 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="176.0" fitWidth="285.0" layoutX="634.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="168.0" fitWidth="247.0" layoutX="649.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/help/Login.PNG" />
                            </image>
                         </ImageView>
-                        <TextArea layoutX="24.0" layoutY="315.0" prefHeight="155.0" prefWidth="563.0" text="As a admin you can do the same things as a user.&#10;Additionaly you can administrate a user by adding a new one, editing an excisting one&#10;and also delete one.">
+                        <TextArea layoutX="25.0" layoutY="346.0" prefHeight="155.0" prefWidth="567.0" text="As a admin you can do the same things as a user.&#10;Additionaly you can administrate a user by adding a new one, editing an excisting one&#10;and also delete one.">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextArea>
+                        <ImageView fitHeight="312.0" fitWidth="633.0" layoutX="35.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/help/AdminOverview.PNG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="276.0" fitWidth="248.0" layoutX="448.0" layoutY="774.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/help/AdminChangeUser.PNG" />
+                           </image>
+                        </ImageView>
+                        <TextArea layoutX="35.0" layoutY="815.0" prefHeight="250.0" prefWidth="436.0" text="Username: Change or add a username for the user&#10;&#10;Password: Change the password of the user&#10;&#10;User or Admin: Give or take away admin rights from the user&#10;&#10;Link to the picture: Add or change users profile picture&#10;  &#10;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                        <Label layoutX="46.0" layoutY="774.0" text="Adding or editing a user">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="61.0" fitWidth="89.0" layoutX="663.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/help/UserSign.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
@@ -497,12 +568,12 @@
       </Tab>
       <Tab fx:id="home121" text="Chat Room">
          <content>
-            <ScrollPane vvalue="1.0">
+            <ScrollPane>
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="811.0" prefWidth="1035.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1029.0" prefWidth="1075.0">
                      <children>
                         <Pane fx:id="homePane121" prefHeight="40.0" prefWidth="1174.0" style="-fx-background-color: #618C03;" />
-                        <Pane fx:id="footer121" layoutY="771.0" prefHeight="40.0" prefWidth="1077.0" style="-fx-background-color: #618C03;">
+                        <Pane fx:id="footer121" layoutY="989.0" prefHeight="40.0" prefWidth="1089.0" style="-fx-background-color: #618C03;">
                            <children>
                               <Label layoutX="532.0" layoutY="5.0" prefHeight="27.0" prefWidth="110.0" text="Group Cobol, 2023" textFill="WHITE" />
                            </children>
@@ -517,7 +588,7 @@
                               <Font name="System Bold" size="36.0" />
                            </font>
                         </Label>
-                        <TextArea layoutX="29.0" layoutY="180.0" prefHeight="87.0" prefWidth="991.0" text="In the Chatroom you can see which recipes other users have sent you.&#10;They can add a message so you can see what they think about it.&#10;Have fun and send also some recipes which you want to share with your friends!">
+                        <TextArea layoutX="29.0" layoutY="153.0" prefHeight="87.0" prefWidth="991.0" text="In the Chatroom you can see which recipes other users have sent you.&#10;They can add a message so you can see what they think about it.&#10;Have fun and send also some recipes which you want to share with your friends!">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -527,6 +598,46 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
+                        <ImageView fitHeight="310.0" fitWidth="928.0" layoutX="29.0" layoutY="643.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/help/Chatroom.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="29.0" layoutY="578.0" prefHeight="36.0" prefWidth="474.0" text="2. See messages in the menu in &quot;Chat room&quot;">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="35.0" layoutY="240.0" text="1. Send a recipe to another user">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="190.0" fitWidth="357.0" layoutX="443.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/help/SendRecipe.PNG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="211.0" fitWidth="202.0" layoutX="44.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/help/FavouriteCard.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="56.0" layoutY="287.0" text="1.1. Click on &quot;Send recipe&quot;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="433.0" layoutY="287.0" prefHeight="20.0" prefWidth="540.0" text="2. Select the desired user and add a message of what you want to say. Click on send.">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="62.0" fitWidth="84.0" layoutX="612.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/help/chatRoomSign.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
