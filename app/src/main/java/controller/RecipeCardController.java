@@ -60,7 +60,7 @@ public class RecipeCardController {
     }
 
     @FXML
-    private void sendRecipeEvent() {
+    private void sendRecipeEvent() throws IOException {
         controller.displaySendMessageView(recipe);
     }
 

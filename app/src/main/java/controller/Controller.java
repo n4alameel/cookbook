@@ -687,12 +687,9 @@ public class Controller {
   /**
    * Creates and displays the send message scene.
    */
-  public void displaySendMessageView(Recipe recipe) {
+  public void displaySendMessageView(Recipe recipe) throws IOException {
     SendMessageView sendMessageView = new SendMessageView(recipe);
-    Scene sendMessageViewScene = new Scene(sendMessageView.getRoot());
-    Stage secondaryStage = new Stage();
-    secondaryStage.setScene(sendMessageViewScene);
-    secondaryStage.show();
+    this.mainView.LoadContent((sendMessageView.getRoot()), false);
   }
 
   public void displayModifyShoppingListWindow() throws IOException {

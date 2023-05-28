@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MessageViewController">
+<VBox alignment="CENTER" stylesheets="@messageWindow.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MessageViewController">
    <children>
-      <Label text="Messages recieved">
+      <Label text="Messages received">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -21,11 +21,11 @@
       </Label>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
           <center>
-              <TableView fx:id="messageTable" prefHeight="364.0" prefWidth="600.0">
+              <TableView fx:id="messageTable" >
                   <columns>
-                      <TableColumn fx:id="senderColumn" maxWidth="300.0" minWidth="100.0" prefWidth="-1.0" text="Sender" />
-                      <TableColumn fx:id="textColumn" maxWidth="1000.0" minWidth="200.0" prefWidth="-1.0" text="Text" />
-                      <TableColumn fx:id="recipeColumn" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Recipe" />
+                      <TableColumn fx:id="senderColumn" text="Sender" />
+                      <TableColumn fx:id="recipeColumn" text="Recipe" />
+                      <TableColumn fx:id="textColumn" text="Text" />
                   </columns>
                <BorderPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" />

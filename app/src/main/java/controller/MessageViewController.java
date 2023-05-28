@@ -41,5 +41,8 @@ public class MessageViewController {
 
         ObservableList<Message> observableMessages = FXCollections.observableArrayList(reverseMessages);
         messageTable.setItems(observableMessages);
+        senderColumn.prefWidthProperty().bind(messageTable.widthProperty().divide(6));
+        recipeColumn.prefWidthProperty().bind(messageTable.widthProperty().divide(6));
+        textColumn.prefWidthProperty().bind(messageTable.widthProperty().subtract(senderColumn.widthProperty()).subtract(recipeColumn.widthProperty()).subtract(4));
     }
 }
