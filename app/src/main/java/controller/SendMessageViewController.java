@@ -68,11 +68,9 @@ public class SendMessageViewController {
         for (String username : usernames){
             if ((controller.getActiveUser().getUsername()).equals(username)){
                 usernames.remove(username);
-                System.out.println(username);
                 break;
             }
         }
-        System.out.println(usernames);
         choiceBox.getItems().addAll(usernames);
         choiceBox.getSelectionModel().selectFirst();
 
