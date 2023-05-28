@@ -11,6 +11,10 @@
         <Label fx:id="recipeName" minHeight="40.0" style="-fx-font-weight: bold;"/>
         <ChoiceBox fx:id="choiceBox" minWidth="120.0"/>
         <TextArea wrapText="true" minHeight="200.0" maxHeight="400.0" maxWidth="600.0" fx:id="messageTextArea" style="-fx-padding: 20px; -fx-border-insets: 20px; -fx-background-insets: 20px;"/>
-        <Button mnemonicParsing="false" text="Send" onAction="#sendMessage"/>
+        <Button mnemonicParsing="false" text="Send" onAction="#sendMessage" style="-fx-background-color: #618C03; /* Green */
+  -fx-background-radius: 5px;
+  -fx-text-fill: white;
+  -fx-font-size: 12px;
+  -fx-padding: 10px 32px;" />
     </children>
 </VBox>
