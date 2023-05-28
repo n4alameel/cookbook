@@ -153,6 +153,7 @@ public class MainLayoutController {
 
   public void goToUsersView() throws IOException {
     this.controller.displayUsersView();
+    //this.controller.displayNewUserView();
   }
 
   public void showHelpEvent() throws IOException {

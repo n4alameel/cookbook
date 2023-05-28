@@ -16,9 +16,13 @@
 
 <ScrollPane fitToWidth="true" prefHeight="800.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyShoppingListViewController">
     <content>
-        <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="320.0" stylesheets="@Style.css">
+        <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="320.0" stylesheets="@ShoppingList.css">
             <children>
-                <Label text="Modify shopping list" fx:id="modifyLabel" layoutY="60" layoutX="615"></Label>
+                <Label text="Modify shopping list" fx:id="modifyLabel" layoutY="60" layoutX="615">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                </Label>
             </children>
         </AnchorPane>
     </content>

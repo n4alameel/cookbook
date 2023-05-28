@@ -42,7 +42,7 @@ public class Controller {
    * /!\ TO MODIFY AFTER EVERY GIT PULL /!\
    * The URL used to connect to the database with JDBC.
    */
-  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=0000&useSSL=false";
+  private final String dbUrl = "jdbc:mysql://localhost/cookbook?user=root&password=1234&useSSL=false";
 
   private static volatile Controller instance;
 
@@ -658,22 +658,18 @@ public class Controller {
   /**
    * Displays a window for adding new users.
    */
-  public void displayNewUserView() {
+  public void displayNewUserView() throws IOException {
     AddNewUserView addNewUserView = new AddNewUserView();
-    Scene newUserScene = new Scene(addNewUserView.getRoot());
-    stage.setScene(newUserScene);
-    stage.show();
+    this.mainView.LoadContent(addNewUserView.getRoot(), false);
   }
 
   /**
    * Displays a window for changing users.
    */
 
-  public void displayNewUserView(int id, String username, String password, boolean isAdmin, String imageUrl) {
+  public void displayNewUserView(int id, String username, String password, boolean isAdmin, String imageUrl) throws IOException {
     AddNewUserView addNewUserView = new AddNewUserView(id, username, password, isAdmin, imageUrl);
-    Scene newUserScene = new Scene(addNewUserView.getRoot());
-    stage.setScene(newUserScene);
-    stage.show();
+    //this.mainView.LoadContent(addNewUserView.getRoot(), false);
   }
 
   /**
@@ -1242,14 +1238,14 @@ public class Controller {
     return usersArray;
   }
 
-  public void addNewUser(String username, String password, boolean isAdmin, String imageUrl) {
+  public void addNewUser(String username, String password, boolean isAdmin, FileInputStream fileInputStream) {
     try {
       String query = "INSERT INTO user (username, password, isAdmin, imageUrl) VALUES (?, ?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, username);
       stmt.setString(2, password);
       stmt.setBoolean(3, isAdmin);
-      stmt.setString(4, imageUrl);
+      stmt.setBinaryStream(4, fileInputStream);
       stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();

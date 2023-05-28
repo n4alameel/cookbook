@@ -7,6 +7,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 
+import javax.swing.text.html.ImageView;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class AddNewUserController {
@@ -70,7 +72,8 @@ public class AddNewUserController {
                 boolean ia;
                 if(yesRB.isSelected()) ia=true;
                 else ia=false;
-                controller.addNewUser(username, password, ia, imageUrl);
+                FileInputStream fileInputStream = null;
+                controller.addNewUser(username, password, ia, fileInputStream);
                 controller.displayUsersView();
                 Stage stage = (Stage) usernameTF.getScene().getWindow();
                 stage.close();

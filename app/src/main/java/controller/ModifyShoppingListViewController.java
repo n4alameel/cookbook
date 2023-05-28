@@ -3,9 +3,11 @@ package controller;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.FontWeight;
 import model.Ingredient;
 import model.ShoppingList;
 import javafx.scene.control.Label;
@@ -24,11 +26,14 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.nio.file.*;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
+
+import javax.swing.text.html.ImageView;
 import java.lang.management.BufferPoolMXBean;
 import java.util.ArrayList;
 
@@ -37,11 +42,13 @@ public class ModifyShoppingListViewController {
   private ArrayList<Ingredient> ingredientsList;
   @FXML
   private AnchorPane anchorPane;
+  @FXML
+  private Label modifyLabel;
   private VBox vBox = new VBox();
 
   public void loadShoppingList(ShoppingList shoppingList) {
-    vBox.setLayoutY(100);
     ingredientsList = shoppingList.getIngredientsList();
+    vBox.getChildren().addAll(modifyLabel);
     for (Ingredient ingredient : ingredientsList) {
       Label name = new Label(ingredient.getName());
       int quantity = ingredient.getQuantity();
@@ -52,13 +59,13 @@ public class ModifyShoppingListViewController {
         step = 1;
       Spinner spinner = new Spinner(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10000, quantity, step));
       Label unit = new Label(ingredient.getUnitName());
-      Button buttonDelete = new Button("Delete");
+      Button buttonDelete = new Button("Remove");
       AnchorPane pane = new AnchorPane(name, spinner, unit, buttonDelete);
       pane.setId(ingredient.getName());
-      name.setLayoutX(50);
-      spinner.setLayoutX(500);
-      unit.setLayoutX(700);
-      buttonDelete.setLayoutX(800);
+      name.setLayoutX(250);
+      spinner.setLayoutX(600);
+      unit.setLayoutX(765);
+      buttonDelete.setLayoutX(900);
       buttonDelete.setOnAction(event -> {
         deleteIngredient(ingredient);
       });
@@ -73,8 +80,8 @@ public class ModifyShoppingListViewController {
   }
 
   public void saveQuantities() {
-    VBox v = (VBox) anchorPane.getChildren().get(1);
-    int i = 0;
+    VBox v = (VBox) anchorPane.getChildren().get(0);
+    int i = 1;
     for (Ingredient ingredient : ingredientsList) {
       AnchorPane pane = (AnchorPane) v.getChildren().get(i);
       Spinner s = (Spinner) pane.getChildren().get(1);
@@ -103,14 +110,15 @@ public class ModifyShoppingListViewController {
       OutputStream outputStream = new FileOutputStream(new File(path));
       PdfWriter.getInstance(document, outputStream);
       document.open();
-      // Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-      /*
-       * Chunk chunk = new Chunk("Shopping list");
-       * Chunk linebreak = new Chunk(new DottedLineSeparator());
-       * document.add(chunk);
-       * document.add(linebreak);
-       */
-      PdfPTable table = new PdfPTable(2);
+      Font font = FontFactory.getFont(FontFactory.TIMES, 16, BaseColor.BLACK);
+      Paragraph shopList = new Paragraph("Shopping list", font);
+      shopList.setAlignment(Element.ALIGN_CENTER);
+      document.add(shopList);
+
+      PdfPTable table = new PdfPTable(new float[] {3, 1});
+      table.getDefaultCell().setBorder(0);
+      table.addCell(" ");
+      table.addCell(" ");
       for (Ingredient ingredient : ingredientsList) {
         table.addCell(ingredient.getName());
         table.addCell(Integer.toString(ingredient.getQuantity()) + ingredient.getUnitName());
