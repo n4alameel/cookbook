@@ -176,7 +176,7 @@ public class Controller {
       if (rs.getInt(4) == 1) {
         isAdmin = true;
       }
-      return new User(id, rs.getString(2), rs.getString(3), isAdmin, rs.getString(5));
+      return new User(rs.getInt(1), rs.getString(2), rs.getString(3), isAdmin, rs.getString(5));
     } catch (SQLException e) {
       return null;
     }
@@ -669,7 +669,7 @@ public class Controller {
 
   public void displayNewUserView(int id, String username, String password, boolean isAdmin, String imageUrl) throws IOException {
     AddNewUserView addNewUserView = new AddNewUserView(id, username, password, isAdmin, imageUrl);
-    //this.mainView.LoadContent(addNewUserView.getRoot(), false);
+    this.mainView.LoadContent(addNewUserView.getRoot(), false);
   }
 
   /**
@@ -1238,14 +1238,14 @@ public class Controller {
     return usersArray;
   }
 
-  public void addNewUser(String username, String password, boolean isAdmin, FileInputStream fileInputStream) {
+  public void addNewUser(String username, String password, boolean isAdmin, String imageUrl) {
     try {
       String query = "INSERT INTO user (username, password, isAdmin, imageUrl) VALUES (?, ?, ?, ?)";
       PreparedStatement stmt = this.db.prepareStatement(query);
       stmt.setString(1, username);
       stmt.setString(2, password);
       stmt.setBoolean(3, isAdmin);
-      stmt.setBinaryStream(4, fileInputStream);
+      stmt.setString(4, imageUrl);
       stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();

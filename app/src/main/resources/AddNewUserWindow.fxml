@@ -10,9 +10,10 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.ImageView?>
 <ScrollPane fitToWidth="true" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddNewUserController">
     <content>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="320.0" stylesheets="@Style.css">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="320.0" stylesheets="@NewUser.css">
             <children>
                 <Label layoutX="50" layoutY="20" fx:id="usernameLabel" text="Username"></Label>
                 <TextField layoutX="50" layoutY="60" fx:id="usernameTF"></TextField>
@@ -21,9 +22,10 @@
                 <Label layoutX="50" layoutY="190" fx:id="isAdminLabel" text="Is the user an administrator?"></Label>
                 <RadioButton layoutX="50" layoutY="230" fx:id="yesRB" text="Yes"></RadioButton>
                 <RadioButton layoutY="230" layoutX="140" fx:id="noRB" text="No"></RadioButton>
-                <Label layoutX="300" layoutY="20" fx:id="imageUrlLabel" text="Preview image"></Label>
-                <TextField layoutX="50" layoutY="320" fx:id="imageUrlTF"></TextField>
-                <Button layoutX="200" layoutY="380" fx:id="addUser" onAction="#newUserEvent"></Button>
+                <Label layoutX="400" layoutY="20" fx:id="imageUrlLabel" text="Preview image"></Label>
+                <ImageView layoutX="400" layoutY="50" fx:id="image"></ImageView>
+                <Button layoutX="500" layoutY="280" fx:id="showBrowse" onAction="#browsePicture" text="Browse..."></Button>
+                <Button layoutX="50" layoutY="300" fx:id="addUser" onAction="#newUserEvent"></Button>
             </children>
         </AnchorPane>
     </content>

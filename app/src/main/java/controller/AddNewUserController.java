@@ -2,13 +2,18 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 
-import javax.swing.text.html.ImageView;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class AddNewUserController {
@@ -32,20 +37,15 @@ public class AddNewUserController {
     @FXML
     private Label imageUrlLabel;
     @FXML
-    private TextField imageUrlTF;
+    private ImageView image;
+    private String imagePath;
 
     public void initializeToggleGroup() {
         ToggleGroup group = new ToggleGroup();
         yesRB.setToggleGroup(group);
         noRB.setToggleGroup(group);
         addUser.setText("Add user");
-        usernameLabel.setFont(new Font(20));
-        passwordLabel.setFont(new Font(20));
-        isAdminLabel.setFont(new Font(20));
-        yesRB.setFont(new Font(20));
-        noRB.setFont(new Font(20));
-        imageUrlLabel.setFont(new Font(20));
-        imageUrlTF.setFont(new Font(20));
+        image.setFitHeight(200);
     }
 
     public void initializeUserChange(int id, String username, String password, boolean isAdmin, String imageUrl) {
@@ -58,25 +58,23 @@ public class AddNewUserController {
         addUser.setOnAction(event -> {
             changeUser(id);
         });
-        imageUrlTF.setText(imageUrl);
+        Image img = new Image(imageUrl);
+        image.setImage(img);
+        imagePath = imageUrl;
     }
 
     public void newUserEvent(){
         String username = usernameTF.getText();
         String password = passwordTF.getText();
-        String imageUrl = imageUrlTF.getText();
         try {
             //if fields are empty - can't create a user
-            if(username=="" || password=="" || (yesRB.isSelected()==false && noRB.isSelected()==false) || imageUrl=="");
+            if(username=="" || password=="" || (yesRB.isSelected()==false && noRB.isSelected()==false) || imagePath=="");
             else {
                 boolean ia;
                 if(yesRB.isSelected()) ia=true;
                 else ia=false;
-                FileInputStream fileInputStream = null;
-                controller.addNewUser(username, password, ia, fileInputStream);
+                controller.addNewUser(username, password, ia, imagePath);
                 controller.displayUsersView();
-                Stage stage = (Stage) usernameTF.getScene().getWindow();
-                stage.close();
             }
         } catch (Exception e) {
             usernameTF.setText("error");
@@ -85,21 +83,27 @@ public class AddNewUserController {
     public void changeUser(int id) {
         String username = usernameTF.getText();
         String password = passwordTF.getText();
-        String imageUrl = imageUrlTF.getText();
         try {
             //if fields are empty - can't create a user
-            if(username=="" || password=="" || (yesRB.isSelected()==false && noRB.isSelected()==false) || imageUrl=="");
+            if(username=="" || password=="" || (yesRB.isSelected()==false && noRB.isSelected()==false) || imagePath=="");
             else {
                 boolean ia;
                 if(yesRB.isSelected()) ia=true;
                 else ia=false;
-                controller.changeUser(id, username, password, ia, imageUrl);
+                controller.changeUser(id, username, password, ia, imagePath);
                 controller.displayUsersView();
-                Stage stage = (Stage) usernameTF.getScene().getWindow();
-                stage.close();
             }
         } catch (Exception e) {
             usernameTF.setText("error");
         }
+    }
+
+    public void browsePicture() throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(Controller.getInstance().getStage());
+        imagePath = file.toURI().toString();
+        System.out.println(imagePath);
+        Image img = new Image(imagePath);
+        image.setImage(img);
     }
 }
