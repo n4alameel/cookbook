@@ -1,0 +1,67 @@
+VBox {
+    -fx-layout-y:30;
+    -fx-spacing: 10;
+    -fx-pref-width: 1230;
+    -fx-alignment: center;
+    -fx-font-size:16;
+    -fx-content-display: center;
+}
+
+Label {
+    -fx-font-size: 20;
+}
+
+Spinner {
+    -fx-max-width: 150;
+    -fx-background-radius: 10 10 10 10;
+    -fx-border-radius: 10 10 10 10;
+}
+
+.spinner .text-field {
+    -fx-background-radius: 10 0 0 10;
+    -fx-border-radius: 10 0 0 20;
+}
+
+.spinner .increment-arrow-button {
+    -fx-background-color: #618C03;
+    -fx-background-radius: 0 10 0 0;
+    -fx-border-radius: 0 10 0 0;
+}
+
+.spinner .decrement-arrow-button {
+    -fx-background-color: #618C03;
+    -fx-background-radius: 0 0 10 0;
+        -fx-border-radius: 0 0 10 0;
+}
+
+.spinner .increment-arrow-button .increment-arrow {
+    -fx-background-color: white;
+}
+
+.spinner .decrement-arrow-button .decrement-arrow {
+    -fx-background-color: white;
+}
+
+#modifyLabel{
+    -fx-padding:30;
+    -fx-font-weight: bold;
+}
+
+.anchor-pane {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+.button {
+  -fx-background-color: #618C03; /* Green */
+  -fx-background-radius: 10px;
+  -fx-text-fill: white;
+  -fx-font-size: 12px;
+  -fx-padding: 10px 32px;
+}
+
+.button:hover {
+  -fx-background-color: rgba(73, 101, 3, 0.79); /* Darker green */
+}
